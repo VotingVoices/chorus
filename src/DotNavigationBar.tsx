@@ -1,7 +1,17 @@
 import * as React from 'react';
 
 function stepFill(current: number, target: number) {
-	return "#E8E8E8";
+	const grayed = "#E8E8E8";
+	const filled = "#FF4E4E";
+
+	if (current < target)
+	{
+		return grayed;
+	}
+	else
+	{
+		return filled;
+	}
 }
 
 interface IDotNavigationBarProps {
