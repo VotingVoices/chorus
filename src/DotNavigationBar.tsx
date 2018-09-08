@@ -38,6 +38,14 @@ const DotNavigationBar: React.SFC<IDotNavigationBarProps> = (props: IDotNavigati
 				<ellipse id="oval-5" fill="#E8E8E8" style={stepStyle(currentStep, 5)} cx={236.5} cy={8.5} rx={8.5} ry={8.5} />
 				<ellipse id="oval-6" fill="#E8E8E8" style={stepStyle(currentStep, 6)} cx={293.5} cy={8.5} rx={8.5} ry={8.5} />
 				<ellipse id="oval-7" fill="#E8E8E8" style={stepStyle(currentStep, 7)} cx={350.5} cy={8.5} rx={8.5} ry={8.5} />
+
+				<ellipse id="oval-1-indicator" fill="black" style={stepStyle(currentStep, 1)} cx={8.5} cy={8.5} rx={8.5} ry={8.5} />
+				<ellipse id="oval-2-indicator" fill="black" style={stepStyle(currentStep, 2)} cx={65.5} cy={8.5} rx={8.5} ry={8.5} />
+				<ellipse id="oval-3-indicator" fill="black" style={stepStyle(currentStep, 3)} cx={122.5} cy={8.5} rx={8.5} ry={8.5} />
+				<ellipse id="oval-4-indicator" fill="black" style={stepStyle(currentStep, 4)} cx={179.5} cy={8.5} rx={8.5} ry={8.5} />
+				<ellipse id="oval-5-indicator" fill="black" style={stepStyle(currentStep, 5)} cx={236.5} cy={8.5} rx={8.5} ry={8.5} />
+				<ellipse id="oval-6-indicator" fill="black" style={stepStyle(currentStep, 6)} cx={293.5} cy={8.5} rx={8.5} ry={8.5} />
+				<ellipse id="oval-7-indicator" fill="black" style={stepStyle(currentStep, 7)} cx={350.5} cy={8.5} rx={8.5} ry={8.5} />
 			</g>
 		</svg>
 	);
