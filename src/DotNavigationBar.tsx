@@ -1,20 +1,13 @@
 import * as React from 'react';
 
-function stepStyle(current: number, target: number) {
-	const hiddenStyle = {
-		display: 'none'
-	};
-
-	const visibleStyle = {
-	};
-
-	if (current < target)
+function stepOpacity(current: number, target: number) {
+	if (current === target)
 	{
-		return visibleStyle;
+		return 0.0;
 	}
 	else
 	{
-		return hiddenStyle;
+		return 1.0;
 	}
 }
 
@@ -25,27 +18,26 @@ interface IDotNavigationBarProps {
 // SVG code originally borrowed from https://www.crushthemidterms.org/
 const DotNavigationBar: React.SFC<IDotNavigationBarProps> = (props: IDotNavigationBarProps) => {
 	const {currentStep} = props;
+	const color = "#E8E8E8";
+	const strokeWidth = 3;
 
 	return (
-		<svg height={18} viewBox="0 0 359 18">
+		<svg height={20} viewBox="0 0 359 20">
 			<g fill="none" fillRule="evenodd">
-				<path id="line-bg" fill="#E8E8E8" d="M4 7h346.5v3H4z" />
+				<path id="line-1" fill={color} d="M 18 8.5 h 34 v 3 H 18 z" />
+				<path id="line-2" fill={color} d="M 68 8.5 h 34 v 3 H 68 z" />
+				<path id="line-3" fill={color} d="M 118 8.5 h 34 v 3 H 118 z" />
+				<path id="line-4" fill={color} d="M 168 8.5 h 34 v 3 H 168 z" />
+				<path id="line-5" fill={color} d="M 218 8.5 h 34 v 3 H 218 z" />
+				<path id="line-6" fill={color} d="M 268 8.5 h 34 v 3 H 268 z" />
 
-				<ellipse id="oval-1" fill="#E8E8E8" style={stepStyle(currentStep, 1)} cx={8.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-2" fill="#E8E8E8" style={stepStyle(currentStep, 2)} cx={65.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-3" fill="#E8E8E8" style={stepStyle(currentStep, 3)} cx={122.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-4" fill="#E8E8E8" style={stepStyle(currentStep, 4)} cx={179.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-5" fill="#E8E8E8" style={stepStyle(currentStep, 5)} cx={236.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-6" fill="#E8E8E8" style={stepStyle(currentStep, 6)} cx={293.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-7" fill="#E8E8E8" style={stepStyle(currentStep, 7)} cx={350.5} cy={8.5} rx={8.5} ry={8.5} />
-
-				<ellipse id="oval-1-indicator" fill="black" style={stepStyle(currentStep, 1)} cx={8.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-2-indicator" fill="black" style={stepStyle(currentStep, 2)} cx={65.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-3-indicator" fill="black" style={stepStyle(currentStep, 3)} cx={122.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-4-indicator" fill="black" style={stepStyle(currentStep, 4)} cx={179.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-5-indicator" fill="black" style={stepStyle(currentStep, 5)} cx={236.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-6-indicator" fill="black" style={stepStyle(currentStep, 6)} cx={293.5} cy={8.5} rx={8.5} ry={8.5} />
-				<ellipse id="oval-7-indicator" fill="black" style={stepStyle(currentStep, 7)} cx={350.5} cy={8.5} rx={8.5} ry={8.5} />
+				<ellipse id="oval-1" fillOpacity={stepOpacity(currentStep, 1)} fill={color} stroke={color} stroke-width={strokeWidth} cx={10} cy={10} rx={8} ry={8} />
+				<ellipse id="oval-2" fillOpacity={stepOpacity(currentStep, 2)} fill={color} stroke={color} stroke-width={strokeWidth} cx={60} cy={10} rx={8} ry={8} />
+				<ellipse id="oval-3" fillOpacity={stepOpacity(currentStep, 3)} fill={color} stroke={color} stroke-width={strokeWidth} cx={110} cy={10} rx={8} ry={8} />
+				<ellipse id="oval-4" fillOpacity={stepOpacity(currentStep, 4)} fill={color} stroke={color} stroke-width={strokeWidth} cx={160} cy={10} rx={8} ry={8} />
+				<ellipse id="oval-5" fillOpacity={stepOpacity(currentStep, 5)} fill={color} stroke={color} stroke-width={strokeWidth} cx={210} cy={10} rx={8} ry={8} />
+				<ellipse id="oval-6" fillOpacity={stepOpacity(currentStep, 6)} fill={color} stroke={color} stroke-width={strokeWidth} cx={260} cy={10} rx={8} ry={8} />
+				<ellipse id="oval-7" fillOpacity={stepOpacity(currentStep, 7)} fill={color} stroke={color} stroke-width={strokeWidth} cx={310} cy={10} rx={8} ry={8} />
 			</g>
 		</svg>
 	);
