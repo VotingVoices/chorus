@@ -1,8 +1,21 @@
 import * as React from 'react';
 
+function stepOpacity(current: number, target: number) {
+	if (current === target)
+	{
+		return 0.0;
+	}
+	else
+	{
+		return 1.0;
+	}
+}
+
+
 interface INavigationDotProps
 {
 	step: number;
+	currentStep: number;
 	intervalWidth: number;
 	strokeWidth: number;
 	radius: number;
@@ -15,7 +28,9 @@ export class NavigationDot extends React.Component<INavigationDotProps, any>
 {
 	public render(): JSX.Element
 	{
-		const {step, intervalWidth, strokeWidth, radius, barLeftX, barCenterY, color} = this.props;
+		const {step, currentStep, intervalWidth, strokeWidth, radius, barLeftX, barCenterY, color} = this.props;
+
+		let path: JSX.Element;
 
 		if (step > 1) {
 			const leftX = barLeftX + (step - 2) * intervalWidth + radius;
@@ -24,11 +39,18 @@ export class NavigationDot extends React.Component<INavigationDotProps, any>
 
 			const definition = `M ${leftX} ${topY} h ${interiorInterval} v ${strokeWidth} H ${leftX} z`;
 
-			return <path fill={color} d={definition} />;
+			path = <path fill={color} d={definition} />;
 		}
 		else {
-			return <div />;
+			path = <div />;
 		}
+
+		return (
+			<div>
+				{path}
+				<circle fillOpacity={stepOpacity(currentStep, step)} fill={color} stroke={color} stroke-width={strokeWidth} cx={10} cy={10} r={8} />
+			</div>
+		);
 	}
 };
 
