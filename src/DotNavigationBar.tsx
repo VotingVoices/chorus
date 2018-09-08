@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 function stepFill(current: number, target: number) {
-	return "E8E8E8";
+	return "#E8E8E8";
 }
 
 interface IDotNavigationBarProps {
