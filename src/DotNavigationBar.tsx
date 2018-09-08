@@ -1,4 +1,5 @@
 import * as React from 'react';
+import NavigationDot from './NavigationDot';
 
 function stepOpacity(current: number, target: number) {
 	if (current === target)
@@ -24,12 +25,7 @@ const DotNavigationBar: React.SFC<IDotNavigationBarProps> = (props: IDotNavigati
 	return (
 		<svg height={20} viewBox="0 0 359 20">
 			<g fill="none" fillRule="evenodd">
-				<path id="line-1" fill={color} d="M 18 8.5 h 34 v 3 H 18 z" />
-				<path id="line-2" fill={color} d="M 68 8.5 h 34 v 3 H 68 z" />
-				<path id="line-3" fill={color} d="M 118 8.5 h 34 v 3 H 118 z" />
-				<path id="line-4" fill={color} d="M 168 8.5 h 34 v 3 H 168 z" />
-				<path id="line-5" fill={color} d="M 218 8.5 h 34 v 3 H 218 z" />
-				<path id="line-6" fill={color} d="M 268 8.5 h 34 v 3 H 268 z" />
+				<NavigationDot step={1} intervalWidth={50} strokeWidth={3} radius={8} barLeftX={10} barCenterY={10} color={color} />
 
 				<circle id="oval-1" fillOpacity={stepOpacity(currentStep, 1)} fill={color} stroke={color} stroke-width={strokeWidth} cx={10} cy={10} r={8} />
 				<circle id="oval-2" fillOpacity={stepOpacity(currentStep, 2)} fill={color} stroke={color} stroke-width={strokeWidth} cx={60} cy={10} r={8} />
