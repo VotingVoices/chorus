@@ -25,7 +25,7 @@ const DotNavigationBar: React.SFC<IDotNavigationBarProps> = (props: IDotNavigati
 	return (
 		<svg height={20} viewBox="0 0 359 20">
 			<g fill="none" fillRule="evenodd">
-				<NavigationDot step={1} intervalWidth={50} strokeWidth={3} radius={8} barLeftX={10} barCenterY={10} color={color} />
+				<NavigationDot step={2} intervalWidth={50} strokeWidth={3} radius={8} barLeftX={10} barCenterY={10} color={color} />
 
 				<circle id="oval-1" fillOpacity={stepOpacity(currentStep, 1)} fill={color} stroke={color} stroke-width={strokeWidth} cx={10} cy={10} r={8} />
 				<circle id="oval-2" fillOpacity={stepOpacity(currentStep, 2)} fill={color} stroke={color} stroke-width={strokeWidth} cx={60} cy={10} r={8} />

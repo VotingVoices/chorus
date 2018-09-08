@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-interface INavigationDotProps {
+interface INavigationDotProps
+{
 	step: number;
 	intervalWidth: number;
 	strokeWidth: number;
@@ -10,18 +11,25 @@ interface INavigationDotProps {
 	color: string;
 }
 
-const NavigationDot: React.SFC<INavigationDotProps> = (props: INavigationDotProps) => {
-	const {step, intervalWidth, strokeWidth, radius, barLeftX, barCenterY, color} = props;
+export class NavigationDot extends React.Component<INavigationDotProps, any>
+{
+	public render(): JSX.Element
+	{
+		const {step, intervalWidth, strokeWidth, radius, barLeftX, barCenterY, color} = this.props;
 
-	const leftX = barLeftX + step * intervalWidth + radius;
-	const topY = barCenterY - strokeWidth / 2;
-	const interiorInterval = intervalWidth - 2 * radius;
+		if (step > 1) {
+			const leftX = barLeftX + (step - 2) * intervalWidth + radius;
+			const topY = barCenterY - strokeWidth / 2;
+			const interiorInterval = intervalWidth - 2 * radius;
 
-	const definition = `M ${leftX} ${topY} h ${interiorInterval} v ${strokeWidth} H ${leftX} z`;
+			const definition = `M ${leftX} ${topY} h ${interiorInterval} v ${strokeWidth} H ${leftX} z`;
 
-	return (
-		<path fill={color} d={definition} />
-	);
+			return <path fill={color} d={definition} />;
+		}
+		else {
+			return <div />;
+		}
+	}
 };
 
 export default NavigationDot;
