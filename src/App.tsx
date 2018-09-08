@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import DotNavigationBar from './DotNagivationBar';
+import DotNavigationBar from './DotNavigationBar';
 import Header from './Header';
 
 import logo from './logo.svg';
