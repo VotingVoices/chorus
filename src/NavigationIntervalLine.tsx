@@ -28,7 +28,7 @@ export class NavigationIntervalLine extends React.Component<INavigationDotProps,
 			return <path fill={color} d={definition} />;
 		}
 		else {
-			return <div />;
+			return <path />;
 		}
 	}
 };
