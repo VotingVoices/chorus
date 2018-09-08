@@ -1,5 +1,6 @@
 import * as React from 'react';
 import NavigationDot from './NavigationDot';
+import NavigationIntervalLine from './NavigationIntervalLine';
 
 interface IDotNavigationBarProps {
 	currentStep: number;
@@ -19,6 +20,8 @@ const DotNavigationBar: React.SFC<IDotNavigationBarProps> = (props: IDotNavigati
 				<NavigationDot step={1} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
 				<NavigationDot step={2} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
 				<NavigationDot step={3} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
+			
+				<NavigationIntervalLine step={3} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
 			</g>
 		</svg>
 	);
