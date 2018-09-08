@@ -22,12 +22,16 @@ interface IDotNavigationBarProps {
 const DotNavigationBar: React.SFC<IDotNavigationBarProps> = (props: IDotNavigationBarProps) => {
 	const {currentStep} = props;
 
+	const hiddenStyle = {
+		display: 'none'
+	};
+
 	return (
 		<svg height={18} viewBox="0 0 359 18">
 			<g fill="none" fillRule="evenodd">
 				<path id="line-bg" fill="#E8E8E8" d="M4 7h346.5v3H4z" />
 
-				<path id="line-1" fill={stepFill(currentStep, 2)} d="M7 7h56.5v3H7z" />
+				<path id="line-1" style={hiddenStyle} fill={stepFill(currentStep, 2)} d="M7 7h56.5v3H7z" />
 				<path id="line-2" fill={stepFill(currentStep, 3)} d="M66 7h56.5v3H66z" />
 				<path id="line-3" fill={stepFill(currentStep, 4)} d="M123 7h56.5v3H123z" />
 				<path id="line-4" fill={stepFill(currentStep, 5)} d="M180 7h56.5v3H180z" />
