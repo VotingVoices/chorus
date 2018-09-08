@@ -31,13 +31,13 @@ const DotNavigationBar: React.SFC<IDotNavigationBarProps> = (props: IDotNavigati
 				<path id="line-5" fill={color} d="M 218 8.5 h 34 v 3 H 218 z" />
 				<path id="line-6" fill={color} d="M 268 8.5 h 34 v 3 H 268 z" />
 
-				<ellipse id="oval-1" fillOpacity={stepOpacity(currentStep, 1)} fill={color} stroke={color} stroke-width={strokeWidth} cx={10} cy={10} rx={8} ry={8} />
-				<ellipse id="oval-2" fillOpacity={stepOpacity(currentStep, 2)} fill={color} stroke={color} stroke-width={strokeWidth} cx={60} cy={10} rx={8} ry={8} />
-				<ellipse id="oval-3" fillOpacity={stepOpacity(currentStep, 3)} fill={color} stroke={color} stroke-width={strokeWidth} cx={110} cy={10} rx={8} ry={8} />
-				<ellipse id="oval-4" fillOpacity={stepOpacity(currentStep, 4)} fill={color} stroke={color} stroke-width={strokeWidth} cx={160} cy={10} rx={8} ry={8} />
-				<ellipse id="oval-5" fillOpacity={stepOpacity(currentStep, 5)} fill={color} stroke={color} stroke-width={strokeWidth} cx={210} cy={10} rx={8} ry={8} />
-				<ellipse id="oval-6" fillOpacity={stepOpacity(currentStep, 6)} fill={color} stroke={color} stroke-width={strokeWidth} cx={260} cy={10} rx={8} ry={8} />
-				<ellipse id="oval-7" fillOpacity={stepOpacity(currentStep, 7)} fill={color} stroke={color} stroke-width={strokeWidth} cx={310} cy={10} rx={8} ry={8} />
+				<circle id="oval-1" fillOpacity={stepOpacity(currentStep, 1)} fill={color} stroke={color} stroke-width={strokeWidth} cx={10} cy={10} r={8} />
+				<circle id="oval-2" fillOpacity={stepOpacity(currentStep, 2)} fill={color} stroke={color} stroke-width={strokeWidth} cx={60} cy={10} r={8} />
+				<circle id="oval-3" fillOpacity={stepOpacity(currentStep, 3)} fill={color} stroke={color} stroke-width={strokeWidth} cx={110} cy={10} r={8} />
+				<circle id="oval-4" fillOpacity={stepOpacity(currentStep, 4)} fill={color} stroke={color} stroke-width={strokeWidth} cx={160} cy={10} r={8} />
+				<circle id="oval-5" fillOpacity={stepOpacity(currentStep, 5)} fill={color} stroke={color} stroke-width={strokeWidth} cx={210} cy={10} r={8} />
+				<circle id="oval-6" fillOpacity={stepOpacity(currentStep, 6)} fill={color} stroke={color} stroke-width={strokeWidth} cx={260} cy={10} r={8} />
+				<circle id="oval-7" fillOpacity={stepOpacity(currentStep, 7)} fill={color} stroke={color} stroke-width={strokeWidth} cx={310} cy={10} r={8} />
 			</g>
 		</svg>
 	);
