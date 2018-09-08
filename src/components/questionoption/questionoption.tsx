@@ -7,7 +7,18 @@ export class QuestionOption extends React.Component<IQuestionOptionProps, any>
     {
         const { label } = this.props;
         return (
-            <div>{label}</div>
+            <div onClick={this._onClick}>{label}</div>
         );
+    }
+
+    private _onClick = (ev: React.MouseEvent<HTMLElement>): void => {
+        const { onClick } = this.props;
+        ev.preventDefault();
+        ev.stopPropagation();
+
+        if (onClick)
+        {
+            onClick(ev);
+        }
     }
 }

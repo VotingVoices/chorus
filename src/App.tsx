@@ -4,7 +4,18 @@ import { Question } from './components/question';
 import { IQuestionOptionProps } from './components/questionoption';
 import logo from './logo.svg';
 
-class App extends React.Component {
+export interface IQuestionHostState {
+  selectedKey?: string;
+}
+
+class App extends React.Component<any, IQuestionHostState> {
+  constructor(props: any, context?: any) {
+    super(props, context);
+    this.state = {
+      selectedKey: 'nothing'
+    };
+  }
+
   public render() {
     const options = [
       {
@@ -23,11 +34,15 @@ class App extends React.Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, Hello World <code>src/App.tsx</code> and save to reload.
+          Selected: {this.state.selectedKey ? this.state.selectedKey : 'nothing'}
         </p>
-        <Question label="Test question?" options={options} />
+        <Question label="Test question?" options={options} onChange={this._onChange} />
       </div>
     );
+  }
+
+  private _onChange = (ev: any, option: IQuestionOptionProps): void => {
+    this.setState({ selectedKey: option.key });
   }
 }
 

@@ -5,7 +5,7 @@ export interface IQuestionOptionProps extends React.InputHTMLAttributes<HTMLElem
     /**
      * A required key that uniquely identifes the question option
      */
-    key?: string;
+    key: string;
 
     /**
      * The label of the question option
