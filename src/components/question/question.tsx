@@ -9,12 +9,12 @@ export class Question extends React.Component<IQuestionProps, any>
 
     public render(): JSX.Element
     {
-        const { label, options } = this.props;
+        const { label, answers } = this.props;
         return (
             <div>
                 <div>{label}</div>
                 <div className="Answer-group">
-                    {options!.map(
+                    {answers!.map(
                         (option: IAnswerProps) => {
                             return (<Answer onClick={this._onClick(option.key)} key={option.key} {...option} />);
                         }
@@ -28,8 +28,8 @@ export class Question extends React.Component<IQuestionProps, any>
         this.clickedFns[key] ? 
         this.clickedFns[key] :
         (this.clickedFns[key] = (ev) => {
-            const { onChange, options = [] } = this.props;
-            const option = options.find((o: IAnswerProps) => o.key === key );
+            const { onChange, answers = [] } = this.props;
+            const option = answers.find((o: IAnswerProps) => o.key === key );
             if (onChange)
             {
                 onChange(ev, option);

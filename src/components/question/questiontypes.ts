@@ -14,7 +14,7 @@ export interface IQuestionProps extends React.InputHTMLAttributes<HTMLElement | 
     /**
      * The options the user has to choose from
      */
-    options?: IAnswerProps[];
+    answers?: IAnswerProps[];
     /**
      * A callback for receiving a notification when the choice has been changed.
      */
