@@ -3,7 +3,6 @@ import './App.css';
 import { IAnswerProps } from './components/answer';
 import { DotNavigationBar } from './components/DotNavigationBar';
 import { Question } from './components/question';
-import logo from './logo.svg';
 
 export interface IQuestionHostState {
   selectedKey?: string;
@@ -32,7 +31,6 @@ class App extends React.Component<any, IQuestionHostState> {
       <div className="App">
         <header className="App-header">
           <DotNavigationBar currentStep={4} />
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
