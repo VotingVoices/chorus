@@ -12,3 +12,7 @@
     text-transform: uppercase;
     cursor: default;
   }
+
+.dot:hover {
+    background-color: CornflowerBlue;
+  }
