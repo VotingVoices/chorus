@@ -8,6 +8,13 @@
     ]
   },
   "rules": {
-    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"]
+    "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
+    "ordered-imports":  [
+      false,
+      {
+        "import-sources-order": "any",
+        "named-imports-order": "any"
+      }
+    ]
   }
 }
