@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { IQuestionCarouselProps } from './questioncarouseltypes';
-import { Question } from '../question';
-import { IAnswerProps } from '../answer';
+import { IQuestionCarouselProps } from './QuestionCarouselTypes';
+import { Question } from '../Question';
+import { IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
 // import './QuestionCarousel.css';
 

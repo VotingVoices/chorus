@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IQuestionProps } from '../question';
+import { IQuestionProps } from '../Question';
 
 /**
  * Helper interface for Carousel props.  Each IQuestion forms a node in a question graph

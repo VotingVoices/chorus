@@ -1,6 +1,6 @@
 import * as React from 'react';
-import './answer.css';
-import { IAnswerProps } from './answertypes';
+import './Answer.css';
+import { IAnswerProps } from './AnswerTypes';
 
 export class Answer extends React.Component<IAnswerProps, any>
 {

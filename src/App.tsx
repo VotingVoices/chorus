@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import { QuestionCarousel, QUESTIONS } from './components/questioncarousel';
+import { QuestionCarousel, QUESTIONS } from './components/QuestionCarousel';
 
 class App extends React.Component {
 

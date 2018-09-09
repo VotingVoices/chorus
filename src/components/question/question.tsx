@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Answer, IAnswerProps } from '../answer';
-import './question.css';
-import { IQuestionProps, OnClickCallback } from './questiontypes';
+import { Answer, IAnswerProps } from '../Answer';
+import './Question.css';
+import { IQuestionProps, OnClickCallback } from './QuestionTypes';
 
 export class Question extends React.Component<IQuestionProps, any>
 {

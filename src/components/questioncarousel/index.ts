@@ -1,2 +1,2 @@
-export * from './questioncarousel';
-export * from './questioncarouseltypes';
+export * from './QuestionCarousel';
+export * from './QuestionCarouselTypes';

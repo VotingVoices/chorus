@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IAnswerProps } from '../answer';
+import { IAnswerProps } from '../Answer';
 
 export type OnClickCallback = (
     evt?: React.MouseEvent<HTMLElement | HTMLInputElement>
