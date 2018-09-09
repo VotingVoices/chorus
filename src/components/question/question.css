@@ -1,4 +1,9 @@
-.Answer-group {
+.question-label {
+	font-family: serif;
+	font-size: 36px;
+}
+
+.answer-group {
     display: flex;
     flex-direction: row;
     justify-content: center;
