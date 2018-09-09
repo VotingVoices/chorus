@@ -40,7 +40,7 @@ class App extends React.Component<any, IQuestionHostState> {
           Selected: {this.state.selectedKey ? this.state.selectedKey : 'nothing'}
         </p>
         <Question label="First things first. Are you registered to vote?" options={options} onChange={this._onChange} />
-        <DotNavigationBar currentStep={4} />
+        <DotNavigationBar currentStep={1} />
       </div>
     );
   }
