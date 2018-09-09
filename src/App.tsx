@@ -1,9 +1,6 @@
 import * as React from 'react';
 import './App.css';
 import { QuestionCarousel, QUESTIONS } from './components/questioncarousel';
-import { DotNavigationBar } from './components/DotNavigationBar';
-
-
 
 class App extends React.Component {
 
@@ -15,7 +12,6 @@ class App extends React.Component {
         </header>
         <p className="App-intro" />
         <QuestionCarousel questions={ QUESTIONS } />
-        <DotNavigationBar currentStep={1} />
       </div>
     );
   }

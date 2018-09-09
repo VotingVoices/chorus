@@ -6,6 +6,10 @@ import { IQuestionProps } from '../question';
  */
 export interface IQuestion {
     /**
+     * How far along is the question in the flow
+     */
+    dotNavStep: number;
+    /**
      * Props to forward to question component
      */
     questionProps: IQuestionProps;
@@ -28,6 +32,7 @@ export interface IQuestionCarouselProps extends React.HTMLAttributes<HTMLElement
  */
 export const QUESTIONS : { [key: number] : IQuestion } = {
     0: {
+        dotNavStep: 1,
         nextQuestionId: (key) => 1,
         questionProps: {   
             answers: [
@@ -48,6 +53,7 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
         }
     },  
     1: {
+        dotNavStep: 2,
         nextQuestionId: (key) => key === '3' ? 2 : 0,
         questionProps: {
             answers: [
@@ -72,6 +78,7 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
         },
     },
     2: {
+        dotNavStep: 3,
         nextQuestionId: (key) => 0,
         questionProps: {
             answers: [
