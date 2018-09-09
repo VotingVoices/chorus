@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import DotNavigationBar from './DotNavigationBar';
+import { DotNavigationBar } from './components/DotNavigationBar';
 import Header from './Header';
 
 class App extends React.Component {
