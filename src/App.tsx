@@ -19,12 +19,16 @@ class App extends React.Component<any, IQuestionHostState> {
   public render() {
     const options = [
       {
-        key: 'A',
-        label: 'A',
+        key: 'Yes',
+        label: 'Heck yeah!',
       } as IAnswerProps,
       {
-        key: 'B',
-        label: 'B'
+        key: 'No',
+        label: 'Uh...nope.'
+      },
+      {
+        key: 'DontKnow',
+        label: 'I dunno...'
       }
     ];
     return (
@@ -36,7 +40,7 @@ class App extends React.Component<any, IQuestionHostState> {
         <p className="App-intro">
           Selected: {this.state.selectedKey ? this.state.selectedKey : 'nothing'}
         </p>
-        <Question label="Test question?" options={options} onChange={this._onChange} />
+        <Question label="First things first. Are you registered to vote?" options={options} onChange={this._onChange} />
       </div>
     );
   }
