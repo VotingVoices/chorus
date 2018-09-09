@@ -12,8 +12,8 @@ export class Question extends React.Component<IQuestionProps, any>
         const { label, options } = this.props;
         return (
             <div>
-                <div>{label}</div>
-                <div className="Answer-group">
+                <div className="question-label">{label}</div>
+                <div className="answer-group">
                     {options!.map(
                         (option: IAnswerProps) => {
                             return (<Answer onClick={this._onClick(option.key)} key={option.key} {...option} />);
