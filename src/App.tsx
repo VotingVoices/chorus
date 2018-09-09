@@ -34,13 +34,13 @@ class App extends React.Component<any, IQuestionHostState> {
     return (
       <div className="App">
         <header className="App-header">
-          <DotNavigationBar currentStep={4} />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Voting Voices</h1>
         </header>
         <p className="App-intro">
           Selected: {this.state.selectedKey ? this.state.selectedKey : 'nothing'}
         </p>
         <Question label="First things first. Are you registered to vote?" options={options} onChange={this._onChange} />
+        <DotNavigationBar currentStep={4} />
       </div>
     );
   }
