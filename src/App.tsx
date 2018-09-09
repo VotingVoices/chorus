@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
-import logo from './logo.svg';
 import { QuestionCarousel, QUESTIONS } from './components/questioncarousel';
+import { DotNavigationBar } from './components/DotNavigationBar';
 
 
 
@@ -11,11 +11,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Voting Voices</h1>
         </header>
         <p className="App-intro" />
         <QuestionCarousel questions={ QUESTIONS } />
+        <DotNavigationBar currentStep={1} />
       </div>
     );
   }

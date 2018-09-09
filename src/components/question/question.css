@@ -1,6 +1,11 @@
-.Answer-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: nowrap;
+.question-label {
+	font-family: serif;
+	font-size: 48px;
+}
+
+.answer-group {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: nowrap;
 }

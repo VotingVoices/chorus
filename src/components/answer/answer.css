@@ -1,12 +1,19 @@
 .dot {
-    height: 210px;
-    width: 210px;
-    background-color: transparent;
-    border: 1px solid white;
-    border-radius: 50%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    text-transform: uppercase;
-  }
+	height: 120px;
+	width: 120px;
+	margin: 20px;
+	background-color: transparent;
+	border: 1px solid white;
+	border-radius: 50%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	text-transform: uppercase;
+	cursor: default;
+}
+
+
+.dot:hover {
+	background-color: CornflowerBlue;
+}
