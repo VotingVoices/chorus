@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { IQuestionOptionProps } from './questionoptiontypes';
+import './answer.css';
+import { IAnswerProps } from './answertypes';
 
-export class QuestionOption extends React.Component<IQuestionOptionProps, any>
+export class Answer extends React.Component<IAnswerProps, any>
 {
     public render(): JSX.Element
     {
         const { label } = this.props;
         return (
-            <div onClick={this._onClick}>{label}</div>
+            <span className="dot" onClick={this._onClick}>
+                {label}
+            </span>
         );
     }
 

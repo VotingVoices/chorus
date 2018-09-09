@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { IQuestionOptionProps, QuestionOption } from '../questionoption';
+import { Answer, IAnswerProps } from '../answer';
+import './question.css';
 import { IQuestionProps, OnClickCallback } from './questiontypes';
 
 export class Question extends React.Component<IQuestionProps, any>
@@ -12,10 +13,10 @@ export class Question extends React.Component<IQuestionProps, any>
         return (
             <div>
                 <div>{label}</div>
-                <div>
+                <div className="Answer-group">
                     {options!.map(
-                        (option: IQuestionOptionProps) => {
-                            return (<QuestionOption onClick={this._onClick(option.key)} key={option.key} {...option} />);
+                        (option: IAnswerProps) => {
+                            return (<Answer onClick={this._onClick(option.key)} key={option.key} {...option} />);
                         }
                     )}
                 </div>
@@ -28,7 +29,7 @@ export class Question extends React.Component<IQuestionProps, any>
         this.clickedFns[key] :
         (this.clickedFns[key] = (ev) => {
             const { onChange, options = [] } = this.props;
-            const option = options.find((o: IQuestionOptionProps) => o.key === key );
+            const option = options.find((o: IAnswerProps) => o.key === key );
             if (onChange)
             {
                 onChange(ev, option);

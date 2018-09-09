@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './App.css';
+import { IAnswerProps } from './components/answer';
 import { Question } from './components/question';
-import { IQuestionOptionProps } from './components/questionoption';
 import logo from './logo.svg';
 
 export interface IQuestionHostState {
@@ -21,7 +21,7 @@ class App extends React.Component<any, IQuestionHostState> {
       {
         key: 'A',
         label: 'A',
-      } as IQuestionOptionProps,
+      } as IAnswerProps,
       {
         key: 'B',
         label: 'B'
@@ -41,7 +41,7 @@ class App extends React.Component<any, IQuestionHostState> {
     );
   }
 
-  private _onChange = (ev: any, option: IQuestionOptionProps): void => {
+  private _onChange = (ev: any, option: IAnswerProps): void => {
     this.setState({ selectedKey: option.key });
   }
 }

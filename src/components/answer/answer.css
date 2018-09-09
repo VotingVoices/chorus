@@ -1,0 +1,11 @@
+.dot {
+    height: 210px;
+    width: 210px;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }

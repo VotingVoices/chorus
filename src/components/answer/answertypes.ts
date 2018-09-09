@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface IQuestionOptionProps extends React.InputHTMLAttributes<HTMLElement | HTMLInputElement>
+export interface IAnswerProps extends React.InputHTMLAttributes<HTMLElement | HTMLInputElement>
 {
     /**
      * A required key that uniquely identifes the question option
