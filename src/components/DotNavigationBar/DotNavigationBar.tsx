@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { NavigationDot } from '../NavigationDot';
+import { INavigationDotProps } from '../NavigationDot';
 import { NavigationIntervalLine } from '../NavigationIntervalLine';
 import { IDotNavigationBarProps } from './DotNavigationBarTypes';
 
@@ -14,24 +15,34 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 		const strokeWidth = 3;
 		const radius = 8;
 
+		const childProps = {
+			barCenterY: 10,
+			barLeftX: 10,
+			color,
+			currentStep,
+			intervalWidth,
+			radius,
+			strokeWidth,
+		} as INavigationDotProps;
+
 		return (
 			<svg height={20} viewBox="0 0 359 20">
 				<g fill="none" fillRule="evenodd">
-					<NavigationIntervalLine step={1} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationIntervalLine step={2} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationIntervalLine step={3} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationIntervalLine step={4} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationIntervalLine step={5} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationIntervalLine step={6} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationIntervalLine step={7} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
+					<NavigationIntervalLine {...childProps} step={1} />
+					<NavigationIntervalLine {...childProps} step={2} />
+					<NavigationIntervalLine {...childProps} step={3} />
+					<NavigationIntervalLine {...childProps} step={4} />
+					<NavigationIntervalLine {...childProps} step={5} />
+					<NavigationIntervalLine {...childProps} step={6} />
+					<NavigationIntervalLine {...childProps} step={7} />
 
-					<NavigationDot step={1} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationDot step={2} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationDot step={3} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationDot step={4} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationDot step={5} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationDot step={6} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />
-					<NavigationDot step={7} currentStep={currentStep} intervalWidth={intervalWidth} strokeWidth={strokeWidth} radius={radius} barLeftX={10} barCenterY={10} color={color} />				
+					<NavigationDot {...childProps} step={1} />
+					<NavigationDot {...childProps} step={2} />
+					<NavigationDot {...childProps} step={3} />
+					<NavigationDot {...childProps} step={4} />
+					<NavigationDot {...childProps} step={5} />
+					<NavigationDot {...childProps} step={6} />
+					<NavigationDot {...childProps} step={7} />				
 				</g>
 			</svg>
 		);
