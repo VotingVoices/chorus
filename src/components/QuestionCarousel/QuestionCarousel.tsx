@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
+import './QuestionCarousel.css';
 import { IQuestionCarouselProps } from './QuestionCarouselTypes';
 import { Question } from '../Question';
 import { IAnswerProps } from '../Answer';
@@ -24,7 +26,10 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
           const currentQuestion = this.props.questions[this.state.currentQuestionId];
           return (
               <div>
-                <Question {...currentQuestion.questionProps} onChange={this._onQuestionAnswered} />
+                <ReactCSSTransitionReplace transitionName="carousel-cross-fade" 
+                           transitionEnterTimeout={1000} transitionLeaveTimeout={400} >
+                    <Question {...currentQuestion.questionProps} key={currentQuestion.id} onChange={this._onQuestionAnswered} />
+                </ReactCSSTransitionReplace>
                 <DotNavigationBar currentStep={this.state.currentDotNavStep} />
               </div>
           );
