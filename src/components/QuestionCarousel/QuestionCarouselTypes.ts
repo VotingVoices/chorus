@@ -36,8 +36,8 @@ export interface IQuestionCarouselProps extends React.HTMLAttributes<HTMLElement
  */
 export const QUESTIONS : { [key: number] : IQuestion } = {
     0: {
-        dotNavStep: 1,
         id: 0,
+        dotNavStep: 1,
         nextQuestionId: (key) => 1,
         questionProps: {   
             label: 'First things first. Are you registered to vote?',
@@ -58,8 +58,8 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
         }
     },  
     1: {
-        dotNavStep: 2,
         id: 1,
+        dotNavStep: 2,
         nextQuestionId: (key) => key === '3' ? 2 : 0,
         questionProps: {
             label: 'Are you planning to vote in any of these states?',
@@ -84,8 +84,8 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
         },
     },
     2: {
-        dotNavStep: 3,
         id: 2,
+        dotNavStep: 3,
         nextQuestionId: (key) => 0,
         questionProps: {
             label: 'Do you know where your polling location is?',
