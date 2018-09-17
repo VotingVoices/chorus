@@ -38,7 +38,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
                   <DotNavigationBar
                       stepCount={10}
                       currentStep={this.state.currentDotNavStep}
-                      viewboxWidth={359}
+                      viewboxWidth={480}
                       viewboxHeight={20}
                       color='#E8E8E8'
                       intervalWidth={50}
