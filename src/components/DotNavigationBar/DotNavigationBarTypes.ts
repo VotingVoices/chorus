@@ -4,6 +4,8 @@ export interface IDotNavigationBarProps extends React.InputHTMLAttributes<HTMLEl
 {
 	stepCount: number;
 	currentStep: number;
+	viewboxWidth: number;
+	viewboxHeight: number;
 	color: string;
 	intervalWidth: number;
 	strokeWidth: number;

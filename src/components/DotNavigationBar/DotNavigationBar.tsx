@@ -9,7 +9,7 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 {
 	public render(): JSX.Element
 	{
-		const {stepCount, currentStep, color, intervalWidth, strokeWidth, dotRadius} = this.props;
+		const {stepCount, currentStep, viewboxWidth, viewboxHeight, color, intervalWidth, strokeWidth, dotRadius} = this.props;
 
 		const childProps = {
 			barCenterY: 10,
@@ -29,8 +29,10 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 			dots.push(<NavigationDot {...childProps} step={i} />)
 		}
 
+		const viewboxDefinition = `0 0 ${viewboxWidth} ${viewboxHeight}`;
+
 		return (
-			<svg height={20} viewBox="0 0 359 20">
+			<svg height={20} viewBox={viewboxDefinition}>
 				<g fill="none" fillRule="evenodd">
 					{lines}
 					{dots}			
