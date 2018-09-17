@@ -9,7 +9,7 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 {
 	public render(): JSX.Element
 	{
-		const {currentStep, color, intervalWidth, strokeWidth, dotRadius} = this.props;
+		const {stepCount, currentStep, color, intervalWidth, strokeWidth, dotRadius} = this.props;
 
 		const childProps = {
 			barCenterY: 10,
@@ -24,7 +24,7 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 		const lines = [];
 		const dots = [];
 
-		for (let i = 1; i <= 7; i++) {
+		for (let i = 1; i <= stepCount; i++) {
 			lines.push(<NavigationIntervalLine {...childProps} step={i} />)
 			dots.push(<NavigationDot {...childProps} step={i} />)
 		}
