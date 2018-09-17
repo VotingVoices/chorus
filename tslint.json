@@ -9,12 +9,13 @@
   },
   "rules": {
     "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore"],
-    "ordered-imports":  [
+    "ordered-imports": [
       false,
       {
         "import-sources-order": "any",
         "named-imports-order": "any"
       }
-    ]
+    ],
+    "object-literal-sort-keys": false
   }
 }
