@@ -21,24 +21,19 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 			strokeWidth,
 		} as INavigationDotProps;
 
+		const lines = [];
+		const dots = [];
+
+		for (let i = 1; i <= 7; i++) {
+			lines.push(<NavigationIntervalLine {...childProps} step={i} />)
+			dots.push(<NavigationDot {...childProps} step={i} />)
+		}
+
 		return (
 			<svg height={20} viewBox="0 0 359 20">
 				<g fill="none" fillRule="evenodd">
-					<NavigationIntervalLine {...childProps} step={1} />
-					<NavigationIntervalLine {...childProps} step={2} />
-					<NavigationIntervalLine {...childProps} step={3} />
-					<NavigationIntervalLine {...childProps} step={4} />
-					<NavigationIntervalLine {...childProps} step={5} />
-					<NavigationIntervalLine {...childProps} step={6} />
-					<NavigationIntervalLine {...childProps} step={7} />
-
-					<NavigationDot {...childProps} step={1} />
-					<NavigationDot {...childProps} step={2} />
-					<NavigationDot {...childProps} step={3} />
-					<NavigationDot {...childProps} step={4} />
-					<NavigationDot {...childProps} step={5} />
-					<NavigationDot {...childProps} step={6} />
-					<NavigationDot {...childProps} step={7} />				
+					{lines}
+					{dots}			
 				</g>
 			</svg>
 		);
