@@ -40,6 +40,7 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
         id: 0,
         nextQuestionId: (key) => 1,
         questionProps: {   
+            label: 'First things first. Are you registered to vote?',
             answers: [
                 {
                     key: '0',
@@ -54,7 +55,6 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
                     label: 'I Dunno...'
                 }
             ],
-            label: 'First things first. Are you registered to vote?'
         }
     },  
     1: {
@@ -62,6 +62,7 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
         id: 1,
         nextQuestionId: (key) => key === '3' ? 2 : 0,
         questionProps: {
+            label: 'Are you planning to vote in any of these states?',
             answers: [
                 {
                     key: '0',
@@ -80,7 +81,6 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
                     label: 'Nope'
                 }
             ],
-            label: 'Are you planning to vote in any of these states?',
         },
     },
     2: {
@@ -88,6 +88,7 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
         id: 2,
         nextQuestionId: (key) => 0,
         questionProps: {
+            label: 'Do you know where your polling location is?',
             answers: [
                 {
                     key: '0',
@@ -102,7 +103,6 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
                     label: 'I Dunno...'
                 },
             ],
-            label: 'Do you know where your polling location is?',
         },
     }
 }
