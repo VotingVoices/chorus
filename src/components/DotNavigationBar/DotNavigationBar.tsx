@@ -9,11 +9,7 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 {
 	public render(): JSX.Element
 	{
-		const {currentStep} = this.props;
-		const color = "#E8E8E8";
-		const intervalWidth = 50;
-		const strokeWidth = 3;
-		const radius = 8;
+		const {currentStep, color, intervalWidth, strokeWidth, dotRadius} = this.props;
 
 		const childProps = {
 			barCenterY: 10,
@@ -21,7 +17,7 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 			color,
 			currentStep,
 			intervalWidth,
-			radius,
+			radius: dotRadius,
 			strokeWidth,
 		} as INavigationDotProps;
 
