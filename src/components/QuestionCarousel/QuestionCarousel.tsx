@@ -36,7 +36,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
                           onChange={this._onQuestionAnswered} />
                   </ReactCSSTransitionReplace>
                   <DotNavigationBar
-                      stepCount={7}
+                      stepCount={10}
                       currentStep={this.state.currentDotNavStep}
                       color='#E8E8E8'
                       intervalWidth={50}
