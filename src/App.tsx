@@ -1,24 +1,16 @@
 import * as React from 'react';
 import './App.css';
-import { QuestionCarousel, QUESTIONS } from './components/QuestionCarousel';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Questionnaire } from './components/Questionnaire';
 
 class App extends React.Component {
-
   public render() {
     return (
-      <BrowserRouter>
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">Voting Voices</h1>
-          </header>
-          <p className="App-intro" />
-          <QuestionCarousel questions={ QUESTIONS } />
-        </div>
-      </BrowserRouter>
+      <Router>
+        <Route exact={true} path="/" component={Questionnaire} />
+      </Router>
     );
   }
-
 }
 
 export default App;
