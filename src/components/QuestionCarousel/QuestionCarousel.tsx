@@ -7,7 +7,12 @@ import { IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
 import { Redirect } from 'react-router-dom';
 
+interface IAnswerMap {
+    [questionKey: string]: string
+}
+
 export interface IQuestionCarouselState {
+    answers: IAnswerMap;
     currentQuestionId: number;
     currentDotNavStep: number;
     redirectToPlan: boolean;
@@ -18,6 +23,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
     constructor(props: IQuestionCarouselProps, context?: any) {
         super(props, context);
         this.state = {
+            answers: { },
             currentDotNavStep: props.questions[0].dotNavStep,
             currentQuestionId: 0,
             redirectToPlan: false,
