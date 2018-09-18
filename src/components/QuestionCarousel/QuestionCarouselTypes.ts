@@ -240,7 +240,7 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
     9: {
         id: 9,
         dotNavStep: 10,
-        nextQuestionId: (key) => 0,
+        nextQuestionId: (key) => -1,
         questionProps: {
             label: 'How are you feeling about these midterm elections?',
             answers: [

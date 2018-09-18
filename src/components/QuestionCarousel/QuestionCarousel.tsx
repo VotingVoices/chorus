@@ -5,11 +5,12 @@ import { IQuestionCarouselProps } from './QuestionCarouselTypes';
 import { Question } from '../Question';
 import { IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
-// import './QuestionCarousel.css';
+import { Redirect } from 'react-router-dom';
 
 export interface IQuestionCarouselState {
     currentQuestionId: number;
     currentDotNavStep: number;
+    redirectToPlan: boolean;
   }
 
 export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
@@ -19,6 +20,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         this.state = {
             currentDotNavStep: props.questions[0].dotNavStep,
             currentQuestionId: 0,
+            redirectToPlan: false,
         };
     }
 
@@ -26,6 +28,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
           const currentQuestion = this.props.questions[this.state.currentQuestionId];
           return (
               <div>
+                  {this._renderRedirect()}
                   <ReactCSSTransitionReplace
                       transitionName="carousel-cross-fade" 
                       transitionEnterTimeout={1000}
@@ -52,9 +55,30 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         const { questions } = this.props;
         const currentQuestion = questions[this.state.currentQuestionId];
         const nextQuestionId = currentQuestion.nextQuestionId(answer!.key);
-        this.setState({
-            currentDotNavStep: questions[nextQuestionId].dotNavStep,
-            currentQuestionId: nextQuestionId,
-        });
+
+        if (nextQuestionId === -1) {
+            this.setState({
+                redirectToPlan: true,
+            });
+        }
+        else {
+            this.setState({
+                currentDotNavStep: questions[nextQuestionId].dotNavStep,
+                currentQuestionId: nextQuestionId,
+            });
+        }
+    }
+
+    private _renderRedirect = () => {
+        if (this.state.redirectToPlan) {
+            return (
+              <Redirect to='/plan' />
+            );
+        }
+        else {
+            return (
+              <div />
+            );
+        }
     }
 }
