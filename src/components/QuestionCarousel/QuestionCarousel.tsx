@@ -8,7 +8,7 @@ import { DotNavigationBar } from '../DotNavigationBar';
 import { Redirect } from 'react-router-dom';
 
 interface IQuestionAndAnswer {
-    questionKey: string;
+    questionId: number;
     answerKey: string;
 }
 
@@ -61,15 +61,21 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
     private _onQuestionAnswered = (ev?: React.FormEvent<HTMLElement | HTMLInputElement>, answer?: IAnswerProps) => {
         const { questions } = this.props;
         const currentQuestion = questions[this.state.currentQuestionId];
+
+        const answers = this.state.answers;
+        answers.push({ questionId: currentQuestion.id, answerKey: answer!.key });
+
         const nextQuestionId = currentQuestion.nextQuestionId(answer!.key);
 
         if (nextQuestionId === -1) {
             this.setState({
+                answers,
                 redirectToPlan: true,
             });
         }
         else {
             this.setState({
+                answers,
                 currentDotNavStep: questions[nextQuestionId].dotNavStep,
                 currentQuestionId: nextQuestionId,
             });
@@ -78,8 +84,10 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
 
     private _renderRedirect = () => {
         if (this.state.redirectToPlan) {
+            const queryStringParameters = this.state.answers.map(qa => `q${qa.questionId}=${qa.answerKey}`).join('&');
+            const planUrl = `/plan?${queryStringParameters}`;
             return (
-              <Redirect to='/plan' />
+              <Redirect to={planUrl} />
             );
         }
         else {
