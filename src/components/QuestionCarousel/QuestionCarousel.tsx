@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import './QuestionCarousel.css';
-import { IQuestion, IQuestionCarouselProps, QuestionId } from './QuestionCarouselTypes';
-import { Question } from '../Question';
+import { IQuestion, IQuestionCarouselProps } from './QuestionCarouselTypes';
+import { Question, QuestionId } from '../Question';
 import { AnswerId, IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
 import { Redirect } from 'react-router-dom';
@@ -51,7 +51,8 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
                       transitionEnterTimeout={1000}
                       transitionLeaveTimeout={400} >
                       <Question
-                          {...currentQuestion.questionProps}
+                          id={currentQuestion.id}
+                          answers={currentQuestion.answers}
                           key={currentQuestion.id}
                           onChange={this._onQuestionAnswered} />
                   </ReactCSSTransitionReplace>

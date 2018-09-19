@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { Answer, AnswerId } from '../Answer';
 import './Question.css';
-import { IQuestionProps } from './QuestionTypes';
+import { getQuestionFullLabel, IQuestionProps } from './QuestionTypes';
 
 export class Question extends React.Component<IQuestionProps, any>
 {
     public render(): JSX.Element
     {
-        const { label, answers } = this.props;
+        const { id, answers } = this.props;
+        const label = getQuestionFullLabel(id);
+
         return (
             <div>
                 <div className="question-label">{label}</div>
