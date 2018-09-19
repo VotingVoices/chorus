@@ -15,6 +15,19 @@ export enum QuestionId {
     END_OF_QUESTIONS = 'END'
 }
 
+export const ALL_QUESTION_IDS: QuestionId[] = [
+    QuestionId.AreYouRegistered,
+    QuestionId.VoteByMailState,
+    QuestionId.PollingLocation,
+    QuestionId.SpecialAccommodations,
+    QuestionId.TransportationMethod,
+    QuestionId.AbsenteeBallot,
+    QuestionId.MissWork,
+    QuestionId.FamiliarWithBallot,
+    QuestionId.PeopleToInvite,
+    QuestionId.Emotion,
+];
+
 export function getQuestionFullLabel(id: QuestionId): string {
     switch (id) {
         case QuestionId.AreYouRegistered:
