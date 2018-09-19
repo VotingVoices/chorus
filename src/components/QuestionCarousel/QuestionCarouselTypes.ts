@@ -34,7 +34,7 @@ export interface IQuestion {
     /**
      * callback called to resolve next question id
      */
-    nextQuestionId: (key: string) => QuestionId;
+    nextQuestionId: (answer: AnswerId) => QuestionId;
 }
 
 export interface IQuestionCarouselProps extends React.HTMLAttributes<HTMLElement>
@@ -49,7 +49,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.AreYouRegistered,
         dotNavStep: 1,
-        nextQuestionId: (key) => QuestionId.VoteByMailState,
+        nextQuestionId: (answer) => QuestionId.VoteByMailState,
         questionProps: {   
             label: 'First things first. Are you registered to vote?',
             answers: [

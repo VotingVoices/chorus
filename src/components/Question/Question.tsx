@@ -5,7 +5,7 @@ import { IQuestionProps, OnClickCallback } from './QuestionTypes';
 
 export class Question extends React.Component<IQuestionProps, any>
 {
-    private clickedFns: { [key: string]: OnClickCallback } = {};
+    private clickedFns: { [key: AnswerId]: OnClickCallback } = {};
 
     public render(): JSX.Element
     {
@@ -17,7 +17,7 @@ export class Question extends React.Component<IQuestionProps, any>
                     {answers!.map(
 
                         (option: IAnswerProps) => {
-                            return (<Answer onClick={this._onClick(option.key)} key={option.key} {...option} />);
+                            return (<Answer onClick={this._onClick(option.answerId)} answerId={option.answerId} {...option} />);
                         }
                     )}
                 </div>
@@ -25,12 +25,12 @@ export class Question extends React.Component<IQuestionProps, any>
         );
     }
 
-    private _onClick = (key: string) =>
-        this.clickedFns[key] ? 
-        this.clickedFns[key] :
-        (this.clickedFns[key] = (ev) => {
+    private _onClick = (answerId: AnswerId) =>
+        this.clickedFns[answerId] ? 
+        this.clickedFns[answerId] :
+        (this.clickedFns[answerId] = (ev) => {
             const { onChange, answers = [] } = this.props;
-            const option = answers.find((o: IAnswerProps) => o.key === key );
+            const option = answers.find((o: IAnswerProps) => o.answerId === answerId );
             if (onChange)
             {
                 onChange(ev, option);
