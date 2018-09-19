@@ -3,13 +3,13 @@ import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import './QuestionCarousel.css';
 import { IQuestion, IQuestionCarouselProps, QuestionId } from './QuestionCarouselTypes';
 import { Question } from '../Question';
-import { IAnswerProps } from '../Answer';
+import { AnswerId, IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
 import { Redirect } from 'react-router-dom';
 
 interface IQuestionAndAnswer {
     questionId: QuestionId;
-    answerKey: string;
+    answerId: AnswerId;
 }
 
 export interface IQuestionCarouselState {
@@ -73,9 +73,9 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         const currentQuestion = findQuestion(questions, this.state.currentQuestionId);
 
         const answers = this.state.answers;
-        answers.push({ questionId: currentQuestion.id, answerKey: answer!.key });
+        answers.push({ questionId: currentQuestion.id, answerId: answer!.answerId });
 
-        const nextQuestionId = currentQuestion.nextQuestionId(answer!.key);
+        const nextQuestionId = currentQuestion.nextQuestionId(answer!.answerId);
 
         if (nextQuestionId === QuestionId.END_OF_QUESTIONS) {
             this.setState({
@@ -94,7 +94,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
 
     private _renderRedirect = () => {
         if (this.state.redirectToPlan) {
-            const queryStringParameters = this.state.answers.map(qa => `${qa.questionId}=${qa.answerKey}`).join('&');
+            const queryStringParameters = this.state.answers.map(qa => `${qa.questionId}=${qa.answerId}`).join('&');
             const planUrl = `/plan?${queryStringParameters}`;
             return (
               <Redirect to={planUrl} />

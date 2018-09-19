@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { AnswerId } from '../Answer';
 import { IQuestionProps } from '../Question';
 
 export enum QuestionId {
@@ -53,44 +54,23 @@ export const QUESTIONS : IQuestion[] = [
         questionProps: {   
             label: 'First things first. Are you registered to vote?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Heck Yeah!'
-                },
-                {
-                    key: '1',
-                    label: 'Uhh.... Nope'
-                },
-                {
-                    key: '2',
-                    label: 'I Dunno...'
-                }
+                AnswerId.EmphaticYes,
+                AnswerId.UncertainNo,
+                AnswerId.DontKnow,
             ],
         },
     },
     {
         id: QuestionId.VoteByMailState,
         dotNavStep: 2,
-        nextQuestionId: (key) => key === '3' ? QuestionId.PollingLocation : QuestionId.END_OF_QUESTIONS,
+        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.END_OF_QUESTIONS,
         questionProps: {
             label: 'Are you planning to vote in any of these states?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Colorado'
-                },
-                {
-                    key: '1',
-                    label: 'Oregon'
-                },
-                {
-                    key: '2',
-                    label: 'Washington'
-                },
-                {
-                    key: '3',
-                    label: 'Nope'
-                }
+                AnswerId.Colorado,
+                AnswerId.Oregon,
+                AnswerId.Washington,
+                AnswerId.OtherState,
             ],
         },
     },
@@ -101,18 +81,9 @@ export const QUESTIONS : IQuestion[] = [
         questionProps: {
             label: 'Do you know where your polling location is?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Yep!'
-                },
-                {
-                    key: '1',
-                    label: 'Nope.'
-                },
-                {
-                    key: '2',
-                    label: 'I Dunno...'
-                },
+                AnswerId.Yes,
+                AnswerId.No,
+                AnswerId.DontKnow,
             ],
         },
     },
@@ -123,14 +94,8 @@ export const QUESTIONS : IQuestion[] = [
         questionProps: {
             label: 'Will you need special accommodations to reach the polling location?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Yep!'
-                },
-                {
-                    key: '1',
-                    label: 'Nope.'
-                },
+                AnswerId.Yes,
+                AnswerId.No,
             ],
         },
     },
@@ -141,26 +106,11 @@ export const QUESTIONS : IQuestion[] = [
         questionProps: {
             label: 'How are you gonna get to your polling location?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Walk or bike'
-                },
-                {
-                    key: '1',
-                    label: 'Drive myself'
-                },
-                {
-                    key: '2',
-                    label: 'Lyft or Uber'
-                },
-                {
-                    key: '3',
-                    label: 'Ask someone for a ride'
-                },
-                {
-                    key: '4',
-                    label: 'Other'
-                },
+                AnswerId.WalkOrBike,
+                AnswerId.DriveMyself,
+                AnswerId.RideShare,
+                AnswerId.AskSomeoneForRide,
+                AnswerId.Other,
             ],
         },
     },
@@ -171,14 +121,8 @@ export const QUESTIONS : IQuestion[] = [
         questionProps: {
             label: 'Do you need to send an absentee ballot?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Yep!'
-                },
-                {
-                    key: '1',
-                    label: 'Nope.'
-                },
+                AnswerId.Yes,
+                AnswerId.No,
             ],
         },
     },
@@ -189,14 +133,8 @@ export const QUESTIONS : IQuestion[] = [
         questionProps: {
             label: 'Will you have to miss or leave work to vote?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Yep!'
-                },
-                {
-                    key: '1',
-                    label: 'Nope.'
-                },
+                AnswerId.Yes,
+                AnswerId.No,
             ],
         },
     },
@@ -207,14 +145,8 @@ export const QUESTIONS : IQuestion[] = [
         questionProps: {
             label: 'Are you familiar with the issues and candidates on your ballot?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Yep!'
-                },
-                {
-                    key: '1',
-                    label: 'Nope.'
-                },
+                AnswerId.Yes,
+                AnswerId.No,
             ],
         },
     },
@@ -225,26 +157,11 @@ export const QUESTIONS : IQuestion[] = [
         questionProps: {
             label: 'Let\'s invite people to vote with you! Who would you like to join you in voting?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Family members'
-                },
-                {
-                    key: '1',
-                    label: 'Coworkers'
-                },
-                {
-                    key: '2',
-                    label: 'Friends'
-                },
-                {
-                    key: '3',
-                    label: 'Someone else'
-                },
-                {
-                    key: '4',
-                    label: 'No thanks'
-                },
+                AnswerId.FamilyMembers,
+                AnswerId.Coworkers,
+                AnswerId.Friends,
+                AnswerId.SomeoneElse,
+                AnswerId.NoThanks,
             ],
         },
     },
@@ -255,38 +172,13 @@ export const QUESTIONS : IQuestion[] = [
         questionProps: {
             label: 'How are you feeling about these midterm elections?',
             answers: [
-                {
-                    key: '0',
-                    label: 'Excited'
-                },
-                {
-                    key: '1',
-                    label: 'Happy'
-                },
-                {
-                    key: '2',
-                    label: 'Nervous'
-                },
-                {
-                    key: '3',
-                    label: 'Shocked'
-                },
-                {
-                    key: '4',
-                    label: 'Meh'
-                },
-                {
-                    key: '5',
-                    label: 'Worried'
-                },
-                {
-                    key: '6',
-                    label: 'Sad'
-                },
-                {
-                    key: '7',
-                    label: 'Angry'
-                },
+                AnswerId.Excited,
+                AnswerId.Happy,
+                AnswerId.Nervous,
+                AnswerId.Shocked,
+                AnswerId.Meh,
+                AnswerId.Worried,
+                AnswerId.Angry,
             ],
         },
     }];

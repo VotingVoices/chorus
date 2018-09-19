@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IAnswerProps } from '../Answer';
+import { AnswerId, IAnswerProps } from '../Answer';
 
 export type OnClickCallback = (
     evt?: React.MouseEvent<HTMLElement | HTMLInputElement>
@@ -14,7 +14,7 @@ export interface IQuestionProps extends React.InputHTMLAttributes<HTMLElement | 
     /**
      * The options the user has to choose from
      */
-    answers?: IAnswerProps[];
+    answers: AnswerId[];
     /**
      * A callback for receiving a notification when the choice has been changed.
      */

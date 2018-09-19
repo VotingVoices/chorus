@@ -1,12 +1,10 @@
 import * as React from 'react';
-import { Answer, IAnswerProps } from '../Answer';
+import { Answer, AnswerId } from '../Answer';
 import './Question.css';
-import { IQuestionProps, OnClickCallback } from './QuestionTypes';
+import { IQuestionProps } from './QuestionTypes';
 
 export class Question extends React.Component<IQuestionProps, any>
 {
-    private clickedFns: { [key: AnswerId]: OnClickCallback } = {};
-
     public render(): JSX.Element
     {
         const { label, answers } = this.props;
@@ -14,10 +12,9 @@ export class Question extends React.Component<IQuestionProps, any>
             <div>
                 <div className="question-label">{label}</div>
                 <div className="answer-group">
-                    {answers!.map(
-
-                        (option: IAnswerProps) => {
-                            return (<Answer onClick={this._onClick(option.answerId)} answerId={option.answerId} {...option} />);
+                    {answers.map(
+                        (answerId: AnswerId) => {
+                            return (<Answer onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);
                         }
                     )}
                 </div>
@@ -25,15 +22,14 @@ export class Question extends React.Component<IQuestionProps, any>
         );
     }
 
-    private _onClick = (answerId: AnswerId) =>
-        this.clickedFns[answerId] ? 
-        this.clickedFns[answerId] :
-        (this.clickedFns[answerId] = (ev) => {
+    private _onClick = (answerId: AnswerId) => {
+        return (ev: React.MouseEvent<HTMLElement | HTMLInputElement>) => {
             const { onChange, answers = [] } = this.props;
-            const option = answers.find((o: IAnswerProps) => o.answerId === answerId );
+            const option = answers.find((o: AnswerId) => o === answerId );
             if (onChange)
             {
-                onChange(ev, option);
+                onChange(ev, { answerId: option! });
             }   
-        });
+        };
+    };
 }
