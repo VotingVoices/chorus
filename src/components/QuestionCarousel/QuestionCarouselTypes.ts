@@ -1,6 +1,20 @@
 import * as React from 'react';
 import { IQuestionProps } from '../Question';
 
+export enum QuestionId {
+    AreYouRegistered = 'Reg',
+    VoteByMailState = 'St',
+    PollingLocation = 'PllLoc',
+    SpecialAccommodations = 'Accm',
+    TransportationMethod = 'Trns',
+    AbsenteeBallot = 'Abs',
+    MissWork = 'MssWrk',
+    FamiliarWithBallot = 'Fmlr',
+    PeopleToInvite = 'Inv',
+    Emotion = 'Em',
+    END_OF_QUESTIONS = 'END'
+}
+
 /**
  * Helper interface for Carousel props.  Each IQuestion forms a node in a question graph
  */
@@ -8,7 +22,7 @@ export interface IQuestion {
     /**
      * The id of this question
      */
-    id: number;
+    id: QuestionId;
     /**
      * How far along is the question in the flow
      */
@@ -20,25 +34,22 @@ export interface IQuestion {
     /**
      * callback called to resolve next question id
      */
-    nextQuestionId: (key: string) => number;
+    nextQuestionId: (key: string) => QuestionId;
 }
 
 export interface IQuestionCarouselProps extends React.HTMLAttributes<HTMLElement>
 {
-    /**
-     * Question Id to IQuestion map
-     */
-    questions: {[id: number] : IQuestion};
+    questions: IQuestion[];
 }
 
 /**
  * Hard coded constant for the question graph 
  */
-export const QUESTIONS : { [key: number] : IQuestion } = {
-    0: {
-        id: 0,
+export const QUESTIONS : IQuestion[] = [
+    {
+        id: QuestionId.AreYouRegistered,
         dotNavStep: 1,
-        nextQuestionId: (key) => 1,
+        nextQuestionId: (key) => QuestionId.VoteByMailState,
         questionProps: {   
             label: 'First things first. Are you registered to vote?',
             answers: [
@@ -55,12 +66,12 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
                     label: 'I Dunno...'
                 }
             ],
-        }
-    },  
-    1: {
-        id: 1,
+        },
+    },
+    {
+        id: QuestionId.VoteByMailState,
         dotNavStep: 2,
-        nextQuestionId: (key) => key === '3' ? 2 : 0,
+        nextQuestionId: (key) => key === '3' ? QuestionId.PollingLocation : QuestionId.END_OF_QUESTIONS,
         questionProps: {
             label: 'Are you planning to vote in any of these states?',
             answers: [
@@ -83,10 +94,10 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
             ],
         },
     },
-    2: {
-        id: 2,
+    {
+        id: QuestionId.PollingLocation,
         dotNavStep: 3,
-        nextQuestionId: (key) => 3,
+        nextQuestionId: (key) => QuestionId.SpecialAccommodations,
         questionProps: {
             label: 'Do you know where your polling location is?',
             answers: [
@@ -105,10 +116,10 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
             ],
         },
     },
-    3: {
-        id: 3,
+    {
+        id: QuestionId.SpecialAccommodations,
         dotNavStep: 4,
-        nextQuestionId: (key) => 4,
+        nextQuestionId: (key) => QuestionId.TransportationMethod,
         questionProps: {
             label: 'Will you need special accommodations to reach the polling location?',
             answers: [
@@ -123,10 +134,10 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
             ],
         },
     },
-    4: {
-        id: 4,
+    {
+        id: QuestionId.TransportationMethod,
         dotNavStep: 5,
-        nextQuestionId: (key) => 5,
+        nextQuestionId: (key) => QuestionId.AbsenteeBallot,
         questionProps: {
             label: 'How are you gonna get to your polling location?',
             answers: [
@@ -153,10 +164,10 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
             ],
         },
     },
-    5: {
-        id: 5,
+    {
+        id: QuestionId.AbsenteeBallot,
         dotNavStep: 6,
-        nextQuestionId: (key) => 6,
+        nextQuestionId: (key) => QuestionId.MissWork,
         questionProps: {
             label: 'Do you need to send an absentee ballot?',
             answers: [
@@ -171,10 +182,10 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
             ],
         },
     },
-    6: {
-        id: 6,
+    {
+        id: QuestionId.MissWork,
         dotNavStep: 7,
-        nextQuestionId: (key) => 7,
+        nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
         questionProps: {
             label: 'Will you have to miss or leave work to vote?',
             answers: [
@@ -189,10 +200,10 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
             ],
         },
     },
-    7: {
-        id: 7,
+    {
+        id: QuestionId.FamiliarWithBallot,
         dotNavStep: 8,
-        nextQuestionId: (key) => 8,
+        nextQuestionId: (key) => QuestionId.PeopleToInvite,
         questionProps: {
             label: 'Are you familiar with the issues and candidates on your ballot?',
             answers: [
@@ -207,10 +218,10 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
             ],
         },
     },
-    8: {
-        id: 8,
+    {
+        id: QuestionId.PeopleToInvite,
         dotNavStep: 9,
-        nextQuestionId: (key) => 9,
+        nextQuestionId: (key) => QuestionId.Emotion,
         questionProps: {
             label: 'Let\'s invite people to vote with you! Who would you like to join you in voting?',
             answers: [
@@ -237,10 +248,10 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
             ],
         },
     },
-    9: {
-        id: 9,
+    {
+        id: QuestionId.Emotion,
         dotNavStep: 10,
-        nextQuestionId: (key) => -1,
+        nextQuestionId: (key) => QuestionId.END_OF_QUESTIONS,
         questionProps: {
             label: 'How are you feeling about these midterm elections?',
             answers: [
@@ -278,5 +289,4 @@ export const QUESTIONS : { [key: number] : IQuestion } = {
                 },
             ],
         },
-    },
-}
+    }];

@@ -1,23 +1,33 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import './QuestionCarousel.css';
-import { IQuestionCarouselProps } from './QuestionCarouselTypes';
+import { IQuestion, IQuestionCarouselProps, QuestionId } from './QuestionCarouselTypes';
 import { Question } from '../Question';
 import { IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
 import { Redirect } from 'react-router-dom';
 
 interface IQuestionAndAnswer {
-    questionId: number;
+    questionId: QuestionId;
     answerKey: string;
 }
 
 export interface IQuestionCarouselState {
     answers: IQuestionAndAnswer[];
-    currentQuestionId: number;
+    currentQuestionId: QuestionId;
     currentDotNavStep: number;
     redirectToPlan: boolean;
-  }
+}
+
+function findQuestion(questions: IQuestion[], id: QuestionId) : IQuestion {
+    for (const q of questions) {
+        if (q.id === id) {
+            return q;
+        }
+    }
+
+    throw new Error("Unrecognized question ID.");
+}
 
 export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
 {
@@ -26,13 +36,13 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         this.state = {
             answers: [],
             currentDotNavStep: props.questions[0].dotNavStep,
-            currentQuestionId: 0,
+            currentQuestionId: QuestionId.AreYouRegistered,
             redirectToPlan: false,
         };
     }
 
       public render(): JSX.Element {
-          const currentQuestion = this.props.questions[this.state.currentQuestionId];
+          const currentQuestion = findQuestion(this.props.questions, this.state.currentQuestionId);
           return (
               <div>
                   {this._renderRedirect()}
@@ -60,14 +70,14 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
 
     private _onQuestionAnswered = (ev?: React.FormEvent<HTMLElement | HTMLInputElement>, answer?: IAnswerProps) => {
         const { questions } = this.props;
-        const currentQuestion = questions[this.state.currentQuestionId];
+        const currentQuestion = findQuestion(questions, this.state.currentQuestionId);
 
         const answers = this.state.answers;
         answers.push({ questionId: currentQuestion.id, answerKey: answer!.key });
 
         const nextQuestionId = currentQuestion.nextQuestionId(answer!.key);
 
-        if (nextQuestionId === -1) {
+        if (nextQuestionId === QuestionId.END_OF_QUESTIONS) {
             this.setState({
                 answers,
                 redirectToPlan: true,
@@ -76,7 +86,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         else {
             this.setState({
                 answers,
-                currentDotNavStep: questions[nextQuestionId].dotNavStep,
+                currentDotNavStep: findQuestion(questions, nextQuestionId).dotNavStep,
                 currentQuestionId: nextQuestionId,
             });
         }
@@ -84,7 +94,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
 
     private _renderRedirect = () => {
         if (this.state.redirectToPlan) {
-            const queryStringParameters = this.state.answers.map(qa => `q${qa.questionId}=${qa.answerKey}`).join('&');
+            const queryStringParameters = this.state.answers.map(qa => `${qa.questionId}=${qa.answerKey}`).join('&');
             const planUrl = `/plan?${queryStringParameters}`;
             return (
               <Redirect to={planUrl} />
