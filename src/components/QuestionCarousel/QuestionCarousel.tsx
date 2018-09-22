@@ -27,7 +27,7 @@ function findQuestion(questions: IQuestion[], id: QuestionId) : IQuestion {
         }
     }
 
-    throw new Error("Unrecognized question ID.");
+    throw new Error(`Unrecognized question ID: ${id}`);
 }
 
 export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
@@ -48,7 +48,11 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         };
 
         this.history = createHashHistory();
-        this.history.push(firstQuestionId);
+        this.history.push({ pathname: firstQuestionId, key: firstQuestionId });
+
+        this.history.listen(() => {
+            this._locationChanged();
+        });
     }
 
       public render(): JSX.Element {
@@ -96,14 +100,25 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
             });
         }
         else {
-            this.history.push(nextQuestionId);
+            this.history.push({ pathname: nextQuestionId, key: nextQuestionId });
 
             this.setState({
                 answers,
-                currentDotNavStep: findQuestion(questions, nextQuestionId).dotNavStep,
                 currentQuestionId: nextQuestionId,
+                currentDotNavStep: findQuestion(questions, nextQuestionId).dotNavStep,
             });
         }
+    }
+
+    private _locationChanged()
+    {
+        const newQuestionId = this.history.location.key! as QuestionId;
+        const { questions } = this.props;
+
+        this.setState({
+            currentQuestionId: newQuestionId,
+            currentDotNavStep: findQuestion(questions, newQuestionId).dotNavStep,
+        });
     }
 
     private _renderRedirect = () => {
