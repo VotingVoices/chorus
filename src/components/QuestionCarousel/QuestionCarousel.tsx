@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
-import { createHashHistory } from 'history';
+import { createHashHistory, History } from 'history';
 import './QuestionCarousel.css';
 import { IQuestion, IQuestionCarouselProps } from './QuestionCarouselTypes';
 import { Question, QuestionId } from '../Question';
@@ -32,6 +32,8 @@ function findQuestion(questions: IQuestion[], id: QuestionId) : IQuestion {
 
 export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
 {
+    private history: History;
+
     constructor(props: IQuestionCarouselProps, context?: any) {
         super(props, context);
 
@@ -45,12 +47,13 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
             redirectToPlan: false,
         };
 
-        const history = createHashHistory();
-        history.push(firstQuestionId);
+        this.history = createHashHistory();
+        this.history.push(firstQuestionId);
     }
 
       public render(): JSX.Element {
           const currentQuestion = findQuestion(this.props.questions, this.state.currentQuestionId);
+
           return (
               <div>
                   {this._renderRedirect()}
@@ -93,8 +96,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
             });
         }
         else {
-            const history = createHashHistory();
-            history.push(nextQuestionId);
+            this.history.push(nextQuestionId);
 
             this.setState({
                 answers,
