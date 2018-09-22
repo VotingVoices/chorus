@@ -74,6 +74,38 @@
     transition: height .5s ease-in-out;
 }
 
+
+/* Reverse of previous, for Back animation */
+.reverse-carousel-cross-fade-leave {
+    opacity: 1;
+    transition: transform .5s ease-in-out;
+    transform: translate(0, 0);
+}
+.reverse-carousel-cross-fade-leave-active {
+    transform: translate(100%, 0);
+}
+.reverse-carousel-cross-fade-leave.reverse-carousel-cross-fade-leave-active {
+    opacity: 0;
+    transition: transform .5s ease-in-out, opacity .5s ease-in-out;
+}
+
+.reverse-carousel-cross-fade-enter {
+    opacity: 0;
+    transition: transform .5s ease-in-out;
+    transform: translate(-100%, 0);
+}
+.reverse-carousel-cross-fade-enter-active {
+    transform: translate(0, 0);
+  }
+.reverse-carousel-cross-fade-enter.reverse-carousel-cross-fade-enter-active {
+    opacity: 1;
+    transition: opacity .5s ease-in-out, transform .5s ease-in-out;
+}
+.reverse-carousel-cross-fade-height {
+    transition: height .5s ease-in-out;
+}
+
+
 /* Fade out, then fade in transition */
 
 .fade-wait-leave,

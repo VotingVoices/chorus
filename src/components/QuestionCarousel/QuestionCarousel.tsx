@@ -72,7 +72,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
               <div>
                   {this._renderRedirect()}
                   <ReactCSSTransitionReplace
-                      transitionName="carousel-cross-fade" 
+                      transitionName="reverse-carousel-cross-fade"
                       transitionEnterTimeout={1000}
                       transitionLeaveTimeout={400} >
                       <Question
