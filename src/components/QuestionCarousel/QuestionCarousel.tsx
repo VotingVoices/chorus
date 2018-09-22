@@ -48,7 +48,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         };
 
         this.history = createHashHistory();
-        this.history.push({ pathname: firstQuestionId, key: firstQuestionId });
+        this.history.push({ pathname: firstQuestionId });
 
         this.history.listen(() => {
             this._locationChanged();
@@ -100,7 +100,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
             });
         }
         else {
-            this.history.push({ pathname: nextQuestionId, key: nextQuestionId });
+            this.history.push({ pathname: nextQuestionId });
 
             this.setState({
                 answers,
@@ -112,7 +112,9 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
 
     private _locationChanged()
     {
-        const newQuestionId = this.history.location.key! as QuestionId;
+        const path = this.history.location.pathname;
+        const questionIdStr = path.slice(1, path.length);
+        const newQuestionId = questionIdStr as QuestionId;
         const { questions } = this.props;
 
         this.setState({
