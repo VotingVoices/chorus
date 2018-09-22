@@ -18,6 +18,7 @@ export interface IQuestionCarouselState {
     currentQuestionId: QuestionId;
     currentDotNavStep: number;
     redirectToPlan: boolean;
+    transitionName: string;
 }
 
 function findQuestion(questions: IQuestion[], id: QuestionId) : IQuestion {
@@ -40,6 +41,9 @@ function findQuestionAndAnswer(answers: IQuestionAndAnswer[], id: QuestionId) : 
     return undefined;
 }
 
+const forwardTransitionName: string = "carousel-cross-fade";
+// const backTransitionName: string = "reverse-carousel-cross-fade";
+
 export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
 {
     private history: History;
@@ -55,6 +59,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
             currentDotNavStep: firstQuestion.dotNavStep,
             currentQuestionId: firstQuestionId,
             redirectToPlan: false,
+            transitionName: forwardTransitionName,
         };
 
         this.history = createHashHistory();
@@ -72,7 +77,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
               <div>
                   {this._renderRedirect()}
                   <ReactCSSTransitionReplace
-                      transitionName="reverse-carousel-cross-fade"
+                      transitionName={this.state.transitionName}
                       transitionEnterTimeout={1000}
                       transitionLeaveTimeout={400} >
                       <Question
