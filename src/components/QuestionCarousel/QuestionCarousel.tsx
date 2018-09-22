@@ -46,7 +46,7 @@ const backTransitionName: string = "reverse-carousel-cross-fade";
 
 class QuestionCarouselBase extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
 {
-    private historyUnregister: UnregisterCallback;
+    private historyUnregister: UnregisterCallback | undefined;
 
     constructor(props: IQuestionCarouselProps, context?: any) {
         super(props, context);
@@ -72,7 +72,9 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps, IQues
     }
 
     public componentWillUnmount() {
-        this.historyUnregister();
+        if (this.historyUnregister !== undefined) {
+            this.historyUnregister();
+        }
     }
 
       public render(): JSX.Element {
@@ -123,6 +125,11 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps, IQues
         const nextQuestionId = currentQuestion.nextQuestionId(answerId);
 
         if (nextQuestionId === QuestionId.END_OF_QUESTIONS) {
+            // Unregister from history so that we don't get confused inside our own location-changed handler.
+            this.historyUnregister!();
+            this.historyUnregister = undefined;
+
+            // Redirect to the plan page.
             this.setState({
                 answers,
                 redirectToPlan: true,
