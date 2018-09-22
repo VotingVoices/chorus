@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
-import { Location, Action } from 'history';
+import { Location, Action, UnregisterCallback } from 'history';
 import './QuestionCarousel.css';
 import { IQuestion, IQuestionCarouselProps } from './QuestionCarouselTypes';
 import { Question, QuestionId } from '../Question';
@@ -46,6 +46,8 @@ const backTransitionName: string = "reverse-carousel-cross-fade";
 
 class QuestionCarouselBase extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
 {
+    private historyUnregister: UnregisterCallback;
+
     constructor(props: IQuestionCarouselProps, context?: any) {
         super(props, context);
 
@@ -61,10 +63,16 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps, IQues
         };
 
         this.props.history.push({ pathname: firstQuestionId });
+    }
 
-        this.props.history.listen((location, action) => {
+    public componentDidMount() {
+        this.historyUnregister = this.props.history.listen((location, action) => {
             this._locationChanged(location, action);
         });
+    }
+
+    public componentWillUnmount() {
+        this.historyUnregister();
     }
 
       public render(): JSX.Element {
