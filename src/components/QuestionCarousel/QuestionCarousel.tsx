@@ -30,6 +30,16 @@ function findQuestion(questions: IQuestion[], id: QuestionId) : IQuestion {
     throw new Error(`Unrecognized question ID: ${id}`);
 }
 
+function findQuestionAndAnswer(answers: IQuestionAndAnswer[], id: QuestionId) : IQuestionAndAnswer | undefined {
+    for (const a of answers) {
+        if (a.questionId === id) {
+            return a;
+        }
+    }
+
+    return undefined;
+}
+
 export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
 {
     private history: History;
@@ -89,9 +99,18 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         const currentQuestion = findQuestion(questions, this.state.currentQuestionId);
 
         const answers = this.state.answers;
-        answers.push({ questionId: currentQuestion.id, answerId: answer!.answerId });
+        const answerId = answer!.answerId;
 
-        const nextQuestionId = currentQuestion.nextQuestionId(answer!.answerId);
+        // TODO: There's probably a more elegant way to do this...
+        const existingAnswer = findQuestionAndAnswer(answers, currentQuestion.id);
+        if (existingAnswer === undefined) {
+            answers.push({ questionId: currentQuestion.id, answerId });
+        }
+        else {
+            existingAnswer!.answerId = answerId;
+        }
+
+        const nextQuestionId = currentQuestion.nextQuestionId(answerId);
 
         if (nextQuestionId === QuestionId.END_OF_QUESTIONS) {
             this.setState({
