@@ -33,10 +33,14 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
 {
     constructor(props: IQuestionCarouselProps, context?: any) {
         super(props, context);
+
+        const firstQuestionId = QuestionId.AreYouRegistered;
+        const firstQuestion = findQuestion(props.questions, firstQuestionId);
+
         this.state = {
             answers: [],
-            currentDotNavStep: props.questions[0].dotNavStep,
-            currentQuestionId: QuestionId.AreYouRegistered,
+            currentDotNavStep: firstQuestion.dotNavStep,
+            currentQuestionId: firstQuestionId,
             redirectToPlan: false,
         };
     }
