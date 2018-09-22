@@ -41,6 +41,11 @@ function findQuestionAndAnswer(answers: IQuestionAndAnswer[], id: QuestionId) : 
     return undefined;
 }
 
+function getQuestionIdFromPath(path: string): QuestionId {
+    const questionIdStr = path.slice(1, path.length);
+    return questionIdStr as QuestionId;
+}
+
 const forwardTransitionName: string = "carousel-cross-fade";
 const backTransitionName: string = "reverse-carousel-cross-fade";
 
@@ -51,18 +56,27 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps, IQues
     constructor(props: IQuestionCarouselProps, context?: any) {
         super(props, context);
 
-        const firstQuestionId = QuestionId.AreYouRegistered;
-        const firstQuestion = findQuestion(props.questions, firstQuestionId);
+        let questionId = QuestionId.AreYouRegistered;
+        let pushHistory = true;
+
+        if (this.props.location.pathname.length > 0) {
+            questionId = getQuestionIdFromPath(this.props.location.pathname);
+            pushHistory = false;
+        }
+
+        const question = findQuestion(props.questions, questionId);
 
         this.state = {
             answers: [],
-            currentDotNavStep: firstQuestion.dotNavStep,
-            currentQuestionId: firstQuestionId,
+            currentDotNavStep: question.dotNavStep,
+            currentQuestionId: questionId,
             redirectToPlan: false,
             transitionName: forwardTransitionName,
         };
 
-        this.props.history.push({ pathname: firstQuestionId });
+        if (pushHistory) {
+            this.props.history.push({ pathname: questionId });
+        }
     }
 
     public componentDidMount() {
