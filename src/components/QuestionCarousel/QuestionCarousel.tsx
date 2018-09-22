@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
-import { createHashHistory, History } from 'history';
+import { createHashHistory, History, Location, Action } from 'history';
 import './QuestionCarousel.css';
 import { IQuestion, IQuestionCarouselProps } from './QuestionCarouselTypes';
 import { Question, QuestionId } from '../Question';
@@ -42,7 +42,7 @@ function findQuestionAndAnswer(answers: IQuestionAndAnswer[], id: QuestionId) : 
 }
 
 const forwardTransitionName: string = "carousel-cross-fade";
-// const backTransitionName: string = "reverse-carousel-cross-fade";
+const backTransitionName: string = "reverse-carousel-cross-fade";
 
 export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
 {
@@ -65,8 +65,8 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         this.history = createHashHistory();
         this.history.push({ pathname: firstQuestionId });
 
-        this.history.listen(() => {
-            this._locationChanged();
+        this.history.listen((location, action) => {
+            this._locationChanged(location, action);
         });
     }
 
@@ -134,16 +134,22 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         }
     }
 
-    private _locationChanged()
+    private _locationChanged(location: Location, action: Action)
     {
         const path = this.history.location.pathname;
         const questionIdStr = path.slice(1, path.length);
         const newQuestionId = questionIdStr as QuestionId;
         const { questions } = this.props;
 
+        let transitionName = forwardTransitionName;
+        if (action === 'POP') {
+            transitionName = backTransitionName;
+        }
+
         this.setState({
             currentQuestionId: newQuestionId,
             currentDotNavStep: findQuestion(questions, newQuestionId).dotNavStep,
+            transitionName,
         });
     }
 
