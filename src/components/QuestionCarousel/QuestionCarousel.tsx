@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
-import { createHashHistory, History, Location, Action } from 'history';
+import { Location, Action } from 'history';
 import './QuestionCarousel.css';
 import { IQuestion, IQuestionCarouselProps } from './QuestionCarouselTypes';
 import { Question, QuestionId } from '../Question';
 import { AnswerId, IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 
 interface IQuestionAndAnswer {
     questionId: QuestionId;
@@ -44,10 +44,8 @@ function findQuestionAndAnswer(answers: IQuestionAndAnswer[], id: QuestionId) : 
 const forwardTransitionName: string = "carousel-cross-fade";
 const backTransitionName: string = "reverse-carousel-cross-fade";
 
-export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
+class QuestionCarouselBase extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
 {
-    private history: History;
-
     constructor(props: IQuestionCarouselProps, context?: any) {
         super(props, context);
 
@@ -62,10 +60,9 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
             transitionName: forwardTransitionName,
         };
 
-        this.history = createHashHistory();
-        this.history.push({ pathname: firstQuestionId });
+        this.props.history.push({ pathname: firstQuestionId });
 
-        this.history.listen((location, action) => {
+        this.props.history.listen((location, action) => {
             this._locationChanged(location, action);
         });
     }
@@ -124,7 +121,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
             });
         }
         else {
-            this.history.push({ pathname: nextQuestionId });
+            this.props.history.push({ pathname: nextQuestionId });
 
             this.setState({
                 answers,
@@ -136,7 +133,7 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
 
     private _locationChanged(location: Location, action: Action)
     {
-        const path = this.history.location.pathname;
+        const path = this.props.history.location.pathname;
         const questionIdStr = path.slice(1, path.length);
         const newQuestionId = questionIdStr as QuestionId;
         const { questions } = this.props;
@@ -168,3 +165,5 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
         }
     }
 }
+
+export const QUESTION_CAROUSEL = withRouter(QuestionCarouselBase);

@@ -1,6 +1,6 @@
-import * as React from 'react';
 import { AnswerId } from '../Answer';
 import { QuestionId } from '../Question';
+import { RouteComponentProps } from 'react-router-dom';
 
 /**
  * Helper interface for Carousel props.  Each IQuestion forms a node in a question graph
@@ -24,7 +24,7 @@ export interface IQuestion {
     nextQuestionId: (answer: AnswerId) => QuestionId;
 }
 
-export interface IQuestionCarouselProps extends React.HTMLAttributes<HTMLElement>
+export interface IQuestionCarouselProps extends RouteComponentProps<any>
 {
     questions: IQuestion[];
 }

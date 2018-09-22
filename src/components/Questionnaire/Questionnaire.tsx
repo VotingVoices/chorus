@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { QuestionCarousel, QUESTIONS } from '../QuestionCarousel';
+import { QUESTION_CAROUSEL, QUESTIONS } from '../QuestionCarousel';
 
 export class Questionnaire extends React.Component {
   public render() {
@@ -9,7 +9,7 @@ export class Questionnaire extends React.Component {
           <h1 className="App-title">Voting Voices</h1>
         </header>
         <p className="App-intro" />
-        <QuestionCarousel questions={ QUESTIONS } />
+        <QUESTION_CAROUSEL questions={ QUESTIONS } />
       </div>
     );
   }
