@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
+import { createHashHistory } from 'history';
 import './QuestionCarousel.css';
 import { IQuestion, IQuestionCarouselProps } from './QuestionCarouselTypes';
 import { Question, QuestionId } from '../Question';
@@ -43,6 +44,9 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
             currentQuestionId: firstQuestionId,
             redirectToPlan: false,
         };
+
+        const history = createHashHistory();
+        history.push(firstQuestionId);
     }
 
       public render(): JSX.Element {
@@ -89,6 +93,9 @@ export class QuestionCarousel extends React.Component<IQuestionCarouselProps, IQ
             });
         }
         else {
+            const history = createHashHistory();
+            history.push(nextQuestionId);
+
             this.setState({
                 answers,
                 currentDotNavStep: findQuestion(questions, nextQuestionId).dotNavStep,
