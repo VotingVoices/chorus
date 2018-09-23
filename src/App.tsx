@@ -34,6 +34,4 @@ const mapStateToProps = ({ currentDotNavStep }: IQuestionnaireState) => ({
 	currentDotNavStep
 })
 
-// const mapDispatchToProps = () => {};
-
-export default connect(mapStateToProps, { })(App);
+export default connect(mapStateToProps)(App);
