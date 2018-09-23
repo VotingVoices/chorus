@@ -1,4 +1,4 @@
 import { action } from 'typesafe-actions';
-import { QuestionnaireActionTypes } from './Types';
+import { QuestionnaireActionType } from './Types';
 
-export const answerQuestion = () => action(QuestionnaireActionTypes.ANSWER_QUESTION);
+export const answerQuestion = () => action(QuestionnaireActionType.ANSWER_QUESTION);

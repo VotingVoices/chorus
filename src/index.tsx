@@ -13,7 +13,7 @@ const store = configureStore(history, { currentDotNavStep: 1 });
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<App store={store} history={history} />
 	</Provider>,
 	document.getElementById('root') as HTMLElement
 );

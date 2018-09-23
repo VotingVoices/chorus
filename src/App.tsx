@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { Store } from 'redux';
 import { connect } from 'react-redux';
-import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { History } from 'history';
+
+import './App.css';
 import { Plan } from './components/Plan';
 import { Questionnaire } from './components/Questionnaire';
 import { IQuestionnaireState } from './store';
@@ -10,7 +13,12 @@ interface IPropsFromState {
 	currentDotNavStep: number;
 }
 
-class App extends React.Component<IPropsFromState> {
+interface IAppProps {
+	store: Store<IQuestionnaireState>;
+	history: History;
+}
+
+class App extends React.Component<IPropsFromState & IAppProps> {
 	public render() {
 		const { currentDotNavStep } = this.props;
 
