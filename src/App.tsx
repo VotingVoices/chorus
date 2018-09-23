@@ -5,19 +5,19 @@ import { Plan } from './components/Plan';
 import { Questionnaire } from './components/Questionnaire';
 
 class App extends React.Component {
-  public render() {
-    return (
-      <Router>
-        <div>
-          <Switch>
-            <Route exact={true} path="/" component={Questionnaire} />
-            <Route path="/plan*" component={Plan} />
-            <Route path="/*" component={Questionnaire} />
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+	public render() {
+		return (
+			<Router>
+				<div>
+					<Switch>
+						<Route exact={true} path="/" component={Questionnaire} />
+						<Route path="/plan*" component={Plan} />
+						<Route path="/*" component={Questionnaire} />
+					</Switch>
+				</div>
+			</Router>
+		);
+	}
 }
 
 export default App;
