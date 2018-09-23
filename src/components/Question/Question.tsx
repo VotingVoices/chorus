@@ -1,12 +1,13 @@
 import * as React from 'react';
+
 import { Answer, AnswerId } from '../Answer';
-import './Question.css';
+import { IConnectedReduxProps } from '../../store';
 import { getQuestionFullLabel, IQuestionProps } from './QuestionTypes';
 
-export class Question extends React.Component<IQuestionProps, any>
-{
-    public render(): JSX.Element
-    {
+import './Question.css';
+
+export class Question extends React.Component<IQuestionProps & IConnectedReduxProps, any> {
+    public render(): JSX.Element {
         const { id, answers } = this.props;
         const label = getQuestionFullLabel(id);
 

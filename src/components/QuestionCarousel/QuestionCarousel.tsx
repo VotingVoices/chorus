@@ -1,12 +1,15 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { Location, Action, UnregisterCallback } from 'history';
-import './QuestionCarousel.css';
+
+import { IConnectedReduxProps } from '../../store';
 import { IQuestion, IQuestionCarouselProps } from './QuestionCarouselTypes';
 import { Question, QuestionId } from '../Question';
 import { AnswerId, IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
 import { Redirect, withRouter } from 'react-router-dom';
+
+import './QuestionCarousel.css';
 
 interface IQuestionAndAnswer {
     questionId: QuestionId;
@@ -49,11 +52,11 @@ function getQuestionIdFromPath(path: string): QuestionId {
 const forwardTransitionName: string = "carousel-cross-fade";
 const backTransitionName: string = "reverse-carousel-cross-fade";
 
-class QuestionCarouselBase extends React.Component<IQuestionCarouselProps, IQuestionCarouselState>
+class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & IConnectedReduxProps, IQuestionCarouselState>
 {
     private historyUnregister: UnregisterCallback | undefined;
 
-    constructor(props: IQuestionCarouselProps, context?: any) {
+    constructor(props: IQuestionCarouselProps & IConnectedReduxProps, context?: any) {
         super(props, context);
 
         let questionId = QuestionId.AreYouRegistered;
@@ -102,6 +105,7 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps, IQues
                       transitionEnterTimeout={1000}
                       transitionLeaveTimeout={400} >
                       <Question
+                          {...this.props}
                           id={currentQuestion.id}
                           answers={currentQuestion.answers}
                           key={currentQuestion.id}

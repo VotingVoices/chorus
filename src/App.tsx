@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Store } from 'redux';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { Route, Switch } from 'react-router-dom';
 import { History } from 'history';
 
 import './App.css';
@@ -20,17 +21,17 @@ interface IAppProps {
 
 class App extends React.Component<IPropsFromState & IAppProps> {
 	public render() {
-		const { currentDotNavStep } = this.props;
+		const { currentDotNavStep, history } = this.props;
 
 		return (
 			<React.Fragment>
-				<Router>
+				<ConnectedRouter history={history}>
 					<Switch>
 						<Route exact={true} path="/" component={Questionnaire} />
 						<Route path="/plan*" component={Plan} />
 						<Route path="/*" component={Questionnaire} />
 					</Switch>
-				</Router>
+				</ConnectedRouter>
 
 				<p>Nav step: {currentDotNavStep}</p>
 			</React.Fragment>
