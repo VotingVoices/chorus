@@ -1,12 +1,19 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
+import { connect} from 'react-redux';
 
 import { Answer, AnswerId } from '../Answer';
-import { IConnectedReduxProps } from '../../store';
+import { answerQuestion, IConnectedReduxProps, IQuestionnaireState } from '../../store';
 import { getQuestionFullLabel, IQuestionProps } from './QuestionTypes';
 
 import './Question.css';
 
-export class Question extends React.Component<IQuestionProps & IConnectedReduxProps, any> {
+interface IPropsFromDispatch {
+    answerQuestion: typeof answerQuestion;
+}
+
+// TODO: Can we rename 'InternalQuestion' to 'Question'?
+class InternalQuestion extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromDispatch, any> {
     public render(): JSX.Element {
         const { id, answers } = this.props;
         const label = getQuestionFullLabel(id);
@@ -27,6 +34,8 @@ export class Question extends React.Component<IQuestionProps & IConnectedReduxPr
 
     private _onClick = (answerId: AnswerId) => {
         return (ev: React.MouseEvent<HTMLElement | HTMLInputElement>) => {
+            this.props.answerQuestion();
+
             const { onChange, answers = [] } = this.props;
             const option = answers.find((o: AnswerId) => o === answerId );
             if (onChange)
@@ -36,3 +45,12 @@ export class Question extends React.Component<IQuestionProps & IConnectedReduxPr
         };
     };
 }
+
+const mapStateToProps = (state: IQuestionnaireState) => ({ });
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    answerQuestion: () => dispatch(answerQuestion())
+});
+
+// TODO: Ugh all caps.
+export const QUESTION = connect(mapStateToProps, mapDispatchToProps)(InternalQuestion);

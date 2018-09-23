@@ -4,7 +4,7 @@ import { Location, Action, UnregisterCallback } from 'history';
 
 import { IConnectedReduxProps } from '../../store';
 import { IQuestion, IQuestionCarouselProps } from './QuestionCarouselTypes';
-import { Question, QuestionId } from '../Question';
+import { QUESTION, QuestionId } from '../Question';
 import { AnswerId, IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
 import { Redirect, withRouter } from 'react-router-dom';
@@ -104,7 +104,7 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
                       transitionName={this.state.transitionName}
                       transitionEnterTimeout={1000}
                       transitionLeaveTimeout={400} >
-                      <Question
+                      <QUESTION
                           {...this.props}
                           id={currentQuestion.id}
                           answers={currentQuestion.answers}
