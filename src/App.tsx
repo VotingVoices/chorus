@@ -8,13 +8,11 @@ class App extends React.Component {
 	public render() {
 		return (
 			<Router>
-				<div>
-					<Switch>
-						<Route exact={true} path="/" component={Questionnaire} />
-						<Route path="/plan*" component={Plan} />
-						<Route path="/*" component={Questionnaire} />
-					</Switch>
-				</div>
+				<Switch>
+					<Route exact={true} path="/" component={Questionnaire} />
+					<Route path="/plan*" component={Plan} />
+					<Route path="/*" component={Questionnaire} />
+				</Switch>
 			</Router>
 		);
 	}
