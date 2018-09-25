@@ -138,7 +138,7 @@ syncViewChangesToNavigation(store);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App store={store} history={history} />
+		<App />
 	</Provider>,
 	document.getElementById('root') as HTMLElement
 );
