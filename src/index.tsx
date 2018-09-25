@@ -9,7 +9,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 const history = createBrowserHistory();
 
-const store = configureStore(history, { currentDotNavStep: 1 });
+const store = configureStore(history, { answers: [], dotNavStep: 1 });
 
 ReactDOM.render(
 	<Provider store={store}>

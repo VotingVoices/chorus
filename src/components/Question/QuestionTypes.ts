@@ -1,32 +1,5 @@
 import * as React from 'react';
-import { AnswerId, IAnswerProps } from '../Answer';
-
-export enum QuestionId {
-    AreYouRegistered = 'Reg',
-    VoteByMailState = 'St',
-    PollingLocation = 'PllLoc',
-    SpecialAccommodations = 'Accm',
-    TransportationMethod = 'Trns',
-    AbsenteeBallot = 'Abs',
-    MissWork = 'MssWrk',
-    FamiliarWithBallot = 'Fmlr',
-    PeopleToInvite = 'Inv',
-    Emotion = 'Em',
-    END_OF_QUESTIONS = 'END'
-}
-
-export const ALL_QUESTION_IDS: QuestionId[] = [
-    QuestionId.AreYouRegistered,
-    QuestionId.VoteByMailState,
-    QuestionId.PollingLocation,
-    QuestionId.SpecialAccommodations,
-    QuestionId.TransportationMethod,
-    QuestionId.AbsenteeBallot,
-    QuestionId.MissWork,
-    QuestionId.FamiliarWithBallot,
-    QuestionId.PeopleToInvite,
-    QuestionId.Emotion,
-];
+import { QuestionId, AnswerId } from '../../store';
 
 export function getQuestionFullLabel(id: QuestionId): string {
     switch (id) {
@@ -64,22 +37,14 @@ export function getQuestionFullLabel(id: QuestionId): string {
     throw new Error('Unrecognized QuestionId');
 }
 
-export type OnClickCallback = (
-    evt?: React.MouseEvent<HTMLElement | HTMLInputElement>
-  ) => void;
-
 export interface IQuestionProps extends React.InputHTMLAttributes<HTMLElement | HTMLInputElement>
 {
     /**
      * The question we're posing to the user
      */
-    id: QuestionId;
+    questionId: QuestionId;
     /**
      * The options the user has to choose from
      */
     answers: AnswerId[];
-    /**
-     * A callback for receiving a notification when the choice has been changed.
-     */
-    onChange?: (ev?: React.FormEvent<HTMLElement | HTMLInputElement>, answer?: IAnswerProps) => void;
 }

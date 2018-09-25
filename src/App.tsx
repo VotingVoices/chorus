@@ -11,7 +11,7 @@ import { Questionnaire } from './components/Questionnaire';
 import { IQuestionnaireState } from './store';
 
 interface IPropsFromState {
-	currentDotNavStep: number;
+	dotNavStep: number;
 }
 
 interface IAppProps {
@@ -21,7 +21,7 @@ interface IAppProps {
 
 class App extends React.Component<IPropsFromState & IAppProps> {
 	public render() {
-		const { currentDotNavStep, history } = this.props;
+		const { dotNavStep, history } = this.props;
 
 		return (
 			<React.Fragment>
@@ -33,14 +33,14 @@ class App extends React.Component<IPropsFromState & IAppProps> {
 					</Switch>
 				</ConnectedRouter>
 
-				<p>Nav step: {currentDotNavStep}</p>
+				<p>Nav step: {dotNavStep}</p>
 			</React.Fragment>
 		);
 	}
 }
 
-const mapStateToProps = ({ currentDotNavStep }: IQuestionnaireState) => ({
-	currentDotNavStep
+const mapStateToProps = ({ dotNavStep }: IQuestionnaireState) => ({
+	dotNavStep
 })
 
 export default connect(mapStateToProps)(App);

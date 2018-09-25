@@ -1,4 +1,7 @@
 import { action } from 'typesafe-actions';
-import { QuestionnaireActionType } from './Types';
+import { AnswerId } from '../AnswerId';
+import { QuestionId } from '../QuestionId';
+import { IAnswerQuestionPayload, QuestionnaireActionType } from './Types';
 
-export const answerQuestion = () => action(QuestionnaireActionType.ANSWER_QUESTION);
+export const answerQuestion = (questionId: QuestionId, answerId: AnswerId) =>
+	action(QuestionnaireActionType.ANSWER_QUESTION, { questionId, answerId } as IAnswerQuestionPayload);

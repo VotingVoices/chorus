@@ -2,7 +2,8 @@ import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import * as queryString from 'query-string';
 import { getAnswerLabel } from '../Answer';
-import { ALL_QUESTION_IDS, getQuestionFullLabel, QuestionId } from '../Question';
+import { getQuestionFullLabel } from '../Question';
+import { ALL_QUESTION_IDS, QuestionId } from '../../store';
 
 export class Plan extends React.Component<RouteComponentProps<any>, any> {
   public render() {

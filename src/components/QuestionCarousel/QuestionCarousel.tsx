@@ -2,19 +2,14 @@ import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { Location, Action, UnregisterCallback } from 'history';
 
-import { IConnectedReduxProps } from '../../store';
-import { IQuestion, IQuestionCarouselProps } from './QuestionCarouselTypes';
-import { QUESTION, QuestionId } from '../Question';
-import { AnswerId, IAnswerProps } from '../Answer';
+import { IConnectedReduxProps, IQuestionAndAnswer, QuestionId } from '../../store';
+import { IQuestionCarouselProps } from './QuestionCarouselTypes';
+import { Question } from '../Question';
+import { IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
 import { Redirect, withRouter } from 'react-router-dom';
 
 import './QuestionCarousel.css';
-
-interface IQuestionAndAnswer {
-    questionId: QuestionId;
-    answerId: AnswerId;
-}
 
 export interface IQuestionCarouselState {
     answers: IQuestionAndAnswer[];
@@ -22,26 +17,6 @@ export interface IQuestionCarouselState {
     currentDotNavStep: number;
     redirectToPlan: boolean;
     transitionName: string;
-}
-
-function findQuestion(questions: IQuestion[], id: QuestionId) : IQuestion {
-    for (const q of questions) {
-        if (q.id === id) {
-            return q;
-        }
-    }
-
-    throw new Error(`Unrecognized question ID: ${id}`);
-}
-
-function findQuestionAndAnswer(answers: IQuestionAndAnswer[], id: QuestionId) : IQuestionAndAnswer | undefined {
-    for (const a of answers) {
-        if (a.questionId === id) {
-            return a;
-        }
-    }
-
-    return undefined;
 }
 
 function getQuestionIdFromPath(path: string): QuestionId {
@@ -67,11 +42,11 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
             pushHistory = false;
         }
 
-        const question = findQuestion(props.questions, questionId);
+        const question = props.questions.find(q => q.id === questionId);
 
         this.state = {
             answers: [],
-            currentDotNavStep: question.dotNavStep,
+            currentDotNavStep: question!.dotNavStep,
             currentQuestionId: questionId,
             redirectToPlan: false,
             transitionName: forwardTransitionName,
@@ -95,7 +70,7 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
     }
 
       public render(): JSX.Element {
-          const currentQuestion = findQuestion(this.props.questions, this.state.currentQuestionId);
+          const currentQuestion = this.props.questions.find(q => q.id === this.state.currentQuestionId);
 
           return (
               <div>
@@ -104,11 +79,11 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
                       transitionName={this.state.transitionName}
                       transitionEnterTimeout={1000}
                       transitionLeaveTimeout={400} >
-                      <QUESTION
+                      <Question
                           {...this.props}
-                          id={currentQuestion.id}
-                          answers={currentQuestion.answers}
-                          key={currentQuestion.id}
+                          questionId={currentQuestion!.id}
+                          answers={currentQuestion!.answers}
+                          key={currentQuestion!.id}
                           onChange={this._onQuestionAnswered} />
                   </ReactCSSTransitionReplace>
                   <DotNavigationBar
@@ -126,21 +101,21 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
 
     private _onQuestionAnswered = (ev?: React.FormEvent<HTMLElement | HTMLInputElement>, answer?: IAnswerProps) => {
         const { questions } = this.props;
-        const currentQuestion = findQuestion(questions, this.state.currentQuestionId);
+        const currentQuestion = questions.find(q => q.id === this.state.currentQuestionId);
 
         const answers = this.state.answers;
         const answerId = answer!.answerId;
 
         // TODO: There's probably a more elegant way to do this...
-        const existingAnswer = findQuestionAndAnswer(answers, currentQuestion.id);
+        const existingAnswer = answers.find(qa => qa.questionId === currentQuestion!.id);
         if (existingAnswer === undefined) {
-            answers.push({ questionId: currentQuestion.id, answerId });
+            answers.push({ questionId: currentQuestion!.id, answerId });
         }
         else {
             existingAnswer!.answerId = answerId;
         }
 
-        const nextQuestionId = currentQuestion.nextQuestionId(answerId);
+        const nextQuestionId = currentQuestion!.nextQuestionId(answerId);
 
         if (nextQuestionId === QuestionId.END_OF_QUESTIONS) {
             // Unregister from history so that we don't get confused inside our own location-changed handler.
@@ -159,7 +134,7 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
             this.setState({
                 answers,
                 currentQuestionId: nextQuestionId,
-                currentDotNavStep: findQuestion(questions, nextQuestionId).dotNavStep,
+                currentDotNavStep: questions.find(q => q.id === nextQuestionId)!.dotNavStep,
             });
         }
     }
@@ -178,7 +153,7 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
 
         this.setState({
             currentQuestionId: newQuestionId,
-            currentDotNavStep: findQuestion(questions, newQuestionId).dotNavStep,
+            currentDotNavStep: questions.find(q => q.id === newQuestionId)!.dotNavStep,
             transitionName,
         });
     }
@@ -199,4 +174,4 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
     }
 }
 
-export const QUESTION_CAROUSEL = withRouter(QuestionCarouselBase);
+export const QuestionCarousel = withRouter(QuestionCarouselBase);
