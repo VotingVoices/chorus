@@ -19,10 +19,6 @@ const forwardTransitionName: string = "carousel-cross-fade";
 const backTransitionName: string = "reverse-carousel-cross-fade";
 
 class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
-    constructor(props: IConnectedReduxProps & IPropsFromState, context?: any) {
-        super(props, context);
-    }
-
       public render(): JSX.Element {
           return (
               <div>
