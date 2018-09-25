@@ -13,6 +13,7 @@ export interface IQuestionnaireState {
 	readonly currentView: AppView;
 	readonly currentQuestionId: QuestionId | undefined;
 	readonly dotNavStep: number;
+	readonly counter: number;
 }
 
 export const enum QuestionnaireActionType {

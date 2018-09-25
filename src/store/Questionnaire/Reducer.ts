@@ -26,11 +26,11 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 
 	if (nextQuestionId !== undefined) {
 		const dotNavStep = QUESTIONS.find(q => q.id === nextQuestionId)!.dotNavStep;
-		return { answers, currentQuestionId: nextQuestionId, currentView: AppView.Questionnaire, dotNavStep };
+		return { answers, currentQuestionId: nextQuestionId, currentView: AppView.Questionnaire, dotNavStep, counter: prevState.counter + 1 };
 	}
 	else {
 		// End of questionnaire; change to the Plan view.
-		return { ...prevState, answers, currentView: AppView.Plan };
+		return { ...prevState, answers, currentView: AppView.Plan, counter: prevState.counter + 1 };
 	}
 }
 
