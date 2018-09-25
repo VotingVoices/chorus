@@ -120,3 +120,5 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Angry,
         ],
     }];
+
+export const PLAN_DOT_NAV_STEP = 11;
