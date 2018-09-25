@@ -10,7 +10,7 @@ import App from './App';
 import configureStore from './configureStore';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
-import { ALL_QUESTION_IDS, AppView, IQuestionAndAnswer, IQuestionnaireState, PLAN_DOT_NAV_STEP, QuestionId } from './store';
+import { ALL_QUESTION_IDS, AppView, IQuestionAndAnswer, IQuestionnaireState, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
 
 const history = createBrowserHistory();
 
@@ -50,8 +50,13 @@ function readInitialStateFromUrl(location: Location<any>): IQuestionnaireState {
 		const queryValues = queryString.parse(location.search);
 
 		let currentQuestionId = queryValues[CurrentQuestionQueryParameterName];
+		let dotNavStep = dotNavStepFromAppView(appView!);
+
 		if (currentQuestionId == null) {
 			currentQuestionId = QuestionId.AreYouRegistered;
+		}
+		else {
+			dotNavStep = QUESTIONS.find(q => q.id === currentQuestionId)!.dotNavStep;
 		}
 
 		const answers: IQuestionAndAnswer[] = [];
@@ -74,7 +79,7 @@ function readInitialStateFromUrl(location: Location<any>): IQuestionnaireState {
 			answers,
 			currentView: appView!,
 			currentQuestionId,
-			dotNavStep: dotNavStepFromAppView(appView!),
+			dotNavStep,
 			counter: 1,
 		}
 	}
