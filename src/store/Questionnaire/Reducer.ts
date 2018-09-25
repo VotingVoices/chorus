@@ -11,6 +11,7 @@ type QuestionnaireAction = ActionType<typeof actions>;
 
 const initialState: IQuestionnaireState = {
 	answers: [],
+	currentQuestionId: QuestionId.AreYouRegistered,
 	dotNavStep: 1,
 };
 
@@ -30,7 +31,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
     const nextQuestionId = question!.nextQuestionId(answerId);
     const dotNavStep = QUESTIONS.find(q => q.id === nextQuestionId)!.dotNavStep;
 
-    return { answers, dotNavStep };
+    return { answers, currentQuestionId: nextQuestionId, dotNavStep };
 }
 
 const reducer: Reducer<IQuestionnaireState> = (state = initialState, action: QuestionnaireAction) => {

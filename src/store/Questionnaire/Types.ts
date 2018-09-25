@@ -5,6 +5,7 @@ import { QuestionId } from '../QuestionId';
 
 export interface IQuestionnaireState {
 	readonly answers: IQuestionAndAnswer[];
+	readonly currentQuestionId: QuestionId;
 	readonly dotNavStep: number;
 }
 
