@@ -94,7 +94,8 @@ function pathFromState(state: IQuestionnaireState): string {
 		}
 
 		case AppView.Plan: {
-			return '/Plan';
+			const queryStringParameters = state.answers.map(qa => `${qa.questionId}=${qa.answerId}`).join('&');
+			return `/Plan?${queryStringParameters}`;
 		}
 
 		default: {
