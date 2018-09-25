@@ -55,7 +55,7 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 			dotNavStep = QUESTIONS.find(q => q.id === currentQuestionId)!.dotNavStep;
 		}
 
-		const answers: IQuestionAndAnswer[] = [];
+		const answers: IQuestionAndAnswer[] = existingState.answers;
 
 		ALL_QUESTION_IDS.forEach((questionId: QuestionId) => {
 			const answerId = queryValues[questionId];
