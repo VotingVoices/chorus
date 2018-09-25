@@ -1,8 +1,13 @@
 import { Reducer } from 'redux';
-import { IAnswerQuestionPayload, IQuestionnaireState, QuestionnaireActionType } from './Types';
+import { ActionType } from 'typesafe-actions';
+
+import { IQuestionnaireState, QuestionnaireActionType } from './Types';
 import { AnswerId } from '../AnswerId';
 import { QuestionId } from '../QuestionId';
 import { QUESTIONS } from '../Questions';
+import * as actions from './Actions';
+
+type QuestionnaireAction = ActionType<typeof actions>;
 
 const initialState: IQuestionnaireState = {
 	answers: [],
@@ -28,11 +33,10 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
     return { answers, dotNavStep };
 }
 
-const reducer: Reducer<IQuestionnaireState> = (state = initialState, action) => {
+const reducer: Reducer<IQuestionnaireState> = (state = initialState, action: QuestionnaireAction) => {
 	switch (action.type) {
 		case QuestionnaireActionType.ANSWER_QUESTION: {
-			const payload = action.Payload as IAnswerQuestionPayload;
-			return answerQuestion(state, payload.questionId, payload.answerId);
+			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
 		}
 		default: {
 			return state;
