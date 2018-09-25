@@ -88,7 +88,9 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
                       transitionLeaveTimeout={400} >
                       <Question
                           {...this.props}
-                          key={this.props.question.id} />
+                          key={this.props.question.id}
+                          questionId={this.props.question.id}
+                          answers={QUESTIONS.find(q => q.id === this.props.question.id)!.answers} />
                   </ReactCSSTransitionReplace>
                   <DotNavigationBar
                       stepCount={10}
