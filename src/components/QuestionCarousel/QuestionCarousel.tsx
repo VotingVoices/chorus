@@ -19,7 +19,13 @@ interface IPropsFromState {
 class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
 	public render(): JSX.Element {
 		return (
-			<React.Fragment>
+			<div className="App">
+				<header className="App-header">
+					<h1 className="App-title">Voting Voices</h1>
+				</header>
+
+				<p className="App-intro" />
+				
 				<ReactCSSTransitionReplace
 					transitionName={this.props.transitionName}
 					transitionEnterTimeout={1000}
@@ -39,7 +45,7 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
 					intervalWidth={50}
 					strokeWidth={3}
 					dotRadius={8} />
-			</React.Fragment>
+			</div>
 		);
 	}
 }
