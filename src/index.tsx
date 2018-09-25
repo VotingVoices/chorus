@@ -2,100 +2,27 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Store, AnyAction } from 'redux';
 import { Provider } from 'react-redux';
-import { createBrowserHistory, Location } from 'history';
-import { push } from 'connected-react-router';
-import * as queryString from 'query-string';
+import { createBrowserHistory } from 'history';
 
 import App from './App';
 import configureStore from './configureStore';
-import './index.css';
 import registerServiceWorker from './registerServiceWorker';
-import { ALL_QUESTION_IDS, AppView, IQuestionAndAnswer, IQuestionnaireState, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
+import { CurrentQuestionQueryParameterName, readStateFromLocation } from './readStateFromLocation';
+import { AppView, IQuestionnaireState, push, QuestionId } from './store';
+
+import './index.css';
 
 const history = createBrowserHistory();
 
-function getViewFromPath(pathname: string): AppView | undefined {
-	if (pathname === '/Survey') {
-		return AppView.Questionnaire;
-	}
-	else if (pathname === '/Plan') {
-		return AppView.Plan;
-	}
+const defaultState = {
+	answers: [],
+	currentView: AppView.Questionnaire,
+	currentQuestionId: QuestionId.AreYouRegistered,
+	dotNavStep: 1,
+	counter: 1,
+} as IQuestionnaireState;
 
-	return undefined;
-}
-
-function dotNavStepFromAppView(appView: AppView): number {
-	switch (appView) {
-		case AppView.Questionnaire: {
-			return 1;
-		}
-
-		case AppView.Plan: {
-			return PLAN_DOT_NAV_STEP;
-		}
-
-		default: {
-			throw new Error('Unrecognized AppView');
-		}
-	}
-}
-
-const CurrentQuestionQueryParameterName = 'q';
-
-function readInitialStateFromUrl(location: Location<any>): IQuestionnaireState {
-	const appView = getViewFromPath(location.pathname);
-
-	if (appView !== undefined) {
-		const queryValues = queryString.parse(location.search);
-
-		let currentQuestionId = queryValues[CurrentQuestionQueryParameterName];
-		let dotNavStep = dotNavStepFromAppView(appView!);
-
-		if (currentQuestionId == null) {
-			currentQuestionId = QuestionId.AreYouRegistered;
-		}
-		else {
-			dotNavStep = QUESTIONS.find(q => q.id === currentQuestionId)!.dotNavStep;
-		}
-
-		const answers: IQuestionAndAnswer[] = [];
-
-		ALL_QUESTION_IDS.forEach((questionId: QuestionId) => {
-			const answerId = queryValues[questionId];
-
-			if (answerId != null) {
-				const existingAnswer = answers.find(qa => qa.questionId === questionId);
-				if (existingAnswer !== undefined) {
-					existingAnswer.answerId = answerId;
-				}
-				else {
-					answers.push({ questionId, answerId });
-				}
-			}
-		});
-
-		return {
-			answers,
-			currentView: appView!,
-			currentQuestionId,
-			dotNavStep,
-			counter: 1,
-		}
-	}
-	else {
-		// Return default initial state
-		return {
-			answers: [],
-			currentView: AppView.Questionnaire,
-			currentQuestionId: QuestionId.AreYouRegistered,
-			dotNavStep: 1,
-			counter: 1,
-		};
-	}
-}
-
-const initialState = readInitialStateFromUrl(history.location);
+const initialState = readStateFromLocation(defaultState, history.location.pathname, history.location.search);
 
 const store = configureStore(history, initialState);
 

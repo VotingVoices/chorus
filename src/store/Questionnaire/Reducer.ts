@@ -2,10 +2,12 @@ import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
 import { AppView, IQuestionnaireState, QuestionnaireActionType } from './Types';
+import { RouterActionType } from '../Router/Types';		// Maybe move this Reducer out of the 'Questionnaire' directory?
 import { AnswerId } from '../AnswerId';
 import { QuestionId } from '../QuestionId';
 import { QUESTIONS } from '../Questions';
 import * as actions from './Actions';
+import { readStateFromLocation } from '../../readStateFromLocation';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
@@ -34,10 +36,19 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 	}
 }
 
+function respondToBackButton(prevState: IQuestionnaireState, pathname: string, search: string) : IQuestionnaireState {
+	return readStateFromLocation(prevState, pathname, search);
+}
+
 const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, action: QuestionnaireAction) => {
 	switch (action.type) {
 		case QuestionnaireActionType.ANSWER_QUESTION: {
 			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
+		}
+		case RouterActionType.LOCATION_CHANGE: {
+			if (action.payload.historyAction === "POP") {
+				return respondToBackButton(state, action.payload.pathname, action.payload.search);
+			}
 		}
 		default: {
 			return state;

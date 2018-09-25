@@ -5,3 +5,5 @@ import { IAnswerQuestionPayload, QuestionnaireActionType } from './Types';
 
 export const answerQuestion = (questionId: QuestionId, answerId: AnswerId) =>
 	action(QuestionnaireActionType.ANSWER_QUESTION, { questionId, answerId } as IAnswerQuestionPayload);
+
+export { locationChange } from '../Router/Actions';

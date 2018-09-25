@@ -17,7 +17,7 @@ export interface IQuestionnaireState {
 }
 
 export const enum QuestionnaireActionType {
-	ANSWER_QUESTION = '@@Questionnaire/ANSWER_QUESTION',
+	ANSWER_QUESTION = 'QUESTIONNAIRE/ANSWER_QUESTION',
 }
 
 export interface IConnectedReduxProps<A extends Action = AnyAction> {
