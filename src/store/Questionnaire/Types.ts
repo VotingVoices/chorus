@@ -3,9 +3,15 @@ import { IQuestionAndAnswer } from '../IQuestionAndAnswer';		// TODO: Should thi
 import { AnswerId } from '../AnswerId';
 import { QuestionId } from '../QuestionId';
 
+export const enum AppView {
+	Questionnaire,
+	Plan,
+}
+
 export interface IQuestionnaireState {
 	readonly answers: IQuestionAndAnswer[];
-	readonly currentQuestionId: QuestionId;
+	readonly currentView: AppView;
+	readonly currentQuestionId: QuestionId | undefined;
 	readonly dotNavStep: number;
 }
 

@@ -6,11 +6,16 @@ import App from './App';
 import configureStore from './configureStore';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
-import { IQuestionnaireState, QuestionId } from './store';
+import { AppView, IQuestionnaireState, QuestionId } from './store';
 
 const history = createBrowserHistory();
 
-const initialState = { answers: [], currentQuestionId: QuestionId.AreYouRegistered, dotNavStep: 1 } as IQuestionnaireState;
+const initialState = {
+	answers: [],
+	currentView: AppView.Questionnaire,
+	currentQuestionId: QuestionId.AreYouRegistered,
+	dotNavStep: 1
+} as IQuestionnaireState;
 
 const store = configureStore(history, initialState);
 

@@ -1,5 +1,5 @@
 export { answerQuestion } from './Questionnaire/Actions';
-export { IConnectedReduxProps, IQuestionnaireState } from './Questionnaire/Types';
+export { AppView, IConnectedReduxProps, IQuestionnaireState } from './Questionnaire/Types';
 export { questionnaireReducer } from './Questionnaire/Reducer';
 export { ALL_QUESTION_IDS, QuestionId } from './QuestionId';
 export { AnswerId } from './AnswerId';

@@ -9,7 +9,6 @@ export enum QuestionId {
     FamiliarWithBallot = 'Fmlr',
     PeopleToInvite = 'Inv',
     Emotion = 'Em',
-    END_OF_QUESTIONS = 'END'
 }
 
 export const ALL_QUESTION_IDS: QuestionId[] = [

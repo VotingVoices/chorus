@@ -8,7 +8,7 @@ export interface IQuestion {
     id: QuestionId;
     dotNavStep: number;
     answers: AnswerId[];
-    nextQuestionId: (answer: AnswerId) => QuestionId;
+    nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
 }
 
 /**
@@ -28,7 +28,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.VoteByMailState,
         dotNavStep: 2,
-        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.END_OF_QUESTIONS,
+        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : undefined,
         answers: [
             AnswerId.Colorado,
             AnswerId.Oregon,
@@ -109,7 +109,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.Emotion,
         dotNavStep: 10,
-        nextQuestionId: (key) => QuestionId.END_OF_QUESTIONS,
+        nextQuestionId: (key) => undefined,
         answers: [
             AnswerId.Excited,
             AnswerId.Happy,
