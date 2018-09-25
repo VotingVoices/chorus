@@ -21,27 +21,6 @@ const backTransitionName: string = "reverse-carousel-cross-fade";
 class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
     constructor(props: IConnectedReduxProps & IPropsFromState, context?: any) {
         super(props, context);
-
-        // TODO: Remove
-        /*
-        let questionId = QuestionId.AreYouRegistered;
-        let pushHistory = true;
-
-        if (this.props.location.pathname.length > 0) {
-            questionId = getQuestionIdFromPath(this.props.location.pathname);
-            pushHistory = false;
-        }
-
-        const question = props.questions.find(q => q.id === questionId);
-
-        this.state = {
-            transitionName: forwardTransitionName,
-        };
-
-        if (pushHistory) {
-            this.props.history.push({ pathname: questionId });
-        }
-        */
     }
 
       public render(): JSX.Element {
