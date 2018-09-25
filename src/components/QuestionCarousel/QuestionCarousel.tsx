@@ -6,13 +6,14 @@ import { IConnectedReduxProps } from '../../store';
 import { Question } from '../Question';
 import { DotNavigationBar } from '../DotNavigationBar';
 import { QUESTIONS, IQuestion, IQuestionnaireState } from '../../store';
+import { BACK_TRANSITION_NAME, FORWARD_TRANSITION_NAME } from '../../transitionNames';
 
-import './QuestionCarousel.css';
+import '../../App.css';
 
 interface IPropsFromState {
-	question: IQuestion;
-	dotNavStep: number;
-	transitionName: string;
+	question: IQuestion,
+	dotNavStep: number,
+	transitionName: string,
 }
 
 class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
@@ -43,13 +44,10 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
 	}
 }
 
-const forwardTransitionName: string = "carousel-cross-fade";
-const backTransitionName: string = "reverse-carousel-cross-fade";
-
 const mapStateToProps = (state: IQuestionnaireState) => ({
 	dotNavStep: state.dotNavStep,
 	question: QUESTIONS.find(q => q.id === state.currentQuestionId)!,
-	transitionName: state.mostRecentActionWasBackButton ? backTransitionName : forwardTransitionName,
+	transitionName: state.mostRecentActionWasBackButton ? BACK_TRANSITION_NAME : FORWARD_TRANSITION_NAME,
 });
 
 export const QuestionCarousel = connect(mapStateToProps)(InternalQuestionCarousel);

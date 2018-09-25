@@ -6,17 +6,19 @@ import './App.css';
 import { Plan } from './components/Plan';
 import { Questionnaire } from './components/Questionnaire';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState } from './store';
+import { BACK_TRANSITION_NAME, FORWARD_TRANSITION_NAME } from './transitionNames';
 
 interface IPropsFromState {
 	currentView: AppView,
 	answers: IQuestionAndAnswer[],
+	transitionName: string,
 }
 
 class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 	public render(): JSX.Element {
 		return (
 			<ReactCSSTransitionReplace
-				transitionName="carousel-cross-fade"
+				transitionName={this.props.transitionName}
 				transitionEnterTimeout={1000}
 				transitionLeaveTimeout={400} >
 				{this.renderViewSpecificContent()}
@@ -46,6 +48,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 const mapStateToProps = (state: IQuestionnaireState) => ({
 	currentView: state.currentView,
 	answers: state.answers,
+	transitionName: state.mostRecentActionWasBackButton ? BACK_TRANSITION_NAME : FORWARD_TRANSITION_NAME,
 })
 
 export default connect(mapStateToProps)(App);
