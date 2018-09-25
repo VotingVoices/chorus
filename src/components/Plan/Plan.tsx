@@ -1,18 +1,19 @@
 import * as React from 'react';
-import { connect} from 'react-redux';
 import { getAnswerLabel } from '../Answer';
 import { getQuestionFullLabel } from '../Question';
-import { ALL_QUESTION_IDS, IQuestionAndAnswer, IQuestionnaireState, QuestionId } from '../../store';
+import { ALL_QUESTION_IDS, IQuestionAndAnswer, QuestionId } from '../../store';
 
-interface IPropsFromState {
+interface IPlanProps {
 	answers: IQuestionAndAnswer[],
 }
 
-class InternalPlan extends React.Component<IPropsFromState, any> {
+export class Plan extends React.Component<IPlanProps, any> {
 	public render() {
 		return (
 			<div className="App">
-				<p>This is your voting plan.</p>
+				<header className="App-header">
+					<p>This is your voting plan.</p>
+				</header>
 				<div>
 					{ALL_QUESTION_IDS.map(
 						(questionId: QuestionId) => {
@@ -33,9 +34,3 @@ class InternalPlan extends React.Component<IPropsFromState, any> {
 		);
 	}
 }
-
-const mapStateToProps = (state: IQuestionnaireState) => ({
-	answers: state.answers,
-});
-
-export const Plan = connect(mapStateToProps)(InternalPlan);

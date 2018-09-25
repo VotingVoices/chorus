@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 import './App.css';
 import { Plan } from './components/Plan';
 import { Questionnaire } from './components/Questionnaire';
-import { AppView, IConnectedReduxProps, IQuestionnaireState } from './store';
+import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState } from './store';
 
 interface IPropsFromState {
 	currentView: AppView,
+	answers: IQuestionAndAnswer[],
 }
 
 class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
@@ -32,7 +33,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 			}
 
 			case AppView.Plan: {
-				return (<Plan key="plan" {...this.props} />);
+				return (<Plan key="plan" answers={this.props.answers} />);
 			}
 
 			default: {
@@ -44,6 +45,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 
 const mapStateToProps = (state: IQuestionnaireState) => ({
 	currentView: state.currentView,
+	answers: state.answers,
 })
 
 export default connect(mapStateToProps)(App);
