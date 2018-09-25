@@ -16,7 +16,7 @@ interface IPropsFromState {
 	transitionName: string,
 }
 
-class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
+class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
 	public render(): JSX.Element {
 		return (
 			<div className="App">
@@ -56,4 +56,4 @@ const mapStateToProps = (state: IQuestionnaireState) => ({
 	transitionName: state.mostRecentActionWasBackButton ? BACK_TRANSITION_NAME : FORWARD_TRANSITION_NAME,
 });
 
-export const QuestionCarousel = connect(mapStateToProps)(InternalQuestionCarousel);
+export const Survey = connect(mapStateToProps)(InternalSurvey);

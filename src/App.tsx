@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import { Plan } from './components/Plan';
-import { Questionnaire } from './components/Questionnaire';
+import { Survey } from './components/Survey';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState } from './store';
 import { BACK_TRANSITION_NAME, FORWARD_TRANSITION_NAME } from './transitionNames';
 
@@ -31,7 +31,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 
 		switch (currentView) {
 			case AppView.Questionnaire: {
-				return (<Questionnaire key="questionnaire" {...this.props} />);
+				return (<Survey key="survey" {...this.props} />);
 			}
 
 			case AppView.Plan: {
