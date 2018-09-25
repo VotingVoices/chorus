@@ -15,13 +15,10 @@ interface IPropsFromState {
 	transitionName: string;
 }
 
-const forwardTransitionName: string = "carousel-cross-fade";
-const backTransitionName: string = "reverse-carousel-cross-fade";
-
 class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
 	public render(): JSX.Element {
 		return (
-			<div>
+			<React.Fragment>
 				<ReactCSSTransitionReplace
 					transitionName={this.props.transitionName}
 					transitionEnterTimeout={1000}
@@ -41,10 +38,13 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
 					intervalWidth={50}
 					strokeWidth={3}
 					dotRadius={8} />
-			</div>
+			</React.Fragment>
 		);
 	}
 }
+
+const forwardTransitionName: string = "carousel-cross-fade";
+const backTransitionName: string = "reverse-carousel-cross-fade";
 
 const mapStateToProps = (state: IQuestionnaireState) => ({
 	dotNavStep: state.dotNavStep,
