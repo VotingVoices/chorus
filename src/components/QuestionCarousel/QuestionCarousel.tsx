@@ -12,17 +12,13 @@ import './QuestionCarousel.css';
 interface IPropsFromState {
     question: IQuestion;
     dotNavStep: number;
-}
-
-export interface IQuestionCarouselState {
     transitionName: string;
 }
 
 const forwardTransitionName: string = "carousel-cross-fade";
-// const backTransitionName: string = "reverse-carousel-cross-fade";
+const backTransitionName: string = "reverse-carousel-cross-fade";
 
-class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IPropsFromState, any>
-{
+class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
     constructor(props: IConnectedReduxProps & IPropsFromState, context?: any) {
         super(props, context);
 
@@ -52,7 +48,7 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
           return (
               <div>
                   <ReactCSSTransitionReplace
-                      transitionName={forwardTransitionName}
+                      transitionName={this.props.transitionName}
                       transitionEnterTimeout={1000}
                       transitionLeaveTimeout={400} >
                       <Question
@@ -79,6 +75,7 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
 const mapStateToProps = (state: IQuestionnaireState) => ({
     dotNavStep: state.dotNavStep,
     question: QUESTIONS.find(q => q.id === state.currentQuestionId)!,
+    transitionName: state.mostRecentActionWasBackButton ? backTransitionName : forwardTransitionName,
 });
 
 export const QuestionCarousel = connect(mapStateToProps)(InternalQuestionCarousel);
