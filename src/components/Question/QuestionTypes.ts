@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { QuestionId, AnswerId } from '../../store';
+import { QuestionId } from '../../store';
 
+// TODO: Move somewhere better
 export function getQuestionFullLabel(id: QuestionId): string {
     switch (id) {
         case QuestionId.AreYouRegistered:
@@ -35,16 +35,4 @@ export function getQuestionFullLabel(id: QuestionId): string {
     }
 
     throw new Error('Unrecognized QuestionId');
-}
-
-export interface IQuestionProps extends React.InputHTMLAttributes<HTMLElement | HTMLInputElement>
-{
-    /**
-     * The question we're posing to the user
-     */
-    questionId: QuestionId;
-    /**
-     * The options the user has to choose from
-     */
-    answers: AnswerId[];
 }

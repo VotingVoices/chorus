@@ -1,39 +1,47 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
-import { Location, Action, UnregisterCallback } from 'history';
+import { /*Location, Action,*/ UnregisterCallback } from 'history';
+// import { Redirect } from 'react-router-dom';
+import { connect} from 'react-redux';
 
-import { IConnectedReduxProps, IQuestionAndAnswer, QuestionId } from '../../store';
-import { IQuestionCarouselProps } from './QuestionCarouselTypes';
+import { IConnectedReduxProps/*, QuestionId*/ } from '../../store';
 import { Question } from '../Question';
-import { IAnswerProps } from '../Answer';
+// import { IAnswerProps } from '../Answer';
 import { DotNavigationBar } from '../DotNavigationBar';
-import { Redirect, withRouter } from 'react-router-dom';
+import { QUESTIONS, IQuestion, IQuestionnaireState } from '../../store';
 
 import './QuestionCarousel.css';
 
+interface IPropsFromState {
+    question: IQuestion;
+    dotNavStep: number;
+}
+
 export interface IQuestionCarouselState {
-    answers: IQuestionAndAnswer[];
-    currentQuestionId: QuestionId;
-    currentDotNavStep: number;
     redirectToPlan: boolean;
     transitionName: string;
 }
 
+// TODO: Remove
+/*
 function getQuestionIdFromPath(path: string): QuestionId {
     const questionIdStr = path.slice(1, path.length);
     return questionIdStr as QuestionId;
 }
+*/
 
 const forwardTransitionName: string = "carousel-cross-fade";
-const backTransitionName: string = "reverse-carousel-cross-fade";
+// const backTransitionName: string = "reverse-carousel-cross-fade";
 
-class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & IConnectedReduxProps, IQuestionCarouselState>
+class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IPropsFromState, any>
 {
     private historyUnregister: UnregisterCallback | undefined;
 
-    constructor(props: IQuestionCarouselProps & IConnectedReduxProps, context?: any) {
+    constructor(props: IConnectedReduxProps & IPropsFromState, context?: any) {
         super(props, context);
 
+        // TODO: Remove
+        /*
         let questionId = QuestionId.AreYouRegistered;
         let pushHistory = true;
 
@@ -45,9 +53,6 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
         const question = props.questions.find(q => q.id === questionId);
 
         this.state = {
-            answers: [],
-            currentDotNavStep: question!.dotNavStep,
-            currentQuestionId: questionId,
             redirectToPlan: false,
             transitionName: forwardTransitionName,
         };
@@ -55,12 +60,16 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
         if (pushHistory) {
             this.props.history.push({ pathname: questionId });
         }
+        */
     }
 
     public componentDidMount() {
+        // TODO: Remove
+        /*
         this.historyUnregister = this.props.history.listen((location, action) => {
-            this._locationChanged(location, action);
+            // this._locationChanged(location, action);
         });
+        */
     }
 
     public componentWillUnmount() {
@@ -70,25 +79,20 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
     }
 
       public render(): JSX.Element {
-          const currentQuestion = this.props.questions.find(q => q.id === this.state.currentQuestionId);
-
           return (
               <div>
                   {this._renderRedirect()}
                   <ReactCSSTransitionReplace
-                      transitionName={this.state.transitionName}
+                      transitionName={forwardTransitionName}
                       transitionEnterTimeout={1000}
                       transitionLeaveTimeout={400} >
                       <Question
                           {...this.props}
-                          questionId={currentQuestion!.id}
-                          answers={currentQuestion!.answers}
-                          key={currentQuestion!.id}
-                          onChange={this._onQuestionAnswered} />
+                          key={this.props.question.id} />
                   </ReactCSSTransitionReplace>
                   <DotNavigationBar
                       stepCount={10}
-                      currentStep={this.state.currentDotNavStep}
+                      currentStep={this.props.dotNavStep}
                       viewboxWidth={480}
                       viewboxHeight={20}
                       color='#E8E8E8'
@@ -99,6 +103,8 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
           );
       }
 
+      // TODO: Remove
+      /*
     private _onQuestionAnswered = (ev?: React.FormEvent<HTMLElement | HTMLInputElement>, answer?: IAnswerProps) => {
         const { questions } = this.props;
         const currentQuestion = questions.find(q => q.id === this.state.currentQuestionId);
@@ -157,8 +163,11 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
             transitionName,
         });
     }
+    */
 
     private _renderRedirect = () => {
+        // TODO: Remove
+        /*
         if (this.state.redirectToPlan) {
             const queryStringParameters = this.state.answers.map(qa => `${qa.questionId}=${qa.answerId}`).join('&');
             const planUrl = `/plan?${queryStringParameters}`;
@@ -166,12 +175,18 @@ class QuestionCarouselBase extends React.Component<IQuestionCarouselProps & ICon
               <Redirect to={planUrl} />
             );
         }
-        else {
+        else {*/
             return (
               <div />
             );
-        }
+        // }
     }
 }
 
-export const QuestionCarousel = withRouter(QuestionCarouselBase);
+
+const mapStateToProps = (state: IQuestionnaireState) => ({
+    dotNavStep: state.dotNavStep,
+    question: QUESTIONS.find(q => q.id === state.currentQuestionId)!,
+});
+
+export const QuestionCarousel = connect(mapStateToProps)(InternalQuestionCarousel);
