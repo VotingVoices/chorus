@@ -41,11 +41,18 @@ function dotNavStepFromAppView(appView: AppView): number {
 	}
 }
 
+const CurrentQuestionQueryParameterName = 'q';
+
 function readInitialStateFromUrl(location: Location<any>): IQuestionnaireState {
 	const appView = getViewFromPath(location.pathname);
 
 	if (appView !== undefined) {
 		const queryValues = queryString.parse(location.search);
+
+		let currentQuestionId = queryValues[CurrentQuestionQueryParameterName];
+		if (currentQuestionId == null) {
+			currentQuestionId = QuestionId.AreYouRegistered;
+		}
 
 		const answers: IQuestionAndAnswer[] = [];
 
@@ -66,7 +73,7 @@ function readInitialStateFromUrl(location: Location<any>): IQuestionnaireState {
 		return {
 			answers,
 			currentView: appView!,
-			currentQuestionId: QuestionId.AreYouRegistered,
+			currentQuestionId,
 			dotNavStep: dotNavStepFromAppView(appView!),
 			counter: 1,
 		}
@@ -90,7 +97,7 @@ const store = configureStore(history, initialState);
 function pathFromState(state: IQuestionnaireState): string {
 	switch (state.currentView) {
 		case AppView.Questionnaire: {
-			return `/Survey?q=${state.currentQuestionId}`;
+			return `/Survey?${CurrentQuestionQueryParameterName}=${state.currentQuestionId}`;
 		}
 
 		case AppView.Plan: {
