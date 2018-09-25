@@ -28,16 +28,37 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 
 	if (nextQuestionId !== undefined) {
 		const dotNavStep = QUESTIONS.find(q => q.id === nextQuestionId)!.dotNavStep;
-		return { answers, currentQuestionId: nextQuestionId, currentView: AppView.Questionnaire, dotNavStep, counter: prevState.counter + 1 };
+		return {
+			answers,
+			currentQuestionId:
+			nextQuestionId,
+			currentView:
+			AppView.Questionnaire,
+			dotNavStep,
+			counter: prevState.counter + 1,
+			mostRecentActionWasBackButton: false,
+		};
 	}
 	else {
 		// End of questionnaire; change to the Plan view.
-		return { ...prevState, answers, currentView: AppView.Plan, counter: prevState.counter + 1 };
+		return {
+			...prevState,
+			answers,
+			currentView:
+			AppView.Plan,
+			counter: prevState.counter + 1,
+			mostRecentActionWasBackButton: false
+		};
 	}
 }
 
 function respondToBackButton(prevState: IQuestionnaireState, pathname: string, search: string) : IQuestionnaireState {
-	return readStateFromLocation(prevState, pathname, search);
+	const state = readStateFromLocation(prevState, pathname, search);
+
+	return {
+		...state,
+		mostRecentActionWasBackButton: true,
+	}
 }
 
 const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, action: QuestionnaireAction) => {

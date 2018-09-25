@@ -20,6 +20,7 @@ const defaultState = {
 	currentQuestionId: QuestionId.AreYouRegistered,
 	dotNavStep: 1,
 	counter: 1,
+	mostRecentActionWasBackButton: false,
 } as IQuestionnaireState;
 
 const initialState = readStateFromLocation(defaultState, history.location.pathname, history.location.search);
@@ -52,7 +53,9 @@ function syncViewChangesToNavigation(s: Store<IQuestionnaireState, AnyAction>) {
 		if (nextState.counter !== currentState.counter) {
 			currentState = nextState;
 
-			s.dispatch(push(pathFromState(nextState)));
+			if (!nextState.mostRecentActionWasBackButton) {
+				s.dispatch(push(pathFromState(nextState)));
+			}
 		}
 	}
 

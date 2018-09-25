@@ -14,6 +14,7 @@ export interface IQuestionnaireState {
 	readonly currentQuestionId: QuestionId | undefined;
 	readonly dotNavStep: number;
 	readonly counter: number;
+	readonly mostRecentActionWasBackButton: boolean;
 }
 
 export const enum QuestionnaireActionType {
