@@ -6,12 +6,13 @@ import App from './App';
 import configureStore from './configureStore';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
-import { QuestionId } from './store';
+import { IQuestionnaireState, QuestionId } from './store';
 
 const history = createBrowserHistory();
 
-// TODO: De-dupe with the 'initialState' in Reducer.ts
-const store = configureStore(history, { answers: [], currentQuestionId: QuestionId.AreYouRegistered, dotNavStep: 1 });
+const initialState = { answers: [], currentQuestionId: QuestionId.AreYouRegistered, dotNavStep: 1 } as IQuestionnaireState;
+
+const store = configureStore(history, initialState);
 
 ReactDOM.render(
 	<Provider store={store}>

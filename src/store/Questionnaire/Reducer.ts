@@ -9,12 +9,6 @@ import * as actions from './Actions';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
-const initialState: IQuestionnaireState = {
-	answers: [],
-	currentQuestionId: QuestionId.AreYouRegistered,
-	dotNavStep: 1,
-};
-
 function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answerId: AnswerId): IQuestionnaireState {
 	const answers = prevState.answers;
 
@@ -34,7 +28,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
     return { answers, currentQuestionId: nextQuestionId, dotNavStep };
 }
 
-const reducer: Reducer<IQuestionnaireState> = (state = initialState, action: QuestionnaireAction) => {
+const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, action: QuestionnaireAction) => {
 	switch (action.type) {
 		case QuestionnaireActionType.ANSWER_QUESTION: {
 			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
