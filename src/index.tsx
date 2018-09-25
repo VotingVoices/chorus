@@ -90,7 +90,7 @@ const store = configureStore(history, initialState);
 function pathFromState(state: IQuestionnaireState): string {
 	switch (state.currentView) {
 		case AppView.Questionnaire: {
-			return '/Survey';
+			return `/Survey?q=${state.currentQuestionId}`;
 		}
 
 		case AppView.Plan: {
