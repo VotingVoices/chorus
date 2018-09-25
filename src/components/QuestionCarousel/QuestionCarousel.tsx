@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { /*Location, Action,*/ UnregisterCallback } from 'history';
-// import { Redirect } from 'react-router-dom';
 import { connect} from 'react-redux';
 
 import { IConnectedReduxProps/*, QuestionId*/ } from '../../store';
@@ -18,7 +17,6 @@ interface IPropsFromState {
 }
 
 export interface IQuestionCarouselState {
-    redirectToPlan: boolean;
     transitionName: string;
 }
 
@@ -53,7 +51,6 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
         const question = props.questions.find(q => q.id === questionId);
 
         this.state = {
-            redirectToPlan: false,
             transitionName: forwardTransitionName,
         };
 
@@ -81,7 +78,6 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
       public render(): JSX.Element {
           return (
               <div>
-                  {this._renderRedirect()}
                   <ReactCSSTransitionReplace
                       transitionName={forwardTransitionName}
                       transitionEnterTimeout={1000}
@@ -133,7 +129,6 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
             // Redirect to the plan page.
             this.setState({
                 answers,
-                redirectToPlan: true,
             });
         }
         else {
@@ -166,23 +161,6 @@ class InternalQuestionCarousel extends React.Component<IConnectedReduxProps & IP
         });
     }
     */
-
-    private _renderRedirect = () => {
-        // TODO: Remove
-        /*
-        if (this.state.redirectToPlan) {
-            const queryStringParameters = this.state.answers.map(qa => `${qa.questionId}=${qa.answerId}`).join('&');
-            const planUrl = `/plan?${queryStringParameters}`;
-            return (
-              <Redirect to={planUrl} />
-            );
-        }
-        else {*/
-            return (
-              <div />
-            );
-        // }
-    }
 }
 
 
