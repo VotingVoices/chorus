@@ -23,7 +23,9 @@ const defaultState = {
 	mostRecentActionWasBackButton: false,
 } as IQuestionnaireState;
 
-const initialState = readStateFromLocation(defaultState, history.location.pathname, history.location.search);
+const readStateResult = readStateFromLocation(defaultState, history.location.pathname, history.location.search);
+
+const initialState = readStateResult.state;
 
 const store = configureStore(history, initialState);
 
@@ -65,6 +67,11 @@ function syncViewChangesToNavigation(s: Store<IQuestionnaireState, AnyAction>) {
 }
 
 syncViewChangesToNavigation(store);
+
+// Navigate to a well-formed URL for the first question
+if (!readStateResult.appViewSpecified || !readStateResult.questionSpecified) {
+	store.dispatch(push(pathFromState(store.getState())));
+}
 
 ReactDOM.render(
 	<Provider store={store}>

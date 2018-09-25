@@ -53,7 +53,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 }
 
 function respondToBackButton(prevState: IQuestionnaireState, pathname: string, search: string) : IQuestionnaireState {
-	const state = readStateFromLocation(prevState, pathname, search);
+	const { state } = readStateFromLocation(prevState, pathname, search);
 
 	return {
 		...state,

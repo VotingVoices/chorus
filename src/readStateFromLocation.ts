@@ -31,7 +31,13 @@ function dotNavStepFromAppView(appView: AppView): number {
 
 export const CurrentQuestionQueryParameterName = 'q';
 
-export function readStateFromLocation(existingState: IQuestionnaireState, pathname: string, search: string): IQuestionnaireState {
+export interface IReadStateResult {
+	state: IQuestionnaireState,
+	appViewSpecified: boolean,
+	questionSpecified: boolean,
+}
+
+export function readStateFromLocation(existingState: IQuestionnaireState, pathname: string, search: string): IReadStateResult {
 	const appView = getViewFromPath(pathname);
 
 	if (appView !== undefined) {
@@ -39,9 +45,11 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 
 		let currentQuestionId = queryValues[CurrentQuestionQueryParameterName];
 		let dotNavStep = dotNavStepFromAppView(appView!);
+		let questionSpecified = true;
 
 		if (currentQuestionId == null) {
 			currentQuestionId = QuestionId.AreYouRegistered;
+			questionSpecified = false;
 		}
 		else {
 			dotNavStep = QUESTIONS.find(q => q.id === currentQuestionId)!.dotNavStep;
@@ -64,15 +72,23 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 		});
 
 		return {
-			answers,
-			currentView: appView!,
-			currentQuestionId,
-			dotNavStep,
-			counter: existingState.counter + 1,
-			mostRecentActionWasBackButton: false,
-		}
+			state: {
+				answers,
+				currentView: appView!,
+				currentQuestionId,
+				dotNavStep,
+				counter: existingState.counter + 1,
+				mostRecentActionWasBackButton: false,
+			},
+			appViewSpecified: true,
+			questionSpecified,
+		};
 	}
 	else {
-		return existingState;
+		return {
+			state: existingState,
+			appViewSpecified: false,
+			questionSpecified: false,
+		};
 	}
 }
