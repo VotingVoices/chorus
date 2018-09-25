@@ -2,10 +2,12 @@
 
 import { ActionType } from 'typesafe-actions';
 import { Action as HistoryAction, History, Location } from 'history';
+import { Store, AnyAction } from 'redux';
 
 import * as internalActions from './InternalActions';
 import { locationChange } from './Actions';
 import { RouterInternalActionType } from './Types';
+import { IQuestionnaireState } from '../Questionnaire/Types';
 
 type RouterInternalAction = ActionType<typeof internalActions>;
 
@@ -43,8 +45,7 @@ export const routerMiddleware = (history: History) => () => (next: any) => (acti
 	}
 }
 
-// TODO: Get rid of 'any' on 'store'
-export function startHistoryListener(history: History, store: any) {
+export function startHistoryListener(history: History, store: Store<IQuestionnaireState, AnyAction>) {
 	history.listen((location: Location, historyAction: HistoryAction) => {
 		store.dispatch(locationChange(
 			location.pathname,
