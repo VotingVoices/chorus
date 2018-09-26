@@ -4,7 +4,7 @@ import { connect} from 'react-redux';
 
 import { Answer } from '../Answer';
 import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../../store';
-import { getQuestionFullLabel } from './QuestionTypes';
+import { getQuestionFullLabel } from '../../strings';
 
 import './Question.css';
 
