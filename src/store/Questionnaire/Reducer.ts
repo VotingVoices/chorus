@@ -76,7 +76,11 @@ const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, actio
 			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
 		}
 		case QuestionnaireActionType.START_OVER: {
-			return DEFAULT_STATE;
+			return {
+				...DEFAULT_STATE,
+				answers: [],
+				mostRecentActionWasBackButton: true
+			};
 		}
 		case RouterActionType.LOCATION_CHANGE: {
 			if (action.payload.historyAction === "POP") {
