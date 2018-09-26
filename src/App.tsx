@@ -3,8 +3,7 @@ import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { connect } from 'react-redux';
 
 import './App.css';
-import { Plan } from './components/Plan';
-import { Survey } from './components/Survey';
+import { Plan, Survey } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState } from './store';
 import { BACK_TRANSITION_NAME, FORWARD_TRANSITION_NAME } from './transitionNames';
 

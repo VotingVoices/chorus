@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect} from 'react-redux';
 
-import { Answer } from '../Answer';
-import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../../store';
-import { getQuestionFullLabel } from '../../strings';
+import { Answer } from './Answer';
+import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../store';
+import { getQuestionFullLabel } from '../strings';
 
 import './Question.css';
 

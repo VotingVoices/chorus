@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { getAnswerLabel, getQuestionFullLabel } from '../../strings';
-import { ALL_QUESTION_IDS, IQuestionAndAnswer, QuestionId } from '../../store';
+import { getAnswerLabel, getQuestionFullLabel } from '../strings';
+import { ALL_QUESTION_IDS, IQuestionAndAnswer, QuestionId } from '../store';
 
 interface IPlanProps {
 	answers: IQuestionAndAnswer[],

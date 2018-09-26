@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { NavigationDot } from '../NavigationDot';
-import { INavigationDotProps } from '../NavigationDot';
-import { NavigationIntervalLine } from '../NavigationIntervalLine';
+import { NavigationDot } from './NavigationDot';
+import { INavigationDotProps } from './NavigationDot';
+import { NavigationIntervalLine } from './NavigationIntervalLine';
 
 interface IDotNavigationBarProps extends React.InputHTMLAttributes<HTMLElement | HTMLInputElement>
 {

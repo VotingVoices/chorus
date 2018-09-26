@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { AnswerId } from '../../store';
-import { getAnswerLabel } from '../../strings';
+import { AnswerId } from '../store';
+import { getAnswerLabel } from '../strings';
 
 import './Answer.css';
 

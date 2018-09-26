@@ -4,13 +4,13 @@ import { connect} from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { Dispatch } from 'redux';
 
-import { IConnectedReduxProps } from '../../store';
-import { Question } from '../Question';
-import { DotNavigationBar } from '../DotNavigationBar';
-import { QUESTIONS, IQuestion, IQuestionnaireState, startOver } from '../../store';
-import { BACK_TRANSITION_NAME, FORWARD_TRANSITION_NAME } from '../../transitionNames';
+import { IConnectedReduxProps } from '../store';
+import { Question } from './Question';
+import { DotNavigationBar } from './DotNavigationBar';
+import { QUESTIONS, IQuestion, IQuestionnaireState, startOver } from '../store';
+import { BACK_TRANSITION_NAME, FORWARD_TRANSITION_NAME } from '../transitionNames';
 
-import '../../App.css';
+import '../App.css';
 
 interface IPropsFromState {
 	question: IQuestion,
