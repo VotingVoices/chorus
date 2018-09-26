@@ -1,8 +1,6 @@
 import { Action as HistoryAction } from 'history';
 import { action } from 'typesafe-actions';
-import { AnswerId } from './AnswerId';
-import { QuestionId } from './QuestionId';
-import { IAnswerQuestionPayload, QuestionnaireActionType } from './Types';
+import { AnswerId, IAnswerQuestionPayload, QuestionId, QuestionnaireActionType } from './Types';
 import { IRouterLocationChangePayload, RouterActionType } from './InternalTypes';
 
 export const answerQuestion = (questionId: QuestionId, answerId: AnswerId) =>

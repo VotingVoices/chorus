@@ -1,5 +1,4 @@
-import { AnswerId } from './AnswerId';
-import { QuestionId } from './QuestionId';
+import { AnswerId, QuestionId } from './Types';
 
 /**
  * Helper interface for Carousel props.  Each IQuestion forms a node in a question graph

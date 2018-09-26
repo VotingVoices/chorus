@@ -1,10 +1,8 @@
 import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
-import { AppView, IQuestionnaireState, QuestionnaireActionType } from './Types';
+import { AppView, AnswerId, IQuestionnaireState, QuestionId, QuestionnaireActionType } from './Types';
 import { RouterActionType } from './InternalTypes';
-import { AnswerId } from './AnswerId';
-import { QuestionId } from './QuestionId';
 import { QUESTIONS } from './Questions';
 import * as actions from './Actions';
 import { readStateFromLocation } from '../readStateFromLocation';

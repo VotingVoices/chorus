@@ -1,7 +1,65 @@
 import { Action, AnyAction, Dispatch } from 'redux';
-import { IQuestionAndAnswer } from './IQuestionAndAnswer';		// TODO: Should this be defined in this file?
-import { AnswerId } from './AnswerId';
-import { QuestionId } from './QuestionId';
+
+export enum QuestionId {
+	AreYouRegistered = 'Reg',
+	VoteByMailState = 'St',
+	PollingLocation = 'PllLoc',
+	SpecialAccommodations = 'Accm',
+	TransportationMethod = 'Trns',
+	AbsenteeBallot = 'Abs',
+	MissWork = 'MssWrk',
+	FamiliarWithBallot = 'Fmlr',
+	PeopleToInvite = 'Inv',
+	Emotion = 'Em',
+}
+
+export const ALL_QUESTION_IDS: QuestionId[] = [
+	QuestionId.AreYouRegistered,
+	QuestionId.VoteByMailState,
+	QuestionId.PollingLocation,
+	QuestionId.SpecialAccommodations,
+	QuestionId.TransportationMethod,
+	QuestionId.AbsenteeBallot,
+	QuestionId.MissWork,
+	QuestionId.FamiliarWithBallot,
+	QuestionId.PeopleToInvite,
+	QuestionId.Emotion,
+];
+
+export enum AnswerId {
+	Yes = 'Y',
+	No = 'N',
+	EmphaticYes = 'EY',
+	UncertainNo = 'UN',
+	DontKnow = 'DN',
+	Other = 'Oth',
+	Washington = 'WA',
+	Oregon = 'OR',
+	Colorado = 'CO',
+	OtherState = 'OthSt',
+	WalkOrBike = 'WB',
+	DriveMyself = 'DrMy',
+	RideShare = 'RiSh',
+	AskSomeoneForRide = 'Ask',
+	FamilyMembers = 'Fam',
+	Coworkers = 'Cowrk',
+	Friends = 'Frnd',
+	SomeoneElse = 'Else',
+	NoThanks = 'NT',
+	Excited = 'Exc',
+	Happy = 'Hppy',
+	Nervous = 'Nrv',
+	Shocked = 'Shck',
+	Meh = 'Mh',
+	Worried = 'Wrd',
+	Sad = 'Sd',
+	Angry = 'Ang'
+}
+
+export interface IQuestionAndAnswer {
+	questionId: QuestionId;
+	answerId: AnswerId;
+}
 
 export const enum AppView {
 	Questionnaire,
