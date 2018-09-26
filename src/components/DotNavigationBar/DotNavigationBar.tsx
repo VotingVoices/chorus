@@ -2,7 +2,18 @@ import * as React from 'react';
 import { NavigationDot } from '../NavigationDot';
 import { INavigationDotProps } from '../NavigationDot';
 import { NavigationIntervalLine } from '../NavigationIntervalLine';
-import { IDotNavigationBarProps } from './DotNavigationBarTypes';
+
+interface IDotNavigationBarProps extends React.InputHTMLAttributes<HTMLElement | HTMLInputElement>
+{
+	stepCount: number;
+	currentStep: number;
+	viewboxWidth: number;
+	viewboxHeight: number;
+	color: string;
+	intervalWidth: number;
+	strokeWidth: number;
+	dotRadius: number;
+}
 
 // SVG code originally borrowed from https://www.crushthemidterms.org/
 export class DotNavigationBar extends React.Component<IDotNavigationBarProps, any>
