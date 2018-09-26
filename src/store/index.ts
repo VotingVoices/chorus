@@ -1,6 +1,6 @@
-export { answerQuestion } from './Questionnaire/Actions';
+export { answerQuestion, startOver } from './Questionnaire/Actions';
 export { AppView, IConnectedReduxProps, IQuestionnaireState } from './Questionnaire/Types';
-export { questionnaireReducer } from './Questionnaire/Reducer';
+export { questionnaireReducer, DEFAULT_STATE } from './Questionnaire/Reducer';
 export { ALL_QUESTION_IDS, QuestionId } from './QuestionId';
 export { AnswerId } from './AnswerId';
 export { IQuestion, PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';		// TODO: Move IQuestion into its own file?

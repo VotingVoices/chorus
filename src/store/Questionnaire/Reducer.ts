@@ -11,6 +11,15 @@ import { readStateFromLocation } from '../../readStateFromLocation';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
+export const DEFAULT_STATE = {
+	answers: [],
+	currentView: AppView.Questionnaire,
+	currentQuestionId: QuestionId.AreYouRegistered,
+	dotNavStep: 1,
+	counter: 1,
+	mostRecentActionWasBackButton: false,
+} as IQuestionnaireState;
+
 function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answerId: AnswerId): IQuestionnaireState {
 	const answers = prevState.answers;
 
@@ -65,6 +74,13 @@ const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, actio
 	switch (action.type) {
 		case QuestionnaireActionType.ANSWER_QUESTION: {
 			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
+		}
+		case QuestionnaireActionType.START_OVER: {
+			return {
+				...DEFAULT_STATE,
+				answers: [],
+				mostRecentActionWasBackButton: true
+			};
 		}
 		case RouterActionType.LOCATION_CHANGE: {
 			if (action.payload.historyAction === "POP") {
