@@ -88,3 +88,10 @@ export interface IAnswerQuestionPayload {
 	questionId: QuestionId;
 	answerId: AnswerId;
 }
+
+export interface IQuestion {
+    id: QuestionId;
+    dotNavStep: number;
+    answers: AnswerId[];
+    nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
+}

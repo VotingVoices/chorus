@@ -1,14 +1,4 @@
-import { AnswerId, QuestionId } from './Types';
-
-/**
- * Helper interface for Carousel props.  Each IQuestion forms a node in a question graph
- */
-export interface IQuestion {
-    id: QuestionId;
-    dotNavStep: number;
-    answers: AnswerId[];
-    nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
-}
+import { AnswerId, IQuestion, QuestionId } from './Types';
 
 /**
  * Hard coded constant for the question graph 
