@@ -2,11 +2,11 @@ import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
 import { AppView, IQuestionnaireState, QuestionnaireActionType } from './Types';
-import { RouterActionType } from './Router/Types';		// Maybe move this Reducer out of the 'Questionnaire' directory?
+import { RouterActionType } from './InternalTypes';
 import { AnswerId } from './AnswerId';
 import { QuestionId } from './QuestionId';
 import { QUESTIONS } from './Questions';
-import * as actions from './Questionnaire/Actions';
+import * as actions from './Actions';
 import { readStateFromLocation } from '../readStateFromLocation';
 
 type QuestionnaireAction = ActionType<typeof actions>;
