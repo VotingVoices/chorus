@@ -66,13 +66,18 @@ export const enum AppView {
 	Plan,
 }
 
+export const enum MostRecentTransition {
+	Back,
+	Forward,
+}
+
 export interface IQuestionnaireState {
 	readonly answers: IQuestionAndAnswer[];
 	readonly currentView: AppView;
 	readonly currentQuestionId: QuestionId | undefined;
 	readonly dotNavStep: number;
 	readonly counter: number;
-	readonly mostRecentActionWasBackButton: boolean;
+	readonly mostRecentTransition: MostRecentTransition | undefined;
 }
 
 export const enum QuestionnaireActionType {

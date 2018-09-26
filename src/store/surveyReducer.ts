@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
-import { AppView, AnswerId, IQuestionnaireState, QuestionId, QuestionnaireActionType } from './Types';
+import { AppView, AnswerId, IQuestionnaireState, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
 import { RouterActionType } from './InternalTypes';
 import { QUESTIONS } from './Questions';
 import * as actions from './Actions';
@@ -15,7 +15,7 @@ export const DEFAULT_STATE = {
 	currentQuestionId: QuestionId.AreYouRegistered,
 	dotNavStep: 1,
 	counter: 1,
-	mostRecentActionWasBackButton: false,
+	mostRecentTransition: undefined,
 } as IQuestionnaireState;
 
 function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answerId: AnswerId): IQuestionnaireState {
@@ -43,7 +43,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			AppView.Questionnaire,
 			dotNavStep,
 			counter: prevState.counter + 1,
-			mostRecentActionWasBackButton: false,
+			mostRecentTransition: undefined,
 		};
 	}
 	else {
@@ -54,7 +54,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			currentView:
 			AppView.Plan,
 			counter: prevState.counter + 1,
-			mostRecentActionWasBackButton: false
+			mostRecentTransition: undefined
 		};
 	}
 }
@@ -64,7 +64,7 @@ function respondToBackOrForwardButton(prevState: IQuestionnaireState, pathname: 
 
 	return {
 		...state,
-		mostRecentActionWasBackButton: state.dotNavStep < prevState.dotNavStep,
+		mostRecentTransition: state.dotNavStep < prevState.dotNavStep ? MostRecentTransition.Back : MostRecentTransition.Forward,
 	}
 }
 
@@ -77,7 +77,7 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 			return {
 				...DEFAULT_STATE,
 				answers: [],
-				mostRecentActionWasBackButton: true
+				mostRecentTransition: MostRecentTransition.Back,
 			};
 		}
 		case RouterActionType.LOCATION_CHANGE: {

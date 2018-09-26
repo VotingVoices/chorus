@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import { Plan, Survey } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState } from './store';
-import { BACK_TRANSITION_NAME, FORWARD_TRANSITION_NAME } from './transitionNames';
+import { getTransitionName } from './transitionNames';
 
 interface IPropsFromState {
 	currentView: AppView,
@@ -47,7 +47,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 const mapStateToProps = (state: IQuestionnaireState) => ({
 	currentView: state.currentView,
 	answers: state.answers,
-	transitionName: state.mostRecentActionWasBackButton ? BACK_TRANSITION_NAME : FORWARD_TRANSITION_NAME,
+	transitionName: getTransitionName(state.mostRecentTransition),
 })
 
 export default connect(mapStateToProps)(App);

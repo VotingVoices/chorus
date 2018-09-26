@@ -46,7 +46,9 @@ function syncViewChangesToNavigation(s: Store<IQuestionnaireState, AnyAction>) {
 		if (nextState.counter !== currentState.counter) {
 			currentState = nextState;
 
-			if (!nextState.mostRecentActionWasBackButton) {
+			// If we got here via some method besides the back/forward button in the browsers,
+			// push the current state to the location.
+			if (nextState.mostRecentTransition === undefined) {
 				s.dispatch(push(pathFromState(nextState)));
 			}
 		}

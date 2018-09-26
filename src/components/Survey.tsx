@@ -8,7 +8,7 @@ import { IConnectedReduxProps } from '../store';
 import { Question } from './Question';
 import { DotNavigationBar } from './DotNavigationBar';
 import { QUESTIONS, IQuestion, IQuestionnaireState, startOver } from '../store';
-import { BACK_TRANSITION_NAME, FORWARD_TRANSITION_NAME } from '../transitionNames';
+import { getTransitionName } from '../transitionNames';
 
 import '../App.css';
 
@@ -70,7 +70,7 @@ class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromSt
 const mapStateToProps = (state: IQuestionnaireState) => ({
 	dotNavStep: state.dotNavStep,
 	question: QUESTIONS.find(q => q.id === state.currentQuestionId)!,
-	transitionName: state.mostRecentActionWasBackButton ? BACK_TRANSITION_NAME : FORWARD_TRANSITION_NAME,
+	transitionName: getTransitionName(state.mostRecentTransition),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

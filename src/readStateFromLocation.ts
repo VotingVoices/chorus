@@ -78,7 +78,7 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 				currentQuestionId,
 				dotNavStep,
 				counter: existingState.counter + 1,
-				mostRecentActionWasBackButton: false,
+				mostRecentTransition: undefined,
 			},
 			appViewSpecified: true,
 			questionSpecified,
