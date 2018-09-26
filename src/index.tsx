@@ -8,22 +8,13 @@ import App from './App';
 import configureStore from './configureStore';
 import registerServiceWorker from './registerServiceWorker';
 import { CurrentQuestionQueryParameterName, readStateFromLocation } from './readStateFromLocation';
-import { AppView, IQuestionnaireState, push, QuestionId } from './store';
+import { AppView, DEFAULT_STATE, IQuestionnaireState, push } from './store';
 
 import './index.css';
 
 const history = createBrowserHistory();
 
-const defaultState = {
-	answers: [],
-	currentView: AppView.Questionnaire,
-	currentQuestionId: QuestionId.AreYouRegistered,
-	dotNavStep: 1,
-	counter: 1,
-	mostRecentActionWasBackButton: false,
-} as IQuestionnaireState;
-
-const readStateResult = readStateFromLocation(defaultState, history.location.pathname, history.location.search);
+const readStateResult = readStateFromLocation(DEFAULT_STATE, history.location.pathname, history.location.search);
 
 const initialState = readStateResult.state;
 
