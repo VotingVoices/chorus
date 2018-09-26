@@ -3,7 +3,7 @@ import { ActionType } from 'typesafe-actions';
 
 import { AppView, AnswerId, IQuestionnaireState, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
 import { RouterActionType } from './InternalTypes';
-import { QUESTIONS } from './Questions';
+import { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';
 import * as actions from './Actions';
 import { readStateFromLocation } from '../readStateFromLocation';
 
@@ -53,6 +53,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			answers,
 			currentView:
 			AppView.Plan,
+			dotNavStep: PLAN_DOT_NAV_STEP,
 			counter: prevState.counter + 1,
 			mostRecentTransition: undefined
 		};
