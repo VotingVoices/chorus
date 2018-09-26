@@ -1,34 +1,6 @@
 import * as React from 'react';
 
-export enum AnswerId {
-    Yes = 'Y',
-    No = 'N',
-	EmphaticYes = 'EY',
-	UncertainNo = 'UN',
-    DontKnow = 'DN',
-    Other = 'Oth',
-    Washington = 'WA',
-    Oregon = 'OR',
-    Colorado = 'CO',
-    OtherState = 'OthSt',
-    WalkOrBike = 'WB',
-    DriveMyself = 'DrMy',
-    RideShare = 'RiSh',
-    AskSomeoneForRide = 'Ask',
-    FamilyMembers = 'Fam',
-    Coworkers = 'Cowrk',
-    Friends = 'Frnd',
-    SomeoneElse = 'Else',
-    NoThanks = 'NT',
-    Excited = 'Exc',
-    Happy = 'Hppy',
-    Nervous = 'Nrv',
-    Shocked = 'Shck',
-    Meh = 'Mh',
-    Worried = 'Wrd',
-    Sad = 'Sd',
-    Angry = 'Ang'
-}
+import { AnswerId } from '../../store';
 
 export function getAnswerLabel(answer: AnswerId): string {
 	switch(answer) {

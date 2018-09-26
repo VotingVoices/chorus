@@ -1,14 +1,26 @@
 import * as React from 'react';
-import { Answer, AnswerId } from '../Answer';
-import './Question.css';
-import { getQuestionFullLabel, IQuestionProps } from './QuestionTypes';
+import { Dispatch } from 'redux';
+import { connect} from 'react-redux';
 
-export class Question extends React.Component<IQuestionProps, any>
-{
-    public render(): JSX.Element
-    {
-        const { id, answers } = this.props;
-        const label = getQuestionFullLabel(id);
+import { Answer } from '../Answer';
+import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../../store';
+import { getQuestionFullLabel } from './QuestionTypes';
+
+import './Question.css';
+
+interface IQuestionProps {
+    questionId: QuestionId;
+    answers: AnswerId[];
+}
+
+interface IPropsFromDispatch {
+    answerQuestion: typeof answerQuestion;
+}
+
+class InternalQuestion extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromDispatch, any> {
+    public render(): JSX.Element {
+        const { questionId, answers } = this.props;
+        const label = getQuestionFullLabel(questionId);
 
         return (
             <div>
@@ -26,12 +38,19 @@ export class Question extends React.Component<IQuestionProps, any>
 
     private _onClick = (answerId: AnswerId) => {
         return (ev: React.MouseEvent<HTMLElement | HTMLInputElement>) => {
-            const { onChange, answers = [] } = this.props;
-            const option = answers.find((o: AnswerId) => o === answerId );
-            if (onChange)
-            {
-                onChange(ev, { answerId: option! });
-            }   
+            const { questionId, answers } = this.props;
+
+            const answer = answers.find((o: AnswerId) => o === answerId );
+
+            this.props.answerQuestion(questionId, answer!); 
         };
     };
 }
+
+const mapStateToProps = (state: IQuestionnaireState) => ({ });
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    answerQuestion: (questionId: QuestionId, answerId: AnswerId) => dispatch(answerQuestion(questionId, answerId))
+});
+
+export const Question = connect(mapStateToProps, mapDispatchToProps)(InternalQuestion);

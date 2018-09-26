@@ -1,32 +1,14 @@
-import { AnswerId } from '../Answer';
-import { QuestionId } from '../Question';
-import { RouteComponentProps } from 'react-router-dom';
+import { AnswerId } from './AnswerId';
+import { QuestionId } from './QuestionId';
 
 /**
  * Helper interface for Carousel props.  Each IQuestion forms a node in a question graph
  */
 export interface IQuestion {
-    /**
-     * The id of this question
-     */
     id: QuestionId;
-    /**
-     * How far along is the question in the flow
-     */
     dotNavStep: number;
-    /**
-     * Possible answers
-     */
     answers: AnswerId[];
-    /**
-     * callback called to resolve next question id
-     */
-    nextQuestionId: (answer: AnswerId) => QuestionId;
-}
-
-export interface IQuestionCarouselProps extends RouteComponentProps<any>
-{
-    questions: IQuestion[];
+    nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
 }
 
 /**
@@ -46,7 +28,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.VoteByMailState,
         dotNavStep: 2,
-        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.END_OF_QUESTIONS,
+        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : undefined,
         answers: [
             AnswerId.Colorado,
             AnswerId.Oregon,
@@ -127,7 +109,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.Emotion,
         dotNavStep: 10,
-        nextQuestionId: (key) => QuestionId.END_OF_QUESTIONS,
+        nextQuestionId: (key) => undefined,
         answers: [
             AnswerId.Excited,
             AnswerId.Happy,
@@ -138,3 +120,5 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Angry,
         ],
     }];
+
+export const PLAN_DOT_NAV_STEP = 11;
