@@ -2,12 +2,12 @@ import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
 import { AppView, IQuestionnaireState, QuestionnaireActionType } from './Types';
-import { RouterActionType } from '../Router/Types';		// Maybe move this Reducer out of the 'Questionnaire' directory?
-import { AnswerId } from '../AnswerId';
-import { QuestionId } from '../QuestionId';
-import { QUESTIONS } from '../Questions';
-import * as actions from './Actions';
-import { readStateFromLocation } from '../../readStateFromLocation';
+import { RouterActionType } from './Router/Types';		// Maybe move this Reducer out of the 'Questionnaire' directory?
+import { AnswerId } from './AnswerId';
+import { QuestionId } from './QuestionId';
+import { QUESTIONS } from './Questions';
+import * as actions from './Questionnaire/Actions';
+import { readStateFromLocation } from '../readStateFromLocation';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
@@ -70,7 +70,7 @@ function respondToBackButton(prevState: IQuestionnaireState, pathname: string, s
 	}
 }
 
-const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, action: QuestionnaireAction) => {
+export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, action: QuestionnaireAction) => {
 	switch (action.type) {
 		case QuestionnaireActionType.ANSWER_QUESTION: {
 			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
@@ -92,5 +92,3 @@ const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, actio
 		}
 	}
 }
-
-export { reducer as questionnaireReducer };

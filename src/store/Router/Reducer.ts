@@ -7,7 +7,7 @@ import { Store, AnyAction } from 'redux';
 import * as internalActions from './InternalActions';
 import { locationChange } from './Actions';
 import { RouterInternalActionType } from './Types';
-import { IQuestionnaireState } from '../Questionnaire/Types';
+import { IQuestionnaireState } from '../Types';
 
 type RouterInternalAction = ActionType<typeof internalActions>;
 

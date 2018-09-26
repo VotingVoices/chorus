@@ -1,7 +1,7 @@
 import { Action, AnyAction, Dispatch } from 'redux';
-import { IQuestionAndAnswer } from '../IQuestionAndAnswer';		// TODO: Should this be defined in this file?
-import { AnswerId } from '../AnswerId';
-import { QuestionId } from '../QuestionId';
+import { IQuestionAndAnswer } from './IQuestionAndAnswer';		// TODO: Should this be defined in this file?
+import { AnswerId } from './AnswerId';
+import { QuestionId } from './QuestionId';
 
 export const enum AppView {
 	Questionnaire,
