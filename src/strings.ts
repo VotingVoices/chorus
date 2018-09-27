@@ -75,10 +75,10 @@ export function getAnswerLabel(answer: AnswerId): string {
             return 'I\'m voting in a different state';
 
         case AnswerId.WalkOrBike:
-            return 'Walk/bike';
+            return 'Walk / bike';
 
         case AnswerId.DriveMyself:
-            return 'Drive myself/carpool';
+            return 'Drive myself / carpool';
 
         case AnswerId.RideShare:
             return 'Car for hire';
