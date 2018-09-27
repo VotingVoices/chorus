@@ -1,13 +1,11 @@
 import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { connect} from 'react-redux';
-import { Button } from 'react-bootstrap';
-import { Dispatch } from 'redux';
 
-import { IConnectedReduxProps } from '../store';
-import { Question } from './Question';
 import { DotNavigationBar } from './DotNavigationBar';
-import { QUESTIONS, IQuestion, IQuestionnaireState, PLAN_DOT_NAV_STEP, startOver } from '../store';
+import { Question } from './Question';
+import { StartOverButton } from './StartOverButton';
+import { IConnectedReduxProps, IQuestion, IQuestionnaireState, PLAN_DOT_NAV_STEP, QUESTIONS } from '../store';
 import { getTransitionName } from '../transitionNames';
 
 import '../App.css';
@@ -18,11 +16,7 @@ interface IPropsFromState {
 	transitionName: string,
 }
 
-interface IPropsFromDispatch {
-	startOver: typeof startOver,
-}
-
-class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromState & IPropsFromDispatch, any> {
+class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
 	public render(): JSX.Element {
 		return (
 			<div className="App">
@@ -55,15 +49,9 @@ class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromSt
 						dotRadius={8} />
 				</div>
 
-				<Button type="button" onClick={this.onStartOverClick()}>Start Over</Button>
+				<StartOverButton {...this.props} />
 			</div>
 		);
-	}
-
-	private onStartOverClick() {
-		return (ev: React.MouseEvent<Button>) => {
-			this.props.startOver();
-		};
 	}
 }
 
@@ -73,8 +61,4 @@ const mapStateToProps = (state: IQuestionnaireState) => ({
 	transitionName: getTransitionName(state.mostRecentTransition),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-    startOver: () => dispatch(startOver())
-});
-
-export const Survey = connect(mapStateToProps, mapDispatchToProps)(InternalSurvey);
+export const Survey = connect(mapStateToProps)(InternalSurvey);
