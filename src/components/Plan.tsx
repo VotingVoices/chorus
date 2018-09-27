@@ -27,7 +27,7 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 								return <PlanStep questionId={questionId} answerId={answer!.answerId} />
 							}
 							else {
-								return <div key={questionId} />
+								return <React.Fragment />
 							}
 						}
 					)}
