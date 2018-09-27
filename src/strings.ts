@@ -105,7 +105,7 @@ export function getAnswerLabel(answer: AnswerId): string {
             return 'I\'m going it alone this time';
 
         case AnswerId.Kids:
-            return 'My kids/family';
+            return 'My kids / family';
 
         case AnswerId.Privilege:
             return 'It\'s a privilege';
