@@ -7,7 +7,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.AreYouRegistered,
         dotNavStep: 1,
-        nextQuestionId: (answer) => QuestionId.VoteByMailState,
+        nextQuestionId: (answer) => QuestionId.AbsenteeBallot,
         answers: [
             AnswerId.EmphaticYes,
             AnswerId.No,
@@ -15,8 +15,17 @@ export const QUESTIONS : IQuestion[] = [
         ],
     },
     {
-        id: QuestionId.VoteByMailState,
+        id: QuestionId.AbsenteeBallot,
         dotNavStep: 2,
+        nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.ReceivedBallot : QuestionId.VoteByMailState,
+        answers: [
+            AnswerId.Yes,
+            AnswerId.No,
+        ],
+    },
+    {
+        id: QuestionId.VoteByMailState,
+        dotNavStep: 3,
         nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.ReceivedBallot,
         answers: [
             AnswerId.Colorado,
@@ -28,7 +37,7 @@ export const QUESTIONS : IQuestion[] = [
     /* VOTE-IN-PERSON PATH */
     {
         id: QuestionId.PollingLocation,
-        dotNavStep: 3,
+        dotNavStep: 4,
         nextQuestionId: (key) => QuestionId.SpecialAccommodations,
         answers: [
             AnswerId.Yes,
@@ -38,7 +47,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.SpecialAccommodations,
-        dotNavStep: 4,
+        dotNavStep: 5,
         nextQuestionId: (key) => QuestionId.TransportationMethod,
         answers: [
             AnswerId.Yes,
@@ -47,7 +56,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.TransportationMethod,
-        dotNavStep: 5,
+        dotNavStep: 6,
         nextQuestionId: (key) => QuestionId.AbsenteeBallot,
         answers: [
             AnswerId.DriveMyself,
@@ -55,15 +64,6 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Transit,
             AnswerId.WalkOrBike,
             AnswerId.Other,
-        ],
-    },
-    {
-        id: QuestionId.AbsenteeBallot,
-        dotNavStep: 6,
-        nextQuestionId: (key) => QuestionId.MissWork,
-        answers: [
-            AnswerId.Yes,
-            AnswerId.No,
         ],
     },
     {

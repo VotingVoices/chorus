@@ -5,6 +5,9 @@ export function getQuestionFullLabel(id: QuestionId): string {
         case QuestionId.AreYouRegistered:
             return 'First things first. Are you registered to vote?';
 
+        case QuestionId.AbsenteeBallot:
+            return 'Would you like to vote by absentee ballot?';
+
         case QuestionId.VoteByMailState:
             return 'Are you planning to vote in any of these states?';
 
@@ -16,9 +19,6 @@ export function getQuestionFullLabel(id: QuestionId): string {
 
         case QuestionId.TransportationMethod:
             return 'How will you get to your polling location?';
-
-        case QuestionId.AbsenteeBallot:
-            return 'Would you like to vote by absentee ballot?';
 
         case QuestionId.ReceivedBallot:
             return 'Have you received your ballot?';
