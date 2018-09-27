@@ -57,7 +57,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.TransportationMethod,
         dotNavStep: 6,
-        nextQuestionId: (key) => QuestionId.AbsenteeBallot,
+        nextQuestionId: (key) => QuestionId.MissWork,
         answers: [
             AnswerId.DriveMyself,
             AnswerId.RideShare,
