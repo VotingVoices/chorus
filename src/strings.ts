@@ -15,19 +15,31 @@ export function getQuestionFullLabel(id: QuestionId): string {
             return 'Will you need special accommodations to reach the polling location?';
 
         case QuestionId.TransportationMethod:
-            return 'How are you gonna get to your polling location?';
+            return 'How will you get to your polling location?';
 
         case QuestionId.AbsenteeBallot:
-            return 'Do you need to send an absentee ballot?';
+            return 'Would you like to vote by absentee ballot?';
+
+        case QuestionId.ReceivedBallot:
+            return 'Have you received your ballot?';
+
+        case QuestionId.Deadline:
+            return 'Do you know when the deadline is?';
+
+        case QuestionId.ReturnMethod:
+            return 'How will you return your ballot?';
 
         case QuestionId.MissWork:
-            return 'Will you have to miss or leave work to vote?';
+            return 'Will you have to miss/leave work to vote?';
 
         case QuestionId.FamiliarWithBallot:
-            return 'Are you familiar with the issues and candidates on your ballot?';
+            return 'Do you know who/what you\'ll be voting for?';
 
         case QuestionId.PeopleToInvite:
-            return 'Let\'s invite people to vote with you! Who would you like to join you in voting?';
+            return 'Spread the word! Are there people in your life you\'d like to vote with?';
+
+        case QuestionId.ReasonToVote:
+            return 'Why will you be voting?';
 
         case QuestionId.Emotion:
             return 'How are you feeling about these midterm elections?';
@@ -39,86 +51,89 @@ export function getQuestionFullLabel(id: QuestionId): string {
 export function getAnswerLabel(answer: AnswerId): string {
     switch(answer) {
         case AnswerId.Yes:
-            return 'Yep!';
+            return 'Yes';
 
         case AnswerId.No:
-            return 'Nope';
+            return 'No';
 
         case AnswerId.EmphaticYes:
-            return 'Heck yeah!';
-
-        case AnswerId.UncertainNo:
-            return 'Uhh... Nope';
+            return 'Yes!';
 
         case AnswerId.DontKnow:
-            return 'I dunno...';
+            return 'Not sure';
+
+        case AnswerId.Washington:
+            return 'WA';
+
+        case AnswerId.Oregon:
+            return 'OR';
+
+        case AnswerId.Colorado:
+            return 'CO';
+
+        case AnswerId.OtherState:
+            return 'I\'m voting in a different state';
+
+        case AnswerId.WalkOrBike:
+            return 'Walk/bike';
+
+        case AnswerId.DriveMyself:
+            return 'Drive myself/carpool';
+
+        case AnswerId.RideShare:
+            return 'Car for hire';
+
+        case AnswerId.Transit:
+            return 'Mass transit';
+
+        case AnswerId.Mail:
+            return 'Mail';
+
+        case AnswerId.BallotBox:
+            return 'Ballot box';
+
+        case AnswerId.Friends:
+            return 'Friend(s)';
+
+        case AnswerId.FamilyMembers:
+            return 'Family member(s)';
+
+        case AnswerId.Coworkers:
+            return 'Co-worker(s)';
+        
+        case AnswerId.Alone:
+            return 'I\'m going it alone this time';
+
+        case AnswerId.Kids:
+            return 'My kids/family';
+
+        case AnswerId.Privilege:
+            return 'It\'s a privilege';
+
+        case AnswerId.Change:
+            return 'To drive change';
+
+        case AnswerId.Habit:
+            return 'I\'ve always voted';
 
         case AnswerId.Other:
             return 'Other';
 
-        case AnswerId.Washington:
-            return 'Washington';
-
-        case AnswerId.Oregon:
-            return 'Oregon';
-
-        case AnswerId.Colorado:
-            return 'Colorado';
-
-        case AnswerId.OtherState:
-            return 'Nope';
-
-        case AnswerId.WalkOrBike:
-            return 'Walk or bike';
-
-        case AnswerId.DriveMyself:
-            return 'Drive myself';
-
-        case AnswerId.RideShare:
-            return 'Lyft or Uber';
-
-        case AnswerId.AskSomeoneForRide:
-            return 'Ask someone for a ride';
-
-        case AnswerId.FamilyMembers:
-            return 'Family members';
-
-        case AnswerId.Coworkers:
-            return 'Coworkers';
-
-        case AnswerId.Friends:
-            return 'Friends';
-
-        case AnswerId.SomeoneElse:
-            return 'Someone else';
-        
-        case AnswerId.NoThanks:
-            return 'No thanks';
-
         case AnswerId.Excited:
             return 'Excited';
 
-        case AnswerId.Happy:
-            return 'Happy';
-
-        case AnswerId.Nervous:
-            return 'Nervous';
+        case AnswerId.Concerned:
+            return 'Concerned';
 
         case AnswerId.Shocked:
             return 'Shocked';
 
-        case AnswerId.Meh:
-            return 'Meh';
-
-        case AnswerId.Worried:
-            return 'Worried';
-
-        case AnswerId.Sad:
-            return 'Sad';
-
         case AnswerId.Angry:
             return 'Angry';
+
+        case AnswerId.Meh:
+            return 'Meh';
     }
 
-    throw new Error("Unrecognized AnswerId");
+    throw new Error(`Unrecognized AnswerId: ${answer}`);
 }

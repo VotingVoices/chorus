@@ -7,7 +7,7 @@ import { Dispatch } from 'redux';
 import { IConnectedReduxProps } from '../store';
 import { Question } from './Question';
 import { DotNavigationBar } from './DotNavigationBar';
-import { QUESTIONS, IQuestion, IQuestionnaireState, startOver } from '../store';
+import { QUESTIONS, IQuestion, IQuestionnaireState, PLAN_DOT_NAV_STEP, startOver } from '../store';
 import { getTransitionName } from '../transitionNames';
 
 import '../App.css';
@@ -45,9 +45,9 @@ class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromSt
 
 				<div>
 					<DotNavigationBar
-						stepCount={10}
+						stepCount={PLAN_DOT_NAV_STEP - 1}
 						currentStep={this.props.dotNavStep}
-						viewboxWidth={480}
+						viewboxWidth={520}
 						viewboxHeight={20}
 						color='#E8E8E8'
 						intervalWidth={50}

@@ -10,14 +10,14 @@ export const QUESTIONS : IQuestion[] = [
         nextQuestionId: (answer) => QuestionId.VoteByMailState,
         answers: [
             AnswerId.EmphaticYes,
-            AnswerId.UncertainNo,
+            AnswerId.No,
             AnswerId.DontKnow,
         ],
     },
     {
         id: QuestionId.VoteByMailState,
         dotNavStep: 2,
-        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : undefined,
+        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.ReceivedBallot,
         answers: [
             AnswerId.Colorado,
             AnswerId.Oregon,
@@ -25,6 +25,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.OtherState,
         ],
     },
+    /* VOTE-IN-PERSON PATH */
     {
         id: QuestionId.PollingLocation,
         dotNavStep: 3,
@@ -49,10 +50,10 @@ export const QUESTIONS : IQuestion[] = [
         dotNavStep: 5,
         nextQuestionId: (key) => QuestionId.AbsenteeBallot,
         answers: [
-            AnswerId.WalkOrBike,
             AnswerId.DriveMyself,
             AnswerId.RideShare,
-            AnswerId.AskSomeoneForRide,
+            AnswerId.Transit,
+            AnswerId.WalkOrBike,
             AnswerId.Other,
         ],
     },
@@ -74,6 +75,35 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.No,
         ],
     },
+    /* VOTE-BY-MAIL PATH */
+    {
+        id: QuestionId.ReceivedBallot,
+        dotNavStep: 5,
+        nextQuestionId: (key) => QuestionId.Deadline,
+        answers: [
+            AnswerId.Yes,
+            AnswerId.No,
+        ]
+    },
+    {
+        id: QuestionId.Deadline,
+        dotNavStep: 6,
+        nextQuestionId: (key) => QuestionId.ReturnMethod,
+        answers: [
+            AnswerId.Yes,
+            AnswerId.No,
+        ]
+    },
+    {
+        id: QuestionId.ReturnMethod,
+        dotNavStep: 7,
+        nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
+        answers: [
+            AnswerId.Mail,
+            AnswerId.BallotBox,
+        ]
+    },
+    /* REJOINED PATH */
     {
         id: QuestionId.FamiliarWithBallot,
         dotNavStep: 8,
@@ -86,28 +116,37 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.PeopleToInvite,
         dotNavStep: 9,
-        nextQuestionId: (key) => QuestionId.Emotion,
+        nextQuestionId: (key) => QuestionId.ReasonToVote,
         answers: [
+            AnswerId.Friends,
             AnswerId.FamilyMembers,
             AnswerId.Coworkers,
-            AnswerId.Friends,
-            AnswerId.SomeoneElse,
-            AnswerId.NoThanks,
+            AnswerId.Alone,
         ],
     },
     {
-        id: QuestionId.Emotion,
+        id: QuestionId.ReasonToVote,
         dotNavStep: 10,
+        nextQuestionId: (key) => QuestionId.Emotion,
+        answers: [
+            AnswerId.Kids,
+            AnswerId.Privilege,
+            AnswerId.Change,
+            AnswerId.Habit,
+            AnswerId.Other,
+        ]
+    },
+    {
+        id: QuestionId.Emotion,
+        dotNavStep: 11,
         nextQuestionId: (key) => undefined,
         answers: [
             AnswerId.Excited,
-            AnswerId.Happy,
-            AnswerId.Nervous,
+            AnswerId.Concerned,
             AnswerId.Shocked,
-            AnswerId.Meh,
-            AnswerId.Worried,
             AnswerId.Angry,
+            AnswerId.Meh,
         ],
     }];
 
-export const PLAN_DOT_NAV_STEP = 11;
+export const PLAN_DOT_NAV_STEP = 12;
