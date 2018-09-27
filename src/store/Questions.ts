@@ -1,4 +1,4 @@
-import { AnswerId, IQuestion, QuestionId } from './Types';
+import { AnswerId, IQuestion, PlanStepId, QuestionId } from './Types';
 
 /**
  * Hard coded constant for the question graph 
@@ -13,6 +13,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.No,
             AnswerId.DontKnow,
         ],
+        resultingPlanStep: (answer) => answer === AnswerId.No || answer === AnswerId.DontKnow ? PlanStepId.Register : undefined,
     },
     {
         id: QuestionId.AbsenteeBallot,
@@ -22,6 +23,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.VoteByMailState,
@@ -33,6 +35,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Washington,
             AnswerId.OtherState,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
     /* VOTE-IN-PERSON PATH */
     {
@@ -44,6 +47,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.No,
             AnswerId.DontKnow,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.SpecialAccommodations,
@@ -53,6 +57,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.TransportationMethod,
@@ -65,6 +70,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.WalkOrBike,
             AnswerId.Other,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.MissWork,
@@ -74,6 +80,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
     /* VOTE-BY-MAIL PATH */
     {
@@ -83,7 +90,8 @@ export const QUESTIONS : IQuestion[] = [
         answers: [
             AnswerId.Yes,
             AnswerId.No,
-        ]
+        ],
+        resultingPlanStep: (answer) => answer === AnswerId.No ? PlanStepId.CheckBallotStatus : undefined,
     },
     {
         id: QuestionId.Deadline,
@@ -92,7 +100,8 @@ export const QUESTIONS : IQuestion[] = [
         answers: [
             AnswerId.Yes,
             AnswerId.No,
-        ]
+        ],
+        resultingPlanStep: (answer) => answer === AnswerId.No ? PlanStepId.CheckDeadline : undefined,
     },
     {
         id: QuestionId.ReturnMethod,
@@ -101,7 +110,8 @@ export const QUESTIONS : IQuestion[] = [
         answers: [
             AnswerId.Mail,
             AnswerId.BallotBox,
-        ]
+        ],
+        resultingPlanStep: (answer) => answer === AnswerId.BallotBox ? PlanStepId.LocateBallotBox : undefined,
     },
     /* REJOINED PATH */
     {
@@ -112,6 +122,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
+        resultingPlanStep: (answer) => answer === AnswerId.No ? PlanStepId.Research : undefined,
     },
     {
         id: QuestionId.PeopleToInvite,
@@ -123,6 +134,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Coworkers,
             AnswerId.Alone,
         ],
+        resultingPlanStep: (answer) => answer === AnswerId.Friends ? PlanStepId.InviteFriends : undefined,
     },
     {
         id: QuestionId.ReasonToVote,
@@ -134,7 +146,8 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Change,
             AnswerId.Habit,
             AnswerId.Other,
-        ]
+        ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.Emotion,
@@ -147,6 +160,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Angry,
             AnswerId.Meh,
         ],
+        resultingPlanStep: (answer) => undefined,
     }];
 
 export const PLAN_DOT_NAV_STEP = 12;

@@ -103,9 +103,19 @@ export interface IAnswerQuestionPayload {
 	answerId: AnswerId;
 }
 
+export enum PlanStepId {
+	Register,
+	CheckBallotStatus,
+	CheckDeadline,
+	LocateBallotBox,
+	Research,
+	InviteFriends,
+}
+
 export interface IQuestion {
     id: QuestionId;
     dotNavStep: number;
     answers: AnswerId[];
     nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
+    resultingPlanStep: (answer: AnswerId) => PlanStepId | undefined;
 }

@@ -1,4 +1,4 @@
-import { QuestionId, AnswerId } from './store';
+import { AnswerId, QuestionId, PlanStepId } from './store';
 
 export function getQuestionFullLabel(id: QuestionId): string {
     switch (id) {
@@ -136,4 +136,29 @@ export function getAnswerLabel(answer: AnswerId): string {
     }
 
     throw new Error(`Unrecognized AnswerId: ${answer}`);
+}
+
+export function getPlanStepSummaryLabel(step: PlanStepId): string {
+    switch (step) {
+        case PlanStepId.Register:
+            return "Register to vote";
+
+        case PlanStepId.CheckBallotStatus:
+            return "Check your ballot status";
+
+        case PlanStepId.CheckDeadline:
+            return "Check the deadline";
+
+        case PlanStepId.LocateBallotBox:
+            return "Locate a ballot box";
+
+        case PlanStepId.Research:
+            return "Do your research";
+
+        case PlanStepId.InviteFriends:
+            return "Invite friends to VotePlan!";
+
+        default:
+            throw new Error(`Unrecognized PlanStepId: ${step}`);
+    }
 }
