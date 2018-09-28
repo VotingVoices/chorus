@@ -29,7 +29,7 @@ export const QUESTIONS : IQuestion[] = [
         ],
         resultingPlanStep: {
             'Y': PlanStepId.RequestAbsenteeBallot,
-            'N': PlanStepId.Undefined
+            'N': PlanStepId.Undefined // Undefined PlanSteps won't show up in the Plan Summary
         }
     },
     {

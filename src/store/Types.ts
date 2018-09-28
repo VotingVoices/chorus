@@ -120,6 +120,8 @@ export interface IQuestion {
     dotNavStep: number;
     answers: AnswerId[];
 	nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
+	// Making resultingPlanStep optional and its own independent map felt like the least disruptive interface change for incremental 
+	// development
 	resultingPlanStep?: { [answer: string] : PlanStepId };
 }
 
