@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Outputs the category
+Resources:
+  TimeFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: FetchTime.handler
+      Runtime: nodejs8.10
+      CodeUri: ./
+      Events:
+        MyCategoryApi:
+          Type: Api
+          Properties:
+            Path: /CategoryResource
+            Method: POST
