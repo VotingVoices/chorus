@@ -174,13 +174,15 @@ export function getFollowUpStepInfo(step: PlanStepId): IFollowUpStepInfo {
             return {
                 header: 'Your polling location: has it moved?',
                 description: 'Things change--make sure you\'re aware of your area\'s best polling location and hours.',
-
+                linkLabel: 'This way to the polls (scroll for your state)!',
+                linkUrl: 'https://www.vote.org/polling-place-locator/'
             };
         /* VOTE-BY-MAIL PATH */
         case PlanStepId.VoteOnBallot:
             return {
                 header: 'Have ballot, will vote!',
-                description: 'You\'ve got it, now submit it. (Don\'t forget to check the postage requirements if you\'re using USPS.)',   
+                description: 'You\'ve got it, now submit it. (Don\'t forget to check the postage requirements if you\'re using USPS.)'
+                // no link
             };
 
     }
