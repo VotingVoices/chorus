@@ -194,5 +194,7 @@ export function getFollowUpStepInfo(step: PlanStepId): IFollowUpStepInfo {
             };
 
     }
+    // PlanStepId.Undefined will get filtered out by Plan component, but if there's a specified PlanStepId we haven't
+    // implemented yet, it shows up as as follows:
     return { header: 'UNKNOWN QNA', description: '', };
 }
