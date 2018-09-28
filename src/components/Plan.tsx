@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { getAnswerLabel, getQuestionFullLabel } from '../strings';
-import { ALL_QUESTION_IDS, IQuestionAndAnswer, QuestionId } from '../store';
+import { IQuestionAndAnswer, QUESTIONS, PlanStepId } from '../store';
+import { PlanStep } from './PlanStep';
+import { getFollowUpStepInfo } from '../strings';
 
 interface IPlanProps {
 	answers: IQuestionAndAnswer[],
@@ -14,18 +15,20 @@ export class Plan extends React.Component<IPlanProps, any> {
 					<p>This is your voting plan.</p>
 				</header>
 				<div>
-					{ALL_QUESTION_IDS.map(
-						(questionId: QuestionId) => {
-							const questionLabel = getQuestionFullLabel(questionId);
-							const answer = this.props.answers.find(qa => qa.questionId === questionId);
-
-							if (answer !== undefined) {
-								const answerLabel = getAnswerLabel(answer!.answerId);
-								return <p key={questionId}>{questionLabel} = {answerLabel}</p>
+					{this.props.answers.map(
+						(qna: IQuestionAndAnswer) => {
+							const question = QUESTIONS.find(q => q.id === qna.questionId);
+							let step = PlanStepId.Undefined;
+							if (question && question.resultingPlanStep)
+							{
+								step = question.resultingPlanStep[qna.answerId];
 							}
-							else {
-								return <div key={questionId} />
+							else
+							{
+								return undefined;
 							}
+							const info = getFollowUpStepInfo(step);
+							return (<PlanStep key={qna.questionId} {...info} />);
 						}
 					)}
 				</div>

@@ -1,4 +1,4 @@
-import { AnswerId, IQuestion, QuestionId } from './Types';
+import { AnswerId, IQuestion, QuestionId, PlanStepId } from './Types';
 
 /**
  * Hard coded constant for the question graph 
@@ -13,6 +13,11 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.No,
             AnswerId.DontKnow,
         ],
+        resultingPlanStep: {
+            'EY': PlanStepId.ConfirmRegistration,
+            'N': PlanStepId.GetRegistered,
+            'DN': PlanStepId.CheckRegistration
+        }
     },
     {
         id: QuestionId.AbsenteeBallot,
@@ -22,6 +27,10 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
+        resultingPlanStep: {
+            'Y': PlanStepId.RequestAbsenteeBallot,
+            'N': PlanStepId.Undefined
+        }
     },
     {
         id: QuestionId.VoteByMailState,
@@ -32,7 +41,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Oregon,
             AnswerId.Washington,
             AnswerId.OtherState,
-        ],
+        ]
     },
     /* VOTE-IN-PERSON PATH */
     {
@@ -83,7 +92,11 @@ export const QUESTIONS : IQuestion[] = [
         answers: [
             AnswerId.Yes,
             AnswerId.No,
-        ]
+        ],
+        resultingPlanStep: {
+            'Y': PlanStepId.VoteOnBallot,
+            'N': PlanStepId.TrackBallot
+        }
     },
     {
         id: QuestionId.Deadline,

@@ -1,4 +1,4 @@
-import { QuestionId, AnswerId } from './store';
+import { QuestionId, AnswerId, PlanStepId, IFollowUpStepInfo } from './store';
 
 export function getQuestionFullLabel(id: QuestionId): string {
     switch (id) {
@@ -136,4 +136,53 @@ export function getAnswerLabel(answer: AnswerId): string {
     }
 
     throw new Error(`Unrecognized AnswerId: ${answer}`);
+}
+
+export function getFollowUpStepInfo(step: PlanStepId): IFollowUpStepInfo {
+    switch(step)
+    {
+        case PlanStepId.ConfirmRegistration:
+            return { 
+                header: 'Is your registration A-OK?', 
+                description: 'Great--you\'re registered! Now take a quick look to make sure everything is up-to-date',
+                linkLabel: 'Double-check your registration',
+                linkUrl: 'https://www.rockthevote.org/voting-information/am-i-registered-to-vote/'
+            };
+        case PlanStepId.GetRegistered:
+            return {
+                header: 'Let\'s do this: get registered!',
+                description: 'Not registered yet? No problem--take a minute to submit your registration and make sure you\'re vote ready.',
+                linkLabel: 'Register now',
+                linkUrl: 'https://register.rockthevote.com/registrants/new?partner=1&source=rtv.com'
+            };
+        case PlanStepId.CheckRegistration:
+            return {
+                header: 'Check your registration',
+                description: 'Not sure whether you\'re registered? Take a minute to double-check and make sure you\'re vote ready.',
+                linkLabel: 'Double-check your registration',
+                linkUrl: 'https://www.rockthevote.org/voting-information/am-i-registered-to-vote/'
+            };
+        case PlanStepId.RequestAbsenteeBallot:
+            return {
+                header: 'Request your absentee ballot',
+                description: 'A convenient way to go! Just remember to check on postage and your mailing deadline.',
+                linkLabel: 'Make the request',
+                linkUrl: 'https://www.vote.org/absentee-ballot/'
+            };
+        /* VOTE-IN-PERSON PATH */
+        case PlanStepId.ConfirmPollingLocation:
+            return {
+                header: 'Your polling location: has it moved?',
+                description: 'Things change--make sure you\'re aware of your area\'s best polling location and hours.',
+
+            };
+        /* VOTE-BY-MAIL PATH */
+        case PlanStepId.VoteOnBallot:
+            return {
+                header: 'Have ballot, will vote!',
+                description: 'You\'ve got it, now submit it. (Don\'t forget to check the postage requirements if you\'re using USPS.)',   
+            };
+
+    }
+    return { header: 'UNKNOWN QNA', description: '', };
 }

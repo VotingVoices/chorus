@@ -65,6 +65,18 @@ export enum AnswerId {
 	Meh = 'Mh',
 }
 
+export enum PlanStepId {
+	Undefined,
+	ConfirmRegistration,
+	GetRegistered,
+	CheckRegistration,
+	RequestAbsenteeBallot,
+	ConfirmPollingLocation,
+	FindPollingLocation,
+	VoteOnBallot,
+	TrackBallot
+}
+
 export interface IQuestionAndAnswer {
 	questionId: QuestionId;
 	answerId: AnswerId;
@@ -107,5 +119,15 @@ export interface IQuestion {
     id: QuestionId;
     dotNavStep: number;
     answers: AnswerId[];
-    nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
+	nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
+	resultingPlanStep?: { [answer: string] : PlanStepId };
 }
+
+export interface IFollowUpStepInfo
+{
+	header: string;
+	description: string;
+	linkLabel?: string;
+	linkUrl?: string;
+}
+
