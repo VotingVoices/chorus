@@ -25,6 +25,8 @@ export class Plan extends React.Component<IPlanProps, any> {
 							}
 							else
 							{
+								// Since not every question has output on the DOM, it seemed better to map answers to 
+								// PlanStep in the Plan component
 								return undefined;
 							}
 							const info = getFollowUpStepInfo(step);

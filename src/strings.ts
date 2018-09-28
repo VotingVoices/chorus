@@ -138,6 +138,13 @@ export function getAnswerLabel(answer: AnswerId): string {
     throw new Error(`Unrecognized AnswerId: ${answer}`);
 }
 
+// I got the sense you were shooting for a 1:1 relationship from Id to strings here, but each PlanStep has a few 
+// different strings associated with it that is driven by one id.  Duplicating the switch statement seemed error prone
+// compared to serving up a prop bag of strings.  Having this intermediary type makes it obvious which PlanSteps have
+// strings created and its easy to see where linkUrl/labels are omitted by-design.  The intermediary type mapping
+// directly to PlanStep props is convenient for a spread operator in the component, later.  If we want to avoid
+// localizing the same string twice I think we'd be better served by one giant StringId rather than splitting on 
+// components.
 export function getFollowUpStepInfo(step: PlanStepId): IFollowUpStepInfo {
     switch(step)
     {
@@ -153,7 +160,8 @@ export function getFollowUpStepInfo(step: PlanStepId): IFollowUpStepInfo {
                 header: 'Let\'s do this: get registered!',
                 description: 'Not registered yet? No problem--take a minute to submit your registration and make sure you\'re vote ready.',
                 linkLabel: 'Register now',
-                linkUrl: 'https://register.rockthevote.com/registrants/new?partner=1&source=rtv.com'
+                linkUrl: 'https://register.rockthevote.com/registrants/new?partner=1&source=rtv.com' 
+                // TODO: I'm assuming we don't want rtv's partner info in the url above
             };
         case PlanStepId.CheckRegistration:
             return {
