@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { connect } from 'react-redux';
 
+import './index.css';
 import './App.css';
 import { Plan, Survey } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
