@@ -5,6 +5,9 @@ export function getQuestionFullLabel(id: QuestionId): string {
         case QuestionId.AreYouRegistered:
             return 'First things first. Are you registered to vote?';
 
+        case QuestionId.OverseasMilitary:
+            return 'Are you an overseas or military voter?';        // TODO: Final string
+
         case QuestionId.AbsenteeBallot:
             return 'Would you like to vote by absentee ballot?';
 

@@ -2,6 +2,7 @@ import { Action, AnyAction, Dispatch } from 'redux';
 
 export enum QuestionId {
 	AreYouRegistered = 'Reg',
+	OverseasMilitary = 'OvM',
 	AbsenteeBallot = 'Abs',
 	VoteByMailState = 'St',
 	PollingLocation = 'PllLoc',
@@ -19,6 +20,7 @@ export enum QuestionId {
 
 export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.AreYouRegistered,
+	QuestionId.OverseasMilitary,
 	QuestionId.AbsenteeBallot,
 	QuestionId.VoteByMailState,
 	QuestionId.PollingLocation,
