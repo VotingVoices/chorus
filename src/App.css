@@ -17,6 +17,12 @@
   text-shadow: 5px 5px #1b2757;
 }
 
+@media only screen and (max-width: 420px) {
+  .App-title {
+    font-size: 72pt;
+  }
+}
+
 .App-intro {
   font-size: large;
 }
