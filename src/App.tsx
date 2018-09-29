@@ -2,14 +2,16 @@ import * as React from 'react';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { connect } from 'react-redux';
 
+import './index.css';
 import './App.css';
 import { Plan, Survey, LandingPage } from './components';
-import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState } from './store';
+import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
 import { getTransitionName } from './transitionNames';
 
 interface IPropsFromState {
 	currentView: AppView,
 	answers: IQuestionAndAnswer[],
+	votingStateId: VotingStateId,
 	transitionName: string,
 }
 
@@ -42,7 +44,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 			}
 
 			case AppView.Plan: {
-				return (<Plan key="plan" answers={this.props.answers} />);
+				return (<Plan key="plan" answers={this.props.answers} votingStateId={this.props.votingStateId} />);
 			}
 
 			default: {
@@ -55,6 +57,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 const mapStateToProps = (state: IQuestionnaireState) => ({
 	currentView: state.currentView,
 	answers: state.answers,
+	votingStateId: state.votingStateId,
 	transitionName: getTransitionName(state.mostRecentTransition),
 })
 

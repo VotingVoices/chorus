@@ -2,8 +2,9 @@ import { Action, AnyAction, Dispatch } from 'redux';
 
 export enum QuestionId {
 	AreYouRegistered = 'Reg',
-	AbsenteeBallot = 'Abs',
+	OverseasMilitary = 'OvM',
 	VoteByMailState = 'St',
+	AbsenteeBallot = 'Abs',
 	PollingLocation = 'PllLoc',
 	SpecialAccommodations = 'Accm',
 	TransportationMethod = 'Trns',
@@ -19,6 +20,7 @@ export enum QuestionId {
 
 export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.AreYouRegistered,
+	QuestionId.OverseasMilitary,
 	QuestionId.AbsenteeBallot,
 	QuestionId.VoteByMailState,
 	QuestionId.PollingLocation,
@@ -44,9 +46,12 @@ export enum AnswerId {
 	Colorado = 'CO',
 	OtherState = 'OthSt',
 	DriveMyself = 'DrMy',
+	Carpool = 'Cpl',
 	RideShare = 'RiSh',
+	Taxi = 'Txi',
 	Transit = 'Trnst',
-	WalkOrBike = 'WB',
+	Walk = 'Wlk',
+	Bike = 'Bk',
 	Mail = 'Ml',
 	BallotBox = 'BltBx',
 	Friends = 'Frnd',
@@ -81,13 +86,39 @@ export const enum MostRecentTransition {
 	Forward,
 }
 
+export enum VotingStateId {
+	Colorado,
+	Oregon,
+	Washington,
+}
+
+export function getVotingStateId(answerId: AnswerId): VotingStateId | undefined {
+	switch (answerId) {
+		case AnswerId.Colorado:
+			return VotingStateId.Colorado;
+
+		case AnswerId.Oregon:
+			return VotingStateId.Oregon;
+
+		case AnswerId.Washington:
+			return VotingStateId.Washington;
+
+		case AnswerId.OtherState:
+			return undefined;
+
+		default:
+			throw new Error("Unrecognized AnswerId for getVotingStateId");
+	}
+}
+
 export interface IQuestionnaireState {
-	readonly answers: IQuestionAndAnswer[];
-	readonly currentView: AppView;
-	readonly currentQuestionId: QuestionId | undefined;
-	readonly dotNavStep: number;
-	readonly counter: number;
-	readonly mostRecentTransition: MostRecentTransition | undefined;
+	readonly answers: IQuestionAndAnswer[],
+	readonly votingStateId: VotingStateId | undefined,
+	readonly currentView: AppView,
+	readonly currentQuestionId: QuestionId | undefined,
+	readonly dotNavStep: number,
+	readonly counter: number,
+	readonly mostRecentTransition: MostRecentTransition | undefined,
 }
 
 export const enum QuestionnaireActionType {
@@ -106,11 +137,36 @@ export interface IAnswerQuestionPayload {
 
 export enum PlanStepId {
 	Register,
-	CheckBallotStatus,
-	CheckDeadline,
-	LocateBallotBox,
-	Research,
-	InviteFriends,
+	RequestOverseasBallot,
+	HaveBallot,
+	NoBallotYet,
+	DontKnowDeadline,
+	KnowDeadline,
+	MailBallot,
+	DropBallotAtDropBox,
+	RequestAbsenteeBallot,
+	DoubleCheckPollingLocation,
+	FindPollingLocation,
+	PlanSpecialAccommodations,
+	DriveMyselfOrCarpool,
+	RideShare,
+	Taxi,
+	MassTransit,
+	WalkOrBike,
+	TimeOffWork,
+	ReviewBallotIssues,
+	ResearchBallotIssues,
+	InvitePeople,
+	ForMyKidsAndFamily,
+	VotingIsPrivilege,
+	DriveChange,
+	AlwaysVoted,
+	OtherReason,
+	Excited,
+	Concerned,
+	Shocked,
+	Angry,
+	Meh,
 }
 
 export interface IQuestion {
