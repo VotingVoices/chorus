@@ -32,7 +32,7 @@ export class NavigationDot extends React.Component<INavigationDotProps, any>
 		const centerX = barLeftX + (step - 1) * intervalWidth;
 
 		return (
-			<circle fillOpacity={stepOpacity(currentStep, step)} fill={color} stroke={color} stroke-width={strokeWidth} cx={centerX} cy={barCenterY} r={radius} />
+			<circle fillOpacity={stepOpacity(currentStep, step)} fill={color} stroke={color} strokeWidth={strokeWidth} cx={centerX} cy={barCenterY} r={radius} />
 		);
 	}
 };
