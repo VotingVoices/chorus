@@ -74,17 +74,26 @@ export function getAnswerLabel(answer: AnswerId): string {
         case AnswerId.OtherState:
             return 'I\'m voting in a different state';
 
-        case AnswerId.WalkOrBike:
-            return 'Walk / bike';
-
         case AnswerId.DriveMyself:
-            return 'Drive myself / carpool';
+            return 'Drive myself';
+
+        case AnswerId.Carpool:
+            return 'Carpool';
 
         case AnswerId.RideShare:
             return 'Car for hire';
 
+        case AnswerId.Taxi:
+            return 'Taxi';
+
         case AnswerId.Transit:
             return 'Mass transit';
+
+        case AnswerId.Walk:
+            return 'Walk';
+
+        case AnswerId.Bike:
+            return 'Bike';
 
         case AnswerId.Mail:
             return 'Mail';

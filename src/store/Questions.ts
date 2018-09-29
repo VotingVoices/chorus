@@ -65,9 +65,12 @@ export const QUESTIONS : IQuestion[] = [
         nextQuestionId: (key) => QuestionId.MissWork,
         answers: [
             AnswerId.DriveMyself,
+            AnswerId.Carpool,
             AnswerId.RideShare,
+            AnswerId.Taxi,
             AnswerId.Transit,
-            AnswerId.WalkOrBike,
+            AnswerId.Walk,
+            AnswerId.Bike,
             AnswerId.Other,
         ],
         resultingPlanStep: (answer) => undefined,
