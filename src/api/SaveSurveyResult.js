@@ -14,14 +14,3 @@ exports.handler = function (event, context, callback) {
         body: event.body + 'is saved'
     });
 };
-
-let dao = new SurveyDAO();
-let input = {
-    registeredToVote: 'no',
-    absenteeBallor: 'yes',
-    knowBallot: 'yes',
-    invitePeople : ['Mom(s)'],
-    feeling: 'Happy',
-    email: 'email'
-};
-dao.saveSurvey(input);
