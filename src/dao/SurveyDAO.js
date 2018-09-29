@@ -43,9 +43,11 @@ module.exports = class SurveyDAO {
                 return undefined;
             } else {
                 if (Array.isArray(surveyItem[attributeKey])) {
-                    return {
-                        L: surveyItem[attributeKey]
-                    }
+                    let result = {};
+                    result.L = surveyItem[attributeKey].map((item) => {
+                        S:item
+                    });
+                    return result;
                 } else {
                     return {
                         S: surveyItem[attributeKey]
