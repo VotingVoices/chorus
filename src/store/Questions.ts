@@ -23,7 +23,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => undefined,        // TODO: Fill in
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.RequestOverseasBallot : undefined,
     },
     {
         id: QuestionId.VoteByMailState,
@@ -46,7 +46,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => undefined,
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.RequestAbsenteeBallot : undefined,
     },
     {
         id: QuestionId.PollingLocation,
@@ -57,7 +57,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.No,
             AnswerId.DontKnow,
         ],
-        resultingPlanStep: (answer) => undefined,
+        resultingPlanStep: (answer) => answer !== AnswerId.Yes ? PlanStepId.FindPollingLocation : undefined,
     },
     {
         id: QuestionId.SpecialAccommodations,
@@ -67,7 +67,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => undefined,
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.PlanSpecialAccommodations : undefined,
     },
     {
         id: QuestionId.TransportationMethod,
@@ -83,7 +83,29 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Bike,
             AnswerId.Other,
         ],
-        resultingPlanStep: (answer) => undefined,
+        resultingPlanStep: (answer) => {
+            switch (answer) {
+                case AnswerId.DriveMyself:
+                case AnswerId.Carpool: {
+                    return PlanStepId.DriveMyselfOrCarpool;
+                }
+                case AnswerId.RideShare: {
+                    return PlanStepId.RideShare;
+                }
+                case AnswerId.Taxi: {
+                    return PlanStepId.Taxi;
+                }
+                case AnswerId.Transit: {
+                    return PlanStepId.MassTransit;
+                }
+                case AnswerId.Walk:
+                case AnswerId.Bike: {
+                    return PlanStepId.WalkOrBike;
+                }
+                default:
+                    return undefined;
+            }
+        },
     },
     {
         id: QuestionId.MissWork,
@@ -93,7 +115,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => undefined,
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.TimeOffWork : undefined,
     },
     /* VOTE-BY-MAIL PATH */
     {
@@ -124,7 +146,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Mail,
             AnswerId.BallotBox,
         ],
-        resultingPlanStep: (answer) => /*answer === AnswerId.BallotBox ? PlanStepId.LocateBallotBox :*/ undefined,
+        resultingPlanStep: (answer) => answer === AnswerId.Mail ? PlanStepId.MailBallot : PlanStepId.DropBallotAtDropBox,
     },
     /* REJOINED PATH */
     {
@@ -135,7 +157,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => /*answer === AnswerId.No ? PlanStepId.Research :*/ undefined,
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.ReviewBallotIssues : PlanStepId.ResearchBallotIssues,
     },
     {
         id: QuestionId.PeopleToInvite,
@@ -147,7 +169,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Coworkers,
             AnswerId.Alone,
         ],
-        resultingPlanStep: (answer) => /*answer === AnswerId.Friends ? PlanStepId.InviteFriends :*/ undefined,
+        resultingPlanStep: (answer) => answer !== AnswerId.Alone ? PlanStepId.InvitePeople : undefined,
     },
     {
         id: QuestionId.ReasonToVote,
@@ -160,7 +182,27 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Habit,
             AnswerId.Other,
         ],
-        resultingPlanStep: (answer) => undefined,
+        resultingPlanStep: (answer) => {
+            switch (answer) {
+                case AnswerId.Kids: {
+                    return PlanStepId.ForMyKidsAndFamily;
+                }
+                case AnswerId.Privilege: {
+                    return PlanStepId.VotingIsPrivilege;
+                }
+                case AnswerId.Change: {
+                    return PlanStepId.DriveChange;
+                }
+                case AnswerId.Habit: {
+                    return PlanStepId.AlwaysVoted;
+                }
+                case AnswerId.Other: {
+                    return PlanStepId.OtherReason;
+                }
+                default:
+                    return undefined;
+            }
+        }
     },
     {
         id: QuestionId.Emotion,
@@ -173,7 +215,27 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Angry,
             AnswerId.Meh,
         ],
-        resultingPlanStep: (answer) => undefined,
+        resultingPlanStep: (answer) => {
+            switch (answer) {
+                case AnswerId.Excited: {
+                    return PlanStepId.Excited;
+                }
+                case AnswerId.Concerned: {
+                    return PlanStepId.Concerned;
+                }
+                case AnswerId.Shocked: {
+                    return PlanStepId.Shocked;
+                }
+                case AnswerId.Angry: {
+                    return PlanStepId.Angry;
+                }
+                case AnswerId.Meh: {
+                    return PlanStepId.Meh;
+                }
+                default:
+                    return undefined;
+            }
+        },
     }];
 
 export const PLAN_DOT_NAV_STEP = 13;

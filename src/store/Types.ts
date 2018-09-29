@@ -136,16 +136,36 @@ export interface IAnswerQuestionPayload {
 
 export enum PlanStepId {
 	Register,
+	RequestOverseasBallot,
 	HaveBallot,
 	NoBallotYet,
 	DontKnowDeadline,
 	KnowDeadline,
-	// TODO: Bring back
-	/*
-	LocateBallotBox,
-	Research,
-	InviteFriends,
-	*/
+	MailBallot,
+	DropBallotAtDropBox,
+	RequestAbsenteeBallot,
+	DoubleCheckPollingLocation,
+	FindPollingLocation,
+	PlanSpecialAccommodations,
+	DriveMyselfOrCarpool,
+	RideShare,
+	Taxi,
+	MassTransit,
+	WalkOrBike,
+	TimeOffWork,
+	ReviewBallotIssues,
+	ResearchBallotIssues,
+	InvitePeople,
+	ForMyKidsAndFamily,
+	VotingIsPrivilege,
+	DriveChange,
+	AlwaysVoted,
+	OtherReason,
+	Excited,
+	Concerned,
+	Shocked,
+	Angry,
+	Meh,
 }
 
 export interface IQuestion {

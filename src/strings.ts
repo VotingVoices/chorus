@@ -158,6 +158,7 @@ export interface IPlanStepStrings {
 }
 
 export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPlanStepStrings {
+    // TODO: The '&em;' escape string doesn't work.
     switch (step) {
         case PlanStepId.Register: {
             return {
@@ -166,6 +167,15 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
                 callToAction: "Double-check your registration",
                 link: "https://www.rockthevote.org/voting-information/am-i-registered-to-vote/",        // TODO: Spanish-specific links?
             };
+        }
+
+        case PlanStepId.RequestOverseasBallot: {
+            return {
+                header: "Request your absentee ballot",
+                text: "Learn how to vote from anywhere when you're overseas.",
+                callToAction: "Make the request",
+                link: "https://www.fvap.gov/",
+            }
         }
 
         case PlanStepId.HaveBallot: {
@@ -201,7 +211,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
                     break;
                 }
                 default:
-                    throw new Error("Unrecognized StateId");
+                    throw new Error("Unrecognized VotingStateId");
             }
 
             return {
@@ -230,7 +240,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
                     break;
                 }
                 default:
-                    throw new Error("Unrecognized StateId");
+                    throw new Error("Unrecognized VotingStateId");
             }
 
             return {
@@ -241,18 +251,278 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
             }
         }
 
-        // TODO: Bring back
-        /*
-        case PlanStepId.LocateBallotBox:
-            return "Locate a ballot box";
+        case PlanStepId.MailBallot: {
+            let text: string = "Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)";
+            let callToAction: string | undefined;
+            let link: string | undefined;
 
-        case PlanStepId.Research:
-            return "Do your research";
+            switch (state) {
+                case VotingStateId.Colorado: {
+                    callToAction = "Find Colorado mailing details";
+                    link = "https://www.sos.state.co.us/pubs/elections/FAQs/GeneralInfoFAQ.html";
+                    break;
+                }
+                case VotingStateId.Oregon: {
+                    callToAction = "Find Oregon mailing details";
+                    link = "https://sos.oregon.gov/voting/Pages/voteinor.aspx";
+                    break;
+                }
+                case VotingStateId.Washington: {
+                    // WA has prepaid postage
+                    text = "Check up on your deadline and rest easy.";
 
-        case PlanStepId.InviteFriends:
-            return "Invite friends to VotePlan!";
-        */
+                    callToAction = "Find Washington mailing details";
+                    link = "https://www.sos.wa.gov/elections/faq_vote_by_mail.aspx";
+                    break;
+                }
+                default:
+                    throw new Error("Unrecognized VotingStateId");
+            }
 
+            return {
+                header: "Drop your ballot in the mail, pronto!",
+                text,
+                callToAction,
+                link,
+            }
+        }
+
+        case PlanStepId.DropBallotAtDropBox: {
+            let link: string | undefined;
+
+            switch (state) {
+                case VotingStateId.Colorado: {
+                    link = "https://www.sos.state.co.us/pubs/elections/";
+                    break;
+                }
+                case VotingStateId.Oregon: {
+                    link = "https://sos.oregon.gov/voting/pages/drop-box-locator.aspx";
+                    break;
+                }
+                case VotingStateId.Washington: {
+                    link = "https://www.sos.wa.gov/elections/auditors/";
+                    break;
+                }
+                default:
+                    throw new Error(`Unrecognized VotingStateId: ${state}`);
+            }
+
+            return {
+                header: "Discover your neighborhood ballot drop box.",
+                text: "Check your deadline and plan ahead for a convenient ballot box drop.",
+                callToAction: "Find a ballot drop box near you",
+                link,
+            }
+        }
+
+        case PlanStepId.RequestAbsenteeBallot: {
+            return {
+                header: "Request your absentee ballot",
+                text: "A convenient way to go! Just remember to check on postage and your mailing deadline.",
+                callToAction: "Make the request",
+                link: "https://www.vote.org/absentee-ballot/",
+            }
+        }
+
+        case PlanStepId.DoubleCheckPollingLocation: {
+            return {
+                header: "Your polling location: has it moved?",
+                text: "Things change &em; make sure you're aware of your area's best polling locations and hours.",
+                callToAction: "This way to the polls (scroll for your state)!",
+                link: "https://www.vote.org/polling-place-locator/",
+            }
+        }
+
+        case PlanStepId.FindPollingLocation: {
+            return {
+                header: "Find your polling location",
+                text: "Make it easy on yourself! Find your state's polling locations through the link below.",
+                callToAction: "This way to the polls (scroll for your state)!",
+                link: "https://www.vote.org/polling-place-locator/",
+            }
+        }
+
+        case PlanStepId.PlanSpecialAccommodations: {
+            return {
+                header: "Plan your trip, with the assistance you need",
+                text: "Special accommodations to help you get to your polling place are available. It's easy to plan ahead!",
+                callToAction: "Access assistance",
+                link: "https://www.eac.gov/voters/resources-for-voters-with-disabilities/",
+            }
+        }
+
+        case PlanStepId.DriveMyselfOrCarpool: {
+            return {
+                header: "Get there by car",
+                text: "Great plan. Even better: Round up some fellow voters to share the ride, and have the address in hand!",
+                callToAction: "Plan your route to the polls",
+                link: "https://www.vote.org/polling-place-locator/",
+            }
+        }
+
+        case PlanStepId.RideShare: {
+            return {
+                // TODO: Update these strings to use "Ride to Vote".  Also, the link may need to be updated.
+                header: "Get there by car",
+                text: "Great plan. Even better: Round up some fellow voters to share the ride!",
+                callToAction: "Check Lyft for voting day deals",
+                link: "https://blog.lyft.com/posts/2018/8/22/get-out-the-vote",
+            }
+        }
+
+        case PlanStepId.Taxi: {
+            return {
+                header: "Get there by taxi",
+                text: "Great plan. Even better: Round up some fellow voters to share the ride, and have the address in hand!",
+                callToAction: "Plan your route to the polls",
+                link: "https://www.vote.org/polling-place-locator/",
+            }
+        }
+
+        case PlanStepId.MassTransit: {
+            return {
+                header: "Take mass transit to the polls",
+                text: "Great plan. Even better: Plan your route ahead of time and enjoy the trip!",
+                callToAction: "Plan your bus/train route",
+                link: "https://maps.google.com/landing/transit/index.html",
+            }
+        }
+
+        case PlanStepId.WalkOrBike: {
+            return {
+                header: "Walk or bike to the polls",
+                text: "Rain, snow, sleet...no worries! You'll be ready with a quick weather report.",
+                callToAction: "Check voting day conditions",
+                link: "weather.com",    // TODO: No http?
+            }
+        }
+
+        case PlanStepId.TimeOffWork: {
+            return {
+                header: "Paid time-off to vote: are you eligible?",
+                text: "The majority of states have time-off-to-vote laws (also called voter-leave laws). Check ahead of voting day and coordinate plans with your workplace.",
+                callToAction: "Look for your state's voter-leave law status",
+                link: "https://www.vote411.org/taxonomy/term/75#.W5RxBuhKjD4",        // TODO: Is this really the URL?
+            }
+        }
+
+        case PlanStepId.ReviewBallotIssues: {
+            return {
+                header: "Your ballot, in a nutshell",
+                text: "You're familiar with the candidates and issues &em; now put it all together using this handy app.",
+                callToAction: "Plan your ballot choices",
+                link: "https://www.ballotready.org/",
+            }
+        }
+
+        case PlanStepId.ResearchBallotIssues: {
+            return {
+                header: "Introducing...your ballot!",
+                text: "Now's the perfect time to research the candidates and issues you'll be voting for. Here's an app to help.",
+                callToAction: "Plan your ballot choices",
+                link: "https://www.ballotready.org/",
+            }
+        }
+
+        case PlanStepId.InvitePeople: {
+            return {
+                header: "Invite your crowd to VotePlan!",    // TODO: Review: "your crowd?",
+                text: "Let's keep each other accountable &em; voting's even better when we can do it together! Share your plans with the people in your life.",
+                callToAction: undefined,
+                link: undefined,
+            }
+        }
+
+        // TODO: Better styling for "FOR FAMILY" etc.
+        case PlanStepId.ForMyKidsAndFamily: {
+            return {
+                header: "Remember your reason for voting!",
+                text: "FOR FAMILY. Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!",
+                callToAction: undefined,
+                link: undefined,
+            }
+        }
+
+        case PlanStepId.VotingIsPrivilege: {
+            return {
+                header: "Remember your reason for voting!",
+                text: "IT'S MY PRIVILEGE. Yep, you've got the right idea, and we agree. Let's not take voting for granted!",
+                callToAction: undefined,
+                link: undefined,
+            }
+        }
+
+        case PlanStepId.DriveChange: {
+            return {
+                header: "Remember your reason for voting!",
+                text: "FOR CHANGE. You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message &em; pass it on!",
+                callToAction: undefined,
+                link: undefined,
+            }
+        }
+
+        case PlanStepId.AlwaysVoted: {
+            return {
+                header: "Remember your reason for voting!",
+                text: "IT'S MY M.O.  You've always voted--good on you! Spread the word and keep up the great (and extremely important) civic habit.",
+                callToAction: undefined,
+                link: undefined,
+            }
+        }
+
+        case PlanStepId.OtherReason: {
+            return {
+                header: "Remember your reason for voting!",
+                text: "CIVIC DUTY.  You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message &em; pass it on!",
+                callToAction: undefined,
+                link: undefined,
+            }
+        }
+
+        case PlanStepId.Excited:
+        case PlanStepId.Concerned:
+        case PlanStepId.Shocked:
+        case PlanStepId.Angry:
+        case PlanStepId.Meh: {
+            let header = "Put those feelings toward action";
+            let text: string | undefined;
+            const callToAction: string | undefined = "Your voice matters &em; take a look";
+            const link: string | undefined = "https://www.whenweallvote.org/";
+
+            switch (step) {
+                case PlanStepId.Excited: {
+                    header = "You're excited about voting!";
+                    text = "Well, great &em; you're not the only one! Watch this and keep participating!";
+                    break;
+                }
+                case PlanStepId.Concerned: {
+                    header = "Put those feelings toward voting action";
+                    text = "You're feeling concerned &em; we get it! These are complicated times. Watch this and get inspired.";
+                    break;
+                }
+                case PlanStepId.Shocked: {
+                    text = "You're feeling shocked &em; we get it! These are complicated times. Watch this and get inspired.";
+                    break;
+                }
+                case PlanStepId.Angry: {
+                    text = "You're feeling angry &em; we get it! These are complicated times. Watch this and get inspired.";
+                    break;
+                }
+                case PlanStepId.Meh: {
+                    text = "Feeling ambivalent? Your voting plans are taking shape &em; now get out there!";
+                    break;
+                }
+                default:
+                    throw new Error(`Unrecognized PlanStepId: ${step}`);
+            }
+
+            return {
+                header,
+                text: text!,
+                callToAction,
+                link,
+            }
+        }
         default:
             throw new Error(`Unrecognized PlanStepId: ${step}`);
     }
