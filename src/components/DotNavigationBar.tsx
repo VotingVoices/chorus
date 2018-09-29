@@ -36,8 +36,8 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 		const dots = [];
 
 		for (let i = 1; i <= stepCount; i++) {
-			lines.push(<NavigationIntervalLine {...childProps} step={i} />)
-			dots.push(<NavigationDot {...childProps} step={i} />)
+			lines.push(<NavigationIntervalLine key={'line' + i} {...childProps} step={i} />)
+			dots.push(<NavigationDot key={'dot' + i} {...childProps} step={i} />)
 		}
 
 		const viewboxDefinition = `0 0 ${viewboxWidth} ${viewboxHeight}`;
