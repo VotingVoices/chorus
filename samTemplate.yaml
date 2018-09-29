@@ -8,12 +8,17 @@ Resources:
       Handler: src/api/SaveCategory.handler
       Runtime: nodejs8.10
       CodeUri: ./
+      Policies: AWSLambdaDynamoDBExecutionRole
+      Environment:
+        Variables:
+          CATEGORY_TABLE: !Ref CategoryTable
       Events:
         MyCategoryApi:
           Type: Api
           Properties:
             Path: /SaveCategory
             Method: POST
+
   CategoryTable:
     Type: AWS::DynamoDB::Table
     Properties:
