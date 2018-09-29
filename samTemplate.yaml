@@ -8,7 +8,7 @@ Resources:
       Handler: src/api/SaveCategory.handler
       Runtime: nodejs8.10
       CodeUri: ./
-      Policies: AWSLambdaDynamoDBExecutionRole
+      Policies: AmazonDynamoDBFullAccess
       Environment:
         Variables:
           CATEGORY_TABLE: !Ref CategoryTable
