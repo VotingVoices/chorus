@@ -21,13 +21,21 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 
 			return (
 				<div key={planStepId}>
-					<p>{header}</p>
+					<h1>{header}</h1>
 					<p>{text}</p>
 
-					{ callToAction !== undefined ? <p>{callToAction!}</p> : <React.Fragment /> }
-					{ link !== undefined ? <p>{link!}</p> : <React.Fragment /> }
+					{ this.renderCallToAction(callToAction, link) }
 				</div>
 			);
+		}
+		else {
+			return <React.Fragment />
+		}
+	}
+
+	private renderCallToAction(callToAction: string | undefined, link: string | undefined): JSX.Element {
+		if (callToAction !== undefined && link !== undefined) {
+			return <h3><a href={link!}>{callToAction!}</a></h3>
 		}
 		else {
 			return <React.Fragment />
