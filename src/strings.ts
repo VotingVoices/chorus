@@ -63,13 +63,13 @@ export function getAnswerLabel(answer: AnswerId): string {
             return 'Not sure';
 
         case AnswerId.Washington:
-            return 'WA';
+            return 'Washington';
 
         case AnswerId.Oregon:
-            return 'OR';
+            return 'Oregon';
 
         case AnswerId.Colorado:
-            return 'CO';
+            return 'Colorado';
 
         case AnswerId.OtherState:
             return 'I\'m voting in a different state';
