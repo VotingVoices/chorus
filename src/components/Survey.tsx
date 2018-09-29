@@ -9,6 +9,7 @@ import { IConnectedReduxProps, IQuestion, IQuestionnaireState, PLAN_DOT_NAV_STEP
 import { getTransitionName } from '../transitionNames';
 
 import '../App.css';
+import './Survey.css';
 
 interface IPropsFromState {
 	question: IQuestion,
@@ -19,36 +20,32 @@ interface IPropsFromState {
 class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
 	public render(): JSX.Element {
 		return (
-			<div className="App">
-				<header className="App-header">
-					<h1 className="App-title">Voting Voices</h1>
-				</header>
+			<header className="App-header">
+				<div className="Survey-body">
+					<ReactCSSTransitionReplace
+						transitionName={this.props.transitionName}
+						transitionEnterTimeout={1000}
+						transitionLeaveTimeout={400} >
+						<Question
+							{...this.props}
+							key={this.props.question.id}
+							questionId={this.props.question.id}
+							answers={QUESTIONS.find(q => q.id === this.props.question.id)!.answers} />
+					</ReactCSSTransitionReplace>
 
-				<p className="App-intro" />
-				
-				<ReactCSSTransitionReplace
-					transitionName={this.props.transitionName}
-					transitionEnterTimeout={1000}
-					transitionLeaveTimeout={400} >
-					<Question
-						{...this.props}
-						key={this.props.question.id}
-						questionId={this.props.question.id}
-						answers={QUESTIONS.find(q => q.id === this.props.question.id)!.answers} />
-				</ReactCSSTransitionReplace>
+					<div>
+						<DotNavigationBar
+							stepCount={PLAN_DOT_NAV_STEP - 1}
+							currentStep={this.props.dotNavStep}
+							color='#E8E8E8'
+							intervalWidth={50}
+							strokeWidth={3}
+							dotRadius={8} />
+					</div>
 
-				<div>
-					<DotNavigationBar
-						stepCount={PLAN_DOT_NAV_STEP - 1}
-						currentStep={this.props.dotNavStep}
-						color='#E8E8E8'
-						intervalWidth={50}
-						strokeWidth={3}
-						dotRadius={8} />
+					<StartOverButton {...this.props} />
 				</div>
-
-				<StartOverButton {...this.props} />
-			</div>
+			</header>
 		);
 	}
 }
