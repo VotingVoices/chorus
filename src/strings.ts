@@ -6,13 +6,13 @@ export function getQuestionFullLabel(id: QuestionId): string {
             return 'First things first. Are you registered to vote?';
 
         case QuestionId.OverseasMilitary:
-            return 'Are you an overseas or military voter?';        // TODO: Final string
-
-        case QuestionId.AbsenteeBallot:
-            return 'Would you like to vote by absentee ballot?';
+            return 'Do you live or are you stationed outside the United States?';
 
         case QuestionId.VoteByMailState:
             return 'Are you planning to vote in any of these states?';
+
+        case QuestionId.AbsenteeBallot:
+            return 'Would you like to vote by absentee ballot?';
 
         case QuestionId.PollingLocation:
             return 'Do you know where your polling location is?';

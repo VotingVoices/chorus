@@ -3,8 +3,8 @@ import { Action, AnyAction, Dispatch } from 'redux';
 export enum QuestionId {
 	AreYouRegistered = 'Reg',
 	OverseasMilitary = 'OvM',
-	AbsenteeBallot = 'Abs',
 	VoteByMailState = 'St',
+	AbsenteeBallot = 'Abs',
 	PollingLocation = 'PllLoc',
 	SpecialAccommodations = 'Accm',
 	TransportationMethod = 'Trns',

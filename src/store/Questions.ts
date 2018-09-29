@@ -18,7 +18,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.OverseasMilitary,
         dotNavStep: 2,
-        nextQuestionId: (answer) => answer === AnswerId.Yes ? QuestionId.FamiliarWithBallot : QuestionId.AbsenteeBallot,
+        nextQuestionId: (answer) => answer === AnswerId.Yes ? QuestionId.FamiliarWithBallot : QuestionId.VoteByMailState,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
@@ -26,18 +26,8 @@ export const QUESTIONS : IQuestion[] = [
         resultingPlanStep: (answer) => undefined,        // TODO: Fill in
     },
     {
-        id: QuestionId.AbsenteeBallot,
-        dotNavStep: 3,
-        nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.ReceivedBallot : QuestionId.VoteByMailState,
-        answers: [
-            AnswerId.Yes,
-            AnswerId.No,
-        ],
-        resultingPlanStep: (answer) => undefined,
-    },
-    {
         id: QuestionId.VoteByMailState,
-        dotNavStep: 4,
+        dotNavStep: 3,
         nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.ReceivedBallot,
         answers: [
             AnswerId.Colorado,
@@ -48,6 +38,16 @@ export const QUESTIONS : IQuestion[] = [
         resultingPlanStep: (answer) => undefined,
     },
     /* VOTE-IN-PERSON PATH */
+    {
+        id: QuestionId.AbsenteeBallot,
+        dotNavStep: 4,
+        nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.ReceivedBallot : QuestionId.VoteByMailState,
+        answers: [
+            AnswerId.Yes,
+            AnswerId.No,
+        ],
+        resultingPlanStep: (answer) => undefined,
+    },
     {
         id: QuestionId.PollingLocation,
         dotNavStep: 5,
