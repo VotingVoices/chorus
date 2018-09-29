@@ -71,6 +71,7 @@ export interface IQuestionAndAnswer {
 }
 
 export const enum AppView {
+	LandingPage,
 	Questionnaire,
 	Plan,
 }

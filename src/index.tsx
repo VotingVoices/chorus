@@ -22,6 +22,10 @@ const store = configureStore(history, initialState);
 
 function pathFromState(state: IQuestionnaireState): string {
 	switch (state.currentView) {
+		case AppView.LandingPage: {
+			return `/LandingPage`;
+		}
+		
 		case AppView.Questionnaire: {
 			return `/Survey?${CurrentQuestionQueryParameterName}=${state.currentQuestionId}`;
 		}

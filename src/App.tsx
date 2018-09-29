@@ -3,7 +3,7 @@ import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { connect } from 'react-redux';
 
 import './App.css';
-import { Plan, Survey } from './components';
+import { Plan, Survey, LandingPage } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState } from './store';
 import { getTransitionName } from './transitionNames';
 
@@ -34,6 +34,9 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 		const { currentView } = this.props;
 
 		switch (currentView) {
+			case AppView.LandingPage: {
+				return (<LandingPage key="landingPage" {...this.props} />);
+			}
 			case AppView.Questionnaire: {
 				return (<Survey key="survey" {...this.props} />);
 			}

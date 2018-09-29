@@ -11,7 +11,7 @@ type QuestionnaireAction = ActionType<typeof actions>;
 
 export const DEFAULT_STATE = {
 	answers: [],
-	currentView: AppView.Questionnaire,
+	currentView: AppView.LandingPage,
 	currentQuestionId: QuestionId.AreYouRegistered,
 	dotNavStep: 1,
 	counter: 1,
@@ -77,6 +77,7 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 		case QuestionnaireActionType.START_OVER: {
 			return {
 				...DEFAULT_STATE,
+				currentView: AppView.Questionnaire,
 				answers: [],
 				mostRecentTransition: MostRecentTransition.Back,
 			};
