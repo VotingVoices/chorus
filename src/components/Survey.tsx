@@ -41,8 +41,6 @@ class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromSt
 					<DotNavigationBar
 						stepCount={PLAN_DOT_NAV_STEP - 1}
 						currentStep={this.props.dotNavStep}
-						viewboxWidth={520}
-						viewboxHeight={20}
 						color='#E8E8E8'
 						intervalWidth={50}
 						strokeWidth={3}

@@ -2,13 +2,12 @@ import * as React from 'react';
 import { NavigationDot } from './NavigationDot';
 import { INavigationDotProps } from './NavigationDot';
 import { NavigationIntervalLine } from './NavigationIntervalLine';
+import './DotNavigationBar.css';
 
 interface IDotNavigationBarProps extends React.InputHTMLAttributes<HTMLElement | HTMLInputElement>
 {
 	stepCount: number;
 	currentStep: number;
-	viewboxWidth: number;
-	viewboxHeight: number;
 	color: string;
 	intervalWidth: number;
 	strokeWidth: number;
@@ -20,7 +19,7 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 {
 	public render(): JSX.Element
 	{
-		const {stepCount, currentStep, viewboxWidth, viewboxHeight, color, intervalWidth, strokeWidth, dotRadius} = this.props;
+		const {stepCount, currentStep, color, intervalWidth, strokeWidth, dotRadius} = this.props;
 
 		const childProps = {
 			barCenterY: 10,
@@ -40,10 +39,10 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 			dots.push(<NavigationDot key={'dot' + i} {...childProps} step={i} />)
 		}
 
-		const viewboxDefinition = `0 0 ${viewboxWidth} ${viewboxHeight}`;
+		const viewboxDefinition = `0 0 520 20`;
 
 		return (
-			<svg height={20} viewBox={viewboxDefinition}>
+			<svg className="svgView" height={20} viewBox={viewboxDefinition}>
 				<g fill="none" fillRule="evenodd">
 					{lines}
 					{dots}			
