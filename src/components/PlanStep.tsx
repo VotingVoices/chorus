@@ -35,6 +35,7 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 
 	private renderCallToAction(callToAction: string | undefined, link: string | undefined): JSX.Element {
 		if (callToAction !== undefined && link !== undefined) {
+			// TODO: Link should open in a new tab.
 			return <h3><a href={link!}>{callToAction!}</a></h3>
 		}
 		else {
