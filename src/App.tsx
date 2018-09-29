@@ -16,12 +16,17 @@ interface IPropsFromState {
 class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 	public render(): JSX.Element {
 		return (
-			<ReactCSSTransitionReplace
-				transitionName={this.props.transitionName}
-				transitionEnterTimeout={1000}
-				transitionLeaveTimeout={400} >
-				{this.renderViewSpecificContent()}
-			</ReactCSSTransitionReplace>
+			<div className="App">
+				<div>Nav Bar</div>
+				<ReactCSSTransitionReplace
+					transitionName={this.props.transitionName}
+					transitionEnterTimeout={1000}
+					transitionLeaveTimeout={400} >
+					{this.renderViewSpecificContent()}
+				</ReactCSSTransitionReplace>
+				<div>Donations</div>
+				<div>Footer / Logo / Legal?</div>
+			</div>
 		);
 	}
 
