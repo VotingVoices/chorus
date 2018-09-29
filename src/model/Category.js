@@ -5,11 +5,19 @@ module.exports = class Category {
         this.category = category;
     }
 
-    convertEventToCategory(event) {
-        const DEFAULT_ID = 'id';
-        const DEFAULT_CATEGORY = 'default-category';
-        this.id = Category.fetchValueFromEvent(event, 'id', DEFAULT_ID);
-        this.category = Category.fetchValueFromEvent(event, 'category', DEFAULT_CATEGORY);
+    getId() {
+        return this.id;
+    }
+
+    getCategory() {
+        return this.category;
+    }
+
+    static getInstance(item) {
+        let id = Category.fetchValueFromEvent(item, 'id', null);
+        let category = Category.fetchValueFromEvent(item, 'category', null);
+
+        return new Category(id, category);
     }
 
     static fetchValueFromEvent(event, key, defaultValue) {

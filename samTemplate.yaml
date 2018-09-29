@@ -2,15 +2,24 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Outputs the category
 Resources:
-  TimeFunction:
+  SaveCategory:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: FetchTime.handler
+      Handler: src/api/SaveCategory.handler
       Runtime: nodejs8.10
       CodeUri: ./
       Events:
         MyCategoryApi:
           Type: Api
           Properties:
-            Path: /CategoryResource
+            Path: /SaveCategory
             Method: POST
+  CategoryTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
