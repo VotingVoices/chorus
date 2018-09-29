@@ -2,31 +2,31 @@ AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Outputs the category
 Resources:
-  SaveCategory:
+  SaveSurveyResult:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/api/SaveCategory.handler
+      Handler: src/api/SaveSurveyResult.handler
       Runtime: nodejs8.10
       CodeUri: ./
       Policies: AmazonDynamoDBFullAccess
       Environment:
         Variables:
-          CATEGORY_TABLE: !Ref CategoryTable
+          SURVEY_TABLE: !Ref SurveyTable
       Events:
         MyCategoryApi:
           Type: Api
           Properties:
-            Path: /SaveCategory
+            Path: /SaveSurveyResult
             Method: POST
 
-  CategoryTable:
+  SurveyTable:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: id
+        - AttributeName: email
           AttributeType: S
       KeySchema:
-        - AttributeName: id
+        - AttributeName: email
           KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 5
