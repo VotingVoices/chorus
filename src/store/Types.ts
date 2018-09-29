@@ -85,13 +85,39 @@ export const enum MostRecentTransition {
 	Forward,
 }
 
+export enum VotingStateId {
+	Colorado,
+	Oregon,
+	Washington,
+}
+
+export function getVotingStateId(answerId: AnswerId): VotingStateId | undefined {
+	switch (answerId) {
+		case AnswerId.Colorado:
+			return VotingStateId.Colorado;
+
+		case AnswerId.Oregon:
+			return VotingStateId.Oregon;
+
+		case AnswerId.Washington:
+			return VotingStateId.Washington;
+
+		case AnswerId.OtherState:
+			return undefined;
+
+		default:
+			throw new Error("Unrecognized AnswerId for getVotingStateId");
+	}
+}
+
 export interface IQuestionnaireState {
-	readonly answers: IQuestionAndAnswer[];
-	readonly currentView: AppView;
-	readonly currentQuestionId: QuestionId | undefined;
-	readonly dotNavStep: number;
-	readonly counter: number;
-	readonly mostRecentTransition: MostRecentTransition | undefined;
+	readonly answers: IQuestionAndAnswer[],
+	readonly votingStateId: VotingStateId | undefined,
+	readonly currentView: AppView,
+	readonly currentQuestionId: QuestionId | undefined,
+	readonly dotNavStep: number,
+	readonly counter: number,
+	readonly mostRecentTransition: MostRecentTransition | undefined,
 }
 
 export const enum QuestionnaireActionType {
@@ -110,11 +136,16 @@ export interface IAnswerQuestionPayload {
 
 export enum PlanStepId {
 	Register,
-	CheckBallotStatus,
-	CheckDeadline,
+	HaveBallot,
+	NoBallotYet,
+	DontKnowDeadline,
+	KnowDeadline,
+	// TODO: Bring back
+	/*
 	LocateBallotBox,
 	Research,
 	InviteFriends,
+	*/
 }
 
 export interface IQuestion {

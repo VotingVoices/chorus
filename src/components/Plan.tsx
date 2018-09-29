@@ -2,10 +2,11 @@ import * as React from 'react';
 import { connect} from 'react-redux';
 import { PlanStep } from './PlanStep';
 import { StartOverButton } from './StartOverButton';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId } from '../store';
+import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, VotingStateId } from '../store';
 
 interface IPlanProps {
 	answers: IQuestionAndAnswer[],
+	votingStateId: VotingStateId,
 }
 
 class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, any> {
@@ -24,7 +25,7 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 							const answer = this.props.answers.find(qa => qa.questionId === questionId);
 
 							if (answer !== undefined) {
-								return <PlanStep questionId={questionId} answerId={answer!.answerId} />
+								return <PlanStep questionId={questionId} answerId={answer!.answerId} votingStateId={this.props.votingStateId} />
 							}
 							else {
 								return <React.Fragment />

@@ -1,6 +1,6 @@
 import * as queryString from 'query-string';
 
-import { ALL_QUESTION_IDS, AppView, IQuestionAndAnswer, IQuestionnaireState, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
+import { ALL_QUESTION_IDS, AppView, getVotingStateId, IQuestionAndAnswer, IQuestionnaireState, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
 
 function getViewFromPath(pathname: string): AppView | undefined {
 	if (pathname === '/Survey') {
@@ -56,6 +56,7 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 		}
 
 		const answers: IQuestionAndAnswer[] = existingState.answers;
+		let votingStateId = existingState.votingStateId;
 
 		ALL_QUESTION_IDS.forEach((questionId: QuestionId) => {
 			const answerId = queryValues[questionId];
@@ -68,12 +69,17 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 				else {
 					answers.push({ questionId, answerId });
 				}
+
+				if (questionId === QuestionId.VoteByMailState) {
+					votingStateId = getVotingStateId(answerId);
+				}
 			}
 		});
 
 		return {
 			state: {
 				answers,
+				votingStateId,
 				currentView: appView!,
 				currentQuestionId,
 				dotNavStep,

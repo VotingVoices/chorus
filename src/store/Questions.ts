@@ -104,7 +104,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => answer === AnswerId.No ? PlanStepId.CheckBallotStatus : undefined,
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.HaveBallot : PlanStepId.NoBallotYet,
     },
     {
         id: QuestionId.Deadline,
@@ -114,7 +114,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => answer === AnswerId.No ? PlanStepId.CheckDeadline : undefined,
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.KnowDeadline : PlanStepId.DontKnowDeadline,
     },
     {
         id: QuestionId.ReturnMethod,
@@ -124,7 +124,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Mail,
             AnswerId.BallotBox,
         ],
-        resultingPlanStep: (answer) => answer === AnswerId.BallotBox ? PlanStepId.LocateBallotBox : undefined,
+        resultingPlanStep: (answer) => /*answer === AnswerId.BallotBox ? PlanStepId.LocateBallotBox :*/ undefined,
     },
     /* REJOINED PATH */
     {
@@ -135,7 +135,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => answer === AnswerId.No ? PlanStepId.Research : undefined,
+        resultingPlanStep: (answer) => /*answer === AnswerId.No ? PlanStepId.Research :*/ undefined,
     },
     {
         id: QuestionId.PeopleToInvite,
@@ -147,7 +147,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Coworkers,
             AnswerId.Alone,
         ],
-        resultingPlanStep: (answer) => answer === AnswerId.Friends ? PlanStepId.InviteFriends : undefined,
+        resultingPlanStep: (answer) => /*answer === AnswerId.Friends ? PlanStepId.InviteFriends :*/ undefined,
     },
     {
         id: QuestionId.ReasonToVote,

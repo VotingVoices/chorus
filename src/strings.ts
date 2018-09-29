@@ -1,4 +1,4 @@
-import { AnswerId, QuestionId, PlanStepId } from './store';
+import { AnswerId, QuestionId, PlanStepId, VotingStateId } from './store';
 
 export function getQuestionFullLabel(id: QuestionId): string {
     switch (id) {
@@ -150,17 +150,99 @@ export function getAnswerLabel(answer: AnswerId): string {
     throw new Error(`Unrecognized AnswerId: ${answer}`);
 }
 
-export function getPlanStepSummaryLabel(step: PlanStepId): string {
+export interface IPlanStepStrings {
+    header: string,
+    text: string,
+    callToAction: string | undefined,
+    link: string | undefined,
+}
+
+export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPlanStepStrings {
     switch (step) {
-        case PlanStepId.Register:
-            return "Register to vote";
+        case PlanStepId.Register: {
+            return {
+                header: "Is your registration A-OK?",
+                text: "Let's do this: get registered!",        // TODO: Capitalize Get?
+                callToAction: "Double-check your registration",
+                link: "https://www.rockthevote.org/voting-information/am-i-registered-to-vote/",        // TODO: Spanish-specific links?
+            };
+        }
 
-        case PlanStepId.CheckBallotStatus:
-            return "Check your ballot status";
+        case PlanStepId.HaveBallot: {
+            return {
+                header: "Have ballot, will vote!",
+                text: "You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)",    // TODO: Spell out U.S. Postal Service?
+                callToAction: undefined,
+                link: undefined,
+            };
+        }
 
-        case PlanStepId.CheckDeadline:
-            return "Check the deadline";
+        case PlanStepId.NoBallotYet: {
+            let callToAction: string | undefined;
+            let link: string | undefined;
 
+            // TODO: Do we want to use an outgoing link for our metrics purposes?
+            // TODO: Also do we want to use a "link ID" concept, similar to string IDs, to make links easier to manage?
+                        
+            switch (state) {
+                case VotingStateId.Colorado: {
+                    callToAction = "Find your Colorado ballot";
+                    link = "http://www.sos.state.co.us/pubs/elections/vote/VoterHome.html";
+                    break;
+                }
+                case VotingStateId.Oregon: {
+                    callToAction = "Find your Oregon ballot";
+                    link = "https://sos.oregon.gov/voting/pages/myvote.aspx?lang=en";        // TODO: lang=es
+                    break;
+                }
+                case VotingStateId.Washington: {
+                    callToAction = "Find your Washington ballot";
+                    link = "https://weiapplets.sos.wa.gov/myvote/#/login";
+                    break;
+                }
+                default:
+                    throw new Error("Unrecognized StateId");
+            }
+
+            return {
+                header: "Ballot hasn't shown up yet?",
+                text: "Track your ballot online and find out when to expect it.",
+                callToAction,
+                link,
+            }
+        }
+
+        case PlanStepId.DontKnowDeadline:
+        case PlanStepId.KnowDeadline: {
+            let link: string | undefined;
+
+            switch (state) {
+                case VotingStateId.Colorado: {
+                    link = "https://www.sos.state.co.us/pubs/elections/";
+                    break;
+                }
+                case VotingStateId.Oregon: {
+                    link = "https://sos.oregon.gov/voting/Pages/current-election.aspx";
+                    break;
+                }
+                case VotingStateId.Washington: {
+                    link = "https://www.sos.wa.gov/elections/dates-and-deadlines.aspx";
+                    break;
+                }
+                default:
+                    throw new Error("Unrecognized StateId");
+            }
+
+            return {
+                header: step === PlanStepId.DontKnowDeadline ? "When is the deadline, exactly?" : "The deadline: you've got this",
+                text: "Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy.",
+                callToAction: "Check your deadline",
+                link
+            }
+        }
+
+        // TODO: Bring back
+        /*
         case PlanStepId.LocateBallotBox:
             return "Locate a ballot box";
 
@@ -169,6 +251,7 @@ export function getPlanStepSummaryLabel(step: PlanStepId): string {
 
         case PlanStepId.InviteFriends:
             return "Invite friends to VotePlan!";
+        */
 
         default:
             throw new Error(`Unrecognized PlanStepId: ${step}`);

@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
-import { AppView, AnswerId, IQuestionnaireState, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
+import { AppView, AnswerId, getVotingStateId, IQuestionnaireState, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
 import { RouterActionType } from './InternalTypes';
 import { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';
 import * as actions from './Actions';
@@ -11,6 +11,7 @@ type QuestionnaireAction = ActionType<typeof actions>;
 
 export const DEFAULT_STATE = {
 	answers: [],
+	votingStateId: undefined,
 	currentView: AppView.Questionnaire,
 	currentQuestionId: QuestionId.AreYouRegistered,
 	dotNavStep: 1,
@@ -31,14 +32,20 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 		existingAnswer!.answerId = answerId;
 	}
 
+	let votingStateId = prevState.votingStateId;
+
+	if (questionId === QuestionId.VoteByMailState) {
+		votingStateId = getVotingStateId(answerId);
+	}
+
 	const nextQuestionId = question!.nextQuestionId(answerId);
 
 	if (nextQuestionId !== undefined) {
 		const dotNavStep = QUESTIONS.find(q => q.id === nextQuestionId)!.dotNavStep;
 		return {
 			answers,
-			currentQuestionId:
-			nextQuestionId,
+			votingStateId,
+			currentQuestionId: nextQuestionId,
 			currentView:
 			AppView.Questionnaire,
 			dotNavStep,
