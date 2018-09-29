@@ -1,13 +1,11 @@
 import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
-import { AppView, IQuestionnaireState, QuestionnaireActionType } from './Types';
-import { RouterActionType } from '../Router/Types';		// Maybe move this Reducer out of the 'Questionnaire' directory?
-import { AnswerId } from '../AnswerId';
-import { QuestionId } from '../QuestionId';
-import { QUESTIONS } from '../Questions';
+import { AppView, AnswerId, IQuestionnaireState, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
+import { RouterActionType } from './InternalTypes';
+import { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';
 import * as actions from './Actions';
-import { readStateFromLocation } from '../../readStateFromLocation';
+import { readStateFromLocation } from '../readStateFromLocation';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
@@ -17,7 +15,7 @@ export const DEFAULT_STATE = {
 	currentQuestionId: QuestionId.AreYouRegistered,
 	dotNavStep: 1,
 	counter: 1,
-	mostRecentActionWasBackButton: false,
+	mostRecentTransition: undefined,
 } as IQuestionnaireState;
 
 function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answerId: AnswerId): IQuestionnaireState {
@@ -45,7 +43,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			AppView.Questionnaire,
 			dotNavStep,
 			counter: prevState.counter + 1,
-			mostRecentActionWasBackButton: false,
+			mostRecentTransition: undefined,
 		};
 	}
 	else {
@@ -55,22 +53,23 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			answers,
 			currentView:
 			AppView.Plan,
+			dotNavStep: PLAN_DOT_NAV_STEP,
 			counter: prevState.counter + 1,
-			mostRecentActionWasBackButton: false
+			mostRecentTransition: undefined
 		};
 	}
 }
 
-function respondToBackButton(prevState: IQuestionnaireState, pathname: string, search: string) : IQuestionnaireState {
+function respondToBackOrForwardButton(prevState: IQuestionnaireState, pathname: string, search: string) : IQuestionnaireState {
 	const { state } = readStateFromLocation(prevState, pathname, search);
 
 	return {
 		...state,
-		mostRecentActionWasBackButton: true,
+		mostRecentTransition: state.dotNavStep < prevState.dotNavStep ? MostRecentTransition.Back : MostRecentTransition.Forward,
 	}
 }
 
-const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, action: QuestionnaireAction) => {
+export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, action: QuestionnaireAction) => {
 	switch (action.type) {
 		case QuestionnaireActionType.ANSWER_QUESTION: {
 			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
@@ -79,12 +78,12 @@ const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, actio
 			return {
 				...DEFAULT_STATE,
 				answers: [],
-				mostRecentActionWasBackButton: true
+				mostRecentTransition: MostRecentTransition.Back,
 			};
 		}
 		case RouterActionType.LOCATION_CHANGE: {
 			if (action.payload.historyAction === "POP") {
-				return respondToBackButton(state, action.payload.pathname, action.payload.search);
+				return respondToBackOrForwardButton(state, action.payload.pathname, action.payload.search);
 			}
 		}
 		default: {
@@ -92,5 +91,3 @@ const reducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, actio
 		}
 	}
 }
-
-export { reducer as questionnaireReducer };

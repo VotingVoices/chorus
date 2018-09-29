@@ -1,5 +1,5 @@
 import { action } from 'typesafe-actions';
-import { IRouterPushReplacePayload, IRouterGoPayload, RouterInternalActionType } from './Types';
+import { IRouterPushReplacePayload, IRouterGoPayload, RouterInternalActionType } from './InternalTypes';
 
 export const push = (href: string) =>
 	action(RouterInternalActionType.PUSH, { href } as IRouterPushReplacePayload);

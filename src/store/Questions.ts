@@ -1,15 +1,4 @@
-import { AnswerId } from './AnswerId';
-import { QuestionId } from './QuestionId';
-
-/**
- * Helper interface for Carousel props.  Each IQuestion forms a node in a question graph
- */
-export interface IQuestion {
-    id: QuestionId;
-    dotNavStep: number;
-    answers: AnswerId[];
-    nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
-}
+import { AnswerId, IQuestion, PlanStepId, QuestionId } from './Types';
 
 /**
  * Hard coded constant for the question graph 
@@ -18,63 +7,70 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.AreYouRegistered,
         dotNavStep: 1,
-        nextQuestionId: (answer) => QuestionId.VoteByMailState,
+        nextQuestionId: (answer) => QuestionId.AbsenteeBallot,
         answers: [
             AnswerId.EmphaticYes,
-            AnswerId.UncertainNo,
+            AnswerId.No,
             AnswerId.DontKnow,
         ],
+        resultingPlanStep: (answer) => answer === AnswerId.No || answer === AnswerId.DontKnow ? PlanStepId.Register : undefined,
+    },
+    {
+        id: QuestionId.AbsenteeBallot,
+        dotNavStep: 2,
+        nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.ReceivedBallot : QuestionId.VoteByMailState,
+        answers: [
+            AnswerId.Yes,
+            AnswerId.No,
+        ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.VoteByMailState,
-        dotNavStep: 2,
-        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : undefined,
+        dotNavStep: 3,
+        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.ReceivedBallot,
         answers: [
             AnswerId.Colorado,
             AnswerId.Oregon,
             AnswerId.Washington,
             AnswerId.OtherState,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
+    /* VOTE-IN-PERSON PATH */
     {
         id: QuestionId.PollingLocation,
-        dotNavStep: 3,
+        dotNavStep: 4,
         nextQuestionId: (key) => QuestionId.SpecialAccommodations,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
             AnswerId.DontKnow,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.SpecialAccommodations,
-        dotNavStep: 4,
+        dotNavStep: 5,
         nextQuestionId: (key) => QuestionId.TransportationMethod,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.TransportationMethod,
-        dotNavStep: 5,
-        nextQuestionId: (key) => QuestionId.AbsenteeBallot,
-        answers: [
-            AnswerId.WalkOrBike,
-            AnswerId.DriveMyself,
-            AnswerId.RideShare,
-            AnswerId.AskSomeoneForRide,
-            AnswerId.Other,
-        ],
-    },
-    {
-        id: QuestionId.AbsenteeBallot,
         dotNavStep: 6,
         nextQuestionId: (key) => QuestionId.MissWork,
         answers: [
-            AnswerId.Yes,
-            AnswerId.No,
+            AnswerId.DriveMyself,
+            AnswerId.RideShare,
+            AnswerId.Transit,
+            AnswerId.WalkOrBike,
+            AnswerId.Other,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.MissWork,
@@ -84,7 +80,40 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
+        resultingPlanStep: (answer) => undefined,
     },
+    /* VOTE-BY-MAIL PATH */
+    {
+        id: QuestionId.ReceivedBallot,
+        dotNavStep: 5,
+        nextQuestionId: (key) => QuestionId.Deadline,
+        answers: [
+            AnswerId.Yes,
+            AnswerId.No,
+        ],
+        resultingPlanStep: (answer) => answer === AnswerId.No ? PlanStepId.CheckBallotStatus : undefined,
+    },
+    {
+        id: QuestionId.Deadline,
+        dotNavStep: 6,
+        nextQuestionId: (key) => QuestionId.ReturnMethod,
+        answers: [
+            AnswerId.Yes,
+            AnswerId.No,
+        ],
+        resultingPlanStep: (answer) => answer === AnswerId.No ? PlanStepId.CheckDeadline : undefined,
+    },
+    {
+        id: QuestionId.ReturnMethod,
+        dotNavStep: 7,
+        nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
+        answers: [
+            AnswerId.Mail,
+            AnswerId.BallotBox,
+        ],
+        resultingPlanStep: (answer) => answer === AnswerId.BallotBox ? PlanStepId.LocateBallotBox : undefined,
+    },
+    /* REJOINED PATH */
     {
         id: QuestionId.FamiliarWithBallot,
         dotNavStep: 8,
@@ -93,32 +122,45 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
+        resultingPlanStep: (answer) => answer === AnswerId.No ? PlanStepId.Research : undefined,
     },
     {
         id: QuestionId.PeopleToInvite,
         dotNavStep: 9,
-        nextQuestionId: (key) => QuestionId.Emotion,
+        nextQuestionId: (key) => QuestionId.ReasonToVote,
         answers: [
+            AnswerId.Friends,
             AnswerId.FamilyMembers,
             AnswerId.Coworkers,
-            AnswerId.Friends,
-            AnswerId.SomeoneElse,
-            AnswerId.NoThanks,
+            AnswerId.Alone,
         ],
+        resultingPlanStep: (answer) => answer === AnswerId.Friends ? PlanStepId.InviteFriends : undefined,
+    },
+    {
+        id: QuestionId.ReasonToVote,
+        dotNavStep: 10,
+        nextQuestionId: (key) => QuestionId.Emotion,
+        answers: [
+            AnswerId.Kids,
+            AnswerId.Privilege,
+            AnswerId.Change,
+            AnswerId.Habit,
+            AnswerId.Other,
+        ],
+        resultingPlanStep: (answer) => undefined,
     },
     {
         id: QuestionId.Emotion,
-        dotNavStep: 10,
+        dotNavStep: 11,
         nextQuestionId: (key) => undefined,
         answers: [
             AnswerId.Excited,
-            AnswerId.Happy,
-            AnswerId.Nervous,
+            AnswerId.Concerned,
             AnswerId.Shocked,
-            AnswerId.Meh,
-            AnswerId.Worried,
             AnswerId.Angry,
+            AnswerId.Meh,
         ],
+        resultingPlanStep: (answer) => undefined,
     }];
 
-export const PLAN_DOT_NAV_STEP = 11;
+export const PLAN_DOT_NAV_STEP = 12;

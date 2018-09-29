@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { INavigationDotProps } from './NavigationDotTypes';
 
 function stepOpacity(current: number, target: number) {
 	if (current === target)
@@ -10,6 +9,18 @@ function stepOpacity(current: number, target: number) {
 	{
 		return 1.0;
 	}
+}
+
+export interface INavigationDotProps extends React.InputHTMLAttributes<HTMLElement | HTMLInputElement>
+{
+	step: number;
+	currentStep: number;
+	intervalWidth: number;
+	strokeWidth: number;
+	radius: number;
+	barLeftX: number;
+	barCenterY: number;
+	color: string;
 }
 
 export class NavigationDot extends React.Component<INavigationDotProps, any>

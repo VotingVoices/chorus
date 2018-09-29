@@ -1,17 +1,14 @@
-// TODO: Rename file since there's no reducer here.
-
 import { ActionType } from 'typesafe-actions';
 import { Action as HistoryAction, History, Location } from 'history';
 import { Store, AnyAction } from 'redux';
 
-import * as internalActions from './InternalActions';
-import { locationChange } from './Actions';
-import { RouterInternalActionType } from './Types';
-import { IQuestionnaireState } from '../Questionnaire/Types';
+import * as internalActions from './RouterInternalActions';
+import { locationChange } from './RouterActions';
+import { RouterInternalActionType } from './InternalTypes';
+import { IQuestionnaireState } from './Types';
 
 type RouterInternalAction = ActionType<typeof internalActions>;
 
-// TODO: Move into its own file (Middleware.ts)?
 export const routerMiddleware = (history: History) => () => (next: any) => (action: RouterInternalAction) => {
 	switch (action.type) {
 		case RouterInternalActionType.PUSH: {
