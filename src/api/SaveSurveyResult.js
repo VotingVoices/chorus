@@ -17,7 +17,8 @@ exports.handler = function (event, context, callback) {
         statusCode: 200,
         headers: {
             'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': true
+            'Access-Control-Allow-Credentials': true,
+            'content-type': 'text/plain'
         },
         body: JSON.parse(event.body).email + " is saved"
     });

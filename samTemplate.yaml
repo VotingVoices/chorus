@@ -32,10 +32,10 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeName: email
+        - AttributeName: contact
           AttributeType: S
       KeySchema:
-        - AttributeName: email
+        - AttributeName: contact
           KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 5

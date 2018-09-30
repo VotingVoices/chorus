@@ -15,8 +15,7 @@ module.exports = class Survey {
         this.knowBallot = input.knowBallot || null;
         this.invitePeople = input.invitePeople || null;
         this.feeling = input.feeling || null;
-        this.email = input.email || null;
-        this.phoneNumber = input.phoneNumber || null;
+        this.contact = input.contact || null;
         if (this.votingReason === '') {
             this.votingReason = 'empty';
         }
@@ -42,8 +41,8 @@ module.exports = class Survey {
             throw new Error("The invite people list is not valid");
         }
 
-        if (input.email === null) {
-            throw new Error("Email cannot be null");
+        if (input.contact === null) {
+            throw new Error("contact cannot be null");
         }
 
         if (!Survey._flowIsValid(input)) {
@@ -59,7 +58,7 @@ module.exports = class Survey {
 
     static _flowIsValid(input) {
         let nonValueList = [];
-        let withValueList = [input.registeredToVote, input.absenteeBallor, input.votingReason, input.knowBallot, input.invitePeople, input.feeling, input.email];
+        let withValueList = [input.registeredToVote, input.absenteeBallor, input.votingReason, input.knowBallot, input.invitePeople, input.feeling, input.contact];
         if (input.absenteeBallor === 'nope') {
             withValueList.push(input.voteInState);
             if (input.voteInState === 'nope') {
