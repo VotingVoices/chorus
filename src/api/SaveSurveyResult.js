@@ -19,6 +19,6 @@ exports.handler = function (event, context, callback) {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': true
         },
-        body: event.body + 'is saved'
+        body: JSON.parse(event.body).email + " is saved"
     });
 };

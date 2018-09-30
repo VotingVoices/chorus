@@ -43,20 +43,35 @@
 </div>
 <script>
     let app = angular.module('voting', []);
+    app.config(function ($httpProvider) {
+        //Enable cross domain calls
+        $httpProvider.defaults.useXDomain = true;
+    });
     app.controller('votingControl', function ($scope, $http) {
         $scope.submit = function () {
             let result = {};
             for (let i = 0; i < $scope.questionList.length; i++) {
                 let question = $scope.questionList[i];
-                if (question.type === 'multiple') {
-                    result[question.label] = question.multipleResult;
-                } else if (question.type === 'single') {
-                    result[question.label] = question.singleResult;
-                } else {
-                    result[question.label] = question.textResult;
+                if (question.visible === true) {
+                    if (question.type === 'multiple') {
+                        result[question.label] = question.multipleResult;
+                    } else if (question.type === 'single') {
+                        result[question.label] = question.singleResult;
+                    } else {
+                        result[question.label] = question.textResult;
+                    }
                 }
             }
-            console.log(result);
+            console.log(result + "is going to be sent to the server");
+            $http({
+                method: "POST",
+                url: "https://cx7ycw67s2.execute-api.us-west-2.amazonaws.com/Prod/SaveSurveyResult",
+                data: result
+            }).then(function mySuccess(response) {
+                alert("success " + response);
+            }, function myError(response) {
+                alert(response);
+            });
         };
 
         $scope.updateVisibility = function () {
