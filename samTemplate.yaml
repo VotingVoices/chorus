@@ -1,6 +1,15 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Outputs the category
+Globals:
+  Function:
+    Runtime: nodejs8.10
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS'"
+      AllowHeaders: "'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range'"
+      AllowOrigin: "'*'"
+
 Resources:
   SaveSurveyResult:
     Type: AWS::Serverless::Function
