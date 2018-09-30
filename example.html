@@ -62,13 +62,13 @@
                     }
                 }
             }
-            console.log(result + "is going to be sent to the server");
+            console.log(JSON.stringify(result) + " is going to be sent to the server");
             $http({
                 method: "POST",
-                url: "https://cx7ycw67s2.execute-api.us-west-2.amazonaws.com/Prod/SaveSurveyResult",
+                url: "https://bj891i8162.execute-api.us-west-2.amazonaws.com/Prod/SaveSurveyResult",
                 data: result
             }).then(function mySuccess(response) {
-                alert("success " + response);
+                alert("success " + JSON.stringify(response));
             }, function myError(response) {
                 alert(response);
             });
@@ -217,7 +217,7 @@
                 question: 'Enter your email or phone number so we can send you your plan!',
                 options: [],
                 type: 'text',
-                label: 'email',
+                label: 'contact',
                 requiredIfVisible: true,
                 visible: true
             }

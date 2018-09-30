@@ -20,6 +20,6 @@ exports.handler = function (event, context, callback) {
             'Access-Control-Allow-Credentials': true,
             'content-type': 'text/plain'
         },
-        body: JSON.parse(event.body).email + " is saved"
+        body: JSON.parse(event.body).contact + " is saved"
     });
 };
