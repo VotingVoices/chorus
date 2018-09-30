@@ -20,6 +20,9 @@ module.exports = class SurveyDAO {
                 }
             }
         }
+        dynamoItem.date = {
+            S: new Date().toDateString()
+        };
         console.log(JSON.stringify(dynamoItem));
         let parameter = {
             TableName: surveyDAO.tableName,

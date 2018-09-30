@@ -17,28 +17,43 @@ module.exports = class Survey {
         this.feeling = input.feeling || null;
         this.email = input.email || null;
         this.phoneNumber = input.phoneNumber || null;
+        if (this.votingReason === '') {
+            this.votingReason = 'empty';
+        }
+        if (this.invitePeople.length === 0) {
+            this.invitePeople.push('empty');
+        }
     }
 
     static _inputIsValid(input) {
-        let parametersAreValid = ['yes', 'no', 'dunno', null].includes(input.registeredToVote)
-            && ['yes', 'nope', null].includes(input.absenteeBallor)
-            && ['colorado', 'oregon', 'washington', 'nope', null].includes(input.voteInState)
-            && ['yes', 'no', 'dunno', null].includes(input.pollingLocation)
-            && ['yeah', 'nah', null].includes(input.specialAccomodations)
-            && ['drive', 'walk', 'uber/lyft', 'ask a friend', 'bike', null].includes(input.transportation)
-            && ['yes', 'no', 'maybe', null].includes(input.leaveWork)
-            && ['yep!', 'not yet', null].includes(input.receivedBallot)
-            && ['yep!', 'naw', null].includes(input.knowDeadline)
-            && ['gonna mail it', 'gonna drop it of at a ballot box', null].includes(input.howToDropOffBallot)
-            && ['yes', 'no', null].includes(input.knowBallot)
-            && Survey._invitePeopleListIsValid(input)
-            && ['Excited', 'Happy', 'Sad', 'Meh', 'Angry', 'Concerned', 'Nervous', 'Shocked'].includes(input.feeling)
-            && input.email !== null;
+        Survey._isParameterValid(['yes', 'no', 'dunno', null], input.registeredToVote);
+        Survey._isParameterValid(['yes', 'nope', null], input.absenteeBallor);
+        Survey._isParameterValid(['colorado', 'oregon', 'washington', 'nope', null], input.voteInState);
+        Survey._isParameterValid(['yes', 'no', 'dunno', null], input.pollingLocation);
+        Survey._isParameterValid(['yeah', 'nah', null], input.specialAccomodations);
+        Survey._isParameterValid(['drive', 'walk', 'uber/lyft', 'ask a friend', 'bike', null], input.transportation);
+        Survey._isParameterValid(['yes', 'no', 'maybe', null], input.leaveWork);
+        Survey._isParameterValid(['yep!', 'not yet', null], input.receivedBallot);
+        Survey._isParameterValid(['yep!', 'naw', null], input.knowDeadline);
+        Survey._isParameterValid(['gonna mail it', 'gonna drop it of at a ballot box', null], input.howToDropOffBallot);
+        Survey._isParameterValid(['yes', 'no', null], input.knowBallot);
+        Survey._isParameterValid(['Excited', 'Happy', 'Sad', 'Meh', 'Angry', 'Concerned', 'Nervous', 'Shocked'], input.feeling);
+        if (!Survey._invitePeopleListIsValid(input)) {
+            throw new Error("The invite people list is not valid");
+        }
 
-        if (parametersAreValid) {
-            return Survey._flowIsValid(input);
-        } else {
-            return false;
+        if (input.email === null) {
+            throw new Error("Email cannot be null");
+        }
+
+        if (!Survey._flowIsValid(input)) {
+            throw new Error("The flow is not valid");
+        }
+    }
+
+    static _isParameterValid(list, parameter) {
+        if (!list.includes(parameter)) {
+            throw new Error(parameter + " is not valid!");
         }
     }
 
@@ -65,7 +80,7 @@ module.exports = class Survey {
             return true;
         } else {
             if (Array.isArray(input.invitePeople)) {
-                let validOptions = ['Mom(s)', 'Dad(s)', 'Sibling(s)', 'Coworker(s)', 'Friend(s)'];
+                let validOptions = ['Mom(s)', 'Dad(s)', 'Sibling(s)', 'Coworker(s)', 'Friend(s)', 'empty'];
                 return input.invitePeople.filter((item) => validOptions.includes(item)).length === input.invitePeople.length;
             } else {
                 return false;
@@ -75,9 +90,7 @@ module.exports = class Survey {
 
     static getInstance(item) {
         item = new Survey(item);
-        if (!Survey._inputIsValid(item)) {
-            throw new Error('Invalid parameters ' + JSON.stringify(item));
-        }
+        Survey._inputIsValid(item);
         return item;
     }
 };
