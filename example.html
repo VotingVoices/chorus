@@ -43,10 +43,7 @@
 </div>
 <script>
     let app = angular.module('voting', []);
-    app.config(function ($httpProvider) {
-        //Enable cross domain calls
-        $httpProvider.defaults.useXDomain = true;
-    });
+
     app.controller('votingControl', function ($scope, $http) {
         $scope.submit = function () {
             let result = {};
@@ -65,10 +62,10 @@
             console.log(JSON.stringify(result) + " is going to be sent to the server");
             $http({
                 method: "POST",
-                url: "https://bj891i8162.execute-api.us-west-2.amazonaws.com/Prod/SaveSurveyResult",
+                url: "https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult",
                 data: result
             }).then(function mySuccess(response) {
-                alert("success " + JSON.stringify(response));
+                alert("success " + response.data);
             }, function myError(response) {
                 alert(response);
             });
