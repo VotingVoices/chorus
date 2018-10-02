@@ -30,6 +30,10 @@
   font-size: large;
 }
 
+.VotingVoices-serif {
+  font-family: serif;   /* TODO: Georgia? */
+}
+
 
 /* Cross-fade transition */
 

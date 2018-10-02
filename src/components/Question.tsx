@@ -24,7 +24,7 @@ class InternalQuestion extends React.Component<IQuestionProps & IConnectedReduxP
 
         return (
             <div>
-                <div className="question-label">{label}</div>
+                <div className="question-label VotingVoices-serif">{label}</div>
                 <div className="answer-group">
                     {answers.map(
                         (answerId: AnswerId) => {
