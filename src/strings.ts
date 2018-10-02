@@ -526,3 +526,19 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
             throw new Error(`Unrecognized PlanStepId: ${step}`);
     }
 }
+
+function numberToString(n: number): string {
+    switch (n) {
+        case 1:
+            return "One";
+        case 2:
+            return "Two";
+        default:
+            return `${n}`;
+    }
+}
+
+export function planStepHeaderFormattedString(index: number, header: string) {
+    const numberString = numberToString(index + 1);
+    return `Step ${numberString}: ${header}`;
+}

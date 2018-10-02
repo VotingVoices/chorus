@@ -21,11 +21,11 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 
 				<div>
 					{ALL_QUESTION_IDS.map(
-						(questionId: QuestionId) => {
+						(questionId: QuestionId, index) => {
 							const answer = this.props.answers.find(qa => qa.questionId === questionId);
 
 							if (answer !== undefined) {
-								return <PlanStep questionId={questionId} answerId={answer!.answerId} votingStateId={this.props.votingStateId} />
+								return <PlanStep index={index} questionId={questionId} answerId={answer!.answerId} votingStateId={this.props.votingStateId} />
 							}
 							else {
 								return <React.Fragment />

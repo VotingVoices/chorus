@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { AnswerId, QUESTIONS, QuestionId, VotingStateId } from '../store';
-import { getPlanStepStrings } from '../strings';
+import { getPlanStepStrings, planStepHeaderFormattedString } from '../strings';
 
 interface IPlanStepProps {
+	index: number,
 	questionId: QuestionId,
 	answerId: AnswerId,
 	votingStateId: VotingStateId,
@@ -10,7 +11,7 @@ interface IPlanStepProps {
 
 export class PlanStep extends React.Component<IPlanStepProps, any> {
 	public render() {
-		const { questionId, answerId, votingStateId } = this.props;
+		const { index, questionId, answerId, votingStateId } = this.props;
 
 		const question = QUESTIONS.find(q => q.id === questionId);
 
@@ -19,9 +20,11 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 		if (planStepId !== undefined) {
 			const { header, text, callToAction, link } = getPlanStepStrings(planStepId, votingStateId);
 
+			const fullHeaderString = planStepHeaderFormattedString(index, header);
+
 			return (
 				<div key={planStepId}>
-					<h1>{header}</h1>
+					<h1>{fullHeaderString}</h1>
 					<p>{text}</p>
 
 					{ this.renderCallToAction(callToAction, link) }
