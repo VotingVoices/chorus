@@ -30,7 +30,7 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 			
 			return (
 				<div key={planStepId}>
-					<h1 className="plan-step-header">{fullHeaderString}</h1>
+					<h1 className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</h1>
 					<p className="plan-step-text VotingVoices-serif">{text}</p>
 
 					{ this.renderCallToAction(callToAction, link) }

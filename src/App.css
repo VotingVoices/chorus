@@ -16,7 +16,7 @@
 
 .App-title {
   font-size: 150px;
-  font-family:"Pacifico";
+  font-family: "Pacifico";
   text-shadow: 5px 5px #1b2757;
 }
 
@@ -32,6 +32,10 @@
 
 .VotingVoices-serif {
   font-family: Georgia, Times, Times New Roman, serif;
+}
+
+.VotingVoices-sans-serif {
+  font-family: "Oswald", sans-serif;
 }
 
 
