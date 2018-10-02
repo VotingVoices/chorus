@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'AlternateGothicNo3';
+  src: url('./fonts/AlternateGothicNo3-webfont.woff2') format('woff2'),
+       url('./fonts/AlternateGothicNo3-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .App {
   text-align: center;
   background: white;
@@ -35,7 +43,7 @@
 }
 
 .VotingVoices-sans-serif {
-  font-family: "Oswald", sans-serif;
+  font-family: "AlternateGothicNo3", sans-serif;
 }
 
 
