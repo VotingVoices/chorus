@@ -92,6 +92,7 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				...DEFAULT_STATE,
 				currentView: AppView.Questionnaire,
 				answers: [],
+				dotNavStep: 1,
 				mostRecentTransition: MostRecentTransition.Back,
 			};
 		}
