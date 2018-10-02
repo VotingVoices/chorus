@@ -45,7 +45,7 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 	private renderCallToAction(callToAction: string | undefined, link: string | undefined): JSX.Element {
 		if (callToAction !== undefined && link !== undefined) {
 			// TODO: Link should open in a new tab.
-			return <a href={link!} className="plan-step-call-to-action">{callToAction!}</a>
+			return <a href={link!} className="plan-step-call-to-action VotingVoices-sans-serif">{callToAction!}</a>
 		}
 		else {
 			return <React.Fragment />
