@@ -13,7 +13,7 @@ interface IPropsFromDispatch {
 class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
 	public render(): JSX.Element {
 		return (
-            <header className="App-header Gradient-background">
+            <header className="Landing-page-header Gradient-background">
                 <h1 className="App-title">Voting Voices</h1>
                 <Button type="button" onClick={this.onStartClick()}>Start Your Plan</Button>
             </header>

@@ -4,6 +4,8 @@ import { PlanStep } from './PlanStep';
 import { StartOverButton } from './StartOverButton';
 import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, VotingStateId } from '../store';
 
+import './Plan.css';
+
 interface IPlanProps {
 	answers: IQuestionAndAnswer[],
 	votingStateId: VotingStateId,
@@ -19,7 +21,7 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 
 		return (
 			<div className="App">
-				<header className="App-header">
+				<header className="Plan-header Gradient-background">
 					<p>This is your voting plan.</p>
 				</header>
 
