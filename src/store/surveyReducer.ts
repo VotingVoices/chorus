@@ -84,7 +84,7 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				currentView: AppView.Questionnaire,
 				answers: [],
 				dotNavStep: 1,
-				mostRecentTransition: MostRecentTransition.Forward,
+				counter: DEFAULT_STATE.counter + 1,
 			};
 		}
 		case QuestionnaireActionType.START_OVER: {

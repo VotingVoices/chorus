@@ -3,7 +3,10 @@ import * as queryString from 'query-string';
 import { ALL_QUESTION_IDS, AppView, getVotingStateId, IQuestionAndAnswer, IQuestionnaireState, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
 
 function getViewFromPath(pathname: string): AppView | undefined {
-	if (pathname === '/Survey') {
+	if (pathname === '/LandingPage') {
+		return AppView.LandingPage;
+	}
+	else if (pathname === '/Survey') {
 		return AppView.Questionnaire;
 	}
 	else if (pathname === '/Plan') {
@@ -15,14 +18,15 @@ function getViewFromPath(pathname: string): AppView | undefined {
 
 function dotNavStepFromAppView(appView: AppView): number {
 	switch (appView) {
+		case AppView.LandingPage: {
+			return 0;
+		}
 		case AppView.Questionnaire: {
 			return 1;
 		}
-
 		case AppView.Plan: {
 			return PLAN_DOT_NAV_STEP;
 		}
-
 		default: {
 			throw new Error('Unrecognized AppView');
 		}
