@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Store, AnyAction } from 'redux';
 import { Provider } from 'react-redux';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 
 import App from './App';
 import configureStore from './configureStore';
@@ -12,7 +12,7 @@ import { AppView, DEFAULT_STATE, IQuestionnaireState, push } from './store';
 
 import './index.css';
 
-const history = createBrowserHistory();
+const history = createHashHistory();
 
 const readStateResult = readStateFromLocation(DEFAULT_STATE, history.location.pathname, history.location.search);
 
