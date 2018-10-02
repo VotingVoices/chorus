@@ -15,7 +15,7 @@ class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsF
 		return (
             <header className="Landing-page-header Gradient-background">
                 <h1 className="App-title">Voting Voices</h1>
-                <Button type="button" onClick={this.onStartClick()}>Start Your Plan</Button>
+                <Button type="button" className="VotingVoices-button" onClick={this.onStartClick()}>Start Your Plan</Button>
             </header>
 		);
 	}
