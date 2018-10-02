@@ -158,7 +158,6 @@ export interface IPlanStepStrings {
 }
 
 export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPlanStepStrings {
-    // TODO: The '&em;' escape string doesn't work.
     switch (step) {
         case PlanStepId.Register: {
             return {
@@ -327,7 +326,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
         case PlanStepId.DoubleCheckPollingLocation: {
             return {
                 header: "Your polling location: has it moved?",
-                text: "Things change &em; make sure you're aware of your area's best polling locations and hours.",
+                text: "Things change \u2014 make sure you're aware of your area's best polling locations and hours.",
                 callToAction: "This way to the polls (scroll for your state)!",
                 link: "https://www.vote.org/polling-place-locator/",
             }
@@ -409,7 +408,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
         case PlanStepId.ReviewBallotIssues: {
             return {
                 header: "Your ballot, in a nutshell",
-                text: "You're familiar with the candidates and issues &em; now put it all together using this handy app.",
+                text: "You're familiar with the candidates and issues \u2014 now put it all together using this handy app.",
                 callToAction: "Plan your ballot choices",
                 link: "https://www.ballotready.org/",
             }
@@ -427,7 +426,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
         case PlanStepId.InvitePeople: {
             return {
                 header: "Invite your crowd to VotePlan!",    // TODO: Review: "your crowd?",
-                text: "Let's keep each other accountable &em; voting's even better when we can do it together! Share your plans with the people in your life.",
+                text: "Let's keep each other accountable \u2014 voting's even better when we can do it together! Share your plans with the people in your life.",
                 callToAction: undefined,
                 link: undefined,
             }
@@ -455,7 +454,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
         case PlanStepId.DriveChange: {
             return {
                 header: "Remember your reason for voting!",
-                text: "FOR CHANGE. You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message &em; pass it on!",
+                text: "FOR CHANGE. You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
                 callToAction: undefined,
                 link: undefined,
             }
@@ -473,7 +472,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
         case PlanStepId.OtherReason: {
             return {
                 header: "Remember your reason for voting!",
-                text: "CIVIC DUTY.  You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message &em; pass it on!",
+                text: "CIVIC DUTY.  You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
                 callToAction: undefined,
                 link: undefined,
             }
@@ -486,30 +485,30 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
         case PlanStepId.Meh: {
             let header = "Put those feelings toward action";
             let text: string | undefined;
-            const callToAction: string | undefined = "Your voice matters &em; take a look";
+            const callToAction: string | undefined = "Your voice matters \u2014 take a look";
             const link: string | undefined = "https://www.whenweallvote.org/";
 
             switch (step) {
                 case PlanStepId.Excited: {
                     header = "You're excited about voting!";
-                    text = "Well, great &em; you're not the only one! Watch this and keep participating!";
+                    text = "Well, great \u2014 you're not the only one! Watch this and keep participating!";
                     break;
                 }
                 case PlanStepId.Concerned: {
                     header = "Put those feelings toward voting action";
-                    text = "You're feeling concerned &em; we get it! These are complicated times. Watch this and get inspired.";
+                    text = "You're feeling concerned \u2014 we get it! These are complicated times. Watch this and get inspired.";
                     break;
                 }
                 case PlanStepId.Shocked: {
-                    text = "You're feeling shocked &em; we get it! These are complicated times. Watch this and get inspired.";
+                    text = "You're feeling shocked \u2014 we get it! These are complicated times. Watch this and get inspired.";
                     break;
                 }
                 case PlanStepId.Angry: {
-                    text = "You're feeling angry &em; we get it! These are complicated times. Watch this and get inspired.";
+                    text = "You're feeling angry \u2014 we get it! These are complicated times. Watch this and get inspired.";
                     break;
                 }
                 case PlanStepId.Meh: {
-                    text = "Feeling ambivalent? Your voting plans are taking shape &em; now get out there!";
+                    text = "Feeling ambivalent? Your voting plans are taking shape \u2014 now get out there!";
                     break;
                 }
                 default:
