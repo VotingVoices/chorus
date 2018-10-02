@@ -1,9 +1,10 @@
 import * as React from 'react';
+import { IIndexHolder } from './Plan';
 import { AnswerId, QUESTIONS, QuestionId, VotingStateId } from '../store';
 import { getPlanStepStrings, planStepHeaderFormattedString } from '../strings';
 
 interface IPlanStepProps {
-	index: number,
+	indexHolder: IIndexHolder,
 	questionId: QuestionId,
 	answerId: AnswerId,
 	votingStateId: VotingStateId,
@@ -11,7 +12,7 @@ interface IPlanStepProps {
 
 export class PlanStep extends React.Component<IPlanStepProps, any> {
 	public render() {
-		const { index, questionId, answerId, votingStateId } = this.props;
+		const { indexHolder, questionId, answerId, votingStateId } = this.props;
 
 		const question = QUESTIONS.find(q => q.id === questionId);
 
@@ -20,8 +21,11 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 		if (planStepId !== undefined) {
 			const { header, text, callToAction, link } = getPlanStepStrings(planStepId, votingStateId);
 
-			const fullHeaderString = planStepHeaderFormattedString(index, header);
+			const fullHeaderString = planStepHeaderFormattedString(indexHolder.index, header);
 
+			// Increment the index holder so that the next plan step uses the next number.
+			indexHolder.index++;
+			
 			return (
 				<div key={planStepId}>
 					<h1>{fullHeaderString}</h1>

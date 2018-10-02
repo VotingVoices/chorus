@@ -9,8 +9,14 @@ interface IPlanProps {
 	votingStateId: VotingStateId,
 }
 
+export interface IIndexHolder {
+	index: number;
+}
+
 class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, any> {
 	public render() {
+		const indexHolder = { index: 0 } as IIndexHolder;
+
 		return (
 			<div className="App">
 				<header className="App-header">
@@ -21,11 +27,11 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 
 				<div>
 					{ALL_QUESTION_IDS.map(
-						(questionId: QuestionId, index) => {
+						(questionId: QuestionId) => {
 							const answer = this.props.answers.find(qa => qa.questionId === questionId);
 
 							if (answer !== undefined) {
-								return <PlanStep index={index} questionId={questionId} answerId={answer!.answerId} votingStateId={this.props.votingStateId} />
+								return <PlanStep indexHolder={indexHolder} questionId={questionId} answerId={answer!.answerId} votingStateId={this.props.votingStateId} />
 							}
 							else {
 								return <React.Fragment />
