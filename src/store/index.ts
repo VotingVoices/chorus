@@ -1,4 +1,4 @@
-export { answerQuestion, startOver } from './Actions';
+export { startSurvey, startOver, answerQuestion } from './Actions';
 export * from './Types';
 export { surveyReducer, DEFAULT_STATE } from './surveyReducer';
 export { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';		// TODO: Move IQuestion into its own file?

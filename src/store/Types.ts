@@ -122,8 +122,9 @@ export interface IQuestionnaireState {
 }
 
 export const enum QuestionnaireActionType {
-	ANSWER_QUESTION = 'QUESTIONNAIRE/ANSWER_QUESTION',
+	START_SURVEY = 'QUESTIONNAIRE/START_SURVEY',
 	START_OVER = 'QUESTIONNAIRE/START_OVER',
+	ANSWER_QUESTION = 'QUESTIONNAIRE/ANSWER_QUESTION',
 }
 
 export interface IConnectedReduxProps<A extends Action = AnyAction> {

@@ -14,7 +14,7 @@ export const DEFAULT_STATE = {
 	votingStateId: undefined,
 	currentView: AppView.LandingPage,
 	currentQuestionId: QuestionId.AreYouRegistered,
-	dotNavStep: 1,
+	dotNavStep: 0,
 	counter: 1,
 	mostRecentTransition: undefined,
 } as IQuestionnaireState;
@@ -78,8 +78,14 @@ function respondToBackOrForwardButton(prevState: IQuestionnaireState, pathname: 
 
 export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnaireState, action: QuestionnaireAction) => {
 	switch (action.type) {
-		case QuestionnaireActionType.ANSWER_QUESTION: {
-			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
+		case QuestionnaireActionType.START_SURVEY: {
+			return {
+				...DEFAULT_STATE,
+				currentView: AppView.Questionnaire,
+				answers: [],
+				dotNavStep: 1,
+				mostRecentTransition: MostRecentTransition.Forward,
+			};
 		}
 		case QuestionnaireActionType.START_OVER: {
 			return {
@@ -88,6 +94,9 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				answers: [],
 				mostRecentTransition: MostRecentTransition.Back,
 			};
+		}
+		case QuestionnaireActionType.ANSWER_QUESTION: {
+			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
 		}
 		case RouterActionType.LOCATION_CHANGE: {
 			if (action.payload.historyAction === "POP") {

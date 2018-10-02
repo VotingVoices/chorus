@@ -1,19 +1,37 @@
 import * as React from 'react';
-
-import { IConnectedReduxProps } from '../store';
+import { Button } from 'react-bootstrap';
+import { connect} from 'react-redux';
+import { Dispatch } from 'redux';
+import { IConnectedReduxProps, startSurvey } from '../store';
 
 import '../App.css';
-import { StartOverButton } from './StartOverButton';
 
-class InternalLandingPage extends React.Component<IConnectedReduxProps, any> {
+interface IPropsFromDispatch {
+	startSurvey: typeof startSurvey,
+}
+
+class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
 	public render(): JSX.Element {
 		return (
             <header className="App-header">
                 <h1 className="App-title">Voting Voices</h1>
-                <StartOverButton {...this.props} />
+                <Button type="button" onClick={this.onStartClick()}>Start Your Plan</Button>
             </header>
 		);
 	}
+
+	private onStartClick() {
+		return (ev: React.MouseEvent<Button>) => {
+			this.props.startSurvey();
+		};
+	}
 }
 
-export const LandingPage = InternalLandingPage;
+const mapStateToProps = () => ({
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    startSurvey: () => dispatch(startSurvey())
+});
+
+export const LandingPage = connect(mapStateToProps, mapDispatchToProps)(InternalLandingPage);
