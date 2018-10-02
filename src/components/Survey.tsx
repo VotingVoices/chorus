@@ -20,32 +20,30 @@ interface IPropsFromState {
 class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
 	public render(): JSX.Element {
 		return (
-			<header className="App-header">
-				<div className="Survey-body">
-					<ReactCSSTransitionReplace
-						transitionName={this.props.transitionName}
-						transitionEnterTimeout={1000}
-						transitionLeaveTimeout={400} >
-						<Question
-							{...this.props}
-							key={this.props.question.id}
-							questionId={this.props.question.id}
-							answers={QUESTIONS.find(q => q.id === this.props.question.id)!.answers} />
-					</ReactCSSTransitionReplace>
+			<div className="Survey-body Gradient-background">
+				<ReactCSSTransitionReplace
+					transitionName={this.props.transitionName}
+					transitionEnterTimeout={1000}
+					transitionLeaveTimeout={400} >
+					<Question
+						{...this.props}
+						key={this.props.question.id}
+						questionId={this.props.question.id}
+						answers={QUESTIONS.find(q => q.id === this.props.question.id)!.answers} />
+				</ReactCSSTransitionReplace>
 
-					<div>
-						<DotNavigationBar
-							stepCount={PLAN_DOT_NAV_STEP - 1}
-							currentStep={this.props.dotNavStep}
-							color='#E8E8E8'
-							intervalWidth={50}
-							strokeWidth={3}
-							dotRadius={8} />
-					</div>
-
-					<StartOverButton {...this.props} />
+				<div>
+					<DotNavigationBar
+						stepCount={PLAN_DOT_NAV_STEP - 1}
+						currentStep={this.props.dotNavStep}
+						color='#E8E8E8'
+						intervalWidth={50}
+						strokeWidth={3}
+						dotRadius={8} />
 				</div>
-			</header>
+
+				<StartOverButton {...this.props} />
+			</div>
 		);
 	}
 }
