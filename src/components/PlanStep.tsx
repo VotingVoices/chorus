@@ -3,6 +3,8 @@ import { IIndexHolder } from './Plan';
 import { AnswerId, QUESTIONS, QuestionId, VotingStateId } from '../store';
 import { getPlanStepStrings, planStepHeaderFormattedString } from '../strings';
 
+import './PlanStep.css';
+
 interface IPlanStepProps {
 	indexHolder: IIndexHolder,
 	questionId: QuestionId,
@@ -28,8 +30,8 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 			
 			return (
 				<div key={planStepId}>
-					<h1>{fullHeaderString}</h1>
-					<p>{text}</p>
+					<h1 className="plan-step-header">{fullHeaderString}</h1>
+					<p className="plan-step-text">{text}</p>
 
 					{ this.renderCallToAction(callToAction, link) }
 				</div>
@@ -43,7 +45,7 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 	private renderCallToAction(callToAction: string | undefined, link: string | undefined): JSX.Element {
 		if (callToAction !== undefined && link !== undefined) {
 			// TODO: Link should open in a new tab.
-			return <h3><a href={link!}>{callToAction!}</a></h3>
+			return <a href={link!} className="plan-step-call-to-action">{callToAction!}</a>
 		}
 		else {
 			return <React.Fragment />
