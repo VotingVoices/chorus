@@ -1,14 +1,15 @@
 import * as React from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
+import vvlogo from './vvlogo.png'
 
 export class HeaderNavigationBar extends React.Component<any, any> {
 	public render(): JSX.Element {
 		return (
-			<Navbar>
+			<Navbar className="vv-navbar">
                 <Navbar.Header>
                     <Navbar.Brand>
                         <a href="#/LandingPage">
-                            Voting Voices
+                            <img src={vvlogo} />
                         </a>    
                     </Navbar.Brand>
                     <Navbar.Toggle />
