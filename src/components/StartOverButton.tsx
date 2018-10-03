@@ -11,7 +11,7 @@ interface IPropsFromDispatch {
 class InternalStartOverButton extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
 	public render(): JSX.Element {
 		return (
-			<Button type="button" className="VotingVoices-button" onClick={this.onStartOverClick()}>Start Over</Button>
+			<Button type="button" className="vv-button start-over-button" onClick={this.onStartOverClick()}>Start Over</Button>
 		);
 	}
 

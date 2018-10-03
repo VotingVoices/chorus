@@ -72,12 +72,9 @@
   font-family: "AlternateGothicNo3";
 }
 
-.VotingVoices-button {
-  margin-top: 30px;
-  margin-bottom: 30px;
+.vv-button {
   background: none;
   text-transform: uppercase;
-  color: white;
   font-family: "AlternateGothicNo3";
   font-size: 16pt;
   padding-top: 0;
@@ -87,9 +84,22 @@
   border-radius: 8px;
 }
 
+.start-over-button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: white;
+}
+
 .start-plan-button {
+  margin-top: 30px;
+  margin-bottom: 30px;
   background: #e81c38;
+  color: white;
   font-size: 20pt;
+}
+
+.contact-about-button {
+  border: none;
 }
 
 /* TODO: Apply this responsive styling to the new grid-based layout */;
