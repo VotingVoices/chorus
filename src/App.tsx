@@ -22,7 +22,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 	public render(): JSX.Element {
 		return (
 			<div className="App root-grid">
-				<div className="page-header">
+				<div className="vv-page-header">
 					<div className="header-logo">
 						<a href="#/LandingPage"><img src={vvlogo} /></a>
 					</div>

@@ -17,7 +17,7 @@
   grid-template-rows: 100px auto 100px;
 }
 
-.page-header {
+.vv-page-header {
   grid-row: 1;
   display: grid;
   grid-template-columns: 50% 50%;
