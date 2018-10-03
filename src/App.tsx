@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import './index.css';
 import './App.css';
-import { Plan, Survey, LandingPage } from './components';
+import { Plan, Survey, LandingPage, HeaderNavigationBar } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
 import { getTransitionName } from './transitionNames';
 
@@ -18,8 +18,8 @@ interface IPropsFromState {
 class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 	public render(): JSX.Element {
 		return (
-			<div className="App">
-				<div>Nav Bar</div>
+			<div className="App">	
+				<HeaderNavigationBar />
 				<ReactCSSTransitionReplace
 					transitionName={this.props.transitionName}
 					transitionEnterTimeout={1000}
