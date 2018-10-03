@@ -1,4 +1,4 @@
-.dot {
+.answer-button {
 	height: 120px;
 	width: 120px;
 	margin: 20px;
@@ -10,6 +10,8 @@
 	align-items: center;
 	justify-content: center;
 	text-transform: uppercase;
+	font-family: "AlternateGothicNo3";
+	font-size: 28px;
 	cursor: default;
 }
 

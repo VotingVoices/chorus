@@ -15,7 +15,7 @@ export class Answer extends React.Component<IAnswerProps, any> {
 		const label = getAnswerLabel(answerId);
 
 		return (
-			<span className="dot" onClick={this._onClick}>
+			<span className="answer-button" onClick={this._onClick}>
 				{label}
 			</span>
 		);
