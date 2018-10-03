@@ -37,8 +37,10 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 					transitionLeaveTimeout={400} >
 					{this.renderViewSpecificContent()}
 				</ReactCSSTransitionReplace>
-				<div>Donations</div>
-				<div>Footer / Logo / Legal?</div>
+
+				<div className="vv-page-footer">
+					&copy;2018 Voting Voices.  All rights reserved.
+				</div>
 			</div>
 		);
 	}
