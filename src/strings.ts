@@ -75,7 +75,7 @@ export function getAnswerLabel(answer: AnswerId): string {
 			return 'Colorado';
 
 		case AnswerId.OtherState:
-			return 'I\'m voting in a different state';
+			return 'Another state';
 
 		case AnswerId.DriveMyself:
 			return 'Drive myself';
@@ -114,7 +114,7 @@ export function getAnswerLabel(answer: AnswerId): string {
 			return 'Co-worker(s)';
 		
 		case AnswerId.Alone:
-			return 'I\'m going it alone this time';
+			return 'Not at this time';
 
 		case AnswerId.Kids:
 			return 'My kids / family';
