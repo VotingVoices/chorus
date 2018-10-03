@@ -75,7 +75,7 @@ export function getAnswerLabel(answer: AnswerId): string {
 			return 'Colorado';
 
 		case AnswerId.OtherState:
-			return 'I\'m voting in a different state';
+			return 'Another state';
 
 		case AnswerId.DriveMyself:
 			return 'Drive myself';
