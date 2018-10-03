@@ -35,6 +35,8 @@
 .right-buttons {
   grid-column: 2;
   text-align: right;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .Gradient-background {
