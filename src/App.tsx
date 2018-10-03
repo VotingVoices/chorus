@@ -4,9 +4,11 @@ import { connect } from 'react-redux';
 
 import './index.css';
 import './App.css';
-import { Plan, Survey, LandingPage, HeaderNavigationBar } from './components';
+import { Plan, Survey, LandingPage } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
 import { getTransitionName } from './transitionNames';
+
+import vvlogo from './components/vvlogo.png'
 
 interface IPropsFromState {
 	currentView: AppView,
@@ -18,8 +20,13 @@ interface IPropsFromState {
 class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 	public render(): JSX.Element {
 		return (
-			<div className="App">	
-				<HeaderNavigationBar />
+			<div className="App root-grid">
+				<div className="page-header">
+					<a href="#/LandingPage">
+						<img src={vvlogo} />
+					</a>
+				</div>
+
 				<ReactCSSTransitionReplace
 					transitionName={this.props.transitionName}
 					transitionEnterTimeout={1000}

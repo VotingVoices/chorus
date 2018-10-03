@@ -12,6 +12,15 @@
   color: black;
 }
 
+.root-grid {
+  display: grid;
+  grid-template-rows: 100px auto 100px;
+}
+
+.page-header {
+  grid-row: 1;
+}
+
 .Gradient-background {
   background-image: linear-gradient(#e81c38, #1c2856);
 }
