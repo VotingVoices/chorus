@@ -24,8 +24,8 @@
 }
 
 @media only screen and (max-width: 420px) {
-  .App-title {
-    font-size: 72pt;
+  .voteplan-title {
+    font-size: 68px;  
   }
 }
 
