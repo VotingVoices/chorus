@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from 'react-bootstrap';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { connect } from 'react-redux';
 
@@ -22,9 +23,12 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 		return (
 			<div className="App root-grid">
 				<div className="page-header">
-					<a href="#/LandingPage" className="header-logo">
-						<img src={vvlogo} />
-					</a>
+					<div className="header-logo">
+						<a href="#/LandingPage"><img src={vvlogo} /></a>
+					</div>
+					<div className="right-buttons">
+						<Button type="button">Contact</Button>
+					</div>
 				</div>
 
 				<ReactCSSTransitionReplace

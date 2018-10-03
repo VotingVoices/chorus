@@ -28,6 +28,11 @@
   text-align: left;
 }
 
+.right-buttons {
+  grid-column: 2;
+  text-align: right;
+}
+
 .Gradient-background {
   background-image: linear-gradient(#e81c38, #1c2856);
 }
