@@ -19,6 +19,13 @@
 
 .page-header {
   grid-row: 1;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.header-logo {
+  grid-column: 1;
+  text-align: left;
 }
 
 .Gradient-background {
