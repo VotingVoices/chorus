@@ -14,13 +14,17 @@
 
 .root-grid {
   display: grid;
-  grid-template-rows: 100px auto 100px;
+  grid-template-rows: auto auto 100px;
 }
 
 .vv-page-header {
   grid-row: 1;
   display: grid;
   grid-template-columns: 50% 50%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .header-logo {
