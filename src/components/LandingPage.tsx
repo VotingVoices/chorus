@@ -16,7 +16,7 @@ class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsF
 	public render(): JSX.Element {
 		return (
             <header className="landing-page-header Gradient-background">
-                <h1 className="App-title">VotePlan</h1>
+                <h1 className="voteplan-title landing-page-title">VotePlan</h1>
                 <img src={poweredbyVV} />
                 <div className="landing-page-slogan VotingVoices-serif">Plan your vote, invite others, and get ready!</div>
                 <Button type="button" className="VotingVoices-button start-plan-button" onClick={this.onStartClick()}>Start Your Plan</Button>

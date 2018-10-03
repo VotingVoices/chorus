@@ -24,7 +24,7 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 				<header className="Plan-header Gradient-background">
 					<p>Congratulations! Here's your</p>
 
-                	<h1 className="App-title">VotePlan</h1>
+                	<h1 className="voteplan-title">VotePlan</h1>
 
 					<StartOverButton {...this.props} />
 				</header>

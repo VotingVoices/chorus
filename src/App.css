@@ -16,11 +16,10 @@
   background-image: linear-gradient(#e81c38, #1c2856);
 }
 
-.App-title {
+.voteplan-title {
   font-size: 150px;
   font-family: "Pacifico";
   text-shadow: 5px 5px #1b2757;
-  margin-top: 100px;
   padding-bottom: 10px;
 }
 
