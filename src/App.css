@@ -14,7 +14,7 @@
 
 .root-grid {
   display: grid;
-  grid-template-rows: auto auto 100px;
+  grid-template-rows: auto auto 140px;
 }
 
 .vv-page-header {
@@ -31,6 +31,13 @@
   border-image-slice: 1;
 }
 
+.vv-page-footer {
+  grid-row: 3;
+  background-color: #333333;
+  color: #999999;
+  padding-top: 60px;
+}
+
 .header-logo {
   grid-column: 1;
   text-align: left;
@@ -41,6 +48,10 @@
   text-align: right;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.footer-text {
+  font-size: 12pt;
 }
 
 .Gradient-background {

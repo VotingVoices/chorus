@@ -38,8 +38,8 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 					{this.renderViewSpecificContent()}
 				</ReactCSSTransitionReplace>
 
-				<div className="vv-page-footer">
-					&copy;2018 Voting Voices.  All rights reserved.
+				<div className="vv-page-footer VotingVoices-serif">
+					<span className="footer-text">&copy;2018 Voting Voices.  All rights reserved.</span>
 				</div>
 			</div>
 		);
