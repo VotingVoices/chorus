@@ -6,6 +6,7 @@ import { IConnectedReduxProps, startSurvey } from '../store';
 
 import '../App.css';
 import './LandingPage.css';
+import poweredbyVV from './poweredbyVV.png';
 
 interface IPropsFromDispatch {
 	startSurvey: typeof startSurvey,
@@ -14,8 +15,9 @@ interface IPropsFromDispatch {
 class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
 	public render(): JSX.Element {
 		return (
-            <header className="Landing-page-header Gradient-background">
-                <h1 className="App-title">Voting Voices</h1>
+            <header className="landing-page-header Gradient-background">
+                <h1 className="App-title">VotePlan</h1>
+                <img src={poweredbyVV} />
                 <div className="landing-page-slogan VotingVoices-serif">Plan your vote, invite others, and get ready!</div>
                 <Button type="button" className="VotingVoices-button start-plan-button" onClick={this.onStartClick()}>Start Your Plan</Button>
             </header>
