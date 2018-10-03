@@ -1,5 +1,16 @@
+.landing-page-header {
+  height: 600px;
+  padding: 20px;
+  color: white;
+}
+
+.landing-page-title {
+  margin-top: 100px;
+}
+
 .landing-page-slogan {
 	font-size: 36px;
+	margin-top: 30px;
 }
 
 @media only screen and (max-width: 420px) {
