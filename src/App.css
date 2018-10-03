@@ -12,6 +12,37 @@
   color: black;
 }
 
+.root-grid {
+  display: grid;
+  grid-template-rows: auto auto 100px;
+}
+
+.vv-page-header {
+  grid-row: 1;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  border-width: 0px 0px 10px 0px;
+  border-style: solid;
+  border-image: linear-gradient(to right, #1c2856, #e81c38);
+  border-image-slice: 1;
+}
+
+.header-logo {
+  grid-column: 1;
+  text-align: left;
+}
+
+.right-buttons {
+  grid-column: 2;
+  text-align: right;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
 .Gradient-background {
   background-image: linear-gradient(#e81c38, #1c2856);
 }
@@ -61,16 +92,7 @@
   font-size: 20pt;
 }
 
-.vv-navbar {
-  background: white;
-  height: 70px;
-  margin-bottom: 0px;
-  border-width: 0px 0px 10px 0px;
-  border-style: solid;
-  border-image: linear-gradient(to right, #1c2856, #e81c38);
-  border-image-slice: 1;
-}
-
+/* TODO: Apply this responsive styling to the new grid-based layout */;
 @media only screen and (max-width: 840px) {
   .vv-navbar img{
     width: 200px;
