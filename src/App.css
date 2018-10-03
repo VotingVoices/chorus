@@ -61,6 +61,11 @@
   border-radius: 8px;
 }
 
+.start-plan-button {
+  background: #e81c38;
+  font-size: 20pt;
+}
+
 
 /* Cross-fade transition */
 
