@@ -9,7 +9,8 @@ import { Plan, Survey, LandingPage } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
 import { getTransitionName } from './transitionNames';
 
-import vvlogo from './components/vvlogo.png'
+import vvlogo from './components/vvlogo.png';
+import vvlogo_w from './components/vvlogo_w.png';
 
 interface IPropsFromState {
 	currentView: AppView,
@@ -39,7 +40,8 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 				</ReactCSSTransitionReplace>
 
 				<div className="vv-page-footer VotingVoices-serif">
-					<span className="footer-text">&copy;2018 Voting Voices.  All rights reserved.</span>
+					<div className="footer-text">&copy;2018 Voting Voices.  All rights reserved.</div>
+					<div className="footer-logo"><img src={vvlogo_w} /></div>
 				</div>
 			</div>
 		);
