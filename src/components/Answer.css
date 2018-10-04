@@ -1,7 +1,8 @@
 .answer-button {
-	height: 140px;
-	width: 140px;
-	margin: 20px;
+	height: 110px;
+	width: 110px;
+	margin: 8px 20px 8px 20px;
+	padding: 8px;
 	background-color: transparent;
 	border: 1px solid white;
 	border-radius: 50%;
@@ -11,13 +12,13 @@
 	justify-content: center;
 	text-transform: uppercase;
 	font-family: "AlternateGothicNo3";
-	font-size: 28px;
+	font-size: 22px;
 	cursor: default;
 }
 
 @media only screen and (max-width: 840px) {
 	.answer-button {
-		margin: 2px 6px 2px 6px;
+		margin: 4px 6px 4px 6px;
 	}
 }
 

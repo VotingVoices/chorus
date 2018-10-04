@@ -9,7 +9,8 @@ import { Plan, Survey, LandingPage } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
 import { getTransitionName } from './transitionNames';
 
-import vvlogo from './components/vvlogo.png'
+import vvlogo from './components/vvlogo.png';
+import vvlogo_w from './components/vvlogo_w.png';
 
 interface IPropsFromState {
 	currentView: AppView,
@@ -27,7 +28,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 						<a href="#/LandingPage"><img src={vvlogo} /></a>
 					</div>
 					<div className="right-buttons">
-						<Button type="button">Contact</Button>
+						<Button type="button" className="vv-button contact-about-button">Contact</Button>
 					</div>
 				</div>
 
@@ -37,8 +38,11 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 					transitionLeaveTimeout={400} >
 					{this.renderViewSpecificContent()}
 				</ReactCSSTransitionReplace>
-				<div>Donations</div>
-				<div>Footer / Logo / Legal?</div>
+
+				<div className="vv-page-footer VotingVoices-serif">
+					<div className="footer-text">&copy;2018 Voting Voices.  All rights reserved.</div>
+					<div className="footer-logo"><img src={vvlogo_w} /></div>
+				</div>
 			</div>
 		);
 	}

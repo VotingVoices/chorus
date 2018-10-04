@@ -1,4 +1,8 @@
 .Plan-header {
-  padding: 20px;
-  color: white;
+	padding: 20px;
+	color: white;
+}
+
+.plan-congrats {
+	font-size: 28px;
 }

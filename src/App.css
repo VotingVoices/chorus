@@ -12,13 +12,13 @@
   color: black;
 }
 
-.root-grid {
-  display: grid;
-  grid-template-rows: auto auto 100px;
+.root-grid {  /* TODO: Rename now that we're no longer using a grid */;
+  display: flex;
+  flex-flow: column;
 }
 
 .vv-page-header {
-  grid-row: 1;
+  flex: 0 1 auto;
   display: grid;
   grid-template-columns: 50% 50%;
   padding-top: 12px;
@@ -31,9 +31,23 @@
   border-image-slice: 1;
 }
 
+.vv-page-footer {
+  flex: 0 1 320px;
+  background-color: #333333;
+  color: #999999;
+}
+
 .header-logo {
   grid-column: 1;
   text-align: left;
+}
+
+.footer-text {
+  margin-top: 150px;
+}
+
+.footer-logo {
+  margin-top: 34px;
 }
 
 .right-buttons {
@@ -41,6 +55,10 @@
   text-align: right;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+
+.footer-text {
+  font-size: 12pt;
 }
 
 .Gradient-background {
@@ -72,12 +90,9 @@
   font-family: "AlternateGothicNo3";
 }
 
-.VotingVoices-button {
-  margin-top: 30px;
-  margin-bottom: 30px;
+.vv-button {
   background: none;
   text-transform: uppercase;
-  color: white;
   font-family: "AlternateGothicNo3";
   font-size: 16pt;
   padding-top: 0;
@@ -87,9 +102,25 @@
   border-radius: 8px;
 }
 
+.start-over-button {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+}
+
 .start-plan-button {
+  margin-top: 30px;
+  margin-bottom: 30px;
   background: #e81c38;
-  font-size: 20pt;
+  color: white;
+  font-size: 24pt;
+  border: none;
+}
+
+.contact-about-button {
+  border: none;
 }
 
 /* TODO: Apply this responsive styling to the new grid-based layout */;
