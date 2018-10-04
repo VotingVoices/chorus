@@ -1,7 +1,7 @@
 .answer-button {
 	height: 140px;
 	width: 140px;
-	margin: 20px;
+	margin: 4px 20px 4px 20px;
 	background-color: transparent;
 	border: 1px solid white;
 	border-radius: 50%;

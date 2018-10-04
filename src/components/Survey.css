@@ -1,5 +1,15 @@
 .Survey-body {
-  height: 740px;
   padding: 20px;
   color: white;
+  display: flex;
+  flex-flow: column;
+}
+
+.question-container {
+	flex: 1 0 auto;
+	min-height: 450px;
+}
+
+.dot-navigation {
+	flex: 0 0 auto;
 }
