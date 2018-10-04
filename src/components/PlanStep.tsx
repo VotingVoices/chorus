@@ -30,8 +30,8 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 			
 			return (
 				<div key={planStepId}>
-					<h1 className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</h1>
-					<p className="plan-step-text VotingVoices-serif">{text}</p>
+					<div className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</div>
+					<div className="plan-step-text VotingVoices-serif">{text}</div>
 
 					{ this.renderCallToAction(callToAction, link) }
 				</div>
@@ -45,7 +45,7 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 	private renderCallToAction(callToAction: string | undefined, link: string | undefined): JSX.Element {
 		if (callToAction !== undefined && link !== undefined) {
 			// TODO: Link should open in a new tab.
-			return <a href={link!} className="plan-step-call-to-action VotingVoices-sans-serif">{callToAction!}</a>
+			return <div className="plan-step-call-to-action VotingVoices-sans-serif"><a href={link!}>{callToAction!}</a></div>
 		}
 		else {
 			return <React.Fragment />
