@@ -12,13 +12,13 @@
   color: black;
 }
 
-.root-grid {
-  display: grid;
-  grid-template-rows: auto auto 140px;
+.root-grid {  /* TODO: Rename now that we're no longer using a grid */;
+  display: flex;
+  flex-flow: column;
 }
 
 .vv-page-header {
-  grid-row: 1;
+  flex: 0 1 auto;
   display: grid;
   grid-template-columns: 50% 50%;
   padding-top: 12px;
@@ -32,7 +32,7 @@
 }
 
 .vv-page-footer {
-  grid-row: 3;
+  flex: 0 1 210px;
   background-color: #333333;
   color: #999999;
   padding-top: 60px;
