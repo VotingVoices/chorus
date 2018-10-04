@@ -22,7 +22,7 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 		return (
 			<div className="App">
 				<header className="Plan-header Gradient-background">
-					<p>Congratulations! Here's your</p>
+					<div className="plan-congrats VotingVoices-serif">Congratulations! Here's your</div>
 
                 	<h1 className="voteplan-title">VotePlan</h1>
 
