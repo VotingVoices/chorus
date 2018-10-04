@@ -8,6 +8,12 @@
 .question-container {
 	flex: 1 0 auto;
 	min-height: 450px;
+	display: table;
+}
+
+.question-child {
+	display: table-cell;
+	vertical-align: middle;
 }
 
 .dot-navigation {
