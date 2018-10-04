@@ -1,11 +1,11 @@
 .question-label {
-	font-size: 48px;
+	font-size: 40px;
 	margin-bottom: 40px;
 }
 
 @media only screen and (max-width: 420px) {
 	.question-label {
-		font-size: 36px;
+		font-size: 32px;
 	}
 }
 
