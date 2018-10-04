@@ -9,6 +9,7 @@
 	flex: 1 0 auto;
 	min-height: 450px;
 	display: table;
+	margin-bottom: 40px;
 }
 
 .question-child {
