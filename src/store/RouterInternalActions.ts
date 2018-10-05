@@ -1,5 +1,5 @@
 import { action } from 'typesafe-actions';
-import { IRouterPushReplacePayload, IRouterGoPayload, RouterInternalActionType, TelemetryActionType } from './InternalTypes';
+import { IRouterPushReplacePayload, IRouterGoPayload, RouterInternalActionType } from './InternalTypes';
 
 export const push = (href: string) =>
 	action(RouterInternalActionType.PUSH, { href } as IRouterPushReplacePayload);
@@ -15,6 +15,3 @@ export const goBack = () =>
 
 export const goForward = () =>
 	action(RouterInternalActionType.GO_FORWARD);
-
-export const recordSessionStart = () =>
-	action(TelemetryActionType.START);

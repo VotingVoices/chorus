@@ -1,16 +1,15 @@
 import { ActionType } from 'typesafe-actions';
-import { /*Action as HistoryAction, */History/*, Location*/ } from 'history';
+import { Action as HistoryAction, History, Location } from 'history';
 import { Store, AnyAction } from 'redux';
 
 import * as internalActions from './RouterInternalActions';
-// import { locationChange } from './RouterActions';
-import { RouterInternalActionType, TelemetryActionType } from './InternalTypes';
-import { TelemetrySession } from './telemetry';
+import { locationChange } from './RouterActions';
+import { RouterInternalActionType } from './InternalTypes';
 import { IQuestionnaireState } from './Types';
 
 type RouterInternalAction = ActionType<typeof internalActions>;
 
-export const routerMiddleware = (history: History, session: TelemetrySession) => () => (next: any) => (action: RouterInternalAction) => {
+export const routerMiddleware = (history: History) => () => (next: any) => (action: RouterInternalAction) => {
 	switch (action.type) {
 		case RouterInternalActionType.PUSH: {
 			history.push(action.payload.href);
@@ -37,12 +36,6 @@ export const routerMiddleware = (history: History, session: TelemetrySession) =>
 			break;
 		}
 
-		case TelemetryActionType.START: {
-			throw new Error("TelemetryActionType.START");
-			session.recordStart();
-			break;
-		}
-
 		default: {
 			return next(action);
 		}
@@ -50,7 +43,6 @@ export const routerMiddleware = (history: History, session: TelemetrySession) =>
 }
 
 export function startHistoryListener(history: History, store: Store<IQuestionnaireState, AnyAction>) {
-	/*
 	history.listen((location: Location, historyAction: HistoryAction) => {
 		store.dispatch(locationChange(
 			location.pathname,
@@ -65,6 +57,4 @@ export function startHistoryListener(history: History, store: Store<IQuestionnai
 		history.location.search,
 		history.location.hash,
 		undefined));
-
-	*/
 }
