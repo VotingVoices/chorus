@@ -1,0 +1,47 @@
+import { ActionType } from 'typesafe-actions';
+import { TelemetryActionType } from './TelemetryActionType';
+import * as telemetryActions from './TelemetryActions';
+
+// Courtesy of 'broofa's answer in https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
+/*function uuidv4() {
+  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+  )
+}*/
+
+function uniqueId(): string {
+	// TODO: This is almost certainly not a good way to generate IDs.
+	return Math.random().toString();
+}
+
+export class TelemetrySession {
+	private sessionId: string;
+
+	constructor() {
+		this.sessionId = uniqueId();
+	}
+
+	public recordStart() {
+		// TODO: Post to the API endpoint
+	}
+
+	// TODO: Remove
+	public getSessionId() {
+		return this.sessionId;
+	}
+}
+
+type TelemetryAction = ActionType<typeof telemetryActions>;
+
+export function createTelemetrySession(): TelemetrySession {
+	return new TelemetrySession();
+}
+
+export const telemetryMiddleware = (session: TelemetrySession) => () => (next: any) => (action: TelemetryAction) => {
+	switch (action.type) {
+		case TelemetryActionType.START: {
+			session.recordStart();
+			break;
+		}
+	}
+}
