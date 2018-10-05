@@ -15,7 +15,7 @@ interface IPropsFromDispatch {
 
 class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
 	public componentDidMount() {
-		recordSessionStart(3 /*foo*/);
+		this.props.recordSessionStart(3 /*foo*/);
 	}
 
 	public render(): JSX.Element {

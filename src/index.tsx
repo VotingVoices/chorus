@@ -8,7 +8,7 @@ import App from './App';
 import configureStore from './configureStore';
 import registerServiceWorker from './registerServiceWorker';
 import { CurrentQuestionQueryParameterName, readStateFromLocation } from './readStateFromLocation';
-import { AppView, DEFAULT_STATE, IQuestionnaireState, push, recordSessionStart } from './store';
+import { AppView, DEFAULT_STATE, IQuestionnaireState, push/*, recordSessionStart*/ } from './store';
 
 import './index.css';
 
@@ -67,8 +67,8 @@ syncViewChangesToNavigation(store);
 
 // Navigate to a well-formed URL for the first question
 if (!readStateResult.appViewSpecified || !readStateResult.questionSpecified) {
-	// store.dispatch(push(pathFromState(store.getState())));
-	store.dispatch(recordSessionStart(3));
+	store.dispatch(push(pathFromState(store.getState())));
+	// store.dispatch(recordSessionStart(3));
 }
 
 ReactDOM.render(
