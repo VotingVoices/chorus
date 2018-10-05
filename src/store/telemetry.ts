@@ -1,6 +1,6 @@
-import { ActionType } from 'typesafe-actions';
-import { TelemetryActionType } from './InternalTypes';
-import * as telemetryActions from './TelemetryActions';
+// import { ActionType } from 'typesafe-actions';
+// import { TelemetryActionType } from './InternalTypes';
+// import * as telemetryActions from './TelemetryActions';
 // import { RouterActionType } from './InternalTypes';
 
 const TelemetryEndpoint = 'http://localhost:3001';
@@ -35,17 +35,18 @@ export class TelemetrySession {
 	}
 }
 
-type TelemetryAction = ActionType<typeof telemetryActions>;
+// type TelemetryAction = ActionType<typeof telemetryActions>;
 
 export function createTelemetrySession(): TelemetrySession {
 	return new TelemetrySession();
 }
 
+/*
 export const telemetryMiddleware = (session: TelemetrySession) => () => (next: any) => (action: TelemetryAction) => {
 	/*if (action.type === 'ROUTER/LOCATION_CHANGE') {
 		return next(action);
 	}*/
-
+/*
 	throw new Error(`Action type: ${action.type}`);
 
 	switch (action.type) {
@@ -58,7 +59,7 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		/*case RouterActionType.LOCATION_CHANGE: {
 			return next(action);
 		}*/
-
+/*
 		default: {
 			// throw new Error(`Action type: ${action.type}`);
 			return next(action);
@@ -66,4 +67,4 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 	}
 }
 
-export * from './TelemetryActions';
+export * from './TelemetryActions';*/

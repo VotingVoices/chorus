@@ -4,12 +4,13 @@ import { Store, AnyAction } from 'redux';
 
 import * as internalActions from './RouterInternalActions';
 // import { locationChange } from './RouterActions';
-import { RouterInternalActionType } from './InternalTypes';
+import { RouterInternalActionType, TelemetryActionType } from './InternalTypes';
+import { TelemetrySession } from './telemetry';
 import { IQuestionnaireState } from './Types';
 
 type RouterInternalAction = ActionType<typeof internalActions>;
 
-export const routerMiddleware = (history: History) => () => (next: any) => (action: RouterInternalAction) => {
+export const routerMiddleware = (history: History, session: TelemetrySession) => () => (next: any) => (action: RouterInternalAction) => {
 	switch (action.type) {
 		case RouterInternalActionType.PUSH: {
 			history.push(action.payload.href);
@@ -34,6 +35,11 @@ export const routerMiddleware = (history: History) => () => (next: any) => (acti
 		case RouterInternalActionType.GO_FORWARD: {
 			history.goForward();
 			break;
+		}
+
+		case TelemetryActionType.START: {
+			throw new Error("TelemetryActionType.START");
+			session.recordStart();
 		}
 
 		default: {
