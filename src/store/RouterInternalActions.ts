@@ -16,5 +16,5 @@ export const goBack = () =>
 export const goForward = () =>
 	action(RouterInternalActionType.GO_FORWARD);
 
-export const recordSessionStart = (foo: number) =>
+export const recordSessionStart = () =>
 	action(TelemetryActionType.START);

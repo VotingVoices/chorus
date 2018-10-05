@@ -15,7 +15,7 @@ interface IPropsFromDispatch {
 
 class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
 	public componentDidMount() {
-		this.props.recordSessionStart(3 /*foo*/);
+		this.props.recordSessionStart();
 	}
 
 	public render(): JSX.Element {
@@ -41,7 +41,7 @@ const mapStateToProps = () => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     startSurvey: () => dispatch(startSurvey()),
-    recordSessionStart: (foo: number) => dispatch(recordSessionStart(foo))
+    recordSessionStart: () => dispatch(recordSessionStart())
 });
 
 export const LandingPage = connect(mapStateToProps, mapDispatchToProps)(InternalLandingPage);
