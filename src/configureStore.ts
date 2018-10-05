@@ -1,8 +1,7 @@
 import { Store, createStore, applyMiddleware } from 'redux';
 import { History } from 'history';
 
-import { IQuestionnaireState, surveyReducer, routerMiddleware, startHistoryListener } from './store';
-import { createTelemetrySession, telemetryMiddleware } from './telemetry';
+import { createTelemetrySession, IQuestionnaireState, surveyReducer, routerMiddleware, startHistoryListener, telemetryMiddleware } from './store';
 
 export default function configureStore(history: History, initialState: IQuestionnaireState): Store<IQuestionnaireState> {
 	const session = createTelemetrySession();

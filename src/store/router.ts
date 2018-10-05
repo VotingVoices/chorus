@@ -1,9 +1,9 @@
 import { ActionType } from 'typesafe-actions';
-import { Action as HistoryAction, History, Location } from 'history';
+import { /*Action as HistoryAction, */History/*, Location*/ } from 'history';
 import { Store, AnyAction } from 'redux';
 
 import * as internalActions from './RouterInternalActions';
-import { locationChange } from './RouterActions';
+// import { locationChange } from './RouterActions';
 import { RouterInternalActionType } from './InternalTypes';
 import { IQuestionnaireState } from './Types';
 
@@ -43,6 +43,7 @@ export const routerMiddleware = (history: History) => () => (next: any) => (acti
 }
 
 export function startHistoryListener(history: History, store: Store<IQuestionnaireState, AnyAction>) {
+	/*
 	history.listen((location: Location, historyAction: HistoryAction) => {
 		store.dispatch(locationChange(
 			location.pathname,
@@ -57,4 +58,6 @@ export function startHistoryListener(history: History, store: Store<IQuestionnai
 		history.location.search,
 		history.location.hash,
 		undefined));
+
+	*/
 }

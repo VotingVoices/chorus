@@ -1,6 +1,9 @@
 import { ActionType } from 'typesafe-actions';
-import { TelemetryActionType } from './TelemetryActionType';
+import { TelemetryActionType } from './InternalTypes';
 import * as telemetryActions from './TelemetryActions';
+// import { RouterActionType } from './InternalTypes';
+
+const TelemetryEndpoint = 'http://localhost:3001';
 
 // Courtesy of 'broofa's answer in https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 /*function uuidv4() {
@@ -22,7 +25,8 @@ export class TelemetrySession {
 	}
 
 	public recordStart() {
-		// TODO: Post to the API endpoint
+		throw new Error("recordStart");
+		fetch(TelemetryEndpoint);
 	}
 
 	// TODO: Remove
@@ -38,10 +42,28 @@ export function createTelemetrySession(): TelemetrySession {
 }
 
 export const telemetryMiddleware = (session: TelemetrySession) => () => (next: any) => (action: TelemetryAction) => {
+	/*if (action.type === 'ROUTER/LOCATION_CHANGE') {
+		return next(action);
+	}*/
+
+	throw new Error(`Action type: ${action.type}`);
+
 	switch (action.type) {
 		case TelemetryActionType.START: {
+			throw new Error('telemetryMiddleWare');
 			session.recordStart();
 			break;
 		}
+
+		/*case RouterActionType.LOCATION_CHANGE: {
+			return next(action);
+		}*/
+
+		default: {
+			// throw new Error(`Action type: ${action.type}`);
+			return next(action);
+		}
 	}
 }
+
+export * from './TelemetryActions';

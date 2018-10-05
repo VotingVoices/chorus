@@ -26,3 +26,7 @@ export interface IRouterLocationChangePayload {
 	hash: string,
 	historyAction: HistoryAction | undefined,
 }
+
+export const enum TelemetryActionType {
+	START = 'TELEMETRY/START',
+}
