@@ -40,6 +40,7 @@ export const routerMiddleware = (history: History, session: TelemetrySession) =>
 		case TelemetryActionType.START: {
 			throw new Error("TelemetryActionType.START");
 			session.recordStart();
+			break;
 		}
 
 		default: {
