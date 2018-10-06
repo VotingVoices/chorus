@@ -2,7 +2,7 @@ import { ActionType } from 'typesafe-actions';
 import { TelemetryActionType } from './InternalTypes';
 import * as telemetryActions from './TelemetryActions';
 
-const TelemetryEndpoint = 'http://localhost:3001';
+const TelemetryEndpoint = 'http://localhost:3001/';
 
 // Courtesy of 'broofa's answer in https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 /*function uuidv4() {
@@ -24,8 +24,11 @@ export class TelemetrySession {
 	}
 
 	public recordStart() {
-		throw new Error("recordStart");
-		fetch(TelemetryEndpoint);
+		fetch(TelemetryEndpoint, {
+			method: "POST",
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ event: "StartSession" })
+		});
 	}
 
 	// TODO: Remove
@@ -43,7 +46,6 @@ export function createTelemetrySession(): TelemetrySession {
 export const telemetryMiddleware = (session: TelemetrySession) => () => (next: any) => (action: TelemetryAction) => {
 	switch (action.type) {
 		case TelemetryActionType.START: {
-			throw new Error('TelemetryActionType.START');
 			session.recordStart();
 			break;
 		}
