@@ -2,7 +2,8 @@ import { ActionType } from 'typesafe-actions';
 import { TelemetryActionType } from './InternalTypes';
 import * as telemetryActions from './TelemetryActions';
 
-const TelemetryEndpoint = 'http://localhost:3001/';
+// const TelemetryEndpoint = 'http://localhost:3001/';
+const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
 
 // Courtesy of 'broofa's answer in https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 /*function uuidv4() {
