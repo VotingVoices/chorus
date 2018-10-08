@@ -24,10 +24,17 @@ export class TelemetrySession {
 	}
 
 	public recordStart() {
+		this.uploadData({
+			sessionId: this.sessionId,
+			event: "StartSession"
+		});
+	}
+
+	private uploadData(data: any) {
 		fetch(TelemetryEndpoint, {
 			method: "POST",
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ sessionId: this.sessionId, event: "StartSession" })
+			body: JSON.stringify(data)
 		}).then(res => {
 			if (res.ok) {
 				return res.json();
