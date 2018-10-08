@@ -28,6 +28,16 @@ export class TelemetrySession {
 			method: "POST",
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ event: "StartSession" })
+		}).then(res => {
+			if (res.ok) {
+				return res.json();
+			}
+			else {
+				throw new Error(`Failed HTTP response: ${res.status}`);
+			}
+		}).catch(err => {
+			// TODO: Do not throw for ship/production users.
+			throw new Error(`Unable to POST to elemetry endpoint.  err: ${err}`);
 		});
 	}
 
