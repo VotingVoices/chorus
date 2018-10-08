@@ -27,7 +27,7 @@ export class TelemetrySession {
 		fetch(TelemetryEndpoint, {
 			method: "POST",
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ event: "StartSession" })
+			body: JSON.stringify({ sessionId: this.sessionId, event: "StartSession" })
 		}).then(res => {
 			if (res.ok) {
 				return res.json();
@@ -39,11 +39,6 @@ export class TelemetrySession {
 			// TODO: Do not throw for ship/production users.
 			throw new Error(`Unable to POST to elemetry endpoint.  err: ${err}`);
 		});
-	}
-
-	// TODO: Remove
-	public getSessionId() {
-		return this.sessionId;
 	}
 }
 
