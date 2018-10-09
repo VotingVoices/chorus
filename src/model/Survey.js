@@ -45,9 +45,9 @@ module.exports = class Survey {
             throw new Error("contact cannot be null");
         }
 
-        if (!Survey._flowIsValid(input)) {
+       /* if (!Survey._flowIsValid(input)) {
             throw new Error("The flow is not valid");
-        }
+        }*/
     }
 
     static _isParameterValid(list, parameter) {
@@ -56,7 +56,7 @@ module.exports = class Survey {
         }
     }
 
-    static _flowIsValid(input) {
+    /*static _flowIsValid(input) {
         let nonValueList = [];
         let withValueList = [input.registeredToVote, input.absenteeBallor, input.votingReason, input.knowBallot, input.invitePeople, input.feeling, input.contact];
         if (input.absenteeBallor === 'nope') {
@@ -72,7 +72,7 @@ module.exports = class Survey {
             nonValueList.push(input.voteInState, input.pollingLocation, input.specialAccomodations, input.transportation, input.leaveWork, input.receivedBallot, input.knowDeadline, input.howToDropOffBallot);
         }
         return nonValueList.filter((item) => item === null).length === nonValueList.length && withValueList.filter((item) => item !== null).length === withValueList.length;
-    }
+    }*/
 
     static _invitePeopleListIsValid(input) {
         if (input.invitePeople === null) {
