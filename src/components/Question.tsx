@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect} from 'react-redux';
 
 import { Answer } from './Answer';
-import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId, recordAnswer } from '../store';
+import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../store';
 import { getQuestionFullLabel } from '../strings';
 
 import './Question.css';
@@ -15,7 +15,6 @@ interface IQuestionProps {
 
 interface IPropsFromDispatch {
     answerQuestion: typeof answerQuestion,
-    recordAnswer: typeof recordAnswer,
 }
 
 class InternalQuestion extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromDispatch, any> {
@@ -43,7 +42,6 @@ class InternalQuestion extends React.Component<IQuestionProps & IConnectedReduxP
 
             const answer = answers.find((o: AnswerId) => o === answerId );
 
-            this.props.recordAnswer(questionId, answer!);
             this.props.answerQuestion(questionId, answer!); 
         };
     };
@@ -53,7 +51,6 @@ const mapStateToProps = (state: IQuestionnaireState) => ({ });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     answerQuestion: (questionId: QuestionId, answerId: AnswerId) => dispatch(answerQuestion(questionId, answerId)),
-    recordAnswer: (questionId: QuestionId, answerId: AnswerId) => dispatch(recordAnswer(questionId, answerId)),
 });
 
 export const Question = connect(mapStateToProps, mapDispatchToProps)(InternalQuestion);

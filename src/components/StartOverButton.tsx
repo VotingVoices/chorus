@@ -2,10 +2,9 @@ import * as React from 'react';
 import { Button } from 'react-bootstrap';
 import { connect} from 'react-redux';
 import { Dispatch } from 'redux';
-import { IConnectedReduxProps, recordStartOver, startOver } from '../store';
+import { IConnectedReduxProps, startOver } from '../store';
 
 interface IPropsFromDispatch {
-	recordStartOver: typeof recordStartOver,
 	startOver: typeof startOver,
 }
 
@@ -18,7 +17,6 @@ class InternalStartOverButton extends React.Component<IConnectedReduxProps & IPr
 
 	private onStartOverClick() {
 		return (ev: React.MouseEvent<Button>) => {
-			this.props.recordStartOver();
 			this.props.startOver();
 		};
 	}
@@ -28,7 +26,6 @@ const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-	recordStartOver: () => dispatch(recordStartOver()),
     startOver: () => dispatch(startOver())
 });
 

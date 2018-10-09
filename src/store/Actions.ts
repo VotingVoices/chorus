@@ -1,7 +1,13 @@
 import { Action as HistoryAction } from 'history';
 import { action } from 'typesafe-actions';
-import { AnswerId, IAnswerQuestionPayload, QuestionId, QuestionnaireActionType } from './Types';
-import { IRouterLocationChangePayload, RouterActionType } from './InternalTypes';
+import { AnswerId, IAnswerQuestionPayload, IQuestionAndAnswer, QuestionId, QuestionnaireActionType } from './Types';
+import { IRecordPlanPagePayload, IRouterLocationChangePayload, RouterActionType, TelemetryActionType } from './InternalTypes';
+
+export const recordStartSession = () =>
+	action(TelemetryActionType.START_SESSION);
+
+export const recordLandingPage = () =>
+	action(TelemetryActionType.LANDING_PAGE);
 
 export const startSurvey = () =>
 	action(QuestionnaireActionType.START_SURVEY);
@@ -11,6 +17,9 @@ export const startOver = () =>
 
 export const answerQuestion = (questionId: QuestionId, answerId: AnswerId) =>
 	action(QuestionnaireActionType.ANSWER_QUESTION, { questionId, answerId } as IAnswerQuestionPayload);
-	
+
+export const recordPlanPage = (answers: IQuestionAndAnswer[]) =>
+	action(TelemetryActionType.PLAN_PAGE, { answers } as IRecordPlanPagePayload);
+
 export const locationChange = (pathname: string, search: string, hash: string, historyAction: HistoryAction | undefined) =>
 	action(RouterActionType.LOCATION_CHANGE, { pathname, search, hash, historyAction } as IRouterLocationChangePayload);

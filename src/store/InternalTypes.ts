@@ -1,5 +1,5 @@
 import { Action as HistoryAction } from 'history';
-import { AnswerId, QuestionId, IQuestionAndAnswer } from './Types';
+import { IQuestionAndAnswer } from './Types';
 
 export const enum RouterInternalActionType {
 	PUSH = 'ROUTER/PUSH',
@@ -31,15 +31,7 @@ export interface IRouterLocationChangePayload {
 export const enum TelemetryActionType {
 	START_SESSION = 'TELEMETRY/START_SESSION',
 	LANDING_PAGE = 'TELEMETRY/LANDING_PAGE',
-	START_SURVEY = 'TELEMETRY/START_SURVEY',
-	ANSWER = 'TELEMETRY/ANSWER',
 	PLAN_PAGE = 'TELEMETRY/PLAN_PAGE',
-	START_OVER = 'TELEMETRY/START_OVER',
-}
-
-export interface IRecordAnswerPayload {
-	question: QuestionId,
-	answer: AnswerId,
 }
 
 export interface IRecordPlanPagePayload {

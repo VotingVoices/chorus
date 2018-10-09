@@ -1,7 +1,10 @@
 import { ActionType } from 'typesafe-actions';
 import { TelemetryActionType } from './InternalTypes';
-import * as telemetryActions from './TelemetryActions';
-import { AnswerId, IQuestionAndAnswer, QuestionId } from './Types';
+import { AnswerId, IQuestionAndAnswer, QuestionnaireActionType, QuestionId } from './Types';
+
+import * as actions from './Actions';
+
+type QuestionnaireAction = ActionType<typeof actions>;
 
 const TelemetryEndpoint = 'http://localhost:3001/';
 // const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
@@ -78,33 +81,31 @@ export class TelemetrySession {
 	}
 }
 
-type TelemetryAction = ActionType<typeof telemetryActions>;
-
 export function createTelemetrySession(): TelemetrySession {
 	return new TelemetrySession();
 }
 
-export const telemetryMiddleware = (session: TelemetrySession) => () => (next: any) => (action: TelemetryAction) => {
+export const telemetryMiddleware = (session: TelemetrySession) => () => (next: any) => (action: QuestionnaireAction) => {
 	switch (action.type) {
 		case TelemetryActionType.LANDING_PAGE: {
 			session.recordLandingPage();
-			break;
-		}
-		case TelemetryActionType.START_SURVEY: {
-			session.recordStartSurvey();
-			break;
-		}
-		case TelemetryActionType.ANSWER: {
-			session.recordAnswer(action.payload.question, action.payload.answer);
 			break;
 		}
 		case TelemetryActionType.PLAN_PAGE: {
 			session.recordPlanPage(action.payload.answers);
 			break;
 		}
-		case TelemetryActionType.START_OVER: {
+		case QuestionnaireActionType.START_SURVEY: {
+			session.recordStartSurvey();
+			return next(action);
+		}
+		case QuestionnaireActionType.ANSWER_QUESTION: {
+			session.recordAnswer(action.payload.questionId, action.payload.answerId);
+			return next(action);
+		}
+		case QuestionnaireActionType.START_OVER: {
 			session.recordStartOver();
-			break;
+			return next(action);
 		}
 		default: {
 			return next(action);
