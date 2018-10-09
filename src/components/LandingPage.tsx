@@ -2,13 +2,14 @@ import * as React from 'react';
 import { Button } from 'react-bootstrap';
 import { connect} from 'react-redux';
 import { Dispatch } from 'redux';
-import { IConnectedReduxProps, startSurvey } from '../store';
+import { IConnectedReduxProps, recordStartSurvey, startSurvey } from '../store';
 
 import '../App.css';
 import './LandingPage.css';
 import poweredbyVV from './poweredbyVV.png';
 
 interface IPropsFromDispatch {
+	recordStartSurvey: typeof recordStartSurvey,
 	startSurvey: typeof startSurvey,
 }
 
@@ -26,6 +27,7 @@ class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsF
 
 	private onStartClick() {
 		return (ev: React.MouseEvent<Button>) => {
+			this.props.recordStartSurvey();
 			this.props.startSurvey();
 		};
 	}
@@ -35,6 +37,7 @@ const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+	recordStartSurvey: () => dispatch(recordStartSurvey()),
     startSurvey: () => dispatch(startSurvey()),
 });
 

@@ -20,10 +20,17 @@ export class TelemetrySession {
 		this.sessionId = uuidv4();
 	}
 
+	public recordLandingPange() {
+		this.uploadData({
+			sessionId: this.sessionId,
+			event: "LandingPage"
+		});
+	}
+
 	public recordStart() {
 		this.uploadData({
 			sessionId: this.sessionId,
-			event: "StartSession"
+			event: "StartSurvey"
 		});
 	}
 
@@ -54,11 +61,14 @@ export function createTelemetrySession(): TelemetrySession {
 
 export const telemetryMiddleware = (session: TelemetrySession) => () => (next: any) => (action: TelemetryAction) => {
 	switch (action.type) {
+		case TelemetryActionType.LANDING_PAGE: {
+			session.recordLandingPange();
+			break;
+		}
 		case TelemetryActionType.START: {
 			session.recordStart();
 			break;
 		}
-
 		default: {
 			return next(action);
 		}
