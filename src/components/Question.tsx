@@ -3,18 +3,19 @@ import { Dispatch } from 'redux';
 import { connect} from 'react-redux';
 
 import { Answer } from './Answer';
-import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../store';
+import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId, recordAnswer } from '../store';
 import { getQuestionFullLabel } from '../strings';
 
 import './Question.css';
 
 interface IQuestionProps {
-    questionId: QuestionId;
-    answers: AnswerId[];
+    questionId: QuestionId,
+    answers: AnswerId[],
 }
 
 interface IPropsFromDispatch {
-    answerQuestion: typeof answerQuestion;
+    answerQuestion: typeof answerQuestion,
+    recordAnswer: typeof recordAnswer,
 }
 
 class InternalQuestion extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromDispatch, any> {
@@ -42,6 +43,7 @@ class InternalQuestion extends React.Component<IQuestionProps & IConnectedReduxP
 
             const answer = answers.find((o: AnswerId) => o === answerId );
 
+            this.props.recordAnswer(questionId, answer!);
             this.props.answerQuestion(questionId, answer!); 
         };
     };
@@ -50,7 +52,8 @@ class InternalQuestion extends React.Component<IQuestionProps & IConnectedReduxP
 const mapStateToProps = (state: IQuestionnaireState) => ({ });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    answerQuestion: (questionId: QuestionId, answerId: AnswerId) => dispatch(answerQuestion(questionId, answerId))
+    answerQuestion: (questionId: QuestionId, answerId: AnswerId) => dispatch(answerQuestion(questionId, answerId)),
+    recordAnswer: (questionId: QuestionId, answerId: AnswerId) => dispatch(recordAnswer(questionId, answerId)),
 });
 
 export const Question = connect(mapStateToProps, mapDispatchToProps)(InternalQuestion);

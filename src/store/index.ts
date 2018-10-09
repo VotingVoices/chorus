@@ -5,4 +5,4 @@ export { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';		// TODO: Move IQues
 export { push, replace, go, goBack, goForward } from './RouterInternalActions';
 export { routerMiddleware, startHistoryListener } from './router';
 export { createTelemetrySession, telemetryMiddleware } from './telemetry';
-export { recordLandingPage, recordStartSurvey } from './TelemetryActions';
+export { recordAnswer, recordLandingPage, recordStartSurvey } from './TelemetryActions';

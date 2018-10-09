@@ -1,4 +1,5 @@
 import { Action as HistoryAction } from 'history';
+import { QuestionId, AnswerId } from './Types';
 
 export const enum RouterInternalActionType {
 	PUSH = 'ROUTER/PUSH',
@@ -30,4 +31,10 @@ export interface IRouterLocationChangePayload {
 export const enum TelemetryActionType {
 	LANDING_PAGE = 'TELEMETRY/LANDING_PAGE',
 	START = 'TELEMETRY/START',
+	ANSWER = 'TELEMETRY/ANSWER',
+}
+
+export interface IRecordAnswerPayload {
+	question: QuestionId,
+	answer: AnswerId,
 }

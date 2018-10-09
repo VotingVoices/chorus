@@ -1,6 +1,7 @@
 import { ActionType } from 'typesafe-actions';
 import { TelemetryActionType } from './InternalTypes';
 import * as telemetryActions from './TelemetryActions';
+import { AnswerId, QuestionId } from './Types';
 
 const TelemetryEndpoint = 'http://localhost:3001/';
 // const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
@@ -23,15 +24,24 @@ export class TelemetrySession {
 	public recordLandingPange() {
 		this.uploadData({
 			sessionId: this.sessionId,
-			event: "LandingPage"
+			event: "LandingPage",
 		});
 	}
 
 	public recordStart() {
 		this.uploadData({
 			sessionId: this.sessionId,
-			event: "StartSurvey"
+			event: "StartSurvey",
 		});
+	}
+
+	public recordAnswer(questionId: QuestionId, answerId: AnswerId) {
+		this.uploadData({
+			sessionId: this.sessionId,
+			event: "Answer",
+			question: questionId,
+			answer: answerId,
+		})
 	}
 
 	private uploadData(data: any) {
@@ -68,6 +78,9 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		case TelemetryActionType.START: {
 			session.recordStart();
 			break;
+		}
+		case TelemetryActionType.ANSWER: {
+			session.recordAnswer(action.payload.question, action.payload.answer);
 		}
 		default: {
 			return next(action);
