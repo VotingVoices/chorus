@@ -39,7 +39,6 @@ export const ALL_QUESTION_IDS: QuestionId[] = [
 export enum AnswerId {
 	Yes = 'Y',
 	No = 'N',
-	EmphaticYes = 'EY',
 	DontKnow = 'DN',
 	Washington = 'WA',
 	Oregon = 'OR',
@@ -138,6 +137,8 @@ export interface IAnswerQuestionPayload {
 
 export enum PlanStepId {
 	Register,
+	CheckRegistration,
+	MaybeRegister,
 	RequestOverseasBallot,
 	HaveBallot,
 	NoBallotYet,

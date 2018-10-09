@@ -59,9 +59,6 @@ export function getAnswerLabel(answer: AnswerId): string {
 		case AnswerId.No:
 			return 'No';
 
-		case AnswerId.EmphaticYes:
-			return 'Yes!';
-
 		case AnswerId.DontKnow:
 			return 'Not sure';
 
@@ -165,6 +162,24 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 				text: "Let's do this: get registered!",        // TODO: Capitalize Get?
 				callToAction: "Double-check your registration",
 				link: "https://www.rockthevote.org/voting-information/am-i-registered-to-vote/",        // TODO: Spanish-specific links?
+			};
+		}
+
+		case PlanStepId.CheckRegistration: {
+			return {
+				header: "Check your registration",
+				text: "Great \u2014 you're registered! Now take a quick look to make sure everything is up-to-date.",
+				callToAction: "Double-check your registration",
+				link: "https://www.rockthevote.org/voting-information/am-i-registered-to-vote/",
+			};
+		}
+
+		case PlanStepId.MaybeRegister: {
+			return {
+				header: "Check your registration",
+				text: "Not sure whether you're registered? Take a minute to double-check and make sure you're vote ready.",
+				callToAction: "Double-check your registration",
+				link: "https://www.rockthevote.org/voting-information/am-i-registered-to-vote/",
 			};
 		}
 
@@ -335,8 +350,8 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.FindPollingLocation: {
 			return {
 				header: "Find your polling location",
-				text: "Make it easy on yourself! Find your state's polling locations through the link below.",
-				callToAction: "This way to the polls (scroll for your state)!",
+				text: "Make it easy on yourself! Find your polling location through the link below.",
+				callToAction: "This way to the polls!",
 				link: "https://www.vote.org/polling-place-locator/",
 			}
 		}
@@ -408,7 +423,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.ReviewBallotIssues: {
 			return {
 				header: "Your ballot, in a nutshell",
-				text: "You're familiar with the candidates and issues \u2014 now put it all together using this handy app.",
+				text: "You're familiar with the candidates and issues. The Ballot Ready app can help you make informed choices.",
 				callToAction: "Plan your ballot choices",
 				link: "https://www.ballotready.org/",
 			}
@@ -417,7 +432,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.ResearchBallotIssues: {
 			return {
 				header: "Introducing...your ballot!",
-				text: "Now's the perfect time to research the candidates and issues you'll be voting for. Here's an app to help.",
+				text: "Now's the perfect time to research the candidates and issues you'll be voting for. The Ballot Ready app can help you make informed choices.",
 				callToAction: "Plan your ballot choices",
 				link: "https://www.ballotready.org/",
 			}
@@ -425,8 +440,8 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 
 		case PlanStepId.InvitePeople: {
 			return {
-				header: "Invite your crowd to VotePlan!",    // TODO: Review: "your crowd?",
-				text: "Let's keep each other accountable \u2014 voting's even better when we can do it together! Share your plans with the people in your life.",
+				header: "Invite your crowd to vote with you",    // TODO: Review: "your crowd?",
+				text: "Let's keep each other accountable \u2014 voting's even better when we can do it together!",
 				callToAction: undefined,
 				link: undefined,
 			}
@@ -485,7 +500,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.Meh: {
 			let header = "Put those feelings toward action";
 			let text: string | undefined;
-			const callToAction: string | undefined = "Your voice matters \u2014 take a look";
+			const callToAction: string | undefined = "See what happens When We All Vote";
 			const link: string | undefined = "https://www.whenweallvote.org/";
 
 			switch (step) {
