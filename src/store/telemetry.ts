@@ -41,7 +41,7 @@ export class TelemetrySession {
 			event: "Answer",
 			question: questionId,
 			answer: answerId,
-		})
+		});
 	}
 
 	public recordPlanPage(answers: IQuestionAndAnswer[]) {
@@ -49,8 +49,16 @@ export class TelemetrySession {
 			sessionId: this.sessionId,
 			event: "ViewPlan",
 			answers: answers.map(qa => ({ question: qa.questionId, answer: qa.answerId })),
-		})
+		});
 	}
+
+	public recordStartOver() {
+		this.uploadData({
+			sessionId: this.sessionId,
+			event: "StartOver",
+		});
+	}
+
 	private uploadData(data: any) {
 		fetch(TelemetryEndpoint, {
 			method: "POST",
@@ -92,6 +100,10 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		}
 		case TelemetryActionType.PLAN_PAGE: {
 			session.recordPlanPage(action.payload.answers);
+			break;
+		}
+		case TelemetryActionType.START_OVER: {
+			session.recordStartOver();
 			break;
 		}
 		default: {

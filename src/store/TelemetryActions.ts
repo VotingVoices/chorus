@@ -16,3 +16,6 @@ export const recordAnswer = (question: QuestionId, answer: AnswerId) =>
 
 export const recordPlanPage = (answers: IQuestionAndAnswer[]) =>
 	action(TelemetryActionType.PLAN_PAGE, { answers } as IRecordPlanPagePayload);
+
+export const recordStartOver = () =>
+	action(TelemetryActionType.START_OVER);

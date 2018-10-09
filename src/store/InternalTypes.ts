@@ -34,6 +34,7 @@ export const enum TelemetryActionType {
 	START_SURVEY = 'TELEMETRY/START_SURVEY',
 	ANSWER = 'TELEMETRY/ANSWER',
 	PLAN_PAGE = 'TELEMETRY/PLAN_PAGE',
+	START_OVER = 'TELEMETRY/START_OVER',
 }
 
 export interface IRecordAnswerPayload {
