@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
 import { connect} from 'react-redux';
 import { PlanStep } from './PlanStep';
 import { StartOverButton } from './StartOverButton';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, VotingStateId } from '../store';
+import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, recordPlanPage, VotingStateId } from '../store';
 
 import './Plan.css';
 
@@ -11,11 +12,19 @@ interface IPlanProps {
 	votingStateId: VotingStateId,
 }
 
+interface IPropsFromDispatch {
+	recordPlanPage: typeof recordPlanPage,
+}
+
 export interface IIndexHolder {
 	index: number;
 }
 
-class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, any> {
+class InternalPlan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedReduxProps, any> {
+	public componentDidMount() {
+		this.props.recordPlanPage(this.props.answers);
+	}
+	
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
 
@@ -24,7 +33,7 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 				<div className="Plan-header Gradient-background">
 					<div className="plan-congrats VotingVoices-serif">Congratulations! Here's your</div>
 
-                	<h1 className="voteplan-title">VotePlan</h1>
+					<h1 className="voteplan-title">VotePlan</h1>
 
 					<StartOverButton {...this.props} />
 				</div>
@@ -51,4 +60,8 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 const mapStateToProps = () => ({
 });
 
-export const Plan = connect(mapStateToProps)(InternalPlan);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+	recordPlanPage: (answers: IQuestionAndAnswer[]) => dispatch(recordPlanPage(answers)),
+});
+
+export const Plan = connect(mapStateToProps, mapDispatchToProps)(InternalPlan);

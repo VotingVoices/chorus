@@ -1,5 +1,5 @@
 import { Action as HistoryAction } from 'history';
-import { QuestionId, AnswerId } from './Types';
+import { AnswerId, QuestionId, IQuestionAndAnswer } from './Types';
 
 export const enum RouterInternalActionType {
 	PUSH = 'ROUTER/PUSH',
@@ -32,9 +32,14 @@ export const enum TelemetryActionType {
 	LANDING_PAGE = 'TELEMETRY/LANDING_PAGE',
 	START = 'TELEMETRY/START',
 	ANSWER = 'TELEMETRY/ANSWER',
+	PLAN_PAGE = 'TELEMETRY/PLAN_PAGE',
 }
 
 export interface IRecordAnswerPayload {
 	question: QuestionId,
 	answer: AnswerId,
+}
+
+export interface IRecordPlanPagePayload {
+	answers: IQuestionAndAnswer[],
 }

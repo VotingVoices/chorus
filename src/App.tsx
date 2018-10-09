@@ -59,7 +59,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 			}
 
 			case AppView.Plan: {
-				return (<Plan key="plan" answers={this.props.answers} votingStateId={this.props.votingStateId} />);
+				return (<Plan key="plan" {...this.props} answers={this.props.answers} votingStateId={this.props.votingStateId} />);
 			}
 
 			default: {
