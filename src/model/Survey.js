@@ -13,7 +13,7 @@ module.exports = class Survey {
         this.howToDropOffBallot = input.howToDropOffBallot || null;
         this.votingReason = input.votingReason || '';
         this.knowBallot = input.knowBallot || null;
-        this.invitePeople = input.invitePeople || null;
+        this.invitePeople = input.invitePeople || [];
         this.feeling = input.feeling || null;
         this.contact = input.contact || null;
         if (this.votingReason === '') {
@@ -25,18 +25,18 @@ module.exports = class Survey {
     }
 
     static _inputIsValid(input) {
-        Survey._isParameterValid(['yes', 'no', 'dunno', null], input.registeredToVote);
-        Survey._isParameterValid(['yes', 'nope', null], input.absenteeBallor);
-        Survey._isParameterValid(['colorado', 'oregon', 'washington', 'nope', null], input.voteInState);
-        Survey._isParameterValid(['yes', 'no', 'dunno', null], input.pollingLocation);
-        Survey._isParameterValid(['yeah', 'nah', null], input.specialAccomodations);
-        Survey._isParameterValid(['drive', 'walk', 'uber/lyft', 'ask a friend', 'bike', null], input.transportation);
-        Survey._isParameterValid(['yes', 'no', 'maybe', null], input.leaveWork);
-        Survey._isParameterValid(['yep!', 'not yet', null], input.receivedBallot);
-        Survey._isParameterValid(['yep!', 'naw', null], input.knowDeadline);
-        Survey._isParameterValid(['gonna mail it', 'gonna drop it of at a ballot box', null], input.howToDropOffBallot);
-        Survey._isParameterValid(['yes', 'no', null], input.knowBallot);
-        Survey._isParameterValid(['Excited', 'Happy', 'Sad', 'Meh', 'Angry', 'Concerned', 'Nervous', 'Shocked'], input.feeling);
+        Survey._isParameterValid(['yes', 'no', 'dunno', null], input, 'registeredToVote');
+        Survey._isParameterValid(['yes', 'nope', null], input, 'absenteeBallor');
+        Survey._isParameterValid(['colorado', 'oregon', 'washington', 'nope', null], input, 'voteInState');
+        Survey._isParameterValid(['yes', 'no', 'dunno', null], input, 'pollingLocation');
+        Survey._isParameterValid(['yeah', 'nah', null], input, 'specialAccomodations');
+        Survey._isParameterValid(['drive', 'walk', 'uber/lyft', 'ask a friend', 'bike', null], input, 'transportation');
+        Survey._isParameterValid(['yes', 'no', 'maybe', null], input, 'leaveWork');
+        Survey._isParameterValid(['yep!', 'not yet', null], input, 'receivedBallot');
+        Survey._isParameterValid(['yep!', 'naw', null], input, 'knowDeadline');
+        Survey._isParameterValid(['gonna mail it', 'gonna drop it of at a ballot box', null], input, 'howToDropOffBallot');
+        Survey._isParameterValid(['yes', 'no', null], input, 'knowBallot');
+        Survey._isParameterValid(['Excited', 'Happy', 'Sad', 'Meh', 'Angry', 'Concerned', 'Nervous', 'Shocked', null], input, 'feeling');
         if (!Survey._invitePeopleListIsValid(input)) {
             throw new Error("The invite people list is not valid");
         }
@@ -45,14 +45,14 @@ module.exports = class Survey {
             throw new Error("contact cannot be null");
         }
 
-       /* if (!Survey._flowIsValid(input)) {
-            throw new Error("The flow is not valid");
-        }*/
+        /* if (!Survey._flowIsValid(input)) {
+             throw new Error("The flow is not valid");
+         }*/
     }
 
-    static _isParameterValid(list, parameter) {
-        if (!list.includes(parameter)) {
-            throw new Error(parameter + " is not valid!");
+    static _isParameterValid(list, input, parameter) {
+        if (!list.includes(input[parameter])) {
+            throw new Error(parameter + "being " + input[parameter] + " is not valid!");
         }
     }
 
@@ -75,15 +75,11 @@ module.exports = class Survey {
     }*/
 
     static _invitePeopleListIsValid(input) {
-        if (input.invitePeople === null) {
-            return true;
+        if (Array.isArray(input.invitePeople)) {
+            let validOptions = ['Mom(s)', 'Dad(s)', 'Sibling(s)', 'Coworker(s)', 'Friend(s)', 'empty'];
+            return input.invitePeople.filter((item) => validOptions.includes(item)).length === input.invitePeople.length;
         } else {
-            if (Array.isArray(input.invitePeople)) {
-                let validOptions = ['Mom(s)', 'Dad(s)', 'Sibling(s)', 'Coworker(s)', 'Friend(s)', 'empty'];
-                return input.invitePeople.filter((item) => validOptions.includes(item)).length === input.invitePeople.length;
-            } else {
-                return false;
-            }
+            return false;
         }
     }
 

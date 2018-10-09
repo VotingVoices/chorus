@@ -65,7 +65,7 @@
                 url: "https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult",
                 data: result
             }).then(function mySuccess(response) {
-                alert("success " + response.data);
+                alert("success " + JSON.stringify(response.data));
             }, function myError(response) {
                 alert(response);
             });
