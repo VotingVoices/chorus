@@ -6,7 +6,7 @@ export const recordLandingPage = () =>
 	action(TelemetryActionType.LANDING_PAGE);
 
 export const recordStartSurvey = () =>
-	action(TelemetryActionType.START);
+	action(TelemetryActionType.START_SURVEY);
 
 export const recordAnswer = (question: QuestionId, answer: AnswerId) =>
 	action(TelemetryActionType.ANSWER, { question, answer } as IRecordAnswerPayload);
