@@ -16,6 +16,7 @@
         "named-imports-order": "any"
       }
     ],
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "no-bitwise": false
   }
 }

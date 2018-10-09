@@ -2,26 +2,22 @@ import { ActionType } from 'typesafe-actions';
 import { TelemetryActionType } from './InternalTypes';
 import * as telemetryActions from './TelemetryActions';
 
-// const TelemetryEndpoint = 'http://localhost:3001/';
-const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
+const TelemetryEndpoint = 'http://localhost:3001/';
+// const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
 
 // Courtesy of 'broofa's answer in https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
-/*function uuidv4() {
-  return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-    (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-  )
-}*/
-
-function uniqueId(): string {
-	// TODO: This is almost certainly not a good way to generate IDs.
-	return Math.random().toString();
+function uuidv4() {
+	return (`${1e7}${-1e3}${-4e3}${-8e3}${-1e11}`).replace(/[018]/g, c => {
+		const i = parseInt(c, undefined);
+		return (i ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> i / 4).toString(16)
+	});
 }
 
 export class TelemetrySession {
 	private sessionId: string;
 
 	constructor() {
-		this.sessionId = uniqueId();
+		this.sessionId = uuidv4();
 	}
 
 	public recordStart() {
