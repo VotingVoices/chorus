@@ -2,6 +2,9 @@ import { action } from 'typesafe-actions';
 import { IRecordAnswerPayload, IRecordPlanPagePayload, TelemetryActionType } from './InternalTypes';
 import { AnswerId, IQuestionAndAnswer, QuestionId } from './Types';
 
+export const recordStartSession = () =>
+	action(TelemetryActionType.START_SESSION);
+
 export const recordLandingPage = () =>
 	action(TelemetryActionType.LANDING_PAGE);
 

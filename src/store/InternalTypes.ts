@@ -29,6 +29,7 @@ export interface IRouterLocationChangePayload {
 }
 
 export const enum TelemetryActionType {
+	START_SESSION = 'TELEMETRY/START_SESSION',
 	LANDING_PAGE = 'TELEMETRY/LANDING_PAGE',
 	START_SURVEY = 'TELEMETRY/START_SURVEY',
 	ANSWER = 'TELEMETRY/ANSWER',

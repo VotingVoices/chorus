@@ -2,18 +2,23 @@ import * as React from 'react';
 import { Button } from 'react-bootstrap';
 import { connect} from 'react-redux';
 import { Dispatch } from 'redux';
-import { IConnectedReduxProps, recordStartSurvey, startSurvey } from '../store';
+import { IConnectedReduxProps, recordLandingPage, recordStartSurvey, startSurvey } from '../store';
 
 import '../App.css';
 import './LandingPage.css';
 import poweredbyVV from './poweredbyVV.png';
 
 interface IPropsFromDispatch {
+	recordLandingPage: typeof recordLandingPage,
 	recordStartSurvey: typeof recordStartSurvey,
 	startSurvey: typeof startSurvey,
 }
 
 class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
+	public componentDidMount() {
+		this.props.recordLandingPage();
+	}
+
 	public render(): JSX.Element {
 		return (
             <div className="landing-page-header Gradient-background">
@@ -37,6 +42,7 @@ const mapStateToProps = () => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
+	recordLandingPage: () => dispatch(recordLandingPage()),
 	recordStartSurvey: () => dispatch(recordStartSurvey()),
     startSurvey: () => dispatch(startSurvey()),
 });
