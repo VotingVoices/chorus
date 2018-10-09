@@ -48,7 +48,7 @@ export class TelemetrySession {
 		this.uploadData({
 			sessionId: this.sessionId,
 			event: "ViewPlan",
-			answers,
+			answers: answers.map(qa => ({ question: qa.questionId, answer: qa.answerId })),
 		})
 	}
 	private uploadData(data: any) {
