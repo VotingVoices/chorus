@@ -20,6 +20,10 @@
 	margin-bottom: 40px;
 }
 
+.plan-step-call-to-action a:link, .plan-step-call-to-action a:visited {
+	color: #cc1a3b;
+}
+
 @media only screen and (max-width: 840px) {
 	.plan-step-header {
 		margin-top: 26px;
