@@ -26,7 +26,7 @@ export class PlanEmotion extends React.Component<IPlanEmotionProps, any> {
 
 		return (
 			<div key={planStepId}>
-				<div>{ this.getSvg(planStepId) }</div>
+				<div>{ this.imgElement(planStepId) }</div>
 
 				<div className="plan-step-header VotingVoices-sans-serif">{header}</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
@@ -36,7 +36,7 @@ export class PlanEmotion extends React.Component<IPlanEmotionProps, any> {
 		);
 	}
 
-	public getSvg(planStepId: PlanStepId): JSX.Element {
+	public imgElement(planStepId: PlanStepId): JSX.Element {
 		const className = "plan-page-emoji-img";
 		const altText = getEmojiAltText(planStepId);
 

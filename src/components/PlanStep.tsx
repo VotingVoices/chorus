@@ -4,6 +4,8 @@ import { PlanStepId, VotingStateId } from '../store';
 import { getPlanStepStrings, planStepHeaderFormattedString } from '../strings';
 import { renderPlanStepCallToAction } from './renderPlanStepCallToAction';
 
+import plan_circle_on from './plan_circle_on.png';
+
 import './PlanStep.css';
 
 interface IPlanStepProps {
@@ -25,11 +27,15 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 		
 		return (
 			<div key={planStepId}>
-				<div className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</div>
+				<div className="plan-step-header VotingVoices-sans-serif">{this.checkboxElement()}{fullHeaderString}</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
 				{ renderPlanStepCallToAction(callToAction, link) }
 			</div>
 		);
+	}
+
+	private checkboxElement(): JSX.Element {
+		return <img className="plan-step-checkbox" src={plan_circle_on} />
 	}
 }

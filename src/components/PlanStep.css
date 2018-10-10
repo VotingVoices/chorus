@@ -1,6 +1,8 @@
 .plan-step-header {
 	text-transform: uppercase;
 	font-size: 48px;
+	margin-left: auto;
+	margin-right: auto;
 	margin-top: 48px;
 	margin-bottom: -10px;
 	color: #1c2856;
@@ -21,6 +23,10 @@
 
 .plan-step-call-to-action a:link, .plan-step-call-to-action a:visited {
 	color: #cc1a3b;
+}
+
+.plan-step-checkbox {
+	margin-right: 10px;
 }
 
 @media only screen and (max-width: 840px) {
