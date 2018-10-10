@@ -1,45 +1,35 @@
 import * as React from 'react';
 import { IIndexHolder } from './Plan';
-import { AnswerId, QUESTIONS, QuestionId, VotingStateId } from '../store';
+import { PlanStepId, VotingStateId } from '../store';
 import { getPlanStepStrings, planStepHeaderFormattedString } from '../strings';
 
 import './PlanStep.css';
 
 interface IPlanStepProps {
 	indexHolder: IIndexHolder,
-	questionId: QuestionId,
-	answerId: AnswerId,
+	planStepId: PlanStepId,
 	votingStateId: VotingStateId,
 }
 
 export class PlanStep extends React.Component<IPlanStepProps, any> {
 	public render() {
-		const { indexHolder, questionId, answerId, votingStateId } = this.props;
+		const { indexHolder, planStepId, votingStateId } = this.props;
 
-		const question = QUESTIONS.find(q => q.id === questionId);
+		const { header, text, callToAction, link } = getPlanStepStrings(planStepId, votingStateId);
 
-		const planStepId = question!.resultingPlanStep(answerId);
+		const fullHeaderString = planStepHeaderFormattedString(indexHolder.index, header);
 
-		if (planStepId !== undefined) {
-			const { header, text, callToAction, link } = getPlanStepStrings(planStepId, votingStateId);
+		// Increment the index holder so that the next plan step uses the next number.
+		indexHolder.index++;
+		
+		return (
+			<div key={planStepId}>
+				<div className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</div>
+				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
-			const fullHeaderString = planStepHeaderFormattedString(indexHolder.index, header);
-
-			// Increment the index holder so that the next plan step uses the next number.
-			indexHolder.index++;
-			
-			return (
-				<div key={planStepId}>
-					<div className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</div>
-					<div className="plan-step-text VotingVoices-serif">{text}</div>
-
-					{ this.renderCallToAction(callToAction, link) }
-				</div>
-			);
-		}
-		else {
-			return <React.Fragment />
-		}
+				{ this.renderCallToAction(callToAction, link) }
+			</div>
+		);
 	}
 
 	private renderCallToAction(callToAction: string | undefined, link: string | undefined): JSX.Element {

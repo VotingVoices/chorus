@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { connect} from 'react-redux';
 import { PlanStep } from './PlanStep';
+import { ReasonToVote } from './ReasonToVote';
 import { StartOverButton } from './StartOverButton';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, VotingStateId } from '../store';
+import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, VotingStateId } from '../store';
 
 import './Plan.css';
 
@@ -35,7 +36,21 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 							const answer = this.props.answers.find(qa => qa.questionId === questionId);
 
 							if (answer !== undefined) {
-								return <PlanStep indexHolder={indexHolder} questionId={questionId} answerId={answer!.answerId} votingStateId={this.props.votingStateId} />
+								const question = QUESTIONS.find(q => q.id === questionId);
+
+								const planStepId = question!.resultingPlanStep(answer!.answerId);
+
+								if (planStepId !== undefined) {
+									if (questionId === QuestionId.ReasonToVote) {
+										return <ReasonToVote planStepId={planStepId!} />
+									}
+									else {
+										return <PlanStep indexHolder={indexHolder} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
+									}
+								}
+								else {
+									return <React.Fragment />
+								}
 							}
 							else {
 								return <React.Fragment />

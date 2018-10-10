@@ -447,52 +447,6 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			}
 		}
 
-		// TODO: Better styling for "FOR FAMILY" etc.
-		case PlanStepId.ForMyKidsAndFamily: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "FOR FAMILY. Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
-		case PlanStepId.VotingIsPrivilege: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "IT'S MY PRIVILEGE. Yep, you've got the right idea, and we agree. Let's not take voting for granted!",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
-		case PlanStepId.DriveChange: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "FOR CHANGE. You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
-		case PlanStepId.AlwaysVoted: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "IT'S MY M.O.  You've always voted--good on you! Spread the word and keep up the great (and extremely important) civic habit.",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
-		case PlanStepId.OtherReason: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "CIVIC DUTY.  You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
 		case PlanStepId.Excited:
 		case PlanStepId.Concerned:
 		case PlanStepId.Shocked:
@@ -570,4 +524,61 @@ function numberToString(n: number): string {
 export function planStepHeaderFormattedString(index: number, header: string) {
 	const numberString = numberToString(index + 1);
 	return `Step ${numberString}: ${header}`;
+}
+
+export interface IReasonToVoteStrings {
+	header: string,
+	reasonText: string,
+	bodyText: string,
+}
+
+export function getReasonToVoteStrings(planStepId: PlanStepId): IReasonToVoteStrings {
+	const header = "Remember your reason for voting!";
+
+	switch (planStepId) {
+		// TODO: Should these strings just say "Family", "Change", etc.?
+		case PlanStepId.ForMyKidsAndFamily: {
+			return {
+				header,
+				reasonText: "For Family",
+				bodyText: "Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!"
+			}
+		}
+
+		case PlanStepId.VotingIsPrivilege: {
+			return {
+				header,
+				reasonText: "It's My Privilege",
+				bodyText: "Yep, you've got the right idea, and we agree. Let's not take voting for granted!",
+			}
+		}
+
+		case PlanStepId.DriveChange: {
+			return {
+				header,
+				reasonText: "For Change",
+				bodyText: "You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
+			}
+		}
+
+		case PlanStepId.AlwaysVoted: {
+			return {
+				header,
+				reasonText: "It's My M.O.",		// TODO: Does everyone know what M.O. means?
+				bodyText: "You've always voted--good on you! Spread the word and keep up the great (and extremely important) civic habit.",
+			}
+		}
+
+		case PlanStepId.OtherReason: {
+			return {
+				header,
+				reasonText: "CIVIC DUTY.",
+				bodyText: "You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
+			}
+		}
+
+		default: {
+			throw new Error("Unhandled PlanStepId");
+		}
+	}
 }
