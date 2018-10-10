@@ -26,21 +26,18 @@ export class TelemetrySession {
 
 	public recordLandingPage() {
 		this.uploadData({
-			sessionId: this.sessionId,
 			event: "LandingPage",
 		});
 	}
 
 	public recordStartSurvey() {
 		this.uploadData({
-			sessionId: this.sessionId,
 			event: "StartSurvey",
 		});
 	}
 
 	public recordAnswer(questionId: QuestionId, answerId: AnswerId) {
 		this.uploadData({
-			sessionId: this.sessionId,
 			event: "Answer",
 			question: questionId,
 			answer: answerId,
@@ -49,7 +46,6 @@ export class TelemetrySession {
 
 	public recordPlanPage(answers: IQuestionAndAnswer[]) {
 		this.uploadData({
-			sessionId: this.sessionId,
 			event: "ViewPlan",
 			answers: answers.map(qa => ({ question: qa.questionId, answer: qa.answerId })),
 		});
@@ -57,12 +53,15 @@ export class TelemetrySession {
 
 	public recordStartOver() {
 		this.uploadData({
-			sessionId: this.sessionId,
 			event: "StartOver",
 		});
 	}
 
 	private uploadData(data: any) {
+		// 'contact' is needs to be unique for every event.
+		data.contact = uuidv4();
+		data.sessionId = this.sessionId;
+		
 		fetch(TelemetryEndpoint, {
 			method: "POST",
 			headers: { 'Content-Type': 'application/json' },
