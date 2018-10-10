@@ -572,7 +572,7 @@ export function getReasonToVoteStrings(planStepId: PlanStepId): IReasonToVoteStr
 		case PlanStepId.OtherReason: {
 			return {
 				header,
-				reasonText: "CIVIC DUTY.",
+				reasonText: "Civic Duty",
 				bodyText: "You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
 			}
 		}
