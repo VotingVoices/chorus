@@ -6,3 +6,9 @@
 .plan-congrats {
 	font-size: 28px;
 }
+
+.plan-page-body {
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+}

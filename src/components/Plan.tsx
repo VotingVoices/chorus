@@ -21,7 +21,7 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 		const indexHolder = { index: 0 } as IIndexHolder;
 
 		return (
-			<div className="App">
+			<div>
 				<div className="Plan-header Gradient-background">
 					<div className="plan-congrats VotingVoices-serif">Congratulations! Here's your</div>
 
@@ -30,7 +30,7 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 					<StartOverButton {...this.props} />
 				</div>
 
-				<div>
+				<div className="App plan-page-body">
 					{ALL_QUESTION_IDS.map(
 						(questionId: QuestionId) => {
 							const answer = this.props.answers.find(qa => qa.questionId === questionId);
