@@ -5,11 +5,11 @@ import { getReasonToVoteStrings } from '../strings';
 import './PlanStep.css';
 import './ReasonToVote.css';
 
-interface IPlanStepProps {
+interface IReasonToVoteProps {
 	planStepId: PlanStepId,
 }
 
-export class ReasonToVote extends React.Component<IPlanStepProps, any> {
+export class ReasonToVote extends React.Component<IReasonToVoteProps, any> {
 	public render() {
 		const { planStepId } = this.props;
 

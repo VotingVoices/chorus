@@ -582,3 +582,31 @@ export function getReasonToVoteStrings(planStepId: PlanStepId): IReasonToVoteStr
 		}
 	}
 }
+
+export interface IPlanEmotionStrings {
+	header: string,
+	text: string,
+}
+
+export function getEmojiAltText(planStepId: PlanStepId): string {
+	switch (planStepId) {
+		case PlanStepId.Excited: {
+			return "Excited emoji";
+		}
+		case PlanStepId.Concerned: {
+			return "Concerned emoji";
+		}
+		case PlanStepId.Shocked: {
+			return "Shocked emoji";
+		}
+		case PlanStepId.Angry: {
+			return "Angry emoji";
+		}
+		case PlanStepId.Meh: {
+			return "Meh emoji";
+		}
+		default: {
+			throw new Error("Unhandled PlanStepId");
+		}
+	}
+}

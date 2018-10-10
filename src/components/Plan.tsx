@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { connect} from 'react-redux';
+import { PlanEmotion } from './PlanEmotion';
 import { PlanStep } from './PlanStep';
 import { ReasonToVote } from './ReasonToVote';
 import { StartOverButton } from './StartOverButton';
@@ -43,6 +44,9 @@ class InternalPlan extends React.Component<IPlanProps & IConnectedReduxProps, an
 								if (planStepId !== undefined) {
 									if (questionId === QuestionId.ReasonToVote) {
 										return <ReasonToVote planStepId={planStepId!} />
+									}
+									else if (questionId === QuestionId.Emotion) {
+										return <PlanEmotion planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 									else {
 										return <PlanStep indexHolder={indexHolder} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
