@@ -9,11 +9,11 @@ export const QUESTIONS : IQuestion[] = [
         dotNavStep: 1,
         nextQuestionId: (answer) => QuestionId.OverseasMilitary,
         answers: [
-            AnswerId.EmphaticYes,
+            AnswerId.Yes,
             AnswerId.No,
             AnswerId.DontKnow,
         ],
-        resultingPlanStep: (answer) => answer === AnswerId.No || answer === AnswerId.DontKnow ? PlanStepId.Register : undefined,
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.CheckRegistration : (answer === AnswerId.No ? PlanStepId.Register : PlanStepId.MaybeRegister),
     },
     {
         id: QuestionId.OverseasMilitary,

@@ -1,0 +1,11 @@
+.plan-page-emoji-img {
+	width: 216px;
+	height: 216px;
+}
+
+@media only screen and (max-width: 840px) {
+	.plan-page-emoji-img {
+		width: 180px;
+		height: 180px;
+	}
+}

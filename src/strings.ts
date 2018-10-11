@@ -59,9 +59,6 @@ export function getAnswerLabel(answer: AnswerId): string {
 		case AnswerId.No:
 			return 'No';
 
-		case AnswerId.EmphaticYes:
-			return 'Yes!';
-
 		case AnswerId.DontKnow:
 			return 'Not sure';
 
@@ -165,6 +162,24 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 				text: "Let's do this: get registered!",        // TODO: Capitalize Get?
 				callToAction: "Double-check your registration",
 				link: "https://www.rockthevote.org/voting-information/am-i-registered-to-vote/",        // TODO: Spanish-specific links?
+			};
+		}
+
+		case PlanStepId.CheckRegistration: {
+			return {
+				header: "Check your registration",
+				text: "Great \u2014 you're registered! Now take a quick look to make sure everything is up-to-date.",
+				callToAction: "Double-check your registration",
+				link: "https://www.rockthevote.org/voting-information/am-i-registered-to-vote/",
+			};
+		}
+
+		case PlanStepId.MaybeRegister: {
+			return {
+				header: "Check your registration",
+				text: "Not sure whether you're registered? Take a minute to double-check and make sure you're vote ready.",
+				callToAction: "Double-check your registration",
+				link: "https://www.rockthevote.org/voting-information/am-i-registered-to-vote/",
 			};
 		}
 
@@ -335,8 +350,8 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.FindPollingLocation: {
 			return {
 				header: "Find your polling location",
-				text: "Make it easy on yourself! Find your state's polling locations through the link below.",
-				callToAction: "This way to the polls (scroll for your state)!",
+				text: "Make it easy on yourself! Find your polling location through the link below.",
+				callToAction: "This way to the polls!",
 				link: "https://www.vote.org/polling-place-locator/",
 			}
 		}
@@ -408,7 +423,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.ReviewBallotIssues: {
 			return {
 				header: "Your ballot, in a nutshell",
-				text: "You're familiar with the candidates and issues \u2014 now put it all together using this handy app.",
+				text: "You're familiar with the candidates and issues. The Ballot Ready app can help you make informed choices.",
 				callToAction: "Plan your ballot choices",
 				link: "https://www.ballotready.org/",
 			}
@@ -417,7 +432,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.ResearchBallotIssues: {
 			return {
 				header: "Introducing...your ballot!",
-				text: "Now's the perfect time to research the candidates and issues you'll be voting for. Here's an app to help.",
+				text: "Now's the perfect time to research the candidates and issues you'll be voting for. The Ballot Ready app can help you make informed choices.",
 				callToAction: "Plan your ballot choices",
 				link: "https://www.ballotready.org/",
 			}
@@ -425,54 +440,8 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 
 		case PlanStepId.InvitePeople: {
 			return {
-				header: "Invite your crowd to VotePlan!",    // TODO: Review: "your crowd?",
-				text: "Let's keep each other accountable \u2014 voting's even better when we can do it together! Share your plans with the people in your life.",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
-		// TODO: Better styling for "FOR FAMILY" etc.
-		case PlanStepId.ForMyKidsAndFamily: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "FOR FAMILY. Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
-		case PlanStepId.VotingIsPrivilege: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "IT'S MY PRIVILEGE. Yep, you've got the right idea, and we agree. Let's not take voting for granted!",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
-		case PlanStepId.DriveChange: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "FOR CHANGE. You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
-		case PlanStepId.AlwaysVoted: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "IT'S MY M.O.  You've always voted--good on you! Spread the word and keep up the great (and extremely important) civic habit.",
-				callToAction: undefined,
-				link: undefined,
-			}
-		}
-
-		case PlanStepId.OtherReason: {
-			return {
-				header: "Remember your reason for voting!",
-				text: "CIVIC DUTY.  You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
+				header: "Invite your crowd to vote with you",    // TODO: Review: "your crowd?",
+				text: "Let's keep each other accountable \u2014 voting's even better when we can do it together!",
 				callToAction: undefined,
 				link: undefined,
 			}
@@ -485,7 +454,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.Meh: {
 			let header = "Put those feelings toward action";
 			let text: string | undefined;
-			const callToAction: string | undefined = "Your voice matters \u2014 take a look";
+			const callToAction: string | undefined = "See what happens When We All Vote";
 			const link: string | undefined = "https://www.whenweallvote.org/";
 
 			switch (step) {
@@ -555,4 +524,89 @@ function numberToString(n: number): string {
 export function planStepHeaderFormattedString(index: number, header: string) {
 	const numberString = numberToString(index + 1);
 	return `Step ${numberString}: ${header}`;
+}
+
+export interface IReasonToVoteStrings {
+	header: string,
+	reasonText: string,
+	bodyText: string,
+}
+
+export function getReasonToVoteStrings(planStepId: PlanStepId): IReasonToVoteStrings {
+	const header = "Remember your reason for voting!";
+
+	switch (planStepId) {
+		// TODO: Should these strings just say "Family", "Change", etc.?
+		case PlanStepId.ForMyKidsAndFamily: {
+			return {
+				header,
+				reasonText: "For Family",
+				bodyText: "Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!"
+			}
+		}
+
+		case PlanStepId.VotingIsPrivilege: {
+			return {
+				header,
+				reasonText: "It's My Privilege",
+				bodyText: "Yep, you've got the right idea, and we agree. Let's not take voting for granted!",
+			}
+		}
+
+		case PlanStepId.DriveChange: {
+			return {
+				header,
+				reasonText: "For Change",
+				bodyText: "You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
+			}
+		}
+
+		case PlanStepId.AlwaysVoted: {
+			return {
+				header,
+				reasonText: "It's My M.O.",		// TODO: Does everyone know what M.O. means?
+				bodyText: "You've always voted--good on you! Spread the word and keep up the great (and extremely important) civic habit.",
+			}
+		}
+
+		case PlanStepId.OtherReason: {
+			return {
+				header,
+				reasonText: "Civic Duty",
+				bodyText: "You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!",
+			}
+		}
+
+		default: {
+			throw new Error("Unhandled PlanStepId");
+		}
+	}
+}
+
+export interface IPlanEmotionStrings {
+	header: string,
+	text: string,
+}
+
+export function getEmojiAltText(planStepId: PlanStepId): string {
+	switch (planStepId) {
+		case PlanStepId.Excited: {
+			return "Excited emoji";
+		}
+		case PlanStepId.Concerned: {
+			return "Concerned emoji";
+		}
+		case PlanStepId.Shocked: {
+			return "Shocked emoji";
+		}
+		case PlanStepId.Angry: {
+			return "Angry emoji";
+		}
+		case PlanStepId.Meh: {
+			return "Meh emoji";
+		}
+		default: {
+			throw new Error("Unhandled PlanStepId");
+		}
+	}
 }

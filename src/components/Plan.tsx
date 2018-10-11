@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect} from 'react-redux';
+import { PlanEmotion } from './PlanEmotion';
 import { PlanStep } from './PlanStep';
+import { ReasonToVote } from './ReasonToVote';
 import { StartOverButton } from './StartOverButton';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, recordPlanPage, VotingStateId } from '../store';
+import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
 
 import './Plan.css';
 
@@ -29,7 +31,7 @@ class InternalPlan extends React.Component<IPlanProps & IPropsFromDispatch & ICo
 		const indexHolder = { index: 0 } as IIndexHolder;
 
 		return (
-			<div className="App">
+			<div>
 				<div className="Plan-header Gradient-background">
 					<div className="plan-congrats VotingVoices-serif">Congratulations! Here's your</div>
 
@@ -38,13 +40,30 @@ class InternalPlan extends React.Component<IPlanProps & IPropsFromDispatch & ICo
 					<StartOverButton {...this.props} />
 				</div>
 
-				<div>
+				<div className="App plan-page-body">
 					{ALL_QUESTION_IDS.map(
 						(questionId: QuestionId) => {
 							const answer = this.props.answers.find(qa => qa.questionId === questionId);
 
 							if (answer !== undefined) {
-								return <PlanStep indexHolder={indexHolder} questionId={questionId} answerId={answer!.answerId} votingStateId={this.props.votingStateId} />
+								const question = QUESTIONS.find(q => q.id === questionId);
+
+								const planStepId = question!.resultingPlanStep(answer!.answerId);
+
+								if (planStepId !== undefined) {
+									if (questionId === QuestionId.ReasonToVote) {
+										return <ReasonToVote planStepId={planStepId!} />
+									}
+									else if (questionId === QuestionId.Emotion) {
+										return <PlanEmotion planStepId={planStepId!} votingStateId={this.props.votingStateId} />
+									}
+									else {
+										return <PlanStep indexHolder={indexHolder} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
+									}
+								}
+								else {
+									return <React.Fragment />
+								}
 							}
 							else {
 								return <React.Fragment />
