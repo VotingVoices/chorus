@@ -31,6 +31,10 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
 				{ renderPlanStepCallToAction(callToAction, link) }
+
+				<iframe style={ { backgroundColor: "transparent", border: "none", overflow: "hidden" } } scrolling="no" src="https://www2.ballotready.org/widget/address_search" width="100%" height="200">
+					iframe not supported. {/* TODO: Better error text? Or show nothing at all? */}
+				</iframe>
 			</div>
 		);
 	}
