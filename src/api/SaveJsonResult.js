@@ -1,15 +1,18 @@
 let SurveyDAO = require('../dao/SurveyDAO');
 
-function generateResponseBody(message) {
+function generateResponseBody(result, message) {
     console.log(message);
     return {
         statusCode: 200,
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Credentials': true,
-            'content-type': 'text/plain'
+            'content-type': 'application/json'
         },
-        body: message
+        body: {
+            result: result,
+            message: message
+        }
     };
 }
 
@@ -22,11 +25,11 @@ exports.handler = function (event, context, callback) {
             let surveyDAO = new SurveyDAO();
             surveyDAO.saveSurvey(request, false);
         } catch (error) {
-            callback(null, generateResponseBody(error.message));
+            callback(null, generateResponseBody("Error", error.message));
         }
     } else {
-        callback(null, generateResponseBody("Post request is empty"));
+        callback(null, generateResponseBody("Error", "Post request is empty"));
     }
 
-    callback(null, generateResponseBody(event.body + " is saved"));
+    callback(null, generateResponseBody("Success", event.body + " is saved"));
 };
