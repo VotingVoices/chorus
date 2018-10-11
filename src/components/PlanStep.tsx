@@ -30,16 +30,26 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 				<div className="plan-step-header VotingVoices-sans-serif">{this.checkboxElement()}{fullHeaderString}</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
-				{ renderPlanStepCallToAction(callToAction, link) }
-
-				<iframe style={ { backgroundColor: "transparent", border: "none", overflow: "hidden" } } scrolling="no" src="https://www2.ballotready.org/widget/address_search" width="100%" height="200">
-					iframe not supported. {/* TODO: Better error text? Or show nothing at all? */}
-				</iframe>
+				{ this.showBallotReady(planStepId) ?
+					this.ballotReadyWidget(callToAction, link) :
+					renderPlanStepCallToAction(callToAction, link) }
 			</div>
 		);
 	}
 
 	private checkboxElement(): JSX.Element {
 		return <img className="plan-step-checkbox" src={plan_circle_on} />
+	}
+
+	private showBallotReady(planStepId: PlanStepId) {
+		return (planStepId === PlanStepId.ResearchBallotIssues || planStepId === PlanStepId.ReviewBallotIssues);
+	}
+
+	private ballotReadyWidget(callToAction: string | undefined, link: string | undefined): JSX.Element {
+		return (
+			<iframe style={ { backgroundColor: "transparent", border: "none", overflow: "hidden" } } scrolling="no" src="https://www2.ballotready.org/widget/address_search" width="100%" height="200">
+				{ renderPlanStepCallToAction(callToAction, link) }
+			</iframe>
+		);
 	}
 }
