@@ -10,10 +10,11 @@ module.exports = class SurveyDAO {
 
     saveSurvey(input, requireValidation) {
         let surveyDAO = this;
+        let survey;
         if (requireValidation === true) {
-            let survey = Survey.getInstance(input);
+            survey = Survey.getInstance(input);
         } else {
-            let survey = input;
+            survey = input;
         }
         survey = SurveyDAO._includeTimeToItem(survey);
         let dynamoItem = SurveyDAO._convertToDynamoDBItem(survey);
