@@ -342,7 +342,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			return {
 				header: "Your polling location: has it moved?",
 				text: "Things change \u2014 make sure you're aware of your area's best polling locations and hours.",
-				callToAction: "This way to the polls (scroll for your state)!",
+				callToAction: "This way to the polls!",
 				link: "https://www.vote.org/polling-place-locator/",
 			}
 		}
