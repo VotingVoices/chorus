@@ -51,6 +51,13 @@ export class TelemetrySession {
 		});
 	}
 
+	public recordCallToAction(link: string) {
+		this.uploadData({
+			event: "CallToActionClicked",
+			link
+		});
+	}
+
 	public recordStartOver() {
 		this.uploadData({
 			event: "StartOver",
@@ -92,6 +99,10 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		}
 		case TelemetryActionType.PLAN_PAGE: {
 			session.recordPlanPage(action.payload.answers);
+			break;
+		}
+		case TelemetryActionType.CALL_TO_ACTION: {
+			session.recordCallToAction(action.payload.link);
 			break;
 		}
 		case QuestionnaireActionType.START_SURVEY: {

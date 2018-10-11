@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PlanStepId, VotingStateId } from '../store';
+import { IConnectedReduxProps, PlanStepId, VotingStateId } from '../store';
 import { getEmojiAltText, getPlanStepStrings } from '../strings';
 import { CallToAction } from './CallToAction';
 
@@ -18,7 +18,7 @@ interface IPlanEmotionProps {
 	votingStateId: VotingStateId,
 }
 
-export class PlanEmotion extends React.Component<IPlanEmotionProps, any> {
+export class PlanEmotion extends React.Component<IPlanEmotionProps & IConnectedReduxProps, any> {
 	public render() {
 		const { planStepId, votingStateId } = this.props;
 
@@ -31,7 +31,7 @@ export class PlanEmotion extends React.Component<IPlanEmotionProps, any> {
 				<div className="plan-step-header VotingVoices-sans-serif">{header}</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
-				<CallToAction callToAction={callToAction} link={link} />
+				<CallToAction {...this.props} callToAction={callToAction} link={link} />
 			</div>
 		);
 	}

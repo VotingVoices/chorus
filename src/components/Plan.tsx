@@ -55,10 +55,10 @@ class InternalPlan extends React.Component<IPlanProps & IPropsFromDispatch & ICo
 										return <ReasonToVote planStepId={planStepId!} />
 									}
 									else if (questionId === QuestionId.Emotion) {
-										return <PlanEmotion planStepId={planStepId!} votingStateId={this.props.votingStateId} />
+										return <PlanEmotion {...this.props} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 									else {
-										return <PlanStep indexHolder={indexHolder} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
+										return <PlanStep {...this.props} indexHolder={indexHolder} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 								}
 								else {

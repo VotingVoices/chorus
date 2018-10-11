@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IIndexHolder } from './Plan';
-import { PlanStepId, VotingStateId } from '../store';
+import { IConnectedReduxProps, PlanStepId, VotingStateId } from '../store';
 import { getPlanStepStrings, planStepHeaderFormattedString } from '../strings';
 import { CallToAction } from './CallToAction';
 
@@ -12,7 +12,7 @@ interface IPlanStepProps {
 	votingStateId: VotingStateId,
 }
 
-export class PlanStep extends React.Component<IPlanStepProps, any> {
+export class PlanStep extends React.Component<IPlanStepProps & IConnectedReduxProps, any> {
 	public render() {
 		const { indexHolder, planStepId, votingStateId } = this.props;
 
@@ -28,7 +28,7 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 				<div className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
-				<CallToAction callToAction={callToAction} link={link} />
+				<CallToAction {...this.props} callToAction={callToAction} link={link} />
 			</div>
 		);
 	}

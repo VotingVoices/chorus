@@ -32,8 +32,13 @@ export const enum TelemetryActionType {
 	START_SESSION = 'TELEMETRY/START_SESSION',
 	LANDING_PAGE = 'TELEMETRY/LANDING_PAGE',
 	PLAN_PAGE = 'TELEMETRY/PLAN_PAGE',
+	CALL_TO_ACTION = 'TELEMETRY/CALL_TO_ACTION',
 }
 
 export interface IRecordPlanPagePayload {
 	answers: IQuestionAndAnswer[],
+}
+
+export interface IRecordCallToActionPayload {
+	link: string,
 }
