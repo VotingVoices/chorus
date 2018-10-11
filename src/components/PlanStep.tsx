@@ -27,9 +27,7 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 		
 		return (
 			<div key={planStepId}>
-				<div className="plan-step-header-container">
-					<div className="plan-step-header VotingVoices-sans-serif">{this.checkboxElement()}{fullHeaderString}</div>
-				</div>
+				<div className="plan-step-header VotingVoices-sans-serif">{this.checkboxElement()}{fullHeaderString}</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
 				{ renderPlanStepCallToAction(callToAction, link) }
