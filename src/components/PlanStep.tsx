@@ -29,8 +29,7 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 			<div key={planStepId}>
 				<div className="plan-step-header-2nd-level-container">
 					<div className="plan-step-header-container">
-						<div className="plan-step-checkbox">{this.checkboxElement()}</div>
-						<div className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</div>
+						<div className="plan-step-header VotingVoices-sans-serif">{this.checkboxElement()}{fullHeaderString}</div>
 					</div>
 				</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
@@ -41,6 +40,6 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 	}
 
 	private checkboxElement(): JSX.Element {
-		return <img src={plan_circle_on} />
+		return <img className="plan-step-checkbox" src={plan_circle_on} />
 	}
 }
