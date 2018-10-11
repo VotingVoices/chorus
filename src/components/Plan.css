@@ -12,8 +12,6 @@
 	margin-left: auto;
 	margin-right: auto;
 	padding: 20px;
-	display: flex;
-	flex-flow: column
 }
 
 @media only screen and (max-width: 840px) {
