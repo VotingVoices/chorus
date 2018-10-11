@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IIndexHolder } from './Plan';
 import { PlanStepId, VotingStateId } from '../store';
 import { getPlanStepStrings, planStepHeaderFormattedString } from '../strings';
-import { renderPlanStepCallToAction } from './renderPlanStepCallToAction';
+import { CallToAction } from './CallToAction';
 
 import './PlanStep.css';
 
@@ -28,7 +28,7 @@ export class PlanStep extends React.Component<IPlanStepProps, any> {
 				<div className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
-				{ renderPlanStepCallToAction(callToAction, link) }
+				<CallToAction callToAction={callToAction} link={link} />
 			</div>
 		);
 	}
