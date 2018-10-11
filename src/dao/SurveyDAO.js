@@ -8,31 +8,26 @@ module.exports = class SurveyDAO {
         this.tableName = process.env.SURVEY_TABLE;
     }
 
-    saveSurvey(input) {
+    saveSurvey(input, requireValidation) {
         let surveyDAO = this;
-        let survey = Survey.getInstance(input);
-        let dynamoItem = {};
-        for (let key in survey) {
-            if (survey.hasOwnProperty(key) && survey[key] !== null) {
-                let attributeValue = SurveyDAO._getAttributeToDynamoItem(survey, key);
-                if (attributeValue) {
-                    dynamoItem[key] = attributeValue;
-                }
-            }
+        if (requireValidation === true) {
+            let survey = Survey.getInstance(input);
+        } else {
+            let survey = input;
         }
-        dynamoItem.date = {
-            S: new Date().toDateString()
-        };
-        console.log(JSON.stringify(dynamoItem));
+        survey = SurveyDAO._includeTimeToItem(survey);
+        let dynamoItem = SurveyDAO._convertToDynamoDBItem(survey);
+
+        console.log("Item to be saved: " + JSON.stringify(dynamoItem));
         let parameter = {
             TableName: surveyDAO.tableName,
             Item: dynamoItem
         };
 
-        this.tableClient.putItem(parameter, function (error, data) {
+        surveyDAO.tableClient.putItem(parameter, function (error, data) {
             if (error) {
                 console.log(error, error.stack);
-                throw "The item cannot be saved";
+                throw "The item cannot be saved: " + error.message;
             } else {
                 console.log(data);
             }
@@ -40,25 +35,16 @@ module.exports = class SurveyDAO {
 
     }
 
-    static _getAttributeToDynamoItem(surveyItem, attributeKey) {
-        if (surveyItem.hasOwnProperty(attributeKey)) {
-            if (surveyItem[attributeKey] === null) {
-                return undefined;
-            } else {
-                if (Array.isArray(surveyItem[attributeKey])) {
-                    let result = {};
-                    result.L = surveyItem[attributeKey].map((item) => {
-                        S:item
-                    });
-                    return result;
-                } else {
-                    return {
-                        S: surveyItem[attributeKey]
-                    }
-                }
-            }
-        } else {
-            return undefined;
-        }
+    static _convertToDynamoDBItem(normalItem) {
+        return AWS.DynamoDB.Converter.marshall(normalItem, {
+            convertEmptyValues: true,
+            wrapNumbers: true
+        })
+    }
+
+    static _includeTimeToItem(normalItem) {
+        let item = normalItem;
+        item.dateTime = new Date().toString();
+        return item;
     }
 };

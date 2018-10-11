@@ -14,12 +14,13 @@ function generateResponseBody(message) {
 }
 
 exports.handler = function (event, context, callback) {
-    if (event.hasOwnProperty("body")) {
+    if (event && event.hasOwnProperty("body")) {
         try {
             let request = JSON.parse(event.body);
-            let surveyDAO = new SurveyDAO();
-            surveyDAO.saveSurvey(request, true);
+            console.log("Received request: " + JSON.stringify(request));
 
+            let surveyDAO = new SurveyDAO();
+            surveyDAO.saveSurvey(request, false);
         } catch (error) {
             callback(null, generateResponseBody(error.message));
         }
@@ -27,5 +28,5 @@ exports.handler = function (event, context, callback) {
         callback(null, generateResponseBody("Post request is empty"));
     }
 
-    callback(null, generateResponseBody(JSON.parse(event.body).contact + " is saved"));
+    callback(null, generateResponseBody(event.body + " is saved"));
 };
