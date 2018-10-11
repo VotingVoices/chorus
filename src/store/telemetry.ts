@@ -6,8 +6,8 @@ import * as actions from './Actions';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
-const TelemetryEndpoint = 'http://localhost:3001/';
-// const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
+// const TelemetryEndpoint = 'http://localhost:3001/';
+const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
 
 // Courtesy of 'broofa's answer in https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 function uuidv4() {
