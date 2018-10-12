@@ -24,7 +24,7 @@ class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsF
                 <h1 className="voteplan-title landing-page-title">VotePlan</h1>
                 <img src={poweredbyVV} />
                 <div className="landing-page-slogan VotingVoices-serif">Plan your vote, invite others, and get ready!</div>
-                <Button type="button" className="vv-button start-plan-button" onClick={this.onStartClick()}>Start Your Plan</Button>
+                <Button type="button" className="vv-button vv-button-filled vv-button-large start-plan-button" onClick={this.onStartClick()}>Start Your Plan</Button>
             </div>
 		);
 	}

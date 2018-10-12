@@ -342,7 +342,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			return {
 				header: "Your polling location: has it moved?",
 				text: "Things change \u2014 make sure you're aware of your area's best polling locations and hours.",
-				callToAction: "This way to the polls (scroll for your state)!",
+				callToAction: "This way to the polls!",
 				link: "https://www.vote.org/polling-place-locator/",
 			}
 		}
@@ -496,34 +496,8 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 	}
 }
 
-function numberToString(n: number): string {
-	switch (n) {
-		case 1:
-			return "One";
-		case 2:
-			return "Two";
-		case 3:
-			return "Three";
-		case 4:
-			return "Four";
-		case 5:
-			return "Five";
-		case 6:
-			return "Six";
-		case 7:
-			return "Seven";
-		case 8:
-			return "Eight";
-		case 9:
-			return "Nine";
-		default:
-			return `${n}`;
-	}
-}
-
 export function planStepHeaderFormattedString(index: number, header: string) {
-	const numberString = numberToString(index + 1);
-	return `Step ${numberString}: ${header}`;
+	return `Step ${index + 1}: ${header}`;
 }
 
 export interface IReasonToVoteStrings {
@@ -564,7 +538,7 @@ export function getReasonToVoteStrings(planStepId: PlanStepId): IReasonToVoteStr
 		case PlanStepId.AlwaysVoted: {
 			return {
 				header,
-				reasonText: "It's My M.O.",		// TODO: Does everyone know what M.O. means?
+				reasonText: "Civic Duty",
 				bodyText: "You've always voted--good on you! Spread the word and keep up the great (and extremely important) civic habit.",
 			}
 		}

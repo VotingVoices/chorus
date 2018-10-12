@@ -4,14 +4,30 @@ import { connect} from 'react-redux';
 import { Dispatch } from 'redux';
 import { IConnectedReduxProps, startOver } from '../store';
 
+import '../App.css';
+
+export enum StartOverButtonType {
+	Outline,
+	Filled,
+}
+
+interface IStartOverButtonProps {
+	type: StartOverButtonType,
+}
+
 interface IPropsFromDispatch {
 	startOver: typeof startOver,
 }
 
-class InternalStartOverButton extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
+class InternalStartOverButton extends React.Component<IStartOverButtonProps & IConnectedReduxProps & IPropsFromDispatch, any> {
 	public render(): JSX.Element {
+		const { type } = this.props;
+
+		const startOverClassName = type === StartOverButtonType.Outline ? "vv-button-outline" : "vv-button-filled vv-button-large";
+		const className = `vv-button ${startOverClassName} start-over-button`;
+
 		return (
-			<Button type="button" className="vv-button start-over-button" onClick={this.onStartOverClick()}>Start Over</Button>
+			<Button type="button" className={className} onClick={this.onStartOverClick()}>Start Over</Button>
 		);
 	}
 

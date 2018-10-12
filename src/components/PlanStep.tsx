@@ -4,6 +4,8 @@ import { IConnectedReduxProps, PlanStepId, VotingStateId } from '../store';
 import { getPlanStepStrings, planStepHeaderFormattedString } from '../strings';
 import { CallToAction } from './CallToAction';
 
+import plan_circle_on from './plan_circle_on.png';
+
 import './PlanStep.css';
 
 interface IPlanStepProps {
@@ -25,11 +27,29 @@ export class PlanStep extends React.Component<IPlanStepProps & IConnectedReduxPr
 		
 		return (
 			<div key={planStepId}>
-				<div className="plan-step-header VotingVoices-sans-serif">{fullHeaderString}</div>
+				<div className="plan-step-header VotingVoices-sans-serif">{this.checkboxElement()}{fullHeaderString}</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
-				<CallToAction {...this.props} callToAction={callToAction} link={link} />
+				{ this.showBallotReady(planStepId) ?
+					this.ballotReadyWidget(callToAction, link) :
+					( <CallToAction {...this.props} callToAction={callToAction} link={link} /> ) }
 			</div>
+		);
+	}
+
+	private checkboxElement(): JSX.Element {
+		return <img className="plan-step-checkbox" src={plan_circle_on} />
+	}
+
+	private showBallotReady(planStepId: PlanStepId) {
+		return (planStepId === PlanStepId.ResearchBallotIssues || planStepId === PlanStepId.ReviewBallotIssues);
+	}
+
+	private ballotReadyWidget(callToAction: string | undefined, link: string | undefined): JSX.Element {
+		return (
+			<iframe className="ballotReady-widget" style={ { backgroundColor: "transparent", border: "none", overflow: "hidden" } } scrolling="no" src="https://www2.ballotready.org/widget/address_search" width="100%">
+				{ renderPlanStepCallToAction(callToAction, link) }
+			</iframe>
 		);
 	}
 }

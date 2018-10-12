@@ -4,8 +4,13 @@ import { connect} from 'react-redux';
 import { PlanEmotion } from './PlanEmotion';
 import { PlanStep } from './PlanStep';
 import { ReasonToVote } from './ReasonToVote';
+<<<<<<< HEAD
 import { StartOverButton } from './StartOverButton';
 import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
+=======
+import { StartOverButton, StartOverButtonType } from './StartOverButton';
+import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, VotingStateId } from '../store';
+>>>>>>> master
 
 import './Plan.css';
 
@@ -33,11 +38,9 @@ class InternalPlan extends React.Component<IPlanProps & IPropsFromDispatch & ICo
 		return (
 			<div>
 				<div className="Plan-header Gradient-background">
-					<div className="plan-congrats VotingVoices-serif">Congratulations! Here's your</div>
+					{/* TODO: Put text below the logo with similar styling: <div className="plan-congrats VotingVoices-serif">Congratulations! Here's your</div> */}
 
-					<h1 className="voteplan-title">VotePlan</h1>
-
-					<StartOverButton {...this.props} />
+                	<h1 className="voteplan-title">VotePlan</h1>
 				</div>
 
 				<div className="App plan-page-body">
@@ -70,6 +73,8 @@ class InternalPlan extends React.Component<IPlanProps & IPropsFromDispatch & ICo
 							}
 						}
 					)}
+
+					<StartOverButton type={StartOverButtonType.Filled} {...this.props} />
 				</div>
 			</div>
 		);

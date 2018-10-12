@@ -1,10 +1,10 @@
 .plan-step-header {
-	text-transform: uppercase;
 	font-size: 48px;
 	margin-top: 48px;
 	margin-bottom: -10px;
 	color: #1c2856;
 	line-height: 110%;
+	vertical-align: top;
 }
 
 .plan-step-text {
@@ -23,6 +23,17 @@
 	color: #cc1a3b;
 }
 
+.plan-step-checkbox {
+	margin-top: 12px;
+	margin-right: 10px;
+	vertical-align: top;
+}
+
+.ballotReady-widget {
+	width: 500px;
+	height: 120px;
+}
+
 @media only screen and (max-width: 840px) {
 	.plan-step-header {
 		margin-top: 26px;
@@ -34,5 +45,11 @@
 		line-height: 120%;
 		margin-top: 22px;
 		margin-bottom: 12px;
+	}
+
+	.plan-step-checkbox {
+		margin-top: 2px;
+		margin-right: 4px;
+		width: 22px;
 	}
 }
