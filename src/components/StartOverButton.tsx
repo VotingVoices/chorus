@@ -23,7 +23,7 @@ class InternalStartOverButton extends React.Component<IStartOverButtonProps & IC
 	public render(): JSX.Element {
 		const { type } = this.props;
 
-		const startOverClassName = type === StartOverButtonType.Outline ? "vv-button-outline" : "vv-button-filled";
+		const startOverClassName = type === StartOverButtonType.Outline ? "vv-button-outline" : "vv-button-filled vv-button-large";
 		const className = `vv-button ${startOverClassName} start-over-button`;
 
 		return (

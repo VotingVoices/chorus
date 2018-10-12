@@ -112,6 +112,10 @@
   color: white;
 }
 
+.vv-button-large {
+  font-size: 24pt;
+}
+
 .start-over-button {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -122,7 +126,6 @@
 .start-plan-button {
   margin-top: 30px;
   margin-bottom: 30px;
-  font-size: 24pt;
 }
 
 .contact-about-button {
