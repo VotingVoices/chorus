@@ -564,7 +564,7 @@ export function getReasonToVoteStrings(planStepId: PlanStepId): IReasonToVoteStr
 		case PlanStepId.AlwaysVoted: {
 			return {
 				header,
-				reasonText: "It's My M.O.",		// TODO: Does everyone know what M.O. means?
+				reasonText: "Civic Duty",
 				bodyText: "You've always voted--good on you! Spread the word and keep up the great (and extremely important) civic habit.",
 			}
 		}
