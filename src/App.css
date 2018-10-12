@@ -102,21 +102,27 @@
   border-radius: 8px;
 }
 
+.vv-button-filled {
+  background: #e81c38;
+  color: white;
+  border: none;
+}
+
+.vv-button-outline {
+  color: white;
+}
+
 .start-over-button {
   margin-top: 30px;
   margin-bottom: 30px;
   margin-left: auto;
   margin-right: auto;
-  color: white;
 }
 
 .start-plan-button {
   margin-top: 30px;
   margin-bottom: 30px;
-  background: #e81c38;
-  color: white;
   font-size: 24pt;
-  border: none;
 }
 
 .contact-about-button {

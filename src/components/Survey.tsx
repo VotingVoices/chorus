@@ -4,7 +4,7 @@ import { connect} from 'react-redux';
 
 import { DotNavigationBar } from './DotNavigationBar';
 import { Question } from './Question';
-import { StartOverButton } from './StartOverButton';
+import { StartOverButton, StartOverButtonType } from './StartOverButton';
 import { IConnectedReduxProps, IQuestion, IQuestionnaireState, PLAN_DOT_NAV_STEP, QUESTIONS } from '../store';
 import { getTransitionName } from '../transitionNames';
 
@@ -46,7 +46,7 @@ class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromSt
 						dotRadius={8} />
 				</div>
 
-				<StartOverButton {...this.props} />
+				<StartOverButton type={StartOverButtonType.Outline} {...this.props} />
 			</div>
 		);
 	}
