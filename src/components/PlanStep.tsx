@@ -48,7 +48,7 @@ export class PlanStep extends React.Component<IPlanStepProps & IConnectedReduxPr
 	private ballotReadyWidget(callToAction: string | undefined, link: string | undefined): JSX.Element {
 		return (
 			<iframe className="ballotReady-widget" style={ { backgroundColor: "transparent", border: "none", overflow: "hidden" } } scrolling="no" src="https://www2.ballotready.org/widget/address_search" width="100%">
-				{ renderPlanStepCallToAction(callToAction, link) }
+				<CallToAction {...this.props} callToAction={callToAction} link={link} />
 			</iframe>
 		);
 	}

@@ -4,13 +4,8 @@ import { connect} from 'react-redux';
 import { PlanEmotion } from './PlanEmotion';
 import { PlanStep } from './PlanStep';
 import { ReasonToVote } from './ReasonToVote';
-<<<<<<< HEAD
-import { StartOverButton } from './StartOverButton';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
-=======
 import { StartOverButton, StartOverButtonType } from './StartOverButton';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, VotingStateId } from '../store';
->>>>>>> master
+import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
 
 import './Plan.css';
 
