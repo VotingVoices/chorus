@@ -22,16 +22,18 @@ class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromSt
 		return (
 			<div className="Survey-body Gradient-background">
 				<div className="question-container">
-					<ReactCSSTransitionReplace
-						transitionName={this.props.transitionName}
-						transitionEnterTimeout={1000}
-						transitionLeaveTimeout={400} >
-						<Question
-							{...this.props}
-							key={this.props.question.id}
-							questionId={this.props.question.id}
-							answers={QUESTIONS.find(q => q.id === this.props.question.id)!.answers} />
-					</ReactCSSTransitionReplace>
+					<div className="question-container-2">
+						<ReactCSSTransitionReplace
+							transitionName={this.props.transitionName}
+							transitionEnterTimeout={1000}
+							transitionLeaveTimeout={400} >
+							<Question
+								{...this.props}
+								key={this.props.question.id}
+								questionId={this.props.question.id}
+								answers={QUESTIONS.find(q => q.id === this.props.question.id)!.answers} />
+						</ReactCSSTransitionReplace>
+					</div>
 				</div>
 
 				<div className="dot-navigation">

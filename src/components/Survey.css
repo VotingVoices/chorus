@@ -9,6 +9,13 @@
 	flex: 1 0 auto;
 	min-height: 400px;
 	margin-bottom: 20px;
+	display: flex;
+	flex-flow: column;
+}
+
+.question-container-2 {
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .dot-navigation {
