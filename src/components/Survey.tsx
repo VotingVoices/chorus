@@ -46,7 +46,9 @@ class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromSt
 						dotRadius={8} />
 				</div>
 
-				<StartOverButton type={StartOverButtonType.Outline} {...this.props} />
+				<div>
+					<StartOverButton type={StartOverButtonType.Outline} {...this.props} />
+				</div>
 			</div>
 		);
 	}
