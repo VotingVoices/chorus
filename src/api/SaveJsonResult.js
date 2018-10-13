@@ -9,10 +9,10 @@ function generateResponseBody(result, message) {
             'Access-Control-Allow-Credentials': true,
             'content-type': 'application/json'
         },
-        body: {
+        body: JSON.stringify({
             result: result,
             message: message
-        }
+        })
     };
 }
 
