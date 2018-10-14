@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import './index.css';
 import './App.css';
-import { Plan, Survey, LandingPage, FooterText } from './components';
+import { FooterText, LandingPage, Plan, PrivacyPolicy, Survey } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
 import { getTransitionName } from './transitionNames';
 
@@ -60,6 +60,10 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 
 			case AppView.Plan: {
 				return (<Plan key="plan" {...this.props} answers={this.props.answers} votingStateId={this.props.votingStateId} />);
+			}
+
+			case AppView.PrivacyPolicy: {
+				return (<PrivacyPolicy key="privacy-policy" />);
 			}
 
 			default: {

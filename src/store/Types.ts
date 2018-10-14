@@ -78,6 +78,7 @@ export const enum AppView {
 	LandingPage,
 	Questionnaire,
 	Plan,
+	PrivacyPolicy,
 }
 
 export const enum MostRecentTransition {
