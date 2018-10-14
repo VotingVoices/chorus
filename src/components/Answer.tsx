@@ -28,8 +28,7 @@ export class Answer extends React.Component<IAnswerProps, any> {
 		ev.preventDefault();
 		ev.stopPropagation();
 
-		if (onClick)
-		{
+		if (onClick) {
 			onClick(ev);
 		}
 	}

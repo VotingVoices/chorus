@@ -124,6 +124,7 @@ export const enum QuestionnaireActionType {
 	START_SURVEY = 'QUESTIONNAIRE/START_SURVEY',
 	START_OVER = 'QUESTIONNAIRE/START_OVER',
 	ANSWER_QUESTION = 'QUESTIONNAIRE/ANSWER_QUESTION',
+	PRIVACY_POLICY = 'QUESTIONNAIRE/PRIVACY_POLICY',
 }
 
 export interface IConnectedReduxProps<A extends Action = AnyAction> {

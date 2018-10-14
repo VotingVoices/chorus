@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import './index.css';
 import './App.css';
-import { Plan, Survey, LandingPage } from './components';
+import { Plan, Survey, LandingPage, FooterText } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
 import { getTransitionName } from './transitionNames';
 
@@ -40,7 +40,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 				</ReactCSSTransitionReplace>
 
 				<div className="vv-page-footer VotingVoices-serif">
-					<div className="footer-text">&copy;2018 Voting Voices.  All rights reserved.</div>
+					<FooterText {...this.props} />
 					<div className="footer-logo"><img src={vvlogo_w} /></div>
 				</div>
 			</div>

@@ -99,6 +99,9 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 		case QuestionnaireActionType.ANSWER_QUESTION: {
 			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
 		}
+		case QuestionnaireActionType.PRIVACY_POLICY: {
+			throw new Error("You want to view the Privacy Policy.");
+		}
 		case RouterActionType.LOCATION_CHANGE: {
 			if (action.payload.historyAction === "POP") {
 				return respondToBackOrForwardButton(state, action.payload.pathname, action.payload.search);

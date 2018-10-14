@@ -12,6 +12,9 @@ export const startOver = () =>
 export const answerQuestion = (questionId: QuestionId, answerId: AnswerId) =>
 	action(QuestionnaireActionType.ANSWER_QUESTION, { questionId, answerId } as IAnswerQuestionPayload);
 
+export const viewPrivacyPolicy = () =>
+	action(QuestionnaireActionType.PRIVACY_POLICY);
+	
 export const locationChange = (pathname: string, search: string, hash: string, historyAction: HistoryAction | undefined) =>
 	action(RouterActionType.LOCATION_CHANGE, { pathname, search, hash, historyAction } as IRouterLocationChangePayload);
 
