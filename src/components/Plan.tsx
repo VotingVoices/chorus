@@ -74,7 +74,6 @@ class Plan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedR
 
 	public componentDidMount() {
 		this.props.recordPlanPage(this.props.answers);
-		window.scroll(0, 0);
 	}
 }
 
