@@ -24,10 +24,6 @@ export interface IIndexHolder {
 }
 
 class Plan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedReduxProps, any> {
-	public componentDidMount() {
-		this.props.recordPlanPage(this.props.answers);
-	}
-	
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
 		const subHeaderText = getPlanPageSubHeaderText();
@@ -74,6 +70,11 @@ class Plan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedR
 				</div>
 			</div>
 		);
+	}
+
+	public componentDidMount() {
+		this.props.recordPlanPage(this.props.answers);
+		window.scroll(0, 0);
 	}
 }
 

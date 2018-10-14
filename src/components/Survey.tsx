@@ -52,6 +52,10 @@ class Survey extends React.Component<IConnectedReduxProps & IPropsFromState, any
 			</div>
 		);
 	}
+
+	public componentDidMount() {
+		window.scroll(0, 0);
+	}
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => {
