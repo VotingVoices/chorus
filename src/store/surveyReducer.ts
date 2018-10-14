@@ -70,13 +70,26 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 	}
 }
 
+function getStateTransition(oldState: IQuestionnaireState, newState: IQuestionnaireState): MostRecentTransition {
+	if (oldState.currentView === AppView.PrivacyPolicy) {
+		return MostRecentTransition.Immediate;
+	}
+
+	if (newState.dotNavStep < oldState.dotNavStep) {
+		return MostRecentTransition.Back;
+	}
+	else {
+		return MostRecentTransition.Forward;
+	}
+}
+
 function respondToBackOrForwardButton(prevState: IQuestionnaireState, pathname: string, search: string) : IQuestionnaireState {
 	const { state } = readStateFromLocation(prevState, pathname, search);
 
 	return {
 		...state,
 		pushLocation: false,
-		mostRecentTransition: state.dotNavStep < prevState.dotNavStep ? MostRecentTransition.Back : MostRecentTransition.Forward,
+		mostRecentTransition: getStateTransition(prevState, state),
 	}
 }
 
