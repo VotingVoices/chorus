@@ -12,6 +12,9 @@ function getViewFromPath(pathname: string): AppView | undefined {
 	else if (pathname === '/Plan') {
 		return AppView.Plan;
 	}
+	else if (pathname === '/Privacy') {
+		return AppView.PrivacyPolicy;
+	}
 
 	return undefined;
 }
@@ -26,6 +29,9 @@ function dotNavStepFromAppView(appView: AppView): number {
 		}
 		case AppView.Plan: {
 			return PLAN_DOT_NAV_STEP;
+		}
+		case AppView.PrivacyPolicy: {
+			return 0;
 		}
 		default: {
 			throw new Error('Unrecognized AppView');

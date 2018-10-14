@@ -36,7 +36,7 @@ function pathFromState(state: IQuestionnaireState): string {
 		}
 
 		case AppView.PrivacyPolicy: {
-			return `/PrivacyPolicy`;
+			return `/Privacy`;
 		}
 
 		default: {
