@@ -1,3 +1,7 @@
 .footer-text {
-  margin-top: 150px;
+	margin-top: 150px;
+}
+
+.footer-text a {
+	color: #fff200;
 }
