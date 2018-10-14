@@ -98,7 +98,6 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 			break;
 		}
 		case TelemetryActionType.PLAN_PAGE: {
-			window.scrollTo(0, 0);		// TODO: Move this to a separate middleware
 			session.recordPlanPage(action.payload.answers);
 			break;
 		}
@@ -107,7 +106,6 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 			break;
 		}
 		case QuestionnaireActionType.START_SURVEY: {
-			window.scrollTo(0, 0);		// TODO: Move this to a separate middleware
 			session.recordStartSurvey();
 			return next(action);
 		}
@@ -116,12 +114,10 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 			return next(action);
 		}
 		case QuestionnaireActionType.START_OVER: {
-			window.scrollTo(0, 0);		// TODO: Move this to a separate middleware
 			session.recordStartOver();
 			return next(action);
 		}
 		case QuestionnaireActionType.PRIVACY_POLICY: {
-			window.scrollTo(0, 0);		// TODO: Move this to a separate middleware
 			return next(action);
 		}
 		default: {
