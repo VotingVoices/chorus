@@ -6,7 +6,7 @@ import { DotNavigationBar } from './DotNavigationBar';
 import { default as Question } from './Question';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
 import { IConnectedReduxProps, IQuestion, IQuestionnaireState, PLAN_DOT_NAV_STEP, QUESTIONS } from '../store';
-import { getTransitionName } from '../transitionNames';
+import { getTransitionStyleInfo } from '../transitionNames';
 
 import '../App.css';
 import './Survey.css';
@@ -54,10 +54,14 @@ class Survey extends React.Component<IConnectedReduxProps & IPropsFromState, any
 	}
 }
 
-const mapStateToProps = (state: IQuestionnaireState) => ({
-	dotNavStep: state.dotNavStep,
-	question: QUESTIONS.find(q => q.id === state.currentQuestionId)!,
-	transitionName: getTransitionName(state.mostRecentTransition),
-});
+const mapStateToProps = (state: IQuestionnaireState) => {
+	const { transitionName } = getTransitionStyleInfo(state.mostRecentTransition);
+
+	return {
+		dotNavStep: state.dotNavStep,
+		question: QUESTIONS.find(q => q.id === state.currentQuestionId)!,
+		transitionName,
+	};
+}
 
 export default connect(mapStateToProps)(Survey);

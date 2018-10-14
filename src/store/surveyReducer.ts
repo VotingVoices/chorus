@@ -16,6 +16,7 @@ export const DEFAULT_STATE = {
 	currentQuestionId: QuestionId.AreYouRegistered,
 	dotNavStep: 0,
 	counter: 1,
+	pushLocation: true,
 	mostRecentTransition: undefined,
 } as IQuestionnaireState;
 
@@ -50,6 +51,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			AppView.Questionnaire,
 			dotNavStep,
 			counter: prevState.counter + 1,
+			pushLocation: true,
 			mostRecentTransition: undefined,
 		};
 	}
@@ -62,6 +64,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			AppView.Plan,
 			dotNavStep: PLAN_DOT_NAV_STEP,
 			counter: prevState.counter + 1,
+			pushLocation: true,
 			mostRecentTransition: undefined
 		};
 	}
@@ -72,6 +75,7 @@ function respondToBackOrForwardButton(prevState: IQuestionnaireState, pathname: 
 
 	return {
 		...state,
+		pushLocation: false,
 		mostRecentTransition: state.dotNavStep < prevState.dotNavStep ? MostRecentTransition.Back : MostRecentTransition.Forward,
 	}
 }
@@ -104,7 +108,8 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				...state,
 				currentView: AppView.PrivacyPolicy,
 				counter: state.counter + 1,
-				mostRecentTransition: undefined,
+				pushLocation: true,
+				mostRecentTransition: MostRecentTransition.Immediate,
 			}
 		}
 		case RouterActionType.LOCATION_CHANGE: {

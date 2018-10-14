@@ -84,6 +84,7 @@ export const enum AppView {
 export const enum MostRecentTransition {
 	Back,
 	Forward,
+	Immediate,
 }
 
 export enum VotingStateId {
@@ -118,6 +119,7 @@ export interface IQuestionnaireState {
 	readonly currentQuestionId: QuestionId | undefined,
 	readonly dotNavStep: number,
 	readonly counter: number,
+	readonly pushLocation: boolean,
 	readonly mostRecentTransition: MostRecentTransition | undefined,
 }
 

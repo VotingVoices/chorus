@@ -7,7 +7,7 @@ import './index.css';
 import './App.css';
 import { FooterText, LandingPage, Plan, PrivacyPolicy, Survey } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
-import { getTransitionName } from './transitionNames';
+import { getTransitionStyleInfo } from './transitionNames';
 
 import vvlogo from './components/vvlogo.png';
 import vvlogo_w from './components/vvlogo_w.png';
@@ -17,6 +17,7 @@ interface IPropsFromState {
 	answers: IQuestionAndAnswer[],
 	votingStateId: VotingStateId,
 	transitionName: string,
+	enableTransitionAnimation: boolean,
 }
 
 class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
@@ -33,6 +34,8 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 				</div>
 
 				<ReactCSSTransitionReplace
+					transitionEnter={this.props.enableTransitionAnimation}
+					transitionLeave={this.props.enableTransitionAnimation}
 					transitionName={this.props.transitionName}
 					transitionEnterTimeout={1000}
 					transitionLeaveTimeout={400} >
@@ -73,11 +76,16 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 	}
 }
 
-const mapStateToProps = (state: IQuestionnaireState) => ({
-	currentView: state.currentView,
-	answers: state.answers,
-	votingStateId: state.votingStateId,
-	transitionName: getTransitionName(state.mostRecentTransition),
-})
+const mapStateToProps = (state: IQuestionnaireState) => {
+	const { enable: enableTransitionAnimation, transitionName } = getTransitionStyleInfo(state.mostRecentTransition);
+
+	return {
+		currentView: state.currentView,
+		answers: state.answers,
+		votingStateId: state.votingStateId,
+		transitionName: transitionName !== undefined ? transitionName! : "",
+		enableTransitionAnimation,
+	};
+}
 
 export default connect(mapStateToProps)(App);
