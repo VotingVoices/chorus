@@ -17,7 +17,7 @@ export class ReasonToVote extends React.Component<IReasonToVoteProps, any> {
 		
 		return (
 			<div key={planStepId}>
-				<div className="reason-to-vote-header VotingVoices-serif">{header}</div>
+				<div className="plan-step-header VotingVoices-sans-serif">{header}</div>
 				<div className="reason-to-vote-text">{reasonText}</div>
 				<div className="plan-step-text VotingVoices-serif reason-to-vote-plan-step-text">{bodyText}</div>
 			</div>
