@@ -6,6 +6,7 @@ import { PlanStep } from './PlanStep';
 import { ReasonToVote } from './ReasonToVote';
 import { StartOverButton, StartOverButtonType } from './StartOverButton';
 import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
+import { getPlanPageSubHeaderText }from '../strings';
 
 import './Plan.css';
 
@@ -29,13 +30,13 @@ class InternalPlan extends React.Component<IPlanProps & IPropsFromDispatch & ICo
 	
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
+		const subHeaderText = getPlanPageSubHeaderText();
 
 		return (
 			<div>
 				<div className="Plan-header Gradient-background">
-					{/* TODO: Put text below the logo with similar styling: <div className="plan-congrats VotingVoices-serif">Congratulations! Here's your</div> */}
-
                 	<h1 className="voteplan-title">VotePlan</h1>
+                	<div className="plan-sub-header-text VotingVoices-serif">{subHeaderText}</div>
 				</div>
 
 				<div className="App plan-page-body">

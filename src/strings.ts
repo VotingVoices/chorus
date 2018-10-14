@@ -147,6 +147,10 @@ export function getAnswerLabel(answer: AnswerId): string {
 	throw new Error(`Unrecognized AnswerId: ${answer}`);
 }
 
+export function getPlanPageSubHeaderText(): string {
+	return "Now you've got everything you need to take voting action. You've done the prep to get your info on registration, your ballot, who/what/where, voting logistics, and more \u2014 way to go! Your voice matters. The time is now. Get out there and vote the midterms!";
+}
+
 export interface IPlanStepStrings {
 	header: string,
 	text: string,
@@ -539,7 +543,7 @@ export function getReasonToVoteStrings(planStepId: PlanStepId): IReasonToVoteStr
 			return {
 				header,
 				reasonText: "Civic Duty",
-				bodyText: "You've always voted--good on you! Spread the word and keep up the great (and extremely important) civic habit.",
+				bodyText: "You've always voted \u2014 good on you! Spread the word and keep up the great (and extremely important) civic habit.",
 			}
 		}
 

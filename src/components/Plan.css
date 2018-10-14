@@ -3,8 +3,11 @@
 	color: white;
 }
 
-.plan-congrats {
-	font-size: 28px;
+.plan-sub-header-text {
+	max-width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 16px;
 }
 
 .plan-page-body {
@@ -15,7 +18,7 @@
 }
 
 @media only screen and (max-width: 840px) {
-	.plan-congrats {
-		font-size: 22px;
+	.plan-sub-header-text {
+		font-size: 14px;
 	}
 }
