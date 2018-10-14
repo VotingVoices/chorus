@@ -4,7 +4,7 @@ import { connect} from 'react-redux';
 import { PlanEmotion } from './PlanEmotion';
 import { PlanStep } from './PlanStep';
 import { ReasonToVote } from './ReasonToVote';
-import { StartOverButton, StartOverButtonType } from './StartOverButton';
+import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
 import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
 import { getPlanPageSubHeaderText }from '../strings';
 
@@ -23,7 +23,7 @@ export interface IIndexHolder {
 	index: number;
 }
 
-class InternalPlan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedReduxProps, any> {
+class Plan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedReduxProps, any> {
 	public componentDidMount() {
 		this.props.recordPlanPage(this.props.answers);
 	}
@@ -84,4 +84,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 	recordPlanPage: (answers: IQuestionAndAnswer[]) => dispatch(recordPlanPage(answers)),
 });
 
-export const Plan = connect(mapStateToProps, mapDispatchToProps)(InternalPlan);
+export default connect(mapStateToProps, mapDispatchToProps)(Plan);

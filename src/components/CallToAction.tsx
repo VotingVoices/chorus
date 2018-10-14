@@ -12,7 +12,7 @@ interface IPropsFromDispatch {
 	recordCallToAction: typeof recordCallToAction,
 }
 
-class InternalCallToAction extends React.Component<ICallToActionProps & IPropsFromDispatch & IConnectedReduxProps, any> {
+class CallToAction extends React.Component<ICallToActionProps & IPropsFromDispatch & IConnectedReduxProps, any> {
 	public render(): JSX.Element {
 		const { callToAction, link } = this.props;
 		
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 	recordCallToAction: (link: string) => dispatch(recordCallToAction(link)),
 });
 
-export const CallToAction = connect(mapStateToProps, mapDispatchToProps)(InternalCallToAction);
+export default connect(mapStateToProps, mapDispatchToProps)(CallToAction);

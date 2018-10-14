@@ -19,7 +19,7 @@ interface IPropsFromDispatch {
 	startOver: typeof startOver,
 }
 
-class InternalStartOverButton extends React.Component<IStartOverButtonProps & IConnectedReduxProps & IPropsFromDispatch, any> {
+class StartOverButton extends React.Component<IStartOverButtonProps & IConnectedReduxProps & IPropsFromDispatch, any> {
 	public render(): JSX.Element {
 		const { type } = this.props;
 
@@ -45,4 +45,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     startOver: () => dispatch(startOver())
 });
 
-export const StartOverButton = connect(mapStateToProps, mapDispatchToProps)(InternalStartOverButton);
+export default connect(mapStateToProps, mapDispatchToProps)(StartOverButton);

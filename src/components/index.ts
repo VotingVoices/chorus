@@ -1,4 +1,4 @@
 export * from './Answer';
-export * from './LandingPage';
-export * from './Plan';
-export * from './Survey';
+export { default as LandingPage } from './LandingPage';
+export { default as Plan } from './Plan';
+export { default as Survey } from './Survey';

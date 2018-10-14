@@ -17,7 +17,7 @@ interface IPropsFromDispatch {
     answerQuestion: typeof answerQuestion,
 }
 
-class InternalQuestion extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromDispatch, any> {
+class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromDispatch, any> {
     public render(): JSX.Element {
         const { questionId, answers } = this.props;
         const label = getQuestionFullLabel(questionId);
@@ -53,4 +53,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     answerQuestion: (questionId: QuestionId, answerId: AnswerId) => dispatch(answerQuestion(questionId, answerId)),
 });
 
-export const Question = connect(mapStateToProps, mapDispatchToProps)(InternalQuestion);
+export default connect(mapStateToProps, mapDispatchToProps)(Question);

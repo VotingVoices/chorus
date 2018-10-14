@@ -2,7 +2,7 @@ import * as React from 'react';
 import { IIndexHolder } from './Plan';
 import { IConnectedReduxProps, PlanStepId, VotingStateId } from '../store';
 import { getPlanStepStrings, planStepHeaderFormattedString } from '../strings';
-import { CallToAction } from './CallToAction';
+import { default as CallToAction } from './CallToAction';
 
 import plan_circle_on from './plan_circle_on.png';
 

@@ -13,7 +13,7 @@ interface IPropsFromDispatch {
 	startSurvey: typeof startSurvey,
 }
 
-class InternalLandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
+class LandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
 	public componentDidMount() {
 		this.props.recordLandingPage();
 	}
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     startSurvey: () => dispatch(startSurvey()),
 });
 
-export const LandingPage = connect(mapStateToProps, mapDispatchToProps)(InternalLandingPage);
+export default connect(mapStateToProps, mapDispatchToProps)(LandingPage);

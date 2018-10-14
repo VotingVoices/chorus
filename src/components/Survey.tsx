@@ -3,8 +3,8 @@ import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 import { connect} from 'react-redux';
 
 import { DotNavigationBar } from './DotNavigationBar';
-import { Question } from './Question';
-import { StartOverButton, StartOverButtonType } from './StartOverButton';
+import { default as Question } from './Question';
+import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
 import { IConnectedReduxProps, IQuestion, IQuestionnaireState, PLAN_DOT_NAV_STEP, QUESTIONS } from '../store';
 import { getTransitionName } from '../transitionNames';
 
@@ -17,7 +17,7 @@ interface IPropsFromState {
 	transitionName: string,
 }
 
-class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
+class Survey extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
 	public render(): JSX.Element {
 		return (
 			<div className="Survey-body Gradient-background">
@@ -60,4 +60,4 @@ const mapStateToProps = (state: IQuestionnaireState) => ({
 	transitionName: getTransitionName(state.mostRecentTransition),
 });
 
-export const Survey = connect(mapStateToProps)(InternalSurvey);
+export default connect(mapStateToProps)(Survey);

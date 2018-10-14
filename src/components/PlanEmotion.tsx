@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { IConnectedReduxProps, PlanStepId, VotingStateId } from '../store';
 import { getEmojiAltText, getPlanStepStrings } from '../strings';
-import { CallToAction } from './CallToAction';
+import { default as CallToAction } from './CallToAction';
 
 import emoji_angry from './emoji_angry.svg';
 import emoji_concerned from './emoji_concerned.svg';
