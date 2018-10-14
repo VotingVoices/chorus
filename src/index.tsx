@@ -35,6 +35,10 @@ function pathFromState(state: IQuestionnaireState): string {
 			return `/Plan?${queryStringParameters}`;
 		}
 
+		case AppView.PrivacyPolicy: {
+			return `/PrivacyPolicy`;
+		}
+
 		default: {
 			throw new Error('Unrecognized AppView.');
 		}

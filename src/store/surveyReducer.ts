@@ -103,6 +103,8 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 			return {
 				...state,
 				currentView: AppView.PrivacyPolicy,
+				counter: state.counter + 1,
+				mostRecentTransition: undefined,
 			}
 		}
 		case RouterActionType.LOCATION_CHANGE: {
