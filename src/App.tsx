@@ -66,7 +66,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 			}
 
 			case AppView.PrivacyPolicy: {
-				return (<PrivacyPolicy key="privacy-policy" />);
+				return (<PrivacyPolicy key="privacy-policy" {...this.props} />);
 			}
 
 			default: {

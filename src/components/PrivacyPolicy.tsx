@@ -1,9 +1,21 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
+import { connect} from 'react-redux';
+
+import { IConnectedReduxProps, IQuestionnaireState, recordPrivacyPolicy } from '../store';
 
 import '../App.css';
 import './PrivacyPolicy.css';
 
-export class PrivacyPolicy extends React.Component<any, any> {
+interface IPropsFromDispatch {
+    recordPrivacyPolicy: typeof recordPrivacyPolicy,
+}
+
+export class PrivacyPolicy extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
+	public componentDidMount() {
+		this.props.recordPrivacyPolicy();
+	}
+	
 	public render() {
 		return (
 			<div className="privacy-policy VotingVoices-serif">
@@ -101,3 +113,11 @@ export class PrivacyPolicy extends React.Component<any, any> {
 		);
 	}
 }
+
+const mapStateToProps = (state: IQuestionnaireState) => ({ });
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+    recordPrivacyPolicy: () => dispatch(recordPrivacyPolicy()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PrivacyPolicy);

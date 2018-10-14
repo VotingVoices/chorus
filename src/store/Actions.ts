@@ -29,3 +29,6 @@ export const recordPlanPage = (answers: IQuestionAndAnswer[]) =>
 
 export const recordCallToAction = (link: string) =>
 	action(TelemetryActionType.CALL_TO_ACTION, { link } as IRecordCallToActionPayload);
+
+export const recordPrivacyPolicy = () =>
+	action(TelemetryActionType.PRIVACY_POLICY);

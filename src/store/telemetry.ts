@@ -64,6 +64,12 @@ export class TelemetrySession {
 		});
 	}
 
+	public recordPrivacyPolicy() {
+		this.uploadData({
+			event: "PrivacyPolicy",
+		});
+	}
+
 	private uploadData(data: any) {
 		// 'contact' is needs to be unique for every event.
 		data.contact = uuidv4();
@@ -105,6 +111,10 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 			session.recordCallToAction(action.payload.link);
 			break;
 		}
+		case TelemetryActionType.PRIVACY_POLICY: {
+			session.recordPrivacyPolicy();
+			break;
+		}
 		case QuestionnaireActionType.START_SURVEY: {
 			session.recordStartSurvey();
 			return next(action);
@@ -115,9 +125,6 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		}
 		case QuestionnaireActionType.START_OVER: {
 			session.recordStartOver();
-			return next(action);
-		}
-		case QuestionnaireActionType.PRIVACY_POLICY: {
 			return next(action);
 		}
 		default: {

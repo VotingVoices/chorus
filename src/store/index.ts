@@ -1,4 +1,4 @@
-export { answerQuestion, recordCallToAction, recordLandingPage, recordPlanPage, recordStartSession, startOver, startSurvey, viewPrivacyPolicy } from './Actions';
+export { answerQuestion, recordCallToAction, recordLandingPage, recordPlanPage, recordPrivacyPolicy, recordStartSession, startOver, startSurvey, viewPrivacyPolicy } from './Actions';
 export * from './Types';
 export { surveyReducer, DEFAULT_STATE } from './surveyReducer';
 export { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';		// TODO: Move IQuestion into its own file?

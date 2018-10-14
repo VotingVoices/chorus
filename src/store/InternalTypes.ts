@@ -33,6 +33,7 @@ export const enum TelemetryActionType {
 	LANDING_PAGE = 'TELEMETRY/LANDING_PAGE',
 	PLAN_PAGE = 'TELEMETRY/PLAN_PAGE',
 	CALL_TO_ACTION = 'TELEMETRY/CALL_TO_ACTION',
+	PRIVACY_POLICY = 'TELEMETRY/PRIVACY_POLICY',
 }
 
 export interface IRecordPlanPagePayload {
