@@ -1,9 +1,12 @@
 import * as React from 'react';
 
+import '../App.css';
+import './PrivacyPolicy.css';
+
 export class PrivacyPolicy extends React.Component<any, any> {
 	public render() {
 		return (
-			<div>
+			<div className="privacy-policy VotingVoices-serif">
 				<h1>Privacy Policy</h1>
 
 				<p>Effective and Last Updated <strong>October 13, 2018</strong></p>
