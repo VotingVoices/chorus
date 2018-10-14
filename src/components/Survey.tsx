@@ -22,7 +22,7 @@ class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromSt
 		return (
 			<div className="Survey-body Gradient-background">
 				<div className="question-container">
-					<div className="question-child">
+					<div className="question-container-2">
 						<ReactCSSTransitionReplace
 							transitionName={this.props.transitionName}
 							transitionEnterTimeout={1000}
@@ -46,7 +46,9 @@ class InternalSurvey extends React.Component<IConnectedReduxProps & IPropsFromSt
 						dotRadius={8} />
 				</div>
 
-				<StartOverButton type={StartOverButtonType.Outline} {...this.props} />
+				<div>
+					<StartOverButton type={StartOverButtonType.Outline} {...this.props} />
+				</div>
 			</div>
 		);
 	}

@@ -10,18 +10,20 @@ interface IAnswerProps extends React.InputHTMLAttributes<HTMLElement | HTMLInput
 }
 
 export class Answer extends React.Component<IAnswerProps, any> {
+	public state = { mousedOver: false };
+
 	public render(): JSX.Element {
 		const { answerId } = this.props;
 		const label = getAnswerLabel(answerId);
 
 		return (
-			<span className="answer-button" onClick={this._onClick}>
+			<span className={`answer-button ${this.state.mousedOver ? 'answer-button-hover' : ''}`} onClick={this._onClick} onMouseOver={this._onMouseOver} onMouseOut={this._onMouseOut}>
 				{label}
 			</span>
 		);
 	}
 
-	private _onClick = (ev: React.MouseEvent<HTMLElement>): void => {
+	private _onClick = (ev: React.MouseEvent<HTMLElement>) => {
 		const { onClick } = this.props;
 		ev.preventDefault();
 		ev.stopPropagation();
@@ -30,5 +32,13 @@ export class Answer extends React.Component<IAnswerProps, any> {
 		{
 			onClick(ev);
 		}
+	}
+
+	private _onMouseOver = (ev: React.MouseEvent<HTMLElement>) => {
+		this.setState({ mousedOver: true });
+	}
+
+	private _onMouseOut = (ev: React.MouseEvent<HTMLElement>) => {
+		this.setState({ mousedOver: false });
 	}
 }
