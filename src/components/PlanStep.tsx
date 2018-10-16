@@ -12,13 +12,14 @@ interface IPlanStepProps {
 	indexHolder: IIndexHolder,
 	planStepId: PlanStepId,
 	votingStateId: VotingStateId,
+	callToAction?: JSX.Element;
 }
 
 export class PlanStep extends React.Component<IPlanStepProps & IConnectedReduxProps, any> {
 	public render() {
 		const { indexHolder, planStepId, votingStateId } = this.props;
 
-		const { header, text, callToAction, link } = getPlanStepStrings(planStepId, votingStateId);
+		const { header, text, callToAction : callToActionLabel, link } = getPlanStepStrings(planStepId, votingStateId);
 
 		const fullHeaderString = planStepHeaderFormattedString(indexHolder.index, header);
 
@@ -30,11 +31,20 @@ export class PlanStep extends React.Component<IPlanStepProps & IConnectedReduxPr
 				<div className="plan-step-header VotingVoices-sans-serif">{this.checkboxElement()}{fullHeaderString}</div>
 				<div className="plan-step-text VotingVoices-serif">{text}</div>
 
-				{ this.showBallotReady(planStepId) ?
-					this.ballotReadyWidget(callToAction, link) :
-					( <CallToAction {...this.props} callToAction={callToAction} link={link} /> ) }
+				{ this.getCallToAction(callToActionLabel, link) }
 			</div>
 		);
+	}
+
+	private getCallToAction = (callToActionLabel?: string, link?: string): JSX.Element => {
+		if (this.showBallotReady(this.props.planStepId)) {
+			return this.ballotReadyWidget(callToActionLabel, link);
+		}
+		else if (this.props.callToAction)
+		{
+			return this.props.callToAction!;
+		}
+		return <CallToAction {...this.props} callToAction={callToActionLabel} link={link} />
 	}
 
 	private checkboxElement(): JSX.Element {

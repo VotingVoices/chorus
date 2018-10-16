@@ -35,6 +35,27 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>VotePlan</title>
+    <meta property="og:url"           content="https://votingvoices.org" />
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Voting Voices Vote Plan" />
+    <meta property="og:description"   content="Join us on Voting Voices to create your personal vote plan in seconds!" />
+    <meta property="og:image"         content="https://votingvoices.org/images/voteplan_main.jpg" />
+    <script>window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+      return t;
+    }(document, "script", "twitter-wjs"));
+    </script>
+    
   </head>
   <body>
     <noscript>
