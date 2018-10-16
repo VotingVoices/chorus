@@ -29,7 +29,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 						<a href="#/LandingPage"><img src={vvlogo} /></a>
 					</div>
 					<div className="right-buttons">
-						<Button type="button" className="vv-button contact-about-button">Contact</Button>
+						<Button type="button" className="vv-button contact-about-button" href="mailto:info@votingvoices.org">Contact</Button>
 					</div>
 				</div>
 
