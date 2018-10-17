@@ -5,6 +5,9 @@ import { Button } from 'react-bootstrap';
 
 import { IQuestionnaireState, LanguageId, setLanguage } from '../store';
 
+import '../App.css';
+import './LanguageButton.css';
+
 interface ILanguageButtonProps {
 	language: LanguageId,
 	languageName: string,
@@ -20,10 +23,12 @@ interface IPropsFromDispatch {
 
 class LanguageButton extends React.Component<ILanguageButtonProps & IPropsFromState & IPropsFromDispatch> {
 	public render() {
-		const style: React.CSSProperties = this.props.currentLanguage === this.props.language ? { fontWeight: "bold" } : { }
+		const additionalUnderline: React.CSSProperties = this.props.currentLanguage === this.props.language ?
+			{ textDecoration: "underline" } :
+			{ };
 
 		return (
-			<Button type="button" style={style} onClick={this._onClick}>{this.props.languageName}</Button>
+			<Button type="button" className="vv-button language-button" style={additionalUnderline} onClick={this._onClick}>{this.props.languageName}</Button>
 		);
 	}
 
