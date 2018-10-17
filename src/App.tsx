@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { Button } from 'react-bootstrap';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 
 import './index.css';
 import './App.css';
-import { FooterText, LandingPage, Plan, PrivacyPolicy, Survey } from './components';
-import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, setLanguage, VotingStateId } from './store';
+import { Footer, LandingPage, Plan, PrivacyPolicy, Survey } from './components';
+import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
 import { getTransitionStyleInfo } from './transitionNames';
 
 import vvlogo from './components/vvlogo.png';
-import vvlogo_w from './components/vvlogo_w.png';
 
 interface IPropsFromState {
 	currentView: AppView,
@@ -21,11 +19,7 @@ interface IPropsFromState {
 	enableTransitionAnimation: boolean,
 }
 
-interface IPropsFromDispatch {
-	setLanguage: typeof setLanguage,
-}
-
-class App extends React.Component<IConnectedReduxProps & IPropsFromState & IPropsFromDispatch> {
+class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 	public render(): JSX.Element {
 		return (
 			<div className="App root-grid">
@@ -47,11 +41,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState & IProp
 					{this.renderViewSpecificContent()}
 				</ReactCSSTransitionReplace>
 
-				<div className="vv-page-footer VotingVoices-serif">
-					<Button type="button" onClick={this._onEnglishClick}>English</Button><Button type="button" onClick={this._onSpanishClick}>Español</Button>
-					<FooterText {...this.props} />
-					<div className="footer-logo"><img src={vvlogo_w} /></div>
-				</div>
+				<Footer {...this.props} />
 			</div>
 		);
 	}
@@ -80,14 +70,6 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState & IProp
 			}
 		}
 	}
-
-	private _onEnglishClick = (ev: React.MouseEvent<Button>) => {
-		this.props.setLanguage(LanguageId.English);
-	}
-
-	private _onSpanishClick = (ev: React.MouseEvent<Button>) => {
-		this.props.setLanguage(LanguageId.Spanish);
-	}
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => {
@@ -102,8 +84,4 @@ const mapStateToProps = (state: IQuestionnaireState) => {
 	};
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-	setLanguage: (language: LanguageId) => dispatch(setLanguage(language)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

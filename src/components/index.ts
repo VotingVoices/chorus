@@ -1,5 +1,5 @@
 export * from './Answer';
-export { default as FooterText } from './FooterText';
+export { default as Footer } from './Footer';
 export { default as LandingPage } from './LandingPage';
 export { default as Plan } from './Plan';
 export { default as PrivacyPolicy } from './PrivacyPolicy';
