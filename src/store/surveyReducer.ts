@@ -1,13 +1,27 @@
 import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
-import { AppView, AnswerId, getVotingStateId, IQuestionnaireState, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
+import { AppView, AnswerId, getVotingStateId, IQuestionnaireState, LanguageId, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
 import { RouterActionType } from './InternalTypes';
 import { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';
 import * as actions from './Actions';
 import { readStateFromLocation } from '../readStateFromLocation';
+import { getEnglishString, getSpanishString, StringId } from '../strings';
 
 type QuestionnaireAction = ActionType<typeof actions>;
+
+function getGetStringImplementation(language: LanguageId): (id: StringId) => string {
+	switch (language) {
+		case LanguageId.English:
+			return getEnglishString;
+
+		case LanguageId.Spanish:
+			return getSpanishString;
+
+		default:
+			throw new Error("Unknown LanguageId");
+	}
+}
 
 export const DEFAULT_STATE = {
 	answers: [],
@@ -18,6 +32,7 @@ export const DEFAULT_STATE = {
 	counter: 1,
 	pushLocation: true,
 	mostRecentTransition: undefined,
+	getString: getGetStringImplementation(LanguageId.English),
 } as IQuestionnaireState;
 
 function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answerId: AnswerId): IQuestionnaireState {
@@ -53,6 +68,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			counter: prevState.counter + 1,
 			pushLocation: true,
 			mostRecentTransition: undefined,
+			getString: prevState.getString,
 		};
 	}
 	else {

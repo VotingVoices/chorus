@@ -2,9 +2,9 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect} from 'react-redux';
 
-import { Answer } from './Answer';
+import { default as Answer } from './Answer';
 import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../store';
-import { getQuestionFullLabel, getString } from '../strings';
+import { getQuestionFullLabel, StringId } from '../strings';
 
 import './Question.css';
 
@@ -13,14 +13,18 @@ interface IQuestionProps {
     answers: AnswerId[],
 }
 
+interface IPropsFromState {
+    getString: (id: StringId) => string;
+}
+
 interface IPropsFromDispatch {
     answerQuestion: typeof answerQuestion,
 }
 
-class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromDispatch, any> {
+class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromState & IPropsFromDispatch, any> {
     public render(): JSX.Element {
         const { questionId, answers } = this.props;
-        const label = getString(getQuestionFullLabel(questionId));
+        const label = this.props.getString(getQuestionFullLabel(questionId));
 
         return (
             <div>
@@ -47,7 +51,9 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
     };
 }
 
-const mapStateToProps = (state: IQuestionnaireState) => ({ });
+const mapStateToProps = (state: IQuestionnaireState) => ({
+    getString: state.getString,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     answerQuestion: (questionId: QuestionId, answerId: AnswerId) => dispatch(answerQuestion(questionId, answerId)),

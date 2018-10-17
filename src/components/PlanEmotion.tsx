@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { IConnectedReduxProps, PlanStepId, VotingStateId } from '../store';
-import { getEmojiAltText, getPlanStepStrings, getString } from '../strings';
+import { connect } from 'react-redux';
+import { IConnectedReduxProps, IQuestionnaireState, PlanStepId, VotingStateId } from '../store';
+import { getEmojiAltText, getPlanStepStrings, StringId } from '../strings';
 import { default as CallToAction } from './CallToAction';
 
 import emoji_angry from './emoji_angry.svg';
@@ -18,7 +19,11 @@ interface IPlanEmotionProps {
 	votingStateId: VotingStateId,
 }
 
-export class PlanEmotion extends React.Component<IPlanEmotionProps & IConnectedReduxProps, any> {
+interface IPropsFromState {
+	getString: (id: StringId) => string;
+}
+
+class PlanEmotion extends React.Component<IPlanEmotionProps & IPropsFromState & IConnectedReduxProps, any> {
 	public render() {
 		const { planStepId, votingStateId } = this.props;
 
@@ -28,8 +33,8 @@ export class PlanEmotion extends React.Component<IPlanEmotionProps & IConnectedR
 			<div key={planStepId}>
 				<div>{ this.imgElement(planStepId) }</div>
 
-				<div className="plan-step-header VotingVoices-sans-serif">{getString(header)}</div>
-				<div className="plan-step-text VotingVoices-serif">{getString(text)}</div>
+				<div className="plan-step-header VotingVoices-sans-serif">{this.props.getString(header)}</div>
+				<div className="plan-step-text VotingVoices-serif">{this.props.getString(text)}</div>
 
 				<CallToAction {...this.props} callToAction={callToAction} link={link} />
 			</div>
@@ -38,7 +43,7 @@ export class PlanEmotion extends React.Component<IPlanEmotionProps & IConnectedR
 
 	public imgElement(planStepId: PlanStepId): JSX.Element {
 		const className = "plan-page-emoji-img";
-		const altText = getString(getEmojiAltText(planStepId));
+		const altText = this.props.getString(getEmojiAltText(planStepId));
 
 		switch (planStepId) {
 			case PlanStepId.Excited: {
@@ -62,3 +67,9 @@ export class PlanEmotion extends React.Component<IPlanEmotionProps & IConnectedR
 		}
 	}
 }
+
+const mapStateToProps = (state: IQuestionnaireState) => ({
+	getString: state.getString,
+});
+
+export default connect(mapStateToProps)(PlanEmotion);

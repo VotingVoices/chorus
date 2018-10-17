@@ -1,6 +1,7 @@
 import * as queryString from 'query-string';
 
 import { ALL_QUESTION_IDS, AppView, getVotingStateId, IQuestionAndAnswer, IQuestionnaireState, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
+import { getEnglishString } from './strings';
 
 function getViewFromPath(pathname: string): AppView | undefined {
 	if (pathname === '/LandingPage') {
@@ -96,6 +97,7 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 				counter: existingState.counter + 1,
 				pushLocation: true,
 				mostRecentTransition: undefined,
+				getString: getEnglishString,
 			},
 			appViewSpecified: true,
 			questionSpecified,

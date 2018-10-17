@@ -1,4 +1,5 @@
 import { Action, AnyAction, Dispatch } from 'redux';
+import { StringId } from '../strings';
 
 export enum QuestionId {
 	AreYouRegistered = 'Reg',
@@ -112,6 +113,11 @@ export function getVotingStateId(answerId: AnswerId): VotingStateId | undefined 
 	}
 }
 
+export enum LanguageId {
+	English = 'En',
+	Spanish = 'Es',
+}
+
 export interface IQuestionnaireState {
 	readonly answers: IQuestionAndAnswer[],
 	readonly votingStateId: VotingStateId | undefined,
@@ -121,6 +127,7 @@ export interface IQuestionnaireState {
 	readonly counter: number,
 	readonly pushLocation: boolean,
 	readonly mostRecentTransition: MostRecentTransition | undefined,
+	readonly getString: (id: StringId) => string;
 }
 
 export const enum QuestionnaireActionType {

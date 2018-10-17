@@ -1206,14 +1206,13 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Emoji indiferente"],
 ]);
 
-export function getString(id: StringId): string {
-	const str = STRINGS_SPANISH.get(id)
+export function getEnglishString(id: StringId): string {
+	const str = STRINGS_ENGLISH.get(id)
 	return str!;
 }
 
-// TODO: Currently unused
-export function getEnglishString(id: StringId): string {
-	const str = STRINGS_ENGLISH.get(id)
+export function getSpanishString(id: StringId): string {
+	const str = STRINGS_SPANISH.get(id)
 	return str!;
 }
 
