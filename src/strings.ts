@@ -1,6 +1,7 @@
 import { AnswerId, QuestionId, PlanStepId, VotingStateId } from './store';
 
 export enum StringId {
+	LanguageColon,
 	Yes,
 	No,
 	NotSure,
@@ -158,6 +159,9 @@ export enum StringId {
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
+	[StringId.LanguageColon,
+		"Language: "],
+
 	[StringId.Yes,
 		"Yes"],
 
@@ -619,6 +623,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
+	[StringId.LanguageColon,
+		"Idioma: "],
+
 	[StringId.Yes,
 		// "Yes"],
 		"Sí"],

@@ -1,16 +1,24 @@
 import * as React from 'react';
+import { connect} from 'react-redux';
 
 import { default as FooterText } from './FooterText';
 import { default as LanguageButton } from './LanguageButton';
-import { IConnectedReduxProps, /*IQuestionnaireState,*/ LanguageId } from '../store';
+import { IConnectedReduxProps, IQuestionnaireState, LanguageId } from '../store';
+import { StringId } from '../strings';
 
 import '../App.css';
 import vvlogo_w from './vvlogo_w.png';
 
-export class Footer extends React.Component<IConnectedReduxProps> {
+interface IPropsFromState {
+	getString: (id: StringId) => string,
+}
+
+class Footer extends React.Component<IPropsFromState & IConnectedReduxProps> {
 	public render() {
 		return (
 			<div className="vv-page-footer VotingVoices-serif">
+				{ this.props.getString(StringId.LanguageColon) }
+
 				<LanguageButton {...this.props} language={LanguageId.English} languageName="English" />
 				<LanguageButton {...this.props} language={LanguageId.Spanish} languageName="Español" />
 
@@ -21,3 +29,9 @@ export class Footer extends React.Component<IConnectedReduxProps> {
 		);
 	}
 }
+
+const mapStateToProps = (state: IQuestionnaireState) => ({
+	getString: state.getString,
+});
+
+export default connect(mapStateToProps)(Footer);
