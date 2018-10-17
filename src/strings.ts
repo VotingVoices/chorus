@@ -618,7 +618,475 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Meh emoji"],
 ]);
 
+const STRINGS_SPANISH = new Map<StringId, string>([
+	[StringId.Yes,
+		"Yes"],
+
+	[StringId.No,
+		"No"],
+
+	[StringId.NotSure,
+		"Not sure"],
+
+	[StringId.AreYouRegisteredToVote,
+		// "First things first. Are you registered to vote?"],
+		"Primero lo primero. ¿Está registrado para votar?"],
+
+	[StringId.DoYouLiveOverseas,
+		"Do you live or are you stationed outside the United States?"],
+
+	[StringId.AreYouPlanningtoVoteInVoteByMailState,
+		"Are you planning to vote in any of these states?"],
+
+	[StringId.DoYouWantToVoteWithAbsenteeBallot,
+		"Would you like to vote by absentee ballot?"],
+
+	[StringId.DoYouKnowWhereYourPollingLocationIs,
+		"Do you know where your polling location is?"],
+
+	[StringId.WillYouNeedSpecialAccommodations,
+		"Will you need special accommodations to reach the polling location?"],
+
+	[StringId.WhatTransportationMethodWillYouUse,
+		"How will you get to your polling location?"],
+
+	[StringId.HaveYouReceivedYourBallot,
+		"Have you received your ballot?"],
+
+	[StringId.DoYouKnowTheDeadline,
+		"Do you know when the deadline is?"],
+
+	[StringId.HowWillYouReturnYourBallot,
+		"How will you return your ballot?"],
+
+	[StringId.WillYouMissWork,
+		"Will you have to miss/leave work to vote?"],
+
+	[StringId.AreYouFamiliarWithYourBallot,
+		"Do you know who/what you\'ll be voting for?"],
+
+	[StringId.AreTherePeopleToInvite,
+		"Spread the word! Are there people in your life you\'d like to vote with?"],
+
+	[StringId.WhyWillYouVote,
+		"Why will you be voting?"],
+
+	[StringId.HowAreYouFeeling,
+		"How are you feeling about these midterm elections?"],
+
+	[StringId.Washington,
+		"Washington"],
+
+	[StringId.Oregon,
+		"Oregon"],
+
+	[StringId.Colorado,
+		"Colorado"],
+
+	[StringId.AnotherState,
+		"Another state"],
+
+	[StringId.DriveMyself,
+		"Drive myself"],
+
+	[StringId.Carpool,
+		"Carpool"],
+
+	[StringId.RideShare,
+		"Car for hire"],
+
+	[StringId.Taxi,
+		"Taxi"],
+
+	[StringId.MassTransit,
+		"Mass transit"],
+
+	[StringId.Walk,
+		"Walk"],
+
+	[StringId.Bike,
+		"Bike"],
+
+	[StringId.Mail,
+		"Mail"],
+
+	[StringId.BallotBox,
+		"Ballot box"],
+
+	[StringId.Friends,
+		"Friend(s)"],
+
+	[StringId.FamilyMembers,
+		"Family member(s)"],
+
+	[StringId.Coworkers,
+		"Co-worker(s)"],
+
+	[StringId.NotAtThisTime,
+		"Not at this time"],
+
+	[StringId.MyKidsFamily,
+		"My kids / family"],
+
+	[StringId.ItsAPrivilege,
+		"It\'s a privilege"],
+
+	[StringId.ToDriveChange,
+		"To drive change"],
+
+	[StringId.IveAlwaysVoted,
+		"I\'ve always voted"],
+
+	[StringId.Other,
+		"Other"],
+
+	[StringId.Excited,
+		"Excited"],
+
+	[StringId.Concerned,
+		"Concerned"],
+
+	[StringId.Shocked,
+		"Shocked"],
+
+	[StringId.Angry,
+		"Angry"],
+
+	[StringId.Meh,
+		"Meh"],
+
+	[StringId.PlanPageSubheader,
+		"Now you've got everything you need to take voting action. You've done the prep to get your info on registration, your ballot, who/what/where, voting logistics, and more \u2014 way to go! Your voice matters. The time is now. Get out there and vote the midterms!"],
+
+	[StringId.IsYourRegistrationOk,
+		"Is your registration A-OK?"],
+
+	[StringId.LetsGetRegistered,
+		"Let's do this: get registered!"],       // TODO: Capitalize Get?
+
+	[StringId.CheckYourRegistration,
+		"Check your registration"],
+
+	[StringId.DoubleCheckYourRegistration,
+		"Double-check your registration"],
+
+	[StringId.RockTheVoteDotOrgLink,
+		"https://www.rockthevote.org/voting-information/am-i-registered-to-vote/"],        // TODO: Spanish-specific links
+
+	[StringId.TakeAQuickLookAtYourRegistration,
+		"Great \u2014 you're registered! Now take a quick look to make sure everything is up-to-date."],
+
+	[StringId.NotSureWhetherYoureRegistered,
+		"Not sure whether you're registered? Take a minute to double-check and make sure you're vote ready."],
+
+	[StringId.RequestYourAbsenteeBallot,
+		"Request your absentee ballot"],
+
+	[StringId.LearnHowToVoteFromAnywhereOverseas,
+		"Learn how to vote from anywhere when you're overseas."],
+
+	[StringId.MakeTheRequest,
+		"Make the request"],
+
+	[StringId.FvapDotGotLink,
+		"https://www.fvap.gov/"],
+
+	[StringId.HaveBallotWillVote,
+		"Have ballot, will vote!"],
+
+	[StringId.YouveGotItNowSubmitIt,
+		"You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)"],    // TODO: Spell out U.S. Postal Service
+
+	[StringId.FindYourColoradoBallot,
+		"Find your Colorado ballot"],
+
+	[StringId.FindYourOregonBallot,
+		"Find your Oregon ballot"],
+
+	[StringId.FindYourWashingtonBallot,
+		"Find your Washington ballot"],
+
+	[StringId.ColoradoBallotLink,
+		"http://www.sos.state.co.us/pubs/elections/vote/VoterHome.html"],
+
+	[StringId.OregonBallotLink,
+		"https://sos.oregon.gov/voting/pages/myvote.aspx?lang=en"], // TODO: lang=es
+
+	[StringId.WashingtonBallotLink,
+		"https://weiapplets.sos.wa.gov/myvote/#/login"],
+
+	[StringId.BallotHasntShownUpYet,
+		"Ballot hasn't shown up yet?"],
+
+	[StringId.TrackYourBallotOnline,
+		"Track your ballot online and find out when to expect it."],
+
+	[StringId.ColoradoDeadlineLink,
+		"https://www.sos.state.co.us/pubs/elections/"],
+
+	[StringId.OregonDeadlineLink,
+		"https://sos.oregon.gov/voting/Pages/current-election.aspx"],
+
+	[StringId.WashingtonDeadlineLink,
+		"https://www.sos.wa.gov/elections/dates-and-deadlines.aspx"],
+
+	[StringId.WhenIsTheDeadlineExactly,
+		"When is the deadline, exactly?"],
+
+	[StringId.TheDeadlineYouveGotThis,
+		"The deadline: you've got this"],
+
+	[StringId.MidnightBallotDropOrPostmark,
+		"Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
+
+	[StringId.CheckYourDeadline,
+		"Check your deadline"],
+
+	[StringId.CheckYourDeadlineAndDontForgetPostage,
+		"Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
+
+	[StringId.CheckYourDeadlineAndRestEasy,
+		"Check up on your deadline and rest easy."],
+
+	[StringId.FindColoradoMailingDetails,
+		"Find Colorado mailing details"],
+
+	[StringId.FindOregonMailingDetails,
+		"Find Oregon mailing details"],
+
+	[StringId.FindWashingtonMailingDetails,
+		"Find Washington mailing details"],
+
+	[StringId.ColoradoMailingDetailsLink,
+		"https://www.sos.state.co.us/pubs/elections/FAQs/GeneralInfoFAQ.html"],
+
+	[StringId.OregonMailingDetailsLink,
+		"https://sos.oregon.gov/voting/Pages/voteinor.aspx"],
+
+	[StringId.WashingtonMailingDetailsLink,
+		"https://www.sos.wa.gov/elections/faq_vote_by_mail.aspx"],
+
+	[StringId.DropYourBallotInTheMail,
+		"Drop your ballot in the mail, pronto!"],
+
+	[StringId.ColoradoDropBoxLink,
+		"https://www.sos.state.co.us/pubs/elections/"],
+
+	[StringId.OregonDropBoxLink,
+		"https://sos.oregon.gov/voting/pages/drop-box-locator.aspx"],
+
+	[StringId.WashingtonDropBoxLink,
+		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
+
+	[StringId.DiscoverYourNeighborhoodDropBox,
+		"Discover your neighborhood ballot drop box."],
+
+	[StringId.CheckYourDeadlineForDropbox,
+		"Check your deadline and plan ahead for a convenient ballot box drop."],
+
+	[StringId.FindDropboxNearYou,
+		"Find a ballot drop box near you"],
+
+	[StringId.CheckAbsenteePostageAndDeadline,
+		"A convenient way to go! Just remember to check on postage and your mailing deadline."],
+
+	[StringId.VoteDotOrgAbsenteeBallotLink,
+		"https://www.vote.org/absentee-ballot/"],
+
+	[StringId.HasYourPollingLocationMoved,
+		"Your polling location: has it moved?"],
+
+	[StringId.CheckYourPollingLocationBecauseThingsChange,
+		"Things change \u2014 make sure you're aware of your area's best polling locations and hours."],
+
+	[StringId.ThisWayToThePolls,
+		"This way to the polls!"],
+
+	[StringId.VoteDotOrgPollingPlaceLocatorLink,
+		"https://www.vote.org/polling-place-locator/"],
+
+	[StringId.FindYourPollingLocation,
+		"Find your polling location"],
+
+	[StringId.FindYourPollingLocationDetails,
+		"Make it easy on yourself! Find your polling location through the link below."],
+
+	[StringId.PlanYourTripWithAssistance,
+		"Plan your trip, with the assistance you need"],
+
+	[StringId.SpecialAcommodationsAreAvailable,
+		"Special accommodations to help you get to your polling place are available. It's easy to plan ahead!"],
+
+	[StringId.AccessAssistance,
+		"Access assistance"],
+
+	[StringId.EacDotGovLink,
+		"https://www.eac.gov/voters/resources-for-voters-with-disabilities/"],
+
+	[StringId.GetThereByCar,
+		"Get there by car"],
+
+	[StringId.RoundUpFellowVotersForCarpoolOrTaxi,
+		"Great plan. Even better: Round up some fellow voters to share the ride, and have the address in hand!"],
+
+	[StringId.RoundUpFellowVotersForRideShare,
+		"Great plan. Even better: Round up some fellow voters to share the ride!"],
+
+	[StringId.PlanYourRouteToThePolls,
+		"Plan your route to the polls"],
+
+	[StringId.CheckLyft,
+		"Check Lyft for voting day deals"],
+
+	[StringId.LyftLink,
+		"https://blog.lyft.com/posts/2018/8/22/get-out-the-vote"],		// TODO: Spanish
+
+	[StringId.GetThereByTaxi,
+		"Get there by taxi"],
+
+	[StringId.TakeMassTransitToThePolls,
+		"Take mass transit to the polls"],
+
+	[StringId.PlanYourTransitRouteAheadOfTime,
+		"Great plan. Even better: Plan your route ahead of time and enjoy the trip!"],
+
+	[StringId.PlanYourTransitRoute,
+		"Plan your bus/train route"],
+
+	[StringId.GoogleMapsTransitLink,
+		"https://maps.google.com/landing/transit/index.html"],
+
+	[StringId.WalkOrBikeToThePolls,
+		"Walk or bike to the polls"],
+
+	[StringId.RainSlowSleetNoWorries,
+		"Rain, snow, sleet...no worries! You'll be ready with a quick weather report."],
+
+	[StringId.CheckVotingDayConditions,
+		"Check voting day conditions"],
+
+	[StringId.WeatherDotComLink,
+		"weather.com"],    // TODO: No http?
+
+	[StringId.AreYouEligibleForPaidTimeOff,
+		"Paid time-off to vote: are you eligible?"],
+
+	[StringId.MajorityOfStatesHaveTimeOffLaws,
+		"The majority of states have time-off-to-vote laws (also called voter-leave laws). Check ahead of voting day and coordinate plans with your workplace."],
+
+	[StringId.LookForVoterLeaveStatus,
+		"Look for your state's voter-leave law status"],
+
+	[StringId.Vote411DotOrgLink,
+		"https://www.vote411.org/taxonomy/term/75#.W5RxBuhKjD4"],		// TODO: Is this really the URL?
+
+	[StringId.YourBallotInANutshell,
+		"Your ballot, in a nutshell"],
+
+	[StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
+		"You're familiar with the candidates and issues. The Ballot Ready app can help you make informed choices."],
+
+	[StringId.PlanYourBallotChoices,
+		"Plan your ballot choices"],
+
+	[StringId.BallotReadyDotOrgLink,
+		"https://www.ballotready.org/"],
+
+	[StringId.IntroducingYourBallot,
+		"Introducing...your ballot!"],
+
+	[StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
+		"Now's the perfect time to research the candidates and issues you'll be voting for. The Ballot Ready app can help you make informed choices."],
+
+	[StringId.InviteYourFriendsToVoteWithYou,
+		"Invite your crowd to vote with you"],    // TODO: Review: "your crowd?
+
+	[StringId.LetsKeepEachOtherAccountable,
+		"Let's keep each other accountable \u2014 voting's even better when we can do it together!"],
+
+	[StringId.PutThoseFeelingsTowardAction,
+		"Put those feelings toward action"],
+
+	[StringId.SeeWhatHappensWhenWeAllVote,
+		"See what happens When We All Vote"],
+
+	[StringId.WhenWeAllVoteDotOrgLink,
+		"https://www.whenweallvote.org/"],
+
+	[StringId.YoureExcited,
+		"You're excited about voting!"],
+
+	[StringId.YoureExcitedDescription,
+		"Well, great \u2014 you're not the only one! Watch this and keep participating!"],
+
+	[StringId.YoureConcerned,
+		"Put those feelings toward voting action"],
+
+	[StringId.YoureConcernedDescription,
+		"You're feeling concerned \u2014 we get it! These are complicated times. Watch this and get inspired."],
+
+	[StringId.YoureShocked,
+		"You're feeling shocked \u2014 we get it! These are complicated times. Watch this and get inspired."],
+
+	[StringId.YoureAngry,
+		"You're feeling angry \u2014 we get it! These are complicated times. Watch this and get inspired."],
+
+	[StringId.YoureMeh,
+		"Feeling ambivalent? Your voting plans are taking shape \u2014 now get out there!"],
+
+	[StringId.RememberYourReasonForVoting,
+		"Remember your reason for voting!"],
+
+	[StringId.ForFamily,
+		"For Family"],
+
+	[StringId.ForFamilyDescription,
+		"Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!"],
+
+	[StringId.ItsMyPrivilege,
+		"It's My Privilege"],
+
+	[StringId.ItsMyPrivilegeDescription,
+		"Yep, you've got the right idea, and we agree. Let's not take voting for granted!"],
+
+	[StringId.ForChange,
+		"For Change"],
+
+	[StringId.ForChangeDescription,
+		"You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!"],
+
+	[StringId.CivicDuty,
+		"Civic Duty"],
+
+	[StringId.CivicDutyDescription,
+		"You've always voted \u2014 good on you! Spread the word and keep up the great (and extremely important) civic habit."],
+
+	[StringId.OtherCivicDutyDescription,
+		"You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!"],
+
+	[StringId.ExcitedEmoji,
+		"Excited emoji"],
+
+	[StringId.ConcernedEmoji,
+		"Concerned emoji"],
+
+	[StringId.ShockedEmoji,
+		"Shocked emoji"],
+
+	[StringId.AngryEmoji,
+		"Angry emoji"],
+
+	[StringId.MehEmoji,
+		"Meh emoji"],
+]);
+
 export function getString(id: StringId): string {
+	const str = STRINGS_SPANISH.get(id)
+	return str!;
+}
+
+// TODO: Currently unused
+export function getEnglishString(id: StringId): string {
 	const str = STRINGS_ENGLISH.get(id)
 	return str!;
 }
