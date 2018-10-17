@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Button } from 'react-bootstrap';
 
+import '../App.css';
 import vvlogo from './vvlogo.png';
 
 export class Header extends React.Component<any, any> {
