@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PlanStepId } from '../store';
-import { getReasonToVoteStrings } from '../strings';
+import { getReasonToVoteStrings, getString } from '../strings';
 
 import './PlanStep.css';
 import './ReasonToVote.css';
@@ -17,9 +17,9 @@ export class ReasonToVote extends React.Component<IReasonToVoteProps, any> {
 		
 		return (
 			<div key={planStepId}>
-				<div className="plan-step-header VotingVoices-sans-serif">{header}</div>
-				<div className="reason-to-vote-text">{reasonText}</div>
-				<div className="plan-step-text VotingVoices-serif reason-to-vote-plan-step-text">{bodyText}</div>
+				<div className="plan-step-header VotingVoices-sans-serif">{getString(header)}</div>
+				<div className="reason-to-vote-text">{getString(reasonText)}</div>
+				<div className="plan-step-text VotingVoices-serif reason-to-vote-plan-step-text">{getString(bodyText)}</div>
 			</div>
 		);
 	}

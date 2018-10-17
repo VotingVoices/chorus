@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { AnswerId } from '../store';
-import { getAnswerLabel } from '../strings';
+import { getAnswerLabel, getString } from '../strings';
 
 import './Answer.css';
 
@@ -14,7 +14,7 @@ export class Answer extends React.Component<IAnswerProps, any> {
 
 	public render(): JSX.Element {
 		const { answerId } = this.props;
-		const label = getAnswerLabel(answerId);
+		const label = getString(getAnswerLabel(answerId));
 
 		return (
 			<span className={`answer-button ${this.state.mousedOver ? 'answer-button-hover' : ''}`} onClick={this._onClick} onMouseOver={this._onMouseOver} onMouseOut={this._onMouseOut}>

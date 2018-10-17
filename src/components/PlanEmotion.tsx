@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IConnectedReduxProps, PlanStepId, VotingStateId } from '../store';
-import { getEmojiAltText, getPlanStepStrings } from '../strings';
+import { getEmojiAltText, getPlanStepStrings, getString } from '../strings';
 import { default as CallToAction } from './CallToAction';
 
 import emoji_angry from './emoji_angry.svg';
@@ -28,8 +28,8 @@ export class PlanEmotion extends React.Component<IPlanEmotionProps & IConnectedR
 			<div key={planStepId}>
 				<div>{ this.imgElement(planStepId) }</div>
 
-				<div className="plan-step-header VotingVoices-sans-serif">{header}</div>
-				<div className="plan-step-text VotingVoices-serif">{text}</div>
+				<div className="plan-step-header VotingVoices-sans-serif">{getString(header)}</div>
+				<div className="plan-step-text VotingVoices-serif">{getString(text)}</div>
 
 				<CallToAction {...this.props} callToAction={callToAction} link={link} />
 			</div>
@@ -38,7 +38,7 @@ export class PlanEmotion extends React.Component<IPlanEmotionProps & IConnectedR
 
 	public imgElement(planStepId: PlanStepId): JSX.Element {
 		const className = "plan-page-emoji-img";
-		const altText = getEmojiAltText(planStepId);
+		const altText = getString(getEmojiAltText(planStepId));
 
 		switch (planStepId) {
 			case PlanStepId.Excited: {

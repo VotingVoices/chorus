@@ -4,7 +4,7 @@ import { connect} from 'react-redux';
 
 import { Answer } from './Answer';
 import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../store';
-import { getQuestionFullLabel } from '../strings';
+import { getQuestionFullLabel, getString } from '../strings';
 
 import './Question.css';
 
@@ -20,7 +20,7 @@ interface IPropsFromDispatch {
 class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromDispatch, any> {
     public render(): JSX.Element {
         const { questionId, answers } = this.props;
-        const label = getQuestionFullLabel(questionId);
+        const label = getString(getQuestionFullLabel(questionId));
 
         return (
             <div>

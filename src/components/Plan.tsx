@@ -6,7 +6,7 @@ import { PlanStep } from './PlanStep';
 import { ReasonToVote } from './ReasonToVote';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
 import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
-import { getPlanPageSubHeaderText }from '../strings';
+import { getPlanPageSubHeaderText, getString }from '../strings';
 
 import './Plan.css';
 
@@ -26,7 +26,7 @@ export interface IIndexHolder {
 class Plan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedReduxProps, any> {
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
-		const subHeaderText = getPlanPageSubHeaderText();
+		const subHeaderText = getString(getPlanPageSubHeaderText());
 
 		return (
 			<div>
