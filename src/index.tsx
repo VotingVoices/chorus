@@ -77,7 +77,7 @@ if (!readStateResult.appViewSpecified || !readStateResult.questionSpecified) {
 
 ReactDOM.render(
 	<Provider store={store}>
-		<App />
+		<App dispatch={store.dispatch} />
 	</Provider>,
 	document.getElementById('root') as HTMLElement
 );

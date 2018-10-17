@@ -135,6 +135,7 @@ export const enum QuestionnaireActionType {
 	START_OVER = 'QUESTIONNAIRE/START_OVER',
 	ANSWER_QUESTION = 'QUESTIONNAIRE/ANSWER_QUESTION',
 	PRIVACY_POLICY = 'QUESTIONNAIRE/PRIVACY_POLICY',
+	SET_LANGUAGE = 'QUESTIONNAIRE/SET_LANGUAGE',
 }
 
 export interface IConnectedReduxProps<A extends Action = AnyAction> {
@@ -144,6 +145,10 @@ export interface IConnectedReduxProps<A extends Action = AnyAction> {
 export interface IAnswerQuestionPayload {
 	questionId: QuestionId;
 	answerId: AnswerId;
+}
+
+export interface ISetLanguagePayload {
+	language: LanguageId;
 }
 
 export enum PlanStepId {

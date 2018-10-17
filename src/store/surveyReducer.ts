@@ -141,6 +141,12 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				mostRecentTransition: MostRecentTransition.Immediate,
 			}
 		}
+		case QuestionnaireActionType.SET_LANGUAGE: {
+			return {
+				...state,
+				getString: getGetStringImplementation(action.payload.language),
+			}
+		}
 		case RouterActionType.LOCATION_CHANGE: {
 			if (action.payload.historyAction === "POP") {
 				return respondToBackOrForwardButton(state, action.payload.pathname, action.payload.search);
