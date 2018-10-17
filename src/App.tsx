@@ -1,15 +1,12 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import * as ReactCSSTransitionReplace from 'react-css-transition-replace';
 
 import './index.css';
 import './App.css';
-import { Footer, LandingPage, Plan, PrivacyPolicy, Survey } from './components';
+import { Footer, Header, LandingPage, Plan, PrivacyPolicy, Survey } from './components';
 import { AppView, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, VotingStateId } from './store';
 import { getTransitionStyleInfo } from './transitionNames';
-
-import vvlogo from './components/vvlogo.png';
 
 interface IPropsFromState {
 	currentView: AppView,
@@ -23,14 +20,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 	public render(): JSX.Element {
 		return (
 			<div className="App root-grid">
-				<div className="vv-page-header">
-					<div className="header-logo">
-						<a href="#/LandingPage"><img src={vvlogo} /></a>
-					</div>
-					<div className="right-buttons">
-						<Button type="button" className="vv-button contact-about-button" href="mailto:info@votingvoices.org">Contact</Button>
-					</div>
-				</div>
+				<Header />
 
 				<ReactCSSTransitionReplace
 					transitionEnter={this.props.enableTransitionAnimation}
