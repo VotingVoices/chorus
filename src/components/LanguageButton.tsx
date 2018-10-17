@@ -3,21 +3,27 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { Button } from 'react-bootstrap';
 
-import { /*IQuestionnaireState,*/ LanguageId, setLanguage } from '../store';
+import { IQuestionnaireState, LanguageId, setLanguage } from '../store';
 
 interface ILanguageButtonProps {
 	language: LanguageId,
 	languageName: string,
 }
 
+interface IPropsFromState {
+	currentLanguage: string,
+}
+
 interface IPropsFromDispatch {
 	setLanguage: typeof setLanguage,
 }
 
-class LanguageButton extends React.Component<ILanguageButtonProps & IPropsFromDispatch> {
+class LanguageButton extends React.Component<ILanguageButtonProps & IPropsFromState & IPropsFromDispatch> {
 	public render() {
+		const style: React.CSSProperties = this.props.currentLanguage === this.props.language ? { fontWeight: "bold" } : { }
+
 		return (
-			<Button type="button" onClick={this._onClick}>{this.props.languageName}</Button>
+			<Button type="button" style={style} onClick={this._onClick}>{this.props.languageName}</Button>
 		);
 	}
 
@@ -26,7 +32,8 @@ class LanguageButton extends React.Component<ILanguageButtonProps & IPropsFromDi
 	}
 }
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state: IQuestionnaireState) => ({
+	currentLanguage: state.currentLanguage,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

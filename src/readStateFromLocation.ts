@@ -1,6 +1,6 @@
 import * as queryString from 'query-string';
 
-import { ALL_QUESTION_IDS, AppView, getVotingStateId, IQuestionAndAnswer, IQuestionnaireState, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
+import { ALL_QUESTION_IDS, AppView, getVotingStateId, IQuestionAndAnswer, IQuestionnaireState, LanguageId, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
 import { getEnglishString } from './strings';
 
 function getViewFromPath(pathname: string): AppView | undefined {
@@ -97,7 +97,9 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 				counter: existingState.counter + 1,
 				pushLocation: true,
 				mostRecentTransition: undefined,
+				// TODO: Read language from the location
 				getString: getEnglishString,
+				currentLanguage: LanguageId.English,
 			},
 			appViewSpecified: true,
 			questionSpecified,

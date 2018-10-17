@@ -33,6 +33,7 @@ export const DEFAULT_STATE = {
 	pushLocation: true,
 	mostRecentTransition: undefined,
 	getString: getGetStringImplementation(LanguageId.English),
+	currentLanguage: LanguageId.English,
 } as IQuestionnaireState;
 
 function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answerId: AnswerId): IQuestionnaireState {
@@ -69,6 +70,7 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			pushLocation: true,
 			mostRecentTransition: undefined,
 			getString: prevState.getString,
+			currentLanguage: prevState.currentLanguage,
 		};
 	}
 	else {
@@ -145,6 +147,7 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 			return {
 				...state,
 				getString: getGetStringImplementation(action.payload.language),
+				currentLanguage: action.payload.language,
 			}
 		}
 		case RouterActionType.LOCATION_CHANGE: {

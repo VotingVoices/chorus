@@ -127,7 +127,8 @@ export interface IQuestionnaireState {
 	readonly counter: number,
 	readonly pushLocation: boolean,
 	readonly mostRecentTransition: MostRecentTransition | undefined,
-	readonly getString: (id: StringId) => string;
+	readonly getString: (id: StringId) => string,
+	readonly currentLanguage: LanguageId,
 }
 
 export const enum QuestionnaireActionType {
