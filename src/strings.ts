@@ -620,59 +620,76 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.Yes,
-		"Yes"],
+		// "Yes"],
+		"Sí"],
 
 	[StringId.No,
+		// "No"],
 		"No"],
 
 	[StringId.NotSure,
-		"Not sure"],
+		// "Not sure"],
+		"No estoy seguro"],
 
 	[StringId.AreYouRegisteredToVote,
 		// "First things first. Are you registered to vote?"],
 		"Primero lo primero. ¿Está registrado para votar?"],
 
 	[StringId.DoYouLiveOverseas,
-		"Do you live or are you stationed outside the United States?"],
+		// "Do you live or are you stationed outside the United States?"],
+		"¿Vive o está prestando servicio fuera de los Estados Unidos?"],
 
 	[StringId.AreYouPlanningtoVoteInVoteByMailState,
-		"Are you planning to vote in any of these states?"],
+		// "Are you planning to vote in any of these states?"],
+		"¿Está pensando en votar dentro de los Estados Unidos?"],
 
 	[StringId.DoYouWantToVoteWithAbsenteeBallot,
-		"Would you like to vote by absentee ballot?"],
+		// "Would you like to vote by absentee ballot?"],
+		"¿Le gustaría votar por correspondencia?"],
 
 	[StringId.DoYouKnowWhereYourPollingLocationIs,
-		"Do you know where your polling location is?"],
+		// "Do you know where your polling location is?"],
+		"¿Sabe dónde está ubicado su puesto de votación?"],
 
 	[StringId.WillYouNeedSpecialAccommodations,
-		"Will you need special accommodations to reach the polling location?"],
+		// "Will you need special accommodations to reach the polling location?"],
+		"¿Necesita acomadaciones especiales para llegar a su puesto de votación?"],
 
 	[StringId.WhatTransportationMethodWillYouUse,
-		"How will you get to your polling location?"],
+		// "How will you get to your polling location?"],
+		"¿Cómo va a llegar a su puesto de votación?"],
 
 	[StringId.HaveYouReceivedYourBallot,
-		"Have you received your ballot?"],
+		// "Have you received your ballot?"],
+		"¿Ha recivido su cartón de votación?"],
 
 	[StringId.DoYouKnowTheDeadline,
-		"Do you know when the deadline is?"],
+		// "Do you know when the deadline is?"],
+		"¿Sabe cuándo es la fecha límite para votar?"],		// TODO: para enviar su cartón de votación?
 
 	[StringId.HowWillYouReturnYourBallot,
-		"How will you return your ballot?"],
+		// "How will you return your ballot?"],
+		"¿Cómo va a enviar su cartón de votación?"],			// TODO: 'retornar' instead of 'enviar'?
 
 	[StringId.WillYouMissWork,
-		"Will you have to miss/leave work to vote?"],
+		// "Will you have to miss/leave work to vote?"],
+		"¿Tiene que ausentarse o salir del trabajo para poder votar?"],
 
 	[StringId.AreYouFamiliarWithYourBallot,
-		"Do you know who/what you\'ll be voting for?"],
+		// "Do you know who/what you\'ll be voting for?"],
+		"¿Sabe por qué/por quién va a a votar?"],
 
 	[StringId.AreTherePeopleToInvite,
-		"Spread the word! Are there people in your life you\'d like to vote with?"],
+		// "Spread the word! Are there people in your life you\'d like to vote with?"],
+		"Pase la voz! ¿Hay personas con quienes le gustaría ir a votar?"],
 
 	[StringId.WhyWillYouVote,
-		"Why will you be voting?"],
+		// "Why will you be voting?"],
+		"¿Por qué va a votar?"],
 
 	[StringId.HowAreYouFeeling,
-		"How are you feeling about these midterm elections?"],
+		// "How are you feeling about these midterm elections?"],
+		"¿Cómo se siente acerca de las elecciones de mitad de periodo?"],
 
 	[StringId.Washington,
 		"Washington"],
@@ -684,127 +701,166 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Colorado"],
 
 	[StringId.AnotherState,
-		"Another state"],
+		// "Another state"],
+		"Otro estado"],
 
 	[StringId.DriveMyself,
-		"Drive myself"],
+		// "Drive myself"],
+		"Voy a conducir"],
 
 	[StringId.Carpool,
-		"Carpool"],
+		// "Carpool"],
+		"Compartir automovil"],
 
 	[StringId.RideShare,
-		"Car for hire"],
+		// "Car for hire"],
+		"Carro en alquiler"],
 
 	[StringId.Taxi,
+		// "Taxi"],
 		"Taxi"],
 
 	[StringId.MassTransit,
-		"Mass transit"],
+		// "Mass transit"],
+		"Transporte público"],
 
 	[StringId.Walk,
-		"Walk"],
+		// "Walk"],
+		"Caminar"],
 
 	[StringId.Bike,
-		"Bike"],
+		// "Bike"],
+		"Bicicleta"],
 
 	[StringId.Mail,
-		"Mail"],
+		// "Mail"],
+		"Correo"],
 
 	[StringId.BallotBox,
-		"Ballot box"],
+		// "Ballot box"],
+		"Urna de votación"],
 
 	[StringId.Friends,
-		"Friend(s)"],
+		// "Friend(s)"],
+		"Amigo/s"],			// TODO: Amigos?
 
 	[StringId.FamilyMembers,
-		"Family member(s)"],
+		// "Family member(s)"],
+		"Miembros de la familia"],
 
 	[StringId.Coworkers,
-		"Co-worker(s)"],
+		// "Co-worker(s)"],
+		"Compañeros de trabajo"],
 
 	[StringId.NotAtThisTime,
-		"Not at this time"],
+		// "Not at this time"],
+		"No en este momento"],
 
 	[StringId.MyKidsFamily,
-		"My kids / family"],
+		// "My kids / family"],
+		"Mis hijos / familia"],
 
 	[StringId.ItsAPrivilege,
-		"It\'s a privilege"],
+		// "It\'s a privilege"],
+		"Es un privilegio"],
 
 	[StringId.ToDriveChange,
-		"To drive change"],
+		// "To drive change"],
+		"Para impulsar un cambio"],
 
 	[StringId.IveAlwaysVoted,
-		"I\'ve always voted"],
+		// "I\'ve always voted"],
+		"Yo siempre he votado"],
 
 	[StringId.Other,
-		"Other"],
+		// "Other"],
+		"Otro"],
 
 	[StringId.Excited,
-		"Excited"],
+		// "Excited"],
+		"Entusiasmado"],
 
 	[StringId.Concerned,
-		"Concerned"],
+		// "Concerned"],
+		"Preocupado"],
 
 	[StringId.Shocked,
-		"Shocked"],
+		// "Shocked"],
+		"Consternado"],
 
 	[StringId.Angry,
-		"Angry"],
+		// "Angry"],
+		"Con rabia"],
 
 	[StringId.Meh,
-		"Meh"],
+		// "Meh"],
+		"Indiferente"],
 
 	[StringId.PlanPageSubheader,
+		// TODO: TRANSLATE
 		"Now you've got everything you need to take voting action. You've done the prep to get your info on registration, your ballot, who/what/where, voting logistics, and more \u2014 way to go! Your voice matters. The time is now. Get out there and vote the midterms!"],
 
 	[StringId.IsYourRegistrationOk,
-		"Is your registration A-OK?"],
+		// "Is your registration A-OK?"],
+		"¿Está todo listo en la inscripción?"],
 
 	[StringId.LetsGetRegistered,
-		"Let's do this: get registered!"],       // TODO: Capitalize Get?
+		// "Let's do this: get registered!"],       // TODO: Capitalize Get?
+		"Hagámolo: Registreme"],
 
 	[StringId.CheckYourRegistration,
-		"Check your registration"],
+		// "Check your registration"],
+		"Verifique su inscripción"],
 
 	[StringId.DoubleCheckYourRegistration,
-		"Double-check your registration"],
+		// "Double-check your registration"],
+		"Revise su registro"],
 
 	[StringId.RockTheVoteDotOrgLink,
 		"https://www.rockthevote.org/voting-information/am-i-registered-to-vote/"],        // TODO: Spanish-specific links
 
 	[StringId.TakeAQuickLookAtYourRegistration,
-		"Great \u2014 you're registered! Now take a quick look to make sure everything is up-to-date."],
+		// "Great \u2014 you're registered! Now take a quick look to make sure everything is up-to-date."],
+		"Fantástico \u2014 ahora está registrado! Ahora revisemos que todo esté al día"],
 
 	[StringId.NotSureWhetherYoureRegistered,
-		"Not sure whether you're registered? Take a minute to double-check and make sure you're vote ready."],
+		// "Not sure whether you're registered? Take a minute to double-check and make sure you're vote ready."],
+		"No está seguro de haberse registrado? Tome un minuto para revisar y veríficar que está listo para votar"],
 
 	[StringId.RequestYourAbsenteeBallot,
-		"Request your absentee ballot"],
+		// "Request your absentee ballot"],
+		"Pida su voto por correspondencia"],
 
 	[StringId.LearnHowToVoteFromAnywhereOverseas,
-		"Learn how to vote from anywhere when you're overseas."],
+		// "Learn how to vote from anywhere when you're overseas."],
+		"Aprenda cómo votar desde cualquier lugar cuando se encuntra fuera del país"],
 
 	[StringId.MakeTheRequest,
-		"Make the request"],
+		// "Make the request"],
+		"Haga su solicitud"],		// TODO: Or, "Hacer una petición"
 
 	[StringId.FvapDotGotLink,
 		"https://www.fvap.gov/"],
 
 	[StringId.HaveBallotWillVote,
-		"Have ballot, will vote!"],
+		// "Have ballot, will vote!"],
+		"Tengo un cartón de votación. Votaré!"],		// TODO: Tiene?
 
 	[StringId.YouveGotItNowSubmitIt,
-		"You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)"],    // TODO: Spell out U.S. Postal Service
+		// "You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)"],    // TODO: Spell out U.S. Postal Service
+		"Ya lo tiene, ahora envíalo. (No se le olvidé revisar los requerimientos postales si usa USPS)"],		// TODO: Spell out USPS in Spanish?
 
 	[StringId.FindYourColoradoBallot,
-		"Find your Colorado ballot"],
+		// "Find your Colorado ballot"],
+		"Encuentre su cartón de votación de Colorado"],
 
 	[StringId.FindYourOregonBallot,
-		"Find your Oregon ballot"],
+		// "Find your Oregon ballot"],
+		"Encuentre su cartón de votación de Oregon"],
 
 	[StringId.FindYourWashingtonBallot,
-		"Find your Washington ballot"],
+		// "Find your Washington ballot"],
+		"Encuentre su cartón de votación de Washington"],
 
 	[StringId.ColoradoBallotLink,
 		"http://www.sos.state.co.us/pubs/elections/vote/VoterHome.html"],
@@ -816,10 +872,12 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://weiapplets.sos.wa.gov/myvote/#/login"],
 
 	[StringId.BallotHasntShownUpYet,
-		"Ballot hasn't shown up yet?"],
+		// "Ballot hasn't shown up yet?"],
+		"El cartón de votación no ha aparecido aún?"],
 
 	[StringId.TrackYourBallotOnline,
-		"Track your ballot online and find out when to expect it."],
+		// "Track your ballot online and find out when to expect it."],
+		"Rastree su cartón de votación y sepá cuando va a llegar"],
 
 	[StringId.ColoradoDeadlineLink,
 		"https://www.sos.state.co.us/pubs/elections/"],
@@ -831,31 +889,40 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/dates-and-deadlines.aspx"],
 
 	[StringId.WhenIsTheDeadlineExactly,
-		"When is the deadline, exactly?"],
+		// "When is the deadline, exactly?"],
+		"Cuándo es exactamente la fecha límite?"],
 
 	[StringId.TheDeadlineYouveGotThis,
-		"The deadline: you've got this"],
+		// "The deadline: you've got this"],
+		"La fecha límite: "],		// TODO: Incomplete translation?
 
 	[StringId.MidnightBallotDropOrPostmark,
-		"Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
+		// "Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
+		"Dejar en el casillero de envió por correo o matasellos. Rápidamente revisé su fecha límite y el resto va a ser sencillo."],		// TODO: Double-check translation
 
 	[StringId.CheckYourDeadline,
-		"Check your deadline"],
+		// "Check your deadline"],
+		"Revisé su fecha límite"],
 
 	[StringId.CheckYourDeadlineAndDontForgetPostage,
-		"Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
+		// "Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
+		"Revise su fecha límite y el resto es fácil. No olvidé poner la estampilla si el sobre no es prepagado"],
 
 	[StringId.CheckYourDeadlineAndRestEasy,
-		"Check up on your deadline and rest easy."],
+		// "Check up on your deadline and rest easy."],
+		"Revise la fecha límite y el resto es fácil"],
 
 	[StringId.FindColoradoMailingDetails,
-		"Find Colorado mailing details"],
+		// "Find Colorado mailing details"],
+		"Encuentre los detalles de envío en Colorado"],
 
 	[StringId.FindOregonMailingDetails,
-		"Find Oregon mailing details"],
+		// "Find Oregon mailing details"],
+		"Encuentre los detalles de envío en Oregon"],
 
 	[StringId.FindWashingtonMailingDetails,
-		"Find Washington mailing details"],
+		// "Find Washington mailing details"],
+		"Encuentre los detalles de envío en Washington"],
 
 	[StringId.ColoradoMailingDetailsLink,
 		"https://www.sos.state.co.us/pubs/elections/FAQs/GeneralInfoFAQ.html"],
@@ -867,7 +934,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/faq_vote_by_mail.aspx"],
 
 	[StringId.DropYourBallotInTheMail,
-		"Drop your ballot in the mail, pronto!"],
+		// "Drop your ballot in the mail, pronto!"],
+		"Envíe su cartón de votación, pronto!"],
 
 	[StringId.ColoradoDropBoxLink,
 		"https://www.sos.state.co.us/pubs/elections/"],
@@ -879,205 +947,263 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
-		"Discover your neighborhood ballot drop box."],
+		// "Discover your neighborhood ballot drop box."],
+		"Encuntré el casillero de envio dentro de su vecindario."],		// TODO: Typo?  Es 'encuntre' una palabra espanola?
 
 	[StringId.CheckYourDeadlineForDropbox,
-		"Check your deadline and plan ahead for a convenient ballot box drop."],
+		// "Check your deadline and plan ahead for a convenient ballot box drop."],
+		"Verifique su fecha límite y planee con tiempo el envío de su cartón de votación en el casillero."],
 
 	[StringId.FindDropboxNearYou,
-		"Find a ballot drop box near you"],
+		// "Find a ballot drop box near you"],
+		"Encuentre un casillero de envío cerca a usted"],
 
 	[StringId.CheckAbsenteePostageAndDeadline,
-		"A convenient way to go! Just remember to check on postage and your mailing deadline."],
+		// "A convenient way to go! Just remember to check on postage and your mailing deadline."],
+		"Una forma sencilla de realizarlo! Recuerde revisar la estampilla y la fecha límite de envío."],
 
 	[StringId.VoteDotOrgAbsenteeBallotLink,
 		"https://www.vote.org/absentee-ballot/"],
 
 	[StringId.HasYourPollingLocationMoved,
-		"Your polling location: has it moved?"],
+		// "Your polling location: has it moved?"],
+		"Se ha movido su puesto de votación?"],
 
 	[StringId.CheckYourPollingLocationBecauseThingsChange,
-		"Things change \u2014 make sure you're aware of your area's best polling locations and hours."],
+		// "Things change \u2014 make sure you're aware of your area's best polling locations and hours."],
+		"Las cosas cambian, \u2014 cerciorese que sepa cuales son los mejores lugares de votación y sus horarios."],
 
 	[StringId.ThisWayToThePolls,
-		"This way to the polls!"],
+		// "This way to the polls!"],
+		"Por esta ruta a los lugares de votación"],
 
 	[StringId.VoteDotOrgPollingPlaceLocatorLink,
 		"https://www.vote.org/polling-place-locator/"],
 
 	[StringId.FindYourPollingLocation,
-		"Find your polling location"],
+		// "Find your polling location"],
+		"Encuentre su puesto de votación"],
 
 	[StringId.FindYourPollingLocationDetails,
-		"Make it easy on yourself! Find your polling location through the link below."],
+		// "Make it easy on yourself! Find your polling location through the link below."],
+		"Hagalo fácil! Encuentre su puesto de votación en el siguiente link"],
 
 	[StringId.PlanYourTripWithAssistance,
-		"Plan your trip, with the assistance you need"],
+		// "Plan your trip, with the assistance you need"],
+		"Planee su viaje con la asistencia que necesita"],
 
 	[StringId.SpecialAcommodationsAreAvailable,
-		"Special accommodations to help you get to your polling place are available. It's easy to plan ahead!"],
+		// "Special accommodations to help you get to your polling place are available. It's easy to plan ahead!"],
+		"Hay asistencia especiales para llevarlo al lugar de votación. Es simple de planear."],
 
 	[StringId.AccessAssistance,
-		"Access assistance"],
+		// "Access assistance"],
+		"Acceder a asistencia"],
 
 	[StringId.EacDotGovLink,
 		"https://www.eac.gov/voters/resources-for-voters-with-disabilities/"],
 
 	[StringId.GetThereByCar,
-		"Get there by car"],
+		// "Get there by car"],
+		"Vaya por carro"],
 
 	[StringId.RoundUpFellowVotersForCarpoolOrTaxi,
-		"Great plan. Even better: Round up some fellow voters to share the ride, and have the address in hand!"],
+		// "Great plan. Even better: Round up some fellow voters to share the ride, and have the address in hand!"],
+		"Gran plan. Aún mejor: Encontremos más personas que van a votar para compartir el viaje."],
 
 	[StringId.RoundUpFellowVotersForRideShare,
-		"Great plan. Even better: Round up some fellow voters to share the ride!"],
+		// "Great plan. Even better: Round up some fellow voters to share the ride!"],
+		"Gran plan. Aún mejor: Encontremos más personas que van a votar para compartir el viaje."],
 
 	[StringId.PlanYourRouteToThePolls,
-		"Plan your route to the polls"],
+		// "Plan your route to the polls"],
+		"Planee la ruta al puesto de votación"],
 
 	[StringId.CheckLyft,
-		"Check Lyft for voting day deals"],
+		// "Check Lyft for voting day deals"],
+		"Revise Lyft para decuentos en el día de votación."],
 
 	[StringId.LyftLink,
 		"https://blog.lyft.com/posts/2018/8/22/get-out-the-vote"],		// TODO: Spanish
 
 	[StringId.GetThereByTaxi,
-		"Get there by taxi"],
+		// "Get there by taxi"],
+		"Llegue por medio de Taxi"],
 
 	[StringId.TakeMassTransitToThePolls,
-		"Take mass transit to the polls"],
+		// "Take mass transit to the polls"],
+		"Tomando transporte público"],			// TODO: "Tome transporte publico"?
 
 	[StringId.PlanYourTransitRouteAheadOfTime,
-		"Great plan. Even better: Plan your route ahead of time and enjoy the trip!"],
+		// "Great plan. Even better: Plan your route ahead of time and enjoy the trip!"],
+		"Gran plan. Aún mejor: Encontremos más personas que van a votar para compartir el viaje"],
 
 	[StringId.PlanYourTransitRoute,
-		"Plan your bus/train route"],
+		// "Plan your bus/train route"],
+		"Planee la ruta de bus o tren"],
 
 	[StringId.GoogleMapsTransitLink,
 		"https://maps.google.com/landing/transit/index.html"],
 
 	[StringId.WalkOrBikeToThePolls,
-		"Walk or bike to the polls"],
+		// "Walk or bike to the polls"],
+		"Camine o vaya en bicicleta a los puestos de votación"],
 
 	[StringId.RainSlowSleetNoWorries,
-		"Rain, snow, sleet...no worries! You'll be ready with a quick weather report."],
+		// "Rain, snow, sleet...no worries! You'll be ready with a quick weather report."],
+		"No se preocupe si llueve, neva u otro pasa! Va a estar preparado con un rápido reporte del tiempo."],
 
 	[StringId.CheckVotingDayConditions,
-		"Check voting day conditions"],
+		// "Check voting day conditions"],
+		"Revise las condiciones del día de votación"],
 
 	[StringId.WeatherDotComLink,
 		"weather.com"],    // TODO: No http?
 
 	[StringId.AreYouEligibleForPaidTimeOff,
-		"Paid time-off to vote: are you eligible?"],
+		// "Paid time-off to vote: are you eligible?"],
+		"¿Es elegible para tiempo pago para ir a votar?"],
 
 	[StringId.MajorityOfStatesHaveTimeOffLaws,
-		"The majority of states have time-off-to-vote laws (also called voter-leave laws). Check ahead of voting day and coordinate plans with your workplace."],
+		// "The majority of states have time-off-to-vote laws (also called voter-leave laws). Check ahead of voting day and coordinate plans with your workplace."],
+		"La mayoría de los estados tienen leyes para obtener tiempo pago para ir a votar. Revise y coordine con su trabajo antes del día de la votación"],
 
 	[StringId.LookForVoterLeaveStatus,
-		"Look for your state's voter-leave law status"],
+		// "Look for your state's voter-leave law status"],
+		"Busque las leyes que aplican a su estado"],
 
 	[StringId.Vote411DotOrgLink,
 		"https://www.vote411.org/taxonomy/term/75#.W5RxBuhKjD4"],		// TODO: Is this really the URL?
 
 	[StringId.YourBallotInANutshell,
-		"Your ballot, in a nutshell"],
+		// "Your ballot, in a nutshell"],
+		"Su votación en forma sencilla"],
 
 	[StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
-		"You're familiar with the candidates and issues. The Ballot Ready app can help you make informed choices."],
+		// "You're familiar with the candidates and issues. The Ballot Ready app can help you make informed choices."],
+		"Esta familiarizado con los candidatos y sus preocupaciones. La applicación de Ballot Ready le puede ayudar a hacer decisiones con más contexto"],
 
 	[StringId.PlanYourBallotChoices,
-		"Plan your ballot choices"],
+		// "Plan your ballot choices"],
+		"Planee su decisiones de voto"],
 
 	[StringId.BallotReadyDotOrgLink,
 		"https://www.ballotready.org/"],
 
 	[StringId.IntroducingYourBallot,
-		"Introducing...your ballot!"],
+		// "Introducing...your ballot!"],
+		"Introducción a su carton de votación"],
 
 	[StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
-		"Now's the perfect time to research the candidates and issues you'll be voting for. The Ballot Ready app can help you make informed choices."],
+		// "Now's the perfect time to research the candidates and issues you'll be voting for. The Ballot Ready app can help you make informed choices."],
+		"Ahora es el perfecto momento para investigar los candidatos y las propuestas por las que va a votar. La aplicación Ballot Ready lo puede ayudar decisiones informadas."],
 
 	[StringId.InviteYourFriendsToVoteWithYou,
-		"Invite your crowd to vote with you"],    // TODO: Review: "your crowd?
+		// "Invite your crowd to vote with you"],    // TODO: Review: "your crowd?
+		"Invite a las personas a votar con usted"],
 
 	[StringId.LetsKeepEachOtherAccountable,
-		"Let's keep each other accountable \u2014 voting's even better when we can do it together!"],
+		// "Let's keep each other accountable \u2014 voting's even better when we can do it together!"],
+		"Mantenga a las personas responsables entre ellas \u2014 votar es aún mejor cuando lo hacemos juntos!"],
 
 	[StringId.PutThoseFeelingsTowardAction,
-		"Put those feelings toward action"],
+		// "Put those feelings toward action"],
+		"Ponga esos sentimientos en acciones"],
 
 	[StringId.SeeWhatHappensWhenWeAllVote,
-		"See what happens When We All Vote"],
+		// "See what happens When We All Vote"],
+		"Revise que pasa cuando todos votamos"],
 
 	[StringId.WhenWeAllVoteDotOrgLink,
 		"https://www.whenweallvote.org/"],
 
 	[StringId.YoureExcited,
-		"You're excited about voting!"],
+		// "You're excited about voting!"],
+		"Usted está emocionado por votar"],
 
 	[StringId.YoureExcitedDescription,
-		"Well, great \u2014 you're not the only one! Watch this and keep participating!"],
+		// "Well, great \u2014 you're not the only one! Watch this and keep participating!"],
+		"Grandioso, \u2014 no eres el único! Mire esto y mantengase particiando."],
 
 	[StringId.YoureConcerned,
-		"Put those feelings toward voting action"],
+		// "Put those feelings toward voting action"],
+		"Ponga esos sentimientos en una acción de voto"],
 
 	[StringId.YoureConcernedDescription,
-		"You're feeling concerned \u2014 we get it! These are complicated times. Watch this and get inspired."],
+		// "You're feeling concerned \u2014 we get it! These are complicated times. Watch this and get inspired."],
+		"Se está sintiendo preocupado \u2014 lo entendemos! Estos son tiempos complicados. Vea esto para sentirse inspirado."],
 
 	[StringId.YoureShocked,
-		"You're feeling shocked \u2014 we get it! These are complicated times. Watch this and get inspired."],
+		// "You're feeling shocked \u2014 we get it! These are complicated times. Watch this and get inspired."],
+		"Se está sintiendo consternado \u2014 lo entendemos! Estos son tiempos complicados. Vea esto para sentirse inspirado."],
 
 	[StringId.YoureAngry,
-		"You're feeling angry \u2014 we get it! These are complicated times. Watch this and get inspired."],
+		// "You're feeling angry \u2014 we get it! These are complicated times. Watch this and get inspired."],
+		"Se está sintiendo con rabia \u2014 lo entendemos! Estos son tiempos complicados. Vea esto para sentirse inspirado."],
 
 	[StringId.YoureMeh,
-		"Feeling ambivalent? Your voting plans are taking shape \u2014 now get out there!"],
+		// "Feeling ambivalent? Your voting plans are taking shape \u2014 now get out there!"],
+		"Se está sintiendo ahí? Sus planes de votación estan tomando forma \u2014 ahora salga a realizarlos."],
 
 	[StringId.RememberYourReasonForVoting,
+		// TODO: Translate
 		"Remember your reason for voting!"],
 
 	[StringId.ForFamily,
-		"For Family"],
+		// "For Family"],
+		"Por la familia"],
 
 	[StringId.ForFamilyDescription,
-		"Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!"],
+		// "Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!"],
+		"Ya sea que este velando por la siguiente generación o por los miembros de su familia de hoy, está en lo correcto: su voto tiene un impacto."],
 
 	[StringId.ItsMyPrivilege,
-		"It's My Privilege"],
+		// "It's My Privilege"],
+		"Es mi privilegio"],
 
 	[StringId.ItsMyPrivilegeDescription,
-		"Yep, you've got the right idea, and we agree. Let's not take voting for granted!"],
+		// "Yep, you've got the right idea, and we agree. Let's not take voting for granted!"],
+		"Sí, usted tiene la idea correcta y nosotros estamos de acuerdo. No tomemos la votación por sentado."],
 
 	[StringId.ForChange,
-		"For Change"],
+		// "For Change"],
+		"Por cambio"],
 
 	[StringId.ForChangeDescription,
-		"You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!"],
+		// "You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!"],
+		"Va a realizar la mejor acción para opinar en las propuestas y las personas que toman las decisones. Aprueba? Desaprueba? Su voto es un mensaje importante \u2014 hagalo saber."],  // TODO: Leading question marks?
 
 	[StringId.CivicDuty,
-		"Civic Duty"],
+		// "Civic Duty"],
+		"Labor cívica"],
 
 	[StringId.CivicDutyDescription,
-		"You've always voted \u2014 good on you! Spread the word and keep up the great (and extremely important) civic habit."],
+		// "You've always voted \u2014 good on you! Spread the word and keep up the great (and extremely important) civic habit."],
+		"Usted siempre ha votado \u2014 Muy bien! Pasé la voz y mantenga el grandioso e importante hábito."],		// TODO: Lowercase "muy" and leading exclamation point?
 
 	[StringId.OtherCivicDutyDescription,
-		"You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!"],
+		// "You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!"],
+		"Va a realizar la mejor acción para opinar en las propuestas y las personas que toman las decisones. Aprueba? desaprueba? Su voto es un mensaje importante \u2014 hagalo saber."],	// TODO: Leading question marks?
 
 	[StringId.ExcitedEmoji,
-		"Excited emoji"],
+		// "Excited emoji"],
+		"Emoji emocionado"],
 
 	[StringId.ConcernedEmoji,
-		"Concerned emoji"],
+		// "Concerned emoji"],
+		"Emoji procupado"],
 
 	[StringId.ShockedEmoji,
-		"Shocked emoji"],
+		// "Shocked emoji"],
+		"Emoji consterando"],
 
 	[StringId.AngryEmoji,
-		"Angry emoji"],
+		// "Angry emoji"],
+		"Emoji con rabia"],
 
 	[StringId.MehEmoji,
-		"Meh emoji"],
+		// "Meh emoji"],
+		"Emoji indiferente"],
 ]);
 
 export function getString(id: StringId): string {
