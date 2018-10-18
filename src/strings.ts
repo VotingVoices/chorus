@@ -405,10 +405,10 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
-		"Find your neighborhood ballot drop box."],
+		"Find your ballot drop box."],
 
 	[StringId.PlanAheadForDropBox,
-		"Plan ahead for a convenient ballot box drop."],
+		"Plan ahead for a convenient ballot box drop in your neighborhood."],
 
 	[StringId.FindDropboxNearYou,
 		"Find a ballot drop box near you"],
@@ -931,12 +931,14 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
-		// "Find your neighborhood ballot drop box."],
-		"Encuntré el casillero de envio dentro de su vecindario."],		// TODO: Typo?  Es 'encuntre' una palabra espanola?
+		// "Find your ballot drop box."],
+		// TODO: Double-check my re-translation
+		"Encuntré el casillero de envio."],		// TODO: Typo?  Es 'encuntre' una palabra espanola?
 
 	[StringId.PlanAheadForDropBox,
-		// "Check your deadline and plan ahead for a convenient ballot box drop."],
-		"Planee con tiempo el envío de su cartón de votación en el casillero."],
+		// "Check your deadline and plan ahead for a convenient ballot box drop in your neighborhood."],
+		// TODO: Double-check my re-translation
+		"Planee con tiempo el envío de su cartón de votación en el casillero dentro de su vecindario."],
 
 	[StringId.FindDropboxNearYou,
 		// "Find a ballot drop box near you"],
