@@ -6,6 +6,7 @@ import { IQuestionnaireState } from '../store';
 import { StringId } from '../strings';
 
 import '../App.css';
+import './Header.css';
 import vvlogo from './vvlogo.png';
 
 interface IPropsFromState {
@@ -25,7 +26,7 @@ class Header extends React.Component<IPropsFromState, any> {
 					</div>
 				</div>
 
-				<div dangerouslySetInnerHTML={{__html: this.props.getString(StringId.DeadlineBannerMarkup)}} />
+				<div className="deadline-banner VotingVoices-sans-serif" dangerouslySetInnerHTML={{__html: this.props.getString(StringId.DeadlineBannerMarkup)}} />
 			</div>
 		);
 	}
