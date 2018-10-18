@@ -33,12 +33,17 @@ class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDisp
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
 		const subHeaderText = this.props.getString(getPlanPageSubHeaderText());
+		const invitePeopleText = this.props.getString(StringId.PlanPageInvitePeople);
 
 		return (
 			<div>
 				<div className="Plan-header Gradient-background">
                 	<h1 className="voteplan-title">VotePlan</h1>
                 	<div className="plan-sub-header-text VotingVoices-serif">{subHeaderText}</div>
+				</div>
+				<div className="Plan-invite-people">
+					<div className="Plan-invite-people-text">{invitePeopleText}</div>
+					<ShareWidget />
 				</div>
 
 				<div className="App plan-page-body">
