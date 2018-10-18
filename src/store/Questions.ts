@@ -25,7 +25,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Washington,
             AnswerId.OtherState,
         ],
-        resultingPlanStep: (answer) => undefined,
+        resultingPlanStep: (answer) => answer !== AnswerId.OtherState ? PlanStepId.KnowDeadline : undefined,
     },
     /* VOTE-IN-PERSON PATH */
     {
