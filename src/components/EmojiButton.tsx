@@ -5,7 +5,7 @@ import { getEmojiImgElement } from './getEmojiImgElement';
 import { AnswerId, IQuestionnaireState, QuestionId, QUESTIONS } from '../store';
 import { getAnswerLabel, StringId } from '../strings';
 
-import './Answer.css';
+import './EmojiButton.css';
 
 interface IEmojiButtonProps extends React.InputHTMLAttributes<HTMLElement | HTMLInputElement> {
 	questionId: QuestionId;
@@ -34,7 +34,7 @@ class EmojiButton extends React.Component<IEmojiButtonProps & IPropsFromState, a
 		);*/
 
 		return (
-			<div onClick={this._onClick}>
+			<div className={`emoji-button ${this.state.mousedOver ? 'answer-button-hover' : ''}`} onClick={this._onClick}>
 				<div>
 					{ getEmojiImgElement(planStepId!, "", this.props.getString) }
 				</div>
