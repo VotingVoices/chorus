@@ -14,3 +14,9 @@
 	text-transform: uppercase;
 	font-size: 16pt;
 }
+
+@media only screen and (max-width: 840px) {
+	.language-button-container  {
+		margin-top: 100px;
+	}
+}
