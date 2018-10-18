@@ -327,7 +327,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Have ballot, will vote!"],
 
 	[StringId.YouveGotItNowSubmitIt,
-		"You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)"],    // TODO: Spell out U.S. Postal Service
+		"You've got it, now submit it. (Don't forget to check the postage requirements if you're using the U.S. Postal Service.)"],    // TODO: Spell out U.S. Postal Service
 
 	[StringId.FindYourColoradoBallot,
 		"Find your Colorado ballot"],
@@ -839,7 +839,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Tengo un cartón de votación. Votaré!"],		// TODO: Tiene?
 
 	[StringId.YouveGotItNowSubmitIt,
-		// "You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)"],    // TODO: Spell out U.S. Postal Service
+		// "You've got it, now submit it. (Don't forget to check the postage requirements if you're using the U.S. Postal Service.)"],
 		"Ya lo tiene, ahora envíalo. (No se le olvidé revisar los requerimientos postales si usa USPS)"],		// TODO: Spell out USPS in Spanish?
 
 	[StringId.FindYourColoradoBallot,
