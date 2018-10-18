@@ -47,7 +47,7 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 				<div className="answer-group">
 					{answers.map(
 						(answerId: AnswerId) => {
-							return this.answerButton(answerId);
+							return this.answerButton(questionId, answerId);
 						}
 					)}
 				</div>
@@ -55,9 +55,9 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 		);
 	}
 
-	private answerButton(answerId: AnswerId) {
+	private answerButton(questionId: QuestionId, answerId: AnswerId) {
 		if (isEmojiAnswer(answerId)) {
-			return (<EmojiButton onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);	
+			return (<EmojiButton onClick={this._onClick(answerId)} questionId={questionId} answerId={answerId} key={answerId} />);	
 		}
 		else {
 			return (<Answer onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);
