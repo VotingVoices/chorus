@@ -354,10 +354,10 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Track your ballot online and find out when to expect it."],
 
 	[StringId.ColoradoDeadlineLink,
-		"https://www.sos.state.co.us/pubs/elections/"],
+		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
 
 	[StringId.OregonDeadlineLink,
-		"https://sos.oregon.gov/voting/Pages/current-election.aspx"],
+		"https://sos.oregon.gov/voting/Pages/voteinor.aspx"],
 
 	[StringId.WashingtonDeadlineLink,
 		"https://www.sos.wa.gov/elections/dates-and-deadlines.aspx"],
@@ -872,10 +872,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Rastree su cartón de votación y sepá cuando va a llegar"],
 
 	[StringId.ColoradoDeadlineLink,
-		"https://www.sos.state.co.us/pubs/elections/"],
+		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
 
 	[StringId.OregonDeadlineLink,
-		"https://sos.oregon.gov/voting/Pages/current-election.aspx"],
+		"https://sos.oregon.gov/voting/Pages/voteinor.aspx"],
 
 	[StringId.WashingtonDeadlineLink,
 		"https://www.sos.wa.gov/elections/dates-and-deadlines.aspx"],
