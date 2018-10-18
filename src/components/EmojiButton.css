@@ -1,3 +1,9 @@
 .emoji-button {
 	cursor: default;
+	margin: 8px 20px 8px 20px;
+}
+
+.emoji-button img {
+	width: 110px;
+	height: 110px;
 }
