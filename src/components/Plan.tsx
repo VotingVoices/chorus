@@ -5,7 +5,7 @@ import { default as PlanEmotion } from './PlanEmotion';
 import { default as PlanStep } from './PlanStep';
 import { default as ReasonToVote } from './ReasonToVote';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
+import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
 import { getPlanPageSubHeaderText, StringId }from '../strings';
 
 import './Plan.css';
@@ -16,7 +16,8 @@ interface IPlanProps {
 }
 
 interface IPropsFromState {
-    getString: (id: StringId) => string;
+	currentLanguage: LanguageId,
+    getString: (id: StringId) => string,
 }
 
 interface IPropsFromDispatch {
@@ -77,16 +78,17 @@ class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDisp
 	}
 
 	public componentDidMount() {
-		this.props.recordPlanPage(this.props.answers);
+		this.props.recordPlanPage(this.props.answers, this.props.currentLanguage);
 	}
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => ({
+	currentLanguage: state.currentLanguage,
 	getString: state.getString,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-	recordPlanPage: (answers: IQuestionAndAnswer[]) => dispatch(recordPlanPage(answers)),
+	recordPlanPage: (answers: IQuestionAndAnswer[], language: LanguageId) => dispatch(recordPlanPage(answers, language)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Plan);

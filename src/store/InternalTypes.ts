@@ -1,5 +1,5 @@
 import { Action as HistoryAction } from 'history';
-import { IQuestionAndAnswer } from './Types';
+import { IQuestionAndAnswer, LanguageId } from './Types';
 
 export const enum RouterInternalActionType {
 	PUSH = 'ROUTER/PUSH',
@@ -38,6 +38,7 @@ export const enum TelemetryActionType {
 
 export interface IRecordPlanPagePayload {
 	answers: IQuestionAndAnswer[],
+	language: LanguageId,
 }
 
 export interface IRecordCallToActionPayload {

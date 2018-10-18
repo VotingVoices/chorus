@@ -27,8 +27,8 @@ export const recordStartSession = () =>
 export const recordLandingPage = () =>
 	action(TelemetryActionType.LANDING_PAGE);
 
-export const recordPlanPage = (answers: IQuestionAndAnswer[]) =>
-	action(TelemetryActionType.PLAN_PAGE, { answers } as IRecordPlanPagePayload);
+export const recordPlanPage = (answers: IQuestionAndAnswer[], language: LanguageId) =>
+	action(TelemetryActionType.PLAN_PAGE, { answers, language } as IRecordPlanPagePayload);
 
 export const recordCallToAction = (link: string) =>
 	action(TelemetryActionType.CALL_TO_ACTION, { link } as IRecordCallToActionPayload);

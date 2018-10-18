@@ -89,7 +89,7 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 
 		const languageParameter = queryValues.lang;
 
-		const language: LanguageId = languageParameter !== null ? languageParameter : LanguageId.English;
+		const language: LanguageId = languageParameter !== null && languageParameter !== undefined ? languageParameter : LanguageId.English;
 
 		return {
 			state: {

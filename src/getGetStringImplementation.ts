@@ -10,6 +10,6 @@ export function getGetStringImplementation(language: LanguageId): (id: StringId)
 			return getSpanishString;
 
 		default:
-			throw new Error("Unknown LanguageId");
+			throw new Error(`Unknown LanguageId: ${language}`);
 	}
 }
