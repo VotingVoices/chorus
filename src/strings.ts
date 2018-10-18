@@ -298,7 +298,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Meh"],
 
 	[StringId.PlanPageSubheader,
-		"Now you've got everything you need to take voting action. You've done the prep to get your info on registration, your ballot, who/what/where, voting logistics, and more \u2014 way to go! Your voice matters. The time is now. Get out there and vote the midterms!"],
+		"You've done the prep. Your voice matters. Get out there and vote in the midterms!"],
 
 	[StringId.IsYourRegistrationOk,
 		"Is your registration A-OK?"],
@@ -805,7 +805,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.PlanPageSubheader,
 		// TODO: TRANSLATE
-		"Now you've got everything you need to take voting action. You've done the prep to get your info on registration, your ballot, who/what/where, voting logistics, and more \u2014 way to go! Your voice matters. The time is now. Get out there and vote the midterms!"],
+		"You've done the prep. Your voice matters. Get out there and vote in the midterms!"],
 
 	[StringId.IsYourRegistrationOk,
 		// "Is your registration A-OK?"],
