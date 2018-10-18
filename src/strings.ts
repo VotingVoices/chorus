@@ -85,7 +85,7 @@ export enum StringId {
 	OregonDropBoxLink,
 	WashingtonDropBoxLink,
 	DiscoverYourNeighborhoodDropBox,
-	CheckYourDeadlineForDropbox,
+	PlanAheadForDropBox,
 	FindDropboxNearYou,
 	CheckAbsenteePostageAndDeadline,
 	VoteDotOrgAbsenteeBallotLink,
@@ -406,10 +406,10 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
-		"Discover your neighborhood ballot drop box."],
+		"Find your neighborhood ballot drop box."],
 
-	[StringId.CheckYourDeadlineForDropbox,
-		"Check your deadline and plan ahead for a convenient ballot box drop."],
+	[StringId.PlanAheadForDropBox,
+		"Plan ahead for a convenient ballot box drop."],
 
 	[StringId.FindDropboxNearYou,
 		"Find a ballot drop box near you"],
@@ -927,12 +927,12 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
-		// "Discover your neighborhood ballot drop box."],
+		// "Find your neighborhood ballot drop box."],
 		"Encuntré el casillero de envio dentro de su vecindario."],		// TODO: Typo?  Es 'encuntre' una palabra espanola?
 
-	[StringId.CheckYourDeadlineForDropbox,
+	[StringId.PlanAheadForDropBox,
 		// "Check your deadline and plan ahead for a convenient ballot box drop."],
-		"Verifique su fecha límite y planee con tiempo el envío de su cartón de votación en el casillero."],
+		"Planee con tiempo el envío de su cartón de votación en el casillero."],
 
 	[StringId.FindDropboxNearYou,
 		// "Find a ballot drop box near you"],
@@ -1424,7 +1424,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 
 			return {
 				header: StringId.DiscoverYourNeighborhoodDropBox,
-				text: StringId.CheckYourDeadlineForDropbox,
+				text: StringId.PlanAheadForDropBox,
 				callToAction: StringId.FindDropboxNearYou,
 				link,
 			}
