@@ -25,7 +25,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Washington,
             AnswerId.OtherState,
         ],
-        resultingPlanStep: (answer) => answer !== AnswerId.OtherState ? PlanStepId.KnowDeadline : undefined,
+        resultingPlanStep: (answer) => answer !== AnswerId.OtherState ? PlanStepId.CheckBallotReturnDeadline : undefined,
     },
     /* VOTE-IN-PERSON PATH */
     {
@@ -110,23 +110,13 @@ export const QUESTIONS : IQuestion[] = [
     /* VOTE-BY-MAIL PATH */
     {
         id: QuestionId.ReceivedBallot,
-        dotNavStep: 5,
-        nextQuestionId: (key) => QuestionId.Deadline,
-        answers: [
-            AnswerId.Yes,
-            AnswerId.No,
-        ],
-        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.HaveBallot : PlanStepId.NoBallotYet,
-    },
-    {
-        id: QuestionId.Deadline,
         dotNavStep: 6,
         nextQuestionId: (key) => QuestionId.ReturnMethod,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.KnowDeadline : PlanStepId.DontKnowDeadline,
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.HaveBallot : PlanStepId.NoBallotYet,
     },
     {
         id: QuestionId.ReturnMethod,

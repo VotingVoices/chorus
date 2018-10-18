@@ -70,7 +70,6 @@ export enum StringId {
 	OregonDeadlineLink,
 	WashingtonDeadlineLink,
 	WhenIsTheDeadlineExactly,
-	TheDeadlineYouveGotThis,
 	MidnightBallotDropOrPostmark,
 	CheckYourDeadline,
 	CheckYourDeadlineAndDontForgetPostage,
@@ -363,9 +362,6 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.WhenIsTheDeadlineExactly,
 		"When is the deadline, exactly?"],
-
-	[StringId.TheDeadlineYouveGotThis,
-		"The deadline: you've got this"],
 
 	[StringId.MidnightBallotDropOrPostmark,
 		"Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
@@ -880,10 +876,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "When is the deadline, exactly?"],
 		"Cuándo es exactamente la fecha límite?"],
 
-	[StringId.TheDeadlineYouveGotThis,
-		// "The deadline: you've got this"],
-		"La fecha límite: "],		// TODO: Incomplete translation?
-
 	[StringId.MidnightBallotDropOrPostmark,
 		// "Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
 		"Dejar en el casillero de envió por correo o matasellos. Rápidamente revisé su fecha límite y el resto va a ser sencillo."],		// TODO: Double-check translation
@@ -1347,8 +1339,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			}
 		}
 
-		case PlanStepId.DontKnowDeadline:
-		case PlanStepId.KnowDeadline: {
+		case PlanStepId.CheckBallotReturnDeadline: {
 			let link: StringId | undefined;
 
 			switch (state) {
@@ -1369,7 +1360,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			}
 
 			return {
-				header: step === PlanStepId.DontKnowDeadline ? StringId.WhenIsTheDeadlineExactly : StringId.TheDeadlineYouveGotThis,
+				header: StringId.WhenIsTheDeadlineExactly,
 				text: StringId.MidnightBallotDropOrPostmark,
 				callToAction: StringId.CheckYourDeadline,
 				link
