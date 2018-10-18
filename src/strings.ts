@@ -6,7 +6,6 @@ export enum StringId {
 	No,
 	NotSure,
 	AreYouRegisteredToVote,
-	DoYouLiveOverseas,
 	AreYouPlanningtoVoteInVoteByMailState,
 	DoYouWantToVoteWithAbsenteeBallot,
 	DoYouKnowWhereYourPollingLocationIs,
@@ -56,9 +55,7 @@ export enum StringId {
 	TakeAQuickLookAtYourRegistration,
 	NotSureWhetherYoureRegistered,
 	RequestYourAbsenteeBallot,
-	LearnHowToVoteFromAnywhereOverseas,
 	MakeTheRequest,
-	FvapDotGotLink,
 	HaveBallotWillVote,
 	YouveGotItNowSubmitIt,
 	FindYourColoradoBallot,
@@ -173,9 +170,6 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.AreYouRegisteredToVote,
 		"First things first. Are you registered to vote?"],
-
-	[StringId.DoYouLiveOverseas,
-		"Do you live or are you stationed outside the United States?"],
 
 	[StringId.AreYouPlanningtoVoteInVoteByMailState,
 		"Are you planning to vote in any of these states?"],
@@ -324,14 +318,8 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.RequestYourAbsenteeBallot,
 		"Request your absentee ballot"],
 
-	[StringId.LearnHowToVoteFromAnywhereOverseas,
-		"Learn how to vote from anywhere when you're overseas."],
-
 	[StringId.MakeTheRequest,
 		"Make the request"],
-
-	[StringId.FvapDotGotLink,
-		"https://www.fvap.gov/"],
 
 	[StringId.HaveBallotWillVote,
 		"Have ballot, will vote!"],
@@ -642,10 +630,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "First things first. Are you registered to vote?"],
 		"Primero lo primero. ¿Está registrado para votar?"],
 
-	[StringId.DoYouLiveOverseas,
-		// "Do you live or are you stationed outside the United States?"],
-		"¿Vive o está prestando servicio fuera de los Estados Unidos?"],
-
 	[StringId.AreYouPlanningtoVoteInVoteByMailState,
 		// "Are you planning to vote in any of these states?"],
 		"¿Está pensando en votar dentro de los Estados Unidos?"],
@@ -838,16 +822,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "Request your absentee ballot"],
 		"Pida su voto por correspondencia"],
 
-	[StringId.LearnHowToVoteFromAnywhereOverseas,
-		// "Learn how to vote from anywhere when you're overseas."],
-		"Aprenda cómo votar desde cualquier lugar cuando se encuntra fuera del país"],
-
 	[StringId.MakeTheRequest,
 		// "Make the request"],
 		"Haga su solicitud"],		// TODO: Or, "Hacer una petición"
-
-	[StringId.FvapDotGotLink,
-		"https://www.fvap.gov/"],
 
 	[StringId.HaveBallotWillVote,
 		// "Have ballot, will vote!"],
@@ -1226,7 +1203,6 @@ export function getSpanishString(id: StringId): string {
 export function getQuestionFullLabel(id: QuestionId): StringId {
 	switch (id) {
 		case QuestionId.AreYouRegistered: return StringId.AreYouRegisteredToVote;
-		case QuestionId.OverseasMilitary: return StringId.DoYouLiveOverseas;
 		case QuestionId.VoteByMailState: return StringId.AreYouPlanningtoVoteInVoteByMailState;
 		case QuestionId.AbsenteeBallot: return StringId.DoYouWantToVoteWithAbsenteeBallot;
 		case QuestionId.PollingLocation: return StringId.DoYouKnowWhereYourPollingLocationIs;
@@ -1320,15 +1296,6 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 				callToAction: StringId.DoubleCheckYourRegistration,
 				link: StringId.RockTheVoteDotOrgLink,
 			};
-		}
-
-		case PlanStepId.RequestOverseasBallot: {
-			return {
-				header: StringId.RequestYourAbsenteeBallot,
-				text: StringId.LearnHowToVoteFromAnywhereOverseas,
-				callToAction: StringId.MakeTheRequest,
-				link: StringId.FvapDotGotLink,
-			}
 		}
 
 		case PlanStepId.HaveBallot: {

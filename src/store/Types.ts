@@ -1,9 +1,18 @@
 import { Action, AnyAction, Dispatch } from 'redux';
 import { StringId } from '../strings';
 
+/*
+	Do not remove values from this enum, if you can avoid it.
+
+	The QuestionId and AnswerId enum values are used in plan-page URLs that users may try to use later to refer
+	back to their plan.
+
+	Even if we remove questions or answers, we should try our best to make sense of the old plan-page URLs that
+	users might send us, which means we should retain the URL names even for questions/answers that are no longer
+	actively used.
+*/
 export enum QuestionId {
 	AreYouRegistered = 'Reg',
-	OverseasMilitary = 'OvM',
 	VoteByMailState = 'St',
 	AbsenteeBallot = 'Abs',
 	PollingLocation = 'PllLoc',
@@ -21,7 +30,6 @@ export enum QuestionId {
 
 export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.AreYouRegistered,
-	QuestionId.OverseasMilitary,
 	QuestionId.AbsenteeBallot,
 	QuestionId.VoteByMailState,
 	QuestionId.PollingLocation,
@@ -37,6 +45,11 @@ export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.Emotion,
 ];
 
+/*
+	Do not remove values from this enum, if you can avoid it.
+
+	See comments on the 'QuestionId' enum.
+*/
 export enum AnswerId {
 	Yes = 'Y',
 	No = 'N',
@@ -156,7 +169,6 @@ export enum PlanStepId {
 	Register,
 	CheckRegistration,
 	MaybeRegister,
-	RequestOverseasBallot,
 	HaveBallot,
 	NoBallotYet,
 	DontKnowDeadline,
