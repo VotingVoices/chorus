@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { connect} from 'react-redux';
 
 import { default as Answer } from './Answer';
+import { default as EmojiButton } from './EmojiButton';
 import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../store';
 import { getQuestionFullLabel, StringId } from '../strings';
 
@@ -19,6 +20,20 @@ interface IPropsFromState {
 
 interface IPropsFromDispatch {
 	answerQuestion: typeof answerQuestion,
+}
+
+function isEmojiAnswer(answerId: AnswerId): boolean {
+	switch (answerId) {
+		case AnswerId.Excited:
+		case AnswerId.Concerned:
+		case AnswerId.Shocked:
+		case AnswerId.Angry:
+		case AnswerId.Meh:
+			return true;
+
+		default:
+			return false;
+	}
 }
 
 class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromState & IPropsFromDispatch, any> {
@@ -41,7 +56,12 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 	}
 
 	private answerButton(answerId: AnswerId) {
-		return (<Answer onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);
+		if (isEmojiAnswer(answerId)) {
+			return (<EmojiButton onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);	
+		}
+		else {
+			return (<Answer onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);
+		}
 	}
 
 	private _onClick = (answerId: AnswerId) => {
