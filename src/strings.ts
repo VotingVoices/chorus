@@ -120,7 +120,7 @@ export enum StringId {
 	MajorityOfStatesHaveTimeOffLaws,
 	LookForVoterLeaveStatus,
 	Vote411DotOrgLink,
-	YourBallotInANutshell,
+	ResearchYourBallot,
 	YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
 	PlanYourBallotChoices,
 	BallotReadyDotOrgLink,
@@ -511,8 +511,8 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.Vote411DotOrgLink,
 		"https://www.vote411.org/taxonomy/term/75#.W5RxBuhKjD4"],		// TODO: Is this really the URL?
 
-	[StringId.YourBallotInANutshell,
-		"Your ballot, in a nutshell"],
+	[StringId.ResearchYourBallot,
+		"Research your ballot"],
 
 	[StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
 		"You're familiar with the candidates and issues. The Ballot Ready app can help you make informed choices."],
@@ -1063,8 +1063,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.Vote411DotOrgLink,
 		"https://www.vote411.org/taxonomy/term/75#.W5RxBuhKjD4"],		// TODO: Is this really the URL?
 
-	[StringId.YourBallotInANutshell,
-		// "Your ballot, in a nutshell"],
+	[StringId.ResearchYourBallot,
+		// TODO: Re-translate.
+		// Old English string: "Your ballot, in a nutshell"],
+		// Current English string: "Research your ballot."],
 		"Su votación en forma sencilla"],
 
 	[StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
@@ -1532,7 +1534,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 
 		case PlanStepId.ReviewBallotIssues: {
 			return {
-				header: StringId.YourBallotInANutshell,
+				header: StringId.ResearchYourBallot,
 				text: StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
 				callToAction: StringId.PlanYourBallotChoices,
 				link: StringId.BallotReadyDotOrgLink,
