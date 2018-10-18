@@ -70,8 +70,7 @@ export enum StringId {
 	OregonDeadlineLink,
 	WashingtonDeadlineLink,
 	WhenIsTheDeadlineExactly,
-	MidnightBallotDropOrPostmark,
-	CheckYourDeadline,
+	FindOutMore,
 	CheckYourDeadlineAndDontForgetPostage,
 	CheckYourDeadlineAndRestEasy,
 	FindColoradoMailingDetails,
@@ -153,6 +152,9 @@ export enum StringId {
 	AngryEmoji,
 	MehEmoji,
 	DeadlineBannerMarkup,
+	ColoradoDeadlineDescription,
+	OregonDeadlineDescription,
+	WashingtonDeadlineDescription,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -363,11 +365,8 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.WhenIsTheDeadlineExactly,
 		"When is the deadline, exactly?"],
 
-	[StringId.MidnightBallotDropOrPostmark,
-		"Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
-
-	[StringId.CheckYourDeadline,
-		"Check your deadline"],
+	[StringId.FindOutMore,
+		"Find out more"],
 
 	[StringId.CheckYourDeadlineAndDontForgetPostage,
 		"Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
@@ -608,6 +607,15 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.DeadlineBannerMarkup,
 		"<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>."],
+
+	[StringId.ColoradoDeadlineDescription,
+		"In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day. If you are not sure if your ballot will arrive in time, drop it off in person."],
+
+	[StringId.OregonDeadlineDescription,
+		"In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day. If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
+
+	[StringId.WashingtonDeadlineDescription,
+		"In Washington, your ballot must be postmarked on or before Election Day. Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -876,13 +884,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "When is the deadline, exactly?"],
 		"Cuándo es exactamente la fecha límite?"],
 
-	[StringId.MidnightBallotDropOrPostmark,
-		// "Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
-		"Dejar en el casillero de envió por correo o matasellos. Rápidamente revisé su fecha límite y el resto va a ser sencillo."],		// TODO: Double-check translation
-
-	[StringId.CheckYourDeadline,
-		// "Check your deadline"],
-		"Revisé su fecha límite"],
+	[StringId.FindOutMore,
+		// TODO: Translate
+		"Find out more"],
 
 	[StringId.CheckYourDeadlineAndDontForgetPostage,
 		// "Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
@@ -918,7 +922,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Envíe su cartón de votación, pronto!"],
 
 	[StringId.ColoradoDropBoxLink,
-		"https://www.sos.state.co.us/pubs/elections/"],
+		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
 
 	[StringId.OregonDropBoxLink,
 		"https://sos.oregon.gov/voting/pages/drop-box-locator.aspx"],
@@ -1190,6 +1194,18 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.DeadlineBannerMarkup,
 		// TODO: Translate
 		"<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>."],
+
+	[StringId.ColoradoDeadlineDescription,
+		// TODO: Translate
+		"In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day. If you are not sure if your ballot will arrive in time, drop it off in person."],
+
+	[StringId.OregonDeadlineDescription,
+		// TODO: Translate
+		"In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day. If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
+
+	[StringId.WashingtonDeadlineDescription,
+		// TODO: Translate
+		"In Washington, your ballot must be postmarked on or before Election Day. Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
 ]);
 
 export function getEnglishString(id: StringId): string {
@@ -1342,30 +1358,36 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		}
 
 		case PlanStepId.CheckBallotReturnDeadline: {
-			let link: StringId | undefined;
+			const header = StringId.WhenIsTheDeadlineExactly;
+			const callToAction = StringId.FindOutMore;
 
 			switch (state) {
 				case VotingStateId.Colorado: {
-					link = StringId.ColoradoDeadlineLink;
-					break;
+					return {
+						header,
+						text: StringId.ColoradoDeadlineDescription,
+						callToAction,
+						link: StringId.ColoradoDeadlineLink,
+					}
 				}
 				case VotingStateId.Oregon: {
-					link = StringId.OregonDeadlineLink;
-					break;
+					return {
+						header,
+						text: StringId.OregonDeadlineDescription,
+						callToAction,
+						link: StringId.OregonDeadlineLink,
+					}
 				}
 				case VotingStateId.Washington: {
-					link = StringId.WashingtonDeadlineLink;
-					break;
+					return {
+						header,
+						text: StringId.WashingtonDeadlineDescription,
+						callToAction,
+						link: StringId.WashingtonDeadlineLink,
+					}
 				}
 				default:
 					throw new Error("Unrecognized VotingStateId");
-			}
-
-			return {
-				header: StringId.WhenIsTheDeadlineExactly,
-				text: StringId.MidnightBallotDropOrPostmark,
-				callToAction: StringId.CheckYourDeadline,
-				link
 			}
 		}
 
