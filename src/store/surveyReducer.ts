@@ -1,11 +1,12 @@
 import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
-import { AppView, AnswerId, getVotingStateId, IQuestionnaireState, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
+import { AppView, AnswerId, getVotingStateId, IQuestionnaireState, LanguageId, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
 import { RouterActionType } from './InternalTypes';
 import { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';
 import * as actions from './Actions';
 import { readStateFromLocation } from '../readStateFromLocation';
+import { getGetStringImplementation } from '../getGetStringImplementation';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
@@ -18,6 +19,8 @@ export const DEFAULT_STATE = {
 	counter: 1,
 	pushLocation: true,
 	mostRecentTransition: undefined,
+	getString: getGetStringImplementation(LanguageId.English),
+	currentLanguage: LanguageId.English,
 } as IQuestionnaireState;
 
 function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answerId: AnswerId): IQuestionnaireState {
@@ -53,6 +56,8 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 			counter: prevState.counter + 1,
 			pushLocation: true,
 			mostRecentTransition: undefined,
+			getString: prevState.getString,
+			currentLanguage: prevState.currentLanguage,
 		};
 	}
 	else {
@@ -102,6 +107,8 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				answers: [],
 				dotNavStep: 1,
 				counter: DEFAULT_STATE.counter + 1,
+				getString: state.getString,
+				currentLanguage: state.currentLanguage,
 			};
 		}
 		case QuestionnaireActionType.START_OVER: {
@@ -111,6 +118,8 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				answers: [],
 				dotNavStep: 1,
 				mostRecentTransition: MostRecentTransition.Back,
+				getString: state.getString,
+				currentLanguage: state.currentLanguage,
 			};
 		}
 		case QuestionnaireActionType.ANSWER_QUESTION: {
@@ -123,6 +132,15 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				counter: state.counter + 1,
 				pushLocation: true,
 				mostRecentTransition: MostRecentTransition.Immediate,
+			}
+		}
+		case QuestionnaireActionType.SET_LANGUAGE: {
+			return {
+				...state,
+				counter: state.counter + 1,
+				pushLocation: true,
+				getString: getGetStringImplementation(action.payload.language),
+				currentLanguage: action.payload.language,
 			}
 		}
 		case RouterActionType.LOCATION_CHANGE: {

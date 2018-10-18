@@ -1,8 +1,18 @@
 import { Action, AnyAction, Dispatch } from 'redux';
+import { StringId } from '../strings';
 
+/*
+	Do not remove values from this enum, if you can avoid it.
+
+	The QuestionId and AnswerId enum values are used in plan-page URLs that users may try to use later to refer
+	back to their plan.
+
+	Even if we remove questions or answers, we should try our best to make sense of the old plan-page URLs that
+	users might send us, which means we should retain the URL names even for questions/answers that are no longer
+	actively used.
+*/
 export enum QuestionId {
 	AreYouRegistered = 'Reg',
-	OverseasMilitary = 'OvM',
 	VoteByMailState = 'St',
 	AbsenteeBallot = 'Abs',
 	PollingLocation = 'PllLoc',
@@ -20,7 +30,6 @@ export enum QuestionId {
 
 export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.AreYouRegistered,
-	QuestionId.OverseasMilitary,
 	QuestionId.AbsenteeBallot,
 	QuestionId.VoteByMailState,
 	QuestionId.PollingLocation,
@@ -36,6 +45,11 @@ export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.Emotion,
 ];
 
+/*
+	Do not remove values from this enum, if you can avoid it.
+
+	See comments on the 'QuestionId' enum.
+*/
 export enum AnswerId {
 	Yes = 'Y',
 	No = 'N',
@@ -112,6 +126,11 @@ export function getVotingStateId(answerId: AnswerId): VotingStateId | undefined 
 	}
 }
 
+export enum LanguageId {
+	English = 'En',
+	Spanish = 'Es',
+}
+
 export interface IQuestionnaireState {
 	readonly answers: IQuestionAndAnswer[],
 	readonly votingStateId: VotingStateId | undefined,
@@ -121,6 +140,8 @@ export interface IQuestionnaireState {
 	readonly counter: number,
 	readonly pushLocation: boolean,
 	readonly mostRecentTransition: MostRecentTransition | undefined,
+	readonly getString: (id: StringId) => string,
+	readonly currentLanguage: LanguageId,
 }
 
 export const enum QuestionnaireActionType {
@@ -128,6 +149,7 @@ export const enum QuestionnaireActionType {
 	START_OVER = 'QUESTIONNAIRE/START_OVER',
 	ANSWER_QUESTION = 'QUESTIONNAIRE/ANSWER_QUESTION',
 	PRIVACY_POLICY = 'QUESTIONNAIRE/PRIVACY_POLICY',
+	SET_LANGUAGE = 'QUESTIONNAIRE/SET_LANGUAGE',
 }
 
 export interface IConnectedReduxProps<A extends Action = AnyAction> {
@@ -139,11 +161,14 @@ export interface IAnswerQuestionPayload {
 	answerId: AnswerId;
 }
 
+export interface ISetLanguagePayload {
+	language: LanguageId;
+}
+
 export enum PlanStepId {
 	Register,
 	CheckRegistration,
 	MaybeRegister,
-	RequestOverseasBallot,
 	HaveBallot,
 	NoBallotYet,
 	DontKnowDeadline,

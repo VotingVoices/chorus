@@ -1,6 +1,6 @@
 import { ActionType } from 'typesafe-actions';
 import { TelemetryActionType } from './InternalTypes';
-import { AnswerId, IQuestionAndAnswer, QuestionnaireActionType, QuestionId } from './Types';
+import { AnswerId, IQuestionAndAnswer, LanguageId, QuestionnaireActionType, QuestionId } from './Types';
 
 import * as actions from './Actions';
 
@@ -44,17 +44,18 @@ export class TelemetrySession {
 		});
 	}
 
-	public recordPlanPage(answers: IQuestionAndAnswer[]) {
+	public recordPlanPage(answers: IQuestionAndAnswer[], language: LanguageId) {
 		this.uploadData({
 			event: "ViewPlan",
 			answers: answers.map(qa => ({ question: qa.questionId, answer: qa.answerId })),
+			language,
 		});
 	}
 
 	public recordCallToAction(link: string) {
 		this.uploadData({
 			event: "CallToActionClicked",
-			link
+			link,
 		});
 	}
 
@@ -67,6 +68,13 @@ export class TelemetrySession {
 	public recordPrivacyPolicy() {
 		this.uploadData({
 			event: "PrivacyPolicy",
+		});
+	}
+
+	public recordSetLanguage(language: LanguageId) {
+		this.uploadData({
+			event: "SetLanguage",
+			language,
 		});
 	}
 
@@ -104,7 +112,7 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 			break;
 		}
 		case TelemetryActionType.PLAN_PAGE: {
-			session.recordPlanPage(action.payload.answers);
+			session.recordPlanPage(action.payload.answers, action.payload.language);
 			break;
 		}
 		case TelemetryActionType.CALL_TO_ACTION: {
@@ -125,6 +133,10 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		}
 		case QuestionnaireActionType.START_OVER: {
 			session.recordStartOver();
+			return next(action);
+		}
+		case QuestionnaireActionType.SET_LANGUAGE: {
+			session.recordSetLanguage(action.payload.language);
 			return next(action);
 		}
 		default: {

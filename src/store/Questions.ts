@@ -7,7 +7,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.AreYouRegistered,
         dotNavStep: 1,
-        nextQuestionId: (answer) => QuestionId.OverseasMilitary,
+        nextQuestionId: (answer) => QuestionId.VoteByMailState,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
@@ -16,18 +16,8 @@ export const QUESTIONS : IQuestion[] = [
         resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.CheckRegistration : (answer === AnswerId.No ? PlanStepId.Register : PlanStepId.MaybeRegister),
     },
     {
-        id: QuestionId.OverseasMilitary,
-        dotNavStep: 2,
-        nextQuestionId: (answer) => answer === AnswerId.Yes ? QuestionId.FamiliarWithBallot : QuestionId.VoteByMailState,
-        answers: [
-            AnswerId.Yes,
-            AnswerId.No,
-        ],
-        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.RequestOverseasBallot : undefined,
-    },
-    {
         id: QuestionId.VoteByMailState,
-        dotNavStep: 3,
+        dotNavStep: 2,
         nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.ReceivedBallot,
         answers: [
             AnswerId.Colorado,
@@ -40,7 +30,7 @@ export const QUESTIONS : IQuestion[] = [
     /* VOTE-IN-PERSON PATH */
     {
         id: QuestionId.AbsenteeBallot,
-        dotNavStep: 4,
+        dotNavStep: 3,
         nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.ReceivedBallot : QuestionId.VoteByMailState,
         answers: [
             AnswerId.Yes,
@@ -50,7 +40,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.PollingLocation,
-        dotNavStep: 5,
+        dotNavStep: 4,
         nextQuestionId: (key) => QuestionId.SpecialAccommodations,
         answers: [
             AnswerId.Yes,
@@ -61,7 +51,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.SpecialAccommodations,
-        dotNavStep: 6,
+        dotNavStep: 5,
         nextQuestionId: (key) => QuestionId.TransportationMethod,
         answers: [
             AnswerId.Yes,
@@ -71,7 +61,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.TransportationMethod,
-        dotNavStep: 7,
+        dotNavStep: 6,
         nextQuestionId: (key) => QuestionId.MissWork,
         answers: [
             AnswerId.DriveMyself,
@@ -109,7 +99,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.MissWork,
-        dotNavStep: 8,
+        dotNavStep: 7,
         nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
         answers: [
             AnswerId.Yes,
@@ -120,7 +110,7 @@ export const QUESTIONS : IQuestion[] = [
     /* VOTE-BY-MAIL PATH */
     {
         id: QuestionId.ReceivedBallot,
-        dotNavStep: 6,
+        dotNavStep: 5,
         nextQuestionId: (key) => QuestionId.Deadline,
         answers: [
             AnswerId.Yes,
@@ -130,7 +120,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.Deadline,
-        dotNavStep: 7,
+        dotNavStep: 6,
         nextQuestionId: (key) => QuestionId.ReturnMethod,
         answers: [
             AnswerId.Yes,
@@ -140,7 +130,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.ReturnMethod,
-        dotNavStep: 8,
+        dotNavStep: 7,
         nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
         answers: [
             AnswerId.Mail,
@@ -151,7 +141,7 @@ export const QUESTIONS : IQuestion[] = [
     /* REJOINED PATH */
     {
         id: QuestionId.FamiliarWithBallot,
-        dotNavStep: 9,
+        dotNavStep: 8,
         nextQuestionId: (key) => QuestionId.PeopleToInvite,
         answers: [
             AnswerId.Yes,
@@ -161,7 +151,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.PeopleToInvite,
-        dotNavStep: 10,
+        dotNavStep: 9,
         nextQuestionId: (key) => QuestionId.ReasonToVote,
         answers: [
             AnswerId.Friends,
@@ -173,7 +163,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.ReasonToVote,
-        dotNavStep: 11,
+        dotNavStep: 10,
         nextQuestionId: (key) => QuestionId.Emotion,
         answers: [
             AnswerId.Kids,
@@ -206,7 +196,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.Emotion,
-        dotNavStep: 12,
+        dotNavStep: 11,
         nextQuestionId: (key) => undefined,
         answers: [
             AnswerId.Excited,
@@ -238,4 +228,4 @@ export const QUESTIONS : IQuestion[] = [
         },
     }];
 
-export const PLAN_DOT_NAV_STEP = 13;
+export const PLAN_DOT_NAV_STEP = 12;

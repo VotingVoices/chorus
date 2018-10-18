@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
-import { connect} from 'react-redux';
-import { PlanEmotion } from './PlanEmotion';
-import { PlanStep } from './PlanStep';
-import { ReasonToVote } from './ReasonToVote';
+import { connect } from 'react-redux';
+import { default as PlanEmotion } from './PlanEmotion';
+import { default as PlanStep } from './PlanStep';
+import { default as ReasonToVote } from './ReasonToVote';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
-import { getPlanPageSubHeaderText }from '../strings';
+import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
+import { getPlanPageSubHeaderText, StringId }from '../strings';
 
 import './Plan.css';
 import ShareCallToAction from './ShareCallToAction';
@@ -14,6 +14,11 @@ import ShareCallToAction from './ShareCallToAction';
 interface IPlanProps {
 	answers: IQuestionAndAnswer[],
 	votingStateId: VotingStateId,
+}
+
+interface IPropsFromState {
+	currentLanguage: LanguageId,
+    getString: (id: StringId) => string,
 }
 
 interface IPropsFromDispatch {
@@ -24,10 +29,10 @@ export interface IIndexHolder {
 	index: number;
 }
 
-class Plan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedReduxProps, any> {
+class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, any> {
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
-		const subHeaderText = getPlanPageSubHeaderText();
+		const subHeaderText = this.props.getString(getPlanPageSubHeaderText());
 
 		return (
 			<div>
@@ -77,15 +82,17 @@ class Plan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedR
 	}
 
 	public componentDidMount() {
-		this.props.recordPlanPage(this.props.answers);
+		this.props.recordPlanPage(this.props.answers, this.props.currentLanguage);
 	}
 }
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state: IQuestionnaireState) => ({
+	currentLanguage: state.currentLanguage,
+	getString: state.getString,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-	recordPlanPage: (answers: IQuestionAndAnswer[]) => dispatch(recordPlanPage(answers)),
+	recordPlanPage: (answers: IQuestionAndAnswer[], language: LanguageId) => dispatch(recordPlanPage(answers, language)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Plan);
