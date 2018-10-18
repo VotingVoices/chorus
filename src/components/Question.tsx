@@ -32,12 +32,16 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 				<div className="answer-group">
 					{answers.map(
 						(answerId: AnswerId) => {
-							return (<Answer onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);
+							return this.answerButton(answerId);
 						}
 					)}
 				</div>
 			</div>
 		);
+	}
+
+	private answerButton(answerId: AnswerId) {
+		return (<Answer onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);
 	}
 
 	private _onClick = (answerId: AnswerId) => {
