@@ -6,22 +6,9 @@ import { RouterActionType } from './InternalTypes';
 import { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';
 import * as actions from './Actions';
 import { readStateFromLocation } from '../readStateFromLocation';
-import { getEnglishString, getSpanishString, StringId } from '../strings';
+import { getGetStringImplementation } from '../getGetStringImplementation';
 
 type QuestionnaireAction = ActionType<typeof actions>;
-
-function getGetStringImplementation(language: LanguageId): (id: StringId) => string {
-	switch (language) {
-		case LanguageId.English:
-			return getEnglishString;
-
-		case LanguageId.Spanish:
-			return getSpanishString;
-
-		default:
-			throw new Error("Unknown LanguageId");
-	}
-}
 
 export const DEFAULT_STATE = {
 	answers: [],
@@ -150,6 +137,8 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 		case QuestionnaireActionType.SET_LANGUAGE: {
 			return {
 				...state,
+				counter: state.counter + 1,
+				pushLocation: true,
 				getString: getGetStringImplementation(action.payload.language),
 				currentLanguage: action.payload.language,
 			}

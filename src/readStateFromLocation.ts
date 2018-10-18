@@ -1,7 +1,7 @@
 import * as queryString from 'query-string';
 
 import { ALL_QUESTION_IDS, AppView, getVotingStateId, IQuestionAndAnswer, IQuestionnaireState, LanguageId, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
-import { getEnglishString } from './strings';
+import { getGetStringImplementation } from './getGetStringImplementation';
 
 function getViewFromPath(pathname: string): AppView | undefined {
 	if (pathname === '/LandingPage') {
@@ -87,6 +87,10 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 			}
 		});
 
+		const languageParameter = queryValues.lang;
+
+		const language: LanguageId = languageParameter !== null ? languageParameter : LanguageId.English;
+
 		return {
 			state: {
 				answers,
@@ -98,8 +102,8 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 				pushLocation: true,
 				mostRecentTransition: undefined,
 				// TODO: Read language from the location
-				getString: getEnglishString,
-				currentLanguage: LanguageId.English,
+				getString: getGetStringImplementation(language),
+				currentLanguage: language,
 			},
 			appViewSpecified: true,
 			questionSpecified,

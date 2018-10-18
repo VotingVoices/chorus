@@ -21,21 +21,24 @@ const initialState = readStateResult.state;
 const store = configureStore(history, initialState);
 
 function pathFromState(state: IQuestionnaireState): string {
+	const langParameter = `lang=${state.currentLanguage}`;
+
 	switch (state.currentView) {
 		case AppView.LandingPage: {
-			return `/LandingPage`;
+			return `/LandingPage?${langParameter}`;
 		}
 		
 		case AppView.Questionnaire: {
-			return `/Survey?${CurrentQuestionQueryParameterName}=${state.currentQuestionId}`;
+			return `/Survey?${CurrentQuestionQueryParameterName}=${state.currentQuestionId}&${langParameter}`;
 		}
 
 		case AppView.Plan: {
 			const queryStringParameters = state.answers.map(qa => `${qa.questionId}=${qa.answerId}`).join('&');
-			return `/Plan?${queryStringParameters}`;
+			return `/Plan?${queryStringParameters}&${langParameter}`;
 		}
 
 		case AppView.PrivacyPolicy: {
+			// We currently don't translate the privacy policy into Spanish.
 			return `/Privacy`;
 		}
 
