@@ -9,7 +9,7 @@ import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionna
 import { getPlanPageSubHeaderText, StringId }from '../strings';
 
 import './Plan.css';
-import ShareCallToAction from './ShareCallToAction';
+import ShareWidget from './ShareWidget';
 
 interface IPlanProps {
 	answers: IQuestionAndAnswer[],
@@ -59,7 +59,7 @@ class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDisp
 										return <PlanEmotion {...this.props} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 									else if (questionId === QuestionId.PeopleToInvite) {
-										return <PlanStep { ...this.props } indexHolder={indexHolder} callToAction={(<ShareCallToAction { ...this.props } />)} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
+										return <PlanStep { ...this.props } indexHolder={indexHolder} callToAction={(<ShareWidget { ...this.props } />)} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 									else {
 										return <PlanStep {...this.props} indexHolder={indexHolder} planStepId={planStepId!} votingStateId={this.props.votingStateId} />

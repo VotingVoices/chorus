@@ -41,7 +41,7 @@ class PlanStep extends React.Component<IPlanStepProps & IPropsFromState & IConne
 		);
 	}
 
-	private getCallToAction = (callToActionLabel?: string, link?: string): JSX.Element => {
+	private getCallToAction = (callToActionLabel?: StringId, link?: StringId): JSX.Element => {
 		if (this.showBallotReady(this.props.planStepId)) {
 			return this.ballotReadyWidget(callToActionLabel, link);
 		}
