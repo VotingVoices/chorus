@@ -27,14 +27,8 @@ class EmojiButton extends React.Component<IEmojiButtonProps & IPropsFromState, a
 
 		const planStepId = question!.resultingPlanStep(answerId);
 
-		/*return (
-			<span className={`answer-button ${this.state.mousedOver ? 'answer-button-hover' : ''}`} onClick={this._onClick} onMouseOver={this._onMouseOver} onMouseOut={this._onMouseOut}>
-				{label}
-			</span>
-		);*/
-
 		return (
-			<div className={`emoji-button ${this.state.mousedOver ? 'answer-button-hover' : ''}`} onClick={this._onClick}>
+			<div className={`emoji-button ${this.state.mousedOver ? 'emoji-button-hover' : ''}`} onClick={this._onClick} onMouseOver={this._onMouseOver} onMouseOut={this._onMouseOut}>
 				<div>
 					{ getEmojiImgElement(planStepId!, "", this.props.getString) }
 				</div>
@@ -55,14 +49,13 @@ class EmojiButton extends React.Component<IEmojiButtonProps & IPropsFromState, a
 		}
 	}
 
-	/*private _onMouseOver = (ev: React.MouseEvent<HTMLElement>) => {
+	private _onMouseOver = (ev: React.MouseEvent<HTMLElement>) => {
 		this.setState({ mousedOver: true });
 	}
 
 	private _onMouseOut = (ev: React.MouseEvent<HTMLElement>) => {
 		this.setState({ mousedOver: false });
 	}
-	*/
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => ({

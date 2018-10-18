@@ -16,6 +16,10 @@
 	margin-bottom: 0;
 }
 
+.emoji-button-hover {
+	background-color: CornflowerBlue;
+}
+
 /* Keep this in sync with Answer.css */
 @media only screen and (max-width: 840px) {
 	.emoji-button {
