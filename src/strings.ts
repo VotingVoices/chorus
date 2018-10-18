@@ -70,9 +70,7 @@ export enum StringId {
 	OregonDeadlineLink,
 	WashingtonDeadlineLink,
 	WhenIsTheDeadlineExactly,
-	TheDeadlineYouveGotThis,
-	MidnightBallotDropOrPostmark,
-	CheckYourDeadline,
+	FindOutMore,
 	CheckYourDeadlineAndDontForgetPostage,
 	CheckYourDeadlineAndRestEasy,
 	FindColoradoMailingDetails,
@@ -86,7 +84,7 @@ export enum StringId {
 	OregonDropBoxLink,
 	WashingtonDropBoxLink,
 	DiscoverYourNeighborhoodDropBox,
-	CheckYourDeadlineForDropbox,
+	PlanAheadForDropBox,
 	FindDropboxNearYou,
 	CheckAbsenteePostageAndDeadline,
 	VoteDotOrgAbsenteeBallotLink,
@@ -154,6 +152,9 @@ export enum StringId {
 	AngryEmoji,
 	MehEmoji,
 	DeadlineBannerMarkup,
+	ColoradoDeadlineDescription,
+	OregonDeadlineDescription,
+	WashingtonDeadlineDescription,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -326,7 +327,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Have ballot, will vote!"],
 
 	[StringId.YouveGotItNowSubmitIt,
-		"You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)"],    // TODO: Spell out U.S. Postal Service
+		"You've got it, now submit it. (Don't forget to check the postage requirements if you're using the U.S. Postal Service.)"],    // TODO: Spell out U.S. Postal Service
 
 	[StringId.FindYourColoradoBallot,
 		"Find your Colorado ballot"],
@@ -353,10 +354,10 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Track your ballot online and find out when to expect it."],
 
 	[StringId.ColoradoDeadlineLink,
-		"https://www.sos.state.co.us/pubs/elections/"],
+		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
 
 	[StringId.OregonDeadlineLink,
-		"https://sos.oregon.gov/voting/Pages/current-election.aspx"],
+		"https://sos.oregon.gov/voting/Pages/voteinor.aspx"],
 
 	[StringId.WashingtonDeadlineLink,
 		"https://www.sos.wa.gov/elections/dates-and-deadlines.aspx"],
@@ -364,14 +365,8 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.WhenIsTheDeadlineExactly,
 		"When is the deadline, exactly?"],
 
-	[StringId.TheDeadlineYouveGotThis,
-		"The deadline: you've got this"],
-
-	[StringId.MidnightBallotDropOrPostmark,
-		"Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
-
-	[StringId.CheckYourDeadline,
-		"Check your deadline"],
+	[StringId.FindOutMore,
+		"Find out more"],
 
 	[StringId.CheckYourDeadlineAndDontForgetPostage,
 		"Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
@@ -410,10 +405,10 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
-		"Discover your neighborhood ballot drop box."],
+		"Find your neighborhood ballot drop box."],
 
-	[StringId.CheckYourDeadlineForDropbox,
-		"Check your deadline and plan ahead for a convenient ballot box drop."],
+	[StringId.PlanAheadForDropBox,
+		"Plan ahead for a convenient ballot box drop."],
 
 	[StringId.FindDropboxNearYou,
 		"Find a ballot drop box near you"],
@@ -612,6 +607,15 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.DeadlineBannerMarkup,
 		"<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>."],
+
+	[StringId.ColoradoDeadlineDescription,
+		"In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you are not sure if your ballot will arrive in time, drop it off in person."],
+
+	[StringId.OregonDeadlineDescription,
+		"In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
+
+	[StringId.WashingtonDeadlineDescription,
+		"In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -835,7 +839,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Tengo un cartón de votación. Votaré!"],		// TODO: Tiene?
 
 	[StringId.YouveGotItNowSubmitIt,
-		// "You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)"],    // TODO: Spell out U.S. Postal Service
+		// "You've got it, now submit it. (Don't forget to check the postage requirements if you're using the U.S. Postal Service.)"],
 		"Ya lo tiene, ahora envíalo. (No se le olvidé revisar los requerimientos postales si usa USPS)"],		// TODO: Spell out USPS in Spanish?
 
 	[StringId.FindYourColoradoBallot,
@@ -868,10 +872,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Rastree su cartón de votación y sepá cuando va a llegar"],
 
 	[StringId.ColoradoDeadlineLink,
-		"https://www.sos.state.co.us/pubs/elections/"],
+		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
 
 	[StringId.OregonDeadlineLink,
-		"https://sos.oregon.gov/voting/Pages/current-election.aspx"],
+		"https://sos.oregon.gov/voting/Pages/voteinor.aspx"],
 
 	[StringId.WashingtonDeadlineLink,
 		"https://www.sos.wa.gov/elections/dates-and-deadlines.aspx"],
@@ -880,17 +884,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "When is the deadline, exactly?"],
 		"Cuándo es exactamente la fecha límite?"],
 
-	[StringId.TheDeadlineYouveGotThis,
-		// "The deadline: you've got this"],
-		"La fecha límite: "],		// TODO: Incomplete translation?
-
-	[StringId.MidnightBallotDropOrPostmark,
-		// "Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
-		"Dejar en el casillero de envió por correo o matasellos. Rápidamente revisé su fecha límite y el resto va a ser sencillo."],		// TODO: Double-check translation
-
-	[StringId.CheckYourDeadline,
-		// "Check your deadline"],
-		"Revisé su fecha límite"],
+	[StringId.FindOutMore,
+		// TODO: Translate
+		"Find out more"],
 
 	[StringId.CheckYourDeadlineAndDontForgetPostage,
 		// "Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
@@ -926,7 +922,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Envíe su cartón de votación, pronto!"],
 
 	[StringId.ColoradoDropBoxLink,
-		"https://www.sos.state.co.us/pubs/elections/"],
+		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
 
 	[StringId.OregonDropBoxLink,
 		"https://sos.oregon.gov/voting/pages/drop-box-locator.aspx"],
@@ -935,12 +931,12 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
-		// "Discover your neighborhood ballot drop box."],
+		// "Find your neighborhood ballot drop box."],
 		"Encuntré el casillero de envio dentro de su vecindario."],		// TODO: Typo?  Es 'encuntre' una palabra espanola?
 
-	[StringId.CheckYourDeadlineForDropbox,
+	[StringId.PlanAheadForDropBox,
 		// "Check your deadline and plan ahead for a convenient ballot box drop."],
-		"Verifique su fecha límite y planee con tiempo el envío de su cartón de votación en el casillero."],
+		"Planee con tiempo el envío de su cartón de votación en el casillero."],
 
 	[StringId.FindDropboxNearYou,
 		// "Find a ballot drop box near you"],
@@ -1198,6 +1194,18 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.DeadlineBannerMarkup,
 		// TODO: Translate
 		"<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>."],
+
+	[StringId.ColoradoDeadlineDescription,
+		// TODO: Translate
+		"In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you are not sure if your ballot will arrive in time, drop it off in person."],
+
+	[StringId.OregonDeadlineDescription,
+		// TODO: Translate
+		"In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
+
+	[StringId.WashingtonDeadlineDescription,
+		// TODO: Translate
+		"In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
 ]);
 
 export function getEnglishString(id: StringId): string {
@@ -1349,32 +1357,37 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			}
 		}
 
-		case PlanStepId.DontKnowDeadline:
-		case PlanStepId.KnowDeadline: {
-			let link: StringId | undefined;
+		case PlanStepId.CheckBallotReturnDeadline: {
+			const header = StringId.WhenIsTheDeadlineExactly;
+			const callToAction = StringId.FindOutMore;
 
 			switch (state) {
 				case VotingStateId.Colorado: {
-					link = StringId.ColoradoDeadlineLink;
-					break;
+					return {
+						header,
+						text: StringId.ColoradoDeadlineDescription,
+						callToAction,
+						link: StringId.ColoradoDeadlineLink,
+					}
 				}
 				case VotingStateId.Oregon: {
-					link = StringId.OregonDeadlineLink;
-					break;
+					return {
+						header,
+						text: StringId.OregonDeadlineDescription,
+						callToAction,
+						link: StringId.OregonDeadlineLink,
+					}
 				}
 				case VotingStateId.Washington: {
-					link = StringId.WashingtonDeadlineLink;
-					break;
+					return {
+						header,
+						text: StringId.WashingtonDeadlineDescription,
+						callToAction,
+						link: StringId.WashingtonDeadlineLink,
+					}
 				}
 				default:
 					throw new Error("Unrecognized VotingStateId");
-			}
-
-			return {
-				header: step === PlanStepId.DontKnowDeadline ? StringId.WhenIsTheDeadlineExactly : StringId.TheDeadlineYouveGotThis,
-				text: StringId.MidnightBallotDropOrPostmark,
-				callToAction: StringId.CheckYourDeadline,
-				link
 			}
 		}
 
@@ -1435,7 +1448,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 
 			return {
 				header: StringId.DiscoverYourNeighborhoodDropBox,
-				text: StringId.CheckYourDeadlineForDropbox,
+				text: StringId.PlanAheadForDropBox,
 				callToAction: StringId.FindDropboxNearYou,
 				link,
 			}
