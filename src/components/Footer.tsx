@@ -18,10 +18,14 @@ class Footer extends React.Component<IPropsFromState & IConnectedReduxProps> {
 	public render() {
 		return (
 			<div className="vv-page-footer VotingVoices-serif">
-				<span className="VotingVoices-sans-serif language-label">{ this.props.getString(StringId.LanguageColon) }</span>
+				<div className="language-button-container">
+					<div className="language-button-container-2">
+						<span className="VotingVoices-sans-serif language-label">{ this.props.getString(StringId.LanguageColon) }</span>
 
-				<LanguageButton {...this.props} language={LanguageId.English} languageName="English" />
-				<LanguageButton {...this.props} language={LanguageId.Spanish} languageName="Español" />
+						<LanguageButton {...this.props} language={LanguageId.English} languageName="English" />
+						<LanguageButton {...this.props} language={LanguageId.Spanish} languageName="Español" />
+					</div>
+				</div>
 
 				<FooterText {...this.props} />
 

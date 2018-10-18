@@ -1,5 +1,14 @@
+.language-button-container {
+	display: flex;
+}
+
+.language-button-container-2 {
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+}
+
 .language-label {
 	text-transform: uppercase;
 	font-size: 16pt;
-	margin-top: 2px;
 }
