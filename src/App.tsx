@@ -20,7 +20,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 	public render(): JSX.Element {
 		return (
 			<div className="App root-grid">
-				<Header />
+				<Header {...this.props} />
 
 				<ReactCSSTransitionReplace
 					transitionEnter={this.props.enableTransitionAnimation}

@@ -1,13 +1,19 @@
 import * as React from 'react';
 import { Button } from 'react-bootstrap';
+import { connect} from 'react-redux';
+
+import { IQuestionnaireState } from '../store';
+import { StringId } from '../strings';
 
 import '../App.css';
 import vvlogo from './vvlogo.png';
 
-export class Header extends React.Component<any, any> {
-	public render() {
-		const deadlineMarkup = "<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>.";
+interface IPropsFromState {
+	getString: (id: StringId) => string,
+}
 
+class Header extends React.Component<IPropsFromState, any> {
+	public render() {
 		return (
 			<div>
 				<div className="vv-page-header">
@@ -19,8 +25,14 @@ export class Header extends React.Component<any, any> {
 					</div>
 				</div>
 
-				<div dangerouslySetInnerHTML={{__html: deadlineMarkup}} />
+				<div dangerouslySetInnerHTML={{__html: this.props.getString(StringId.DeadlineBannerMarkup)}} />
 			</div>
 		);
 	}
 }
+
+const mapStateToProps = (state: IQuestionnaireState) => ({
+	getString: state.getString,
+});
+
+export default connect(mapStateToProps)(Header);

@@ -153,6 +153,7 @@ export enum StringId {
 	ShockedEmoji,
 	AngryEmoji,
 	MehEmoji,
+	DeadlineBannerMarkup,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -608,6 +609,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.MehEmoji,
 		"Meh emoji"],
+
+	[StringId.DeadlineBannerMarkup,
+		"<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>."],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1188,6 +1192,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.MehEmoji,
 		// "Meh emoji"],
 		"Emoji indiferente"],
+
+	[StringId.DeadlineBannerMarkup,
+		// TODO: Translate
+		"<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>."],
 ]);
 
 export function getEnglishString(id: StringId): string {
