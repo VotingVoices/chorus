@@ -16,8 +16,8 @@
 	margin-bottom: 0;
 }
 
-.emoji-button-hover {
-	background-color: CornflowerBlue;
+.emoji-button-hover img {
+	-webkit-filter: brightness(60%);
 }
 
 /* Keep this in sync with Answer.css */
