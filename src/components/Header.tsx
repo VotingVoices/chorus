@@ -6,6 +6,8 @@ import vvlogo from './vvlogo.png';
 
 export class Header extends React.Component<any, any> {
 	public render() {
+		const deadlineMarkup = "<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>.";
+
 		return (
 			<div>
 				<div className="vv-page-header">
@@ -17,9 +19,7 @@ export class Header extends React.Component<any, any> {
 					</div>
 				</div>
 
-				<div>
-					<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>.
-				</div>
+				<div dangerouslySetInnerHTML={{__html: deadlineMarkup}} />
 			</div>
 		);
 	}
