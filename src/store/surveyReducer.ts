@@ -120,6 +120,8 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				answers: [],
 				dotNavStep: 1,
 				counter: DEFAULT_STATE.counter + 1,
+				getString: state.getString,
+				currentLanguage: state.currentLanguage,
 			};
 		}
 		case QuestionnaireActionType.START_OVER: {
@@ -129,6 +131,8 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 				answers: [],
 				dotNavStep: 1,
 				mostRecentTransition: MostRecentTransition.Back,
+				getString: state.getString,
+				currentLanguage: state.currentLanguage,
 			};
 		}
 		case QuestionnaireActionType.ANSWER_QUESTION: {
