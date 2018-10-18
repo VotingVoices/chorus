@@ -13,4 +13,17 @@
 
 .emoji-button-label {
 	margin-top: 16px;
+	margin-bottom: 0;
+}
+
+/* Keep this in sync with Answer.css */
+@media only screen and (max-width: 840px) {
+	.emoji-button {
+		margin: 4px 6px 4px 6px;
+	}
+
+	.emoji-button-label {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
 }
