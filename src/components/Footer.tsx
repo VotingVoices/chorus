@@ -7,6 +7,7 @@ import { IConnectedReduxProps, IQuestionnaireState, LanguageId } from '../store'
 import { StringId } from '../strings';
 
 import '../App.css';
+import './Footer.css';
 import vvlogo_w from './vvlogo_w.png';
 
 interface IPropsFromState {
@@ -17,7 +18,7 @@ class Footer extends React.Component<IPropsFromState & IConnectedReduxProps> {
 	public render() {
 		return (
 			<div className="vv-page-footer VotingVoices-serif">
-				{ this.props.getString(StringId.LanguageColon) }
+				<span className="VotingVoices-sans-serif language-label">{ this.props.getString(StringId.LanguageColon) }</span>
 
 				<LanguageButton {...this.props} language={LanguageId.English} languageName="English" />
 				<LanguageButton {...this.props} language={LanguageId.Spanish} languageName="Español" />
