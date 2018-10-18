@@ -936,7 +936,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Encuntré el casillero de envio."],		// TODO: Typo?  Es 'encuntre' una palabra espanola?
 
 	[StringId.PlanAheadForDropBox,
-		// "Check your deadline and plan ahead for a convenient ballot box drop in your neighborhood."],
+		// "Plan ahead for a convenient ballot box drop in your neighborhood."],
 		// TODO: Double-check my re-translation
 		"Planee con tiempo el envío de su cartón de votación en el casillero dentro de su vecindario."],
 
