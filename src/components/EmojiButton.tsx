@@ -38,7 +38,9 @@ class EmojiButton extends React.Component<IEmojiButtonProps & IPropsFromState, a
 				<div>
 					{ getEmojiImgElement(planStepId!, "", this.props.getString) }
 				</div>
-				{label}
+				<div className="emoji-button-label">
+					{label}
+				</div>
 			</div>
 		);
 	}
