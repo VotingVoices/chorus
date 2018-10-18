@@ -609,13 +609,13 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>."],
 
 	[StringId.ColoradoDeadlineDescription,
-		"In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day. If you are not sure if your ballot will arrive in time, drop it off in person."],
+		"In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you are not sure if your ballot will arrive in time, drop it off in person."],
 
 	[StringId.OregonDeadlineDescription,
-		"In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day. If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
+		"In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
 
 	[StringId.WashingtonDeadlineDescription,
-		"In Washington, your ballot must be postmarked on or before Election Day. Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
+		"In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1197,15 +1197,15 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.ColoradoDeadlineDescription,
 		// TODO: Translate
-		"In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day. If you are not sure if your ballot will arrive in time, drop it off in person."],
+		"In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you are not sure if your ballot will arrive in time, drop it off in person."],
 
 	[StringId.OregonDeadlineDescription,
 		// TODO: Translate
-		"In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day. If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
+		"In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
 
 	[StringId.WashingtonDeadlineDescription,
 		// TODO: Translate
-		"In Washington, your ballot must be postmarked on or before Election Day. Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
+		"In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
 ]);
 
 export function getEnglishString(id: StringId): string {
