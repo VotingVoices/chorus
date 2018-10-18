@@ -34,7 +34,7 @@ class EmojiButton extends React.Component<IEmojiButtonProps & IPropsFromState, a
 		);*/
 
 		return (
-			<div>
+			<div onClick={this._onClick}>
 				<div>
 					{ getEmojiImgElement(planStepId!, "", this.props.getString) }
 				</div>
@@ -43,7 +43,6 @@ class EmojiButton extends React.Component<IEmojiButtonProps & IPropsFromState, a
 		);
 	}
 
-	/*
 	private _onClick = (ev: React.MouseEvent<HTMLElement>) => {
 		const { onClick } = this.props;
 		ev.preventDefault();
@@ -54,7 +53,7 @@ class EmojiButton extends React.Component<IEmojiButtonProps & IPropsFromState, a
 		}
 	}
 
-	private _onMouseOver = (ev: React.MouseEvent<HTMLElement>) => {
+	/*private _onMouseOver = (ev: React.MouseEvent<HTMLElement>) => {
 		this.setState({ mousedOver: true });
 	}
 
