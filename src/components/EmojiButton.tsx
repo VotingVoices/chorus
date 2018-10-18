@@ -3,7 +3,7 @@ import { connect} from 'react-redux';
 
 import { getEmojiImgElement } from './getEmojiImgElement';
 import { AnswerId, IQuestionnaireState, QuestionId, QUESTIONS } from '../store';
-import { /*getAnswerLabel,*/ StringId } from '../strings';
+import { getAnswerLabel, StringId } from '../strings';
 
 import './Answer.css';
 
@@ -21,7 +21,7 @@ class EmojiButton extends React.Component<IEmojiButtonProps & IPropsFromState, a
 
 	public render(): JSX.Element {
 		const { questionId, answerId } = this.props;
-		// const label = this.props.getString(getAnswerLabel(answerId));
+		const label = this.props.getString(getAnswerLabel(answerId));
 
 		const question = QUESTIONS.find(q => q.id === questionId);
 
@@ -33,7 +33,14 @@ class EmojiButton extends React.Component<IEmojiButtonProps & IPropsFromState, a
 			</span>
 		);*/
 
-		return getEmojiImgElement(planStepId!, "", this.props.getString);
+		return (
+			<div>
+				<div>
+					{ getEmojiImgElement(planStepId!, "", this.props.getString) }
+				</div>
+				{label}
+			</div>
+		);
 	}
 
 	/*
