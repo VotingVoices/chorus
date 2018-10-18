@@ -1,5 +1,4 @@
 .footer-text {
-	margin-top: 150px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -11,7 +10,6 @@
 @media only screen and (max-width: 600px) {
 	/* Wrap "View our privacy policy" to the next line on small screens. */
 	.footer-text {
-		margin-top: 124px;
 		max-width: 330px;
 	}
 }

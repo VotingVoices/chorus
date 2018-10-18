@@ -1,18 +1,22 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
-import { connect} from 'react-redux';
-import { PlanEmotion } from './PlanEmotion';
-import { PlanStep } from './PlanStep';
-import { ReasonToVote } from './ReasonToVote';
+import { connect } from 'react-redux';
+import { default as PlanEmotion } from './PlanEmotion';
+import { default as PlanStep } from './PlanStep';
+import { default as ReasonToVote } from './ReasonToVote';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
-import { getPlanPageSubHeaderText }from '../strings';
+import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
+import { getPlanPageSubHeaderText, StringId }from '../strings';
 
 import './Plan.css';
 
 interface IPlanProps {
 	answers: IQuestionAndAnswer[],
 	votingStateId: VotingStateId,
+}
+
+interface IPropsFromState {
+    getString: (id: StringId) => string;
 }
 
 interface IPropsFromDispatch {
@@ -23,10 +27,10 @@ export interface IIndexHolder {
 	index: number;
 }
 
-class Plan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedReduxProps, any> {
+class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, any> {
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
-		const subHeaderText = getPlanPageSubHeaderText();
+		const subHeaderText = this.props.getString(getPlanPageSubHeaderText());
 
 		return (
 			<div>
@@ -77,7 +81,8 @@ class Plan extends React.Component<IPlanProps & IPropsFromDispatch & IConnectedR
 	}
 }
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state: IQuestionnaireState) => ({
+	getString: state.getString,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
