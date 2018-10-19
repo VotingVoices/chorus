@@ -20,10 +20,10 @@ const initialState = readStateResult.state;
 
 const store = configureStore(history, initialState);
 
-function answerAsString(answer: AnswerId | IZipCodeAnswer): string {
-	const zipCode = (answer as IZipCodeAnswer).zipCode;
-	if (zipCode !== undefined && zipCode !== "") {
-		return (answer as IZipCodeAnswer).zipCode;
+function answerAsString(answer: AnswerId | IZipCodeAnswer): string | undefined {
+	if (typeof answer === "object") {
+		const zipCode = (answer as IZipCodeAnswer).zipCode;
+		return zipCode !== "" ? zipCode : undefined;
 	}
 	else {
 		return (answer as AnswerId).toString();
@@ -43,7 +43,9 @@ function pathFromState(state: IQuestionnaireState): string {
 		}
 
 		case AppView.Plan: {
-			const parameterList = state.answers.map(qa => `${qa.questionId}=${answerAsString(qa.answer)}`);
+			const parameterList = state.answers.map(qa => ({questionId: qa.questionId, answerString: answerAsString(qa.answer)}))
+				.filter(qas => qas.answerString !== undefined)
+				.map(qas => `${qas.questionId}=${qas.answerString!}`);
 
 			const queryStringParameters = parameterList.join('&');
 			return `/Plan?${queryStringParameters}&${langParameter}`;
