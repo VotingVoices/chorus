@@ -619,7 +619,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
 
 	[StringId.WhereAreYouVoting,
-		"Where will you be voting?"],
+		"<em>Where</em> will you be voting?"],
 
 	[StringId.ZipCode,
 		"ZIP code"],
@@ -1219,7 +1219,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.WhereAreYouVoting,
 		// TODO: Translate
-		"Where will you be voting?"],
+		"<em>Where</em> will you be voting?"],
 
 	[StringId.ZipCode,
 		// TODO: Translate

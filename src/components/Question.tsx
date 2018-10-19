@@ -45,7 +45,7 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 
 		return (
 			<div>
-				<div className="question-label VotingVoices-serif">{label}</div>
+				<div className="question-label VotingVoices-serif" dangerouslySetInnerHTML={ { __html: label } } />
 
 				{ this.answerContent() }
 			</div>
