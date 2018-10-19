@@ -30,6 +30,7 @@ export interface IIndexHolder {
 }
 
 class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, any> {
+
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
 		const subHeaderText = this.props.getString(getPlanPageSubHeaderText());
@@ -88,6 +89,10 @@ class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDisp
 
 	public componentDidMount() {
 		this.props.recordPlanPage(this.props.answers, this.props.currentLanguage);
+		
+		// TODO: Ideally this would be more localized to ShareWidget, but it seems better to do this just once right now.
+		(window as any).twttr.widgets.load();
+		(window as any).FB.XFBML.parse();
 	}
 }
 
