@@ -40,6 +40,8 @@ export const QUESTIONS : IQuestion[] = [
         },
     },
     /* VOTE-IN-PERSON PATH */
+    // TODO: Bring this question back?
+    /*
     {
         id: QuestionId.AbsenteeBallot,
         dotNavStep: 3,
@@ -50,9 +52,10 @@ export const QUESTIONS : IQuestion[] = [
         ],
         resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.RequestAbsenteeBallot : undefined,
     },
+    */
     {
         id: QuestionId.PollingLocation,
-        dotNavStep: 4,
+        dotNavStep: 3,
         nextQuestionId: (key) => QuestionId.SpecialAccommodations,
         answers: [
             AnswerId.Yes,
@@ -63,7 +66,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.SpecialAccommodations,
-        dotNavStep: 5,
+        dotNavStep: 4,
         nextQuestionId: (key) => QuestionId.TransportationMethod,
         answers: [
             AnswerId.Yes,
@@ -73,7 +76,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.TransportationMethod,
-        dotNavStep: 6,
+        dotNavStep: 5,
         nextQuestionId: (key) => QuestionId.MissWork,
         answers: [
             AnswerId.DriveMyself,
@@ -111,7 +114,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.MissWork,
-        dotNavStep: 7,
+        dotNavStep: 6,
         nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
         answers: [
             AnswerId.Yes,
@@ -122,7 +125,7 @@ export const QUESTIONS : IQuestion[] = [
     /* VOTE-BY-MAIL PATH */
     {
         id: QuestionId.ReceivedBallot,
-        dotNavStep: 6,
+        dotNavStep: 7,
         nextQuestionId: (key) => QuestionId.ReturnMethod,
         answers: [
             AnswerId.Yes,
@@ -132,7 +135,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.ReturnMethod,
-        dotNavStep: 7,
+        dotNavStep: 8,
         nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
         answers: [
             AnswerId.Mail,
@@ -143,7 +146,7 @@ export const QUESTIONS : IQuestion[] = [
     /* REJOINED PATH */
     {
         id: QuestionId.FamiliarWithBallot,
-        dotNavStep: 8,
+        dotNavStep: 9,
         nextQuestionId: (key) => QuestionId.PeopleToInvite,
         answers: [
             AnswerId.Yes,
@@ -153,7 +156,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.PeopleToInvite,
-        dotNavStep: 9,
+        dotNavStep: 10,
         nextQuestionId: (key) => QuestionId.ReasonToVote,
         answers: [
             AnswerId.Friends,
@@ -165,7 +168,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.ReasonToVote,
-        dotNavStep: 10,
+        dotNavStep: 11,
         nextQuestionId: (key) => QuestionId.Emotion,
         answers: [
             AnswerId.Kids,
@@ -198,7 +201,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.Emotion,
-        dotNavStep: 11,
+        dotNavStep: 12,
         nextQuestionId: (key) => undefined,
         answers: [
             AnswerId.Excited,
@@ -230,4 +233,4 @@ export const QUESTIONS : IQuestion[] = [
         },
     }];
 
-export const PLAN_DOT_NAV_STEP = 12;
+export const PLAN_DOT_NAV_STEP = 13;
