@@ -29,7 +29,7 @@ class LandingPage extends React.Component<IConnectedReduxProps & IPropsFromState
                 <h1 className="voteplan-title landing-page-title">VotePlan</h1>
                 <img src={poweredbyVV} />
                 <div className="landing-page-slogan VotingVoices-serif">{this.props.getString(StringId.PlanYourVoteInviteOthersAndGetReady)}</div>
-                <Button type="button" className="vv-button vv-button-filled vv-button-large start-plan-button" onClick={this.onStartClick()}>Start Your Plan</Button>
+                <Button type="button" className="vv-button vv-button-filled vv-button-large start-plan-button" onClick={this.onStartClick()}>{this.props.getString(StringId.StartYourPlan)}</Button>
             </div>
 		);
 	}
