@@ -28,6 +28,10 @@
 	opacity: 0.67;
 }
 
+.skip-button {
+	margin-top: 24px;
+}
+
 /* USe the same max-width selector as in Question.css */
 @media only screen and (max-width: 420px) {
 	.zip-code-text-box {

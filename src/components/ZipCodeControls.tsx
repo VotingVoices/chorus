@@ -33,6 +33,8 @@ class ZipCodeControls extends React.Component<IPropsFromState & IPropsFromDispat
 				<div className="zip-code-explanation VotingVoices-serif">
 					{this.props.getString(StringId.WeUseYourZipCodeToProvideMoreElevantInformation)}
 				</div>
+
+				<Button type="button" className="vv-button vv-button-outline skip-button" onClick={this._onSkipClick}>{this.props.getString(StringId.Skip)}</Button>
 			</div>
 		);
 	}
@@ -43,6 +45,10 @@ class ZipCodeControls extends React.Component<IPropsFromState & IPropsFromDispat
 
 	private _onSubmitZipClick = (ev: React.MouseEvent<Button>) => {
 		this.props.answerQuestion(QuestionId.ZipCode, { zipCode: this.state.zipCode }); 
+	};
+
+	private _onSkipClick = (ev: React.MouseEvent<Button>) => {
+		this.props.answerQuestion(QuestionId.ZipCode, { zipCode: ""}); 
 	};
 }
 
