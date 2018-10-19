@@ -163,6 +163,7 @@ export enum StringId {
 	PlanYourVoteInviteOthersAndGetReady,
 	StartYourPlan,
 	StartOver,
+	Contact,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -648,6 +649,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.StartOver,
 		"Start Over"],
+
+	[StringId.Contact,
+		"Contact"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1268,6 +1272,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.StartOver,
 		// "Start Over"],
 		"Inicie De Nuevo"],
+
+	[StringId.Contact,
+		"Contacto"],
 ]);
 
 export function getEnglishString(id: StringId): string {
