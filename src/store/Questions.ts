@@ -125,7 +125,7 @@ export const QUESTIONS : IQuestion[] = [
     /* VOTE-BY-MAIL PATH */
     {
         id: QuestionId.ReceivedBallot,
-        dotNavStep: 7,
+        dotNavStep: 5,
         nextQuestionId: (key) => QuestionId.ReturnMethod,
         answers: [
             AnswerId.Yes,
@@ -135,7 +135,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.ReturnMethod,
-        dotNavStep: 8,
+        dotNavStep: 6,
         nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
         answers: [
             AnswerId.Mail,
@@ -146,7 +146,7 @@ export const QUESTIONS : IQuestion[] = [
     /* REJOINED PATH */
     {
         id: QuestionId.FamiliarWithBallot,
-        dotNavStep: 9,
+        dotNavStep: 7,
         nextQuestionId: (key) => QuestionId.PeopleToInvite,
         answers: [
             AnswerId.Yes,
@@ -156,7 +156,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.PeopleToInvite,
-        dotNavStep: 10,
+        dotNavStep: 8,
         nextQuestionId: (key) => QuestionId.ReasonToVote,
         answers: [
             AnswerId.Friends,
@@ -168,7 +168,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.ReasonToVote,
-        dotNavStep: 11,
+        dotNavStep: 9,
         nextQuestionId: (key) => QuestionId.Emotion,
         answers: [
             AnswerId.Kids,
@@ -201,7 +201,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.Emotion,
-        dotNavStep: 12,
+        dotNavStep: 10,
         nextQuestionId: (key) => undefined,
         answers: [
             AnswerId.Excited,
@@ -233,4 +233,4 @@ export const QUESTIONS : IQuestion[] = [
         },
     }];
 
-export const PLAN_DOT_NAV_STEP = 13;
+export const PLAN_DOT_NAV_STEP = 11;
