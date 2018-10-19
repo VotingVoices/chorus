@@ -39,7 +39,7 @@ export class DotNavigationBar extends React.Component<IDotNavigationBarProps, an
 			dots.push(<NavigationDot key={'dot' + i} {...childProps} step={i} />)
 		}
 
-		const viewboxDefinition = `0 0 312 20`;
+		const viewboxDefinition = `0 0 342 20`;
 
 		return (
 			<svg className="svgView" height={20} viewBox={viewboxDefinition}>
