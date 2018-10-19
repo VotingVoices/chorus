@@ -26,7 +26,7 @@ class ZipCodeControls extends React.Component<IPropsFromState & IPropsFromDispat
 		return (
 			<div>
 				<div className="zip-code-entry VotingVoices-sans-serif">
-					<input type="number" pattern="[0-9]*" className="zip-code-text-box" placeholder={this.props.getString(StringId.ZipCode)} onKeyPress={this._onZipCodeKeyPress} onChange={this._onZipCodeValueChange} />
+					<input type="text" pattern="[0-9]*" maxLength={5} className="zip-code-text-box" placeholder={this.props.getString(StringId.ZipCode)} onKeyPress={this._onZipCodeKeyPress} onChange={this._onZipCodeValueChange} />
 					<Button type="button" className="vv-button vv-button-filled submit-zip-button" onClick={this._onSubmitZipClick}>{this.props.getString(StringId.Submit)}</Button>
 				</div>
 
