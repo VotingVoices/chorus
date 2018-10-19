@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect} from 'react-redux';
 import { IIndexHolder } from './Plan';
 import { IConnectedReduxProps, IQuestionnaireState, PlanStepId, VotingStateId } from '../store';
-import { getPlanStepStrings, planStepHeaderFormattedString, StringId } from '../strings';
+import { getPlanStepStrings, StringId } from '../strings';
 import { default as CallToAction } from './CallToAction';
 
 import plan_circle_on from './plan_circle_on.png';
@@ -26,7 +26,9 @@ class PlanStep extends React.Component<IPlanStepProps & IPropsFromState & IConne
 
 		const { header, text, callToAction : callToActionLabel, link } = getPlanStepStrings(planStepId, votingStateId);
 
-		const fullHeaderString = planStepHeaderFormattedString(indexHolder.index, this.props.getString(header));
+		const fullHeaderString = this.props.getString(StringId.PlanStepHeader)
+			.replace(/{NUMBER}/, () => `${(indexHolder.index + 1)}`)
+			.replace(/{HEADER}/, this.props.getString(header));
 
 		// Increment the index holder so that the next plan step uses the next number.
 		indexHolder.index++;

@@ -164,6 +164,7 @@ export enum StringId {
 	StartYourPlan,
 	StartOver,
 	Contact,
+	PlanStepHeader,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -652,6 +653,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.Contact,
 		"Contact"],
+
+	[StringId.PlanStepHeader,
+		"Step {NUMBER}: {HEADER}"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -968,10 +972,11 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
 		// "Find your ballot drop box."],
-		"Encuentre el casillero de envio."],
+		"Encuentre el casillero de envío."],
 
 	[StringId.PlanAheadForDropBox,
 		// "Plan ahead for a convenient ballot box drop in your neighborhood."],
+		// TODO: Do we need an accent
 		"Planee con tiempo el envío de su cartón de votación."],
 
 	[StringId.FindDropboxNearYou,
@@ -1275,6 +1280,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.Contact,
 		"Contacto"],
+
+	[StringId.PlanStepHeader,
+		"Paso {NUMBER}: {HEADER}"],
 ]);
 
 export function getEnglishString(id: StringId): string {
@@ -1684,11 +1692,6 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		default:
 			throw new Error(`Unrecognized PlanStepId: ${step}`);
 	}
-}
-
-// TODO: Translate into Spanish
-export function planStepHeaderFormattedString(index: number, header: string) {
-	return `Step ${index + 1}: ${header}`;
 }
 
 export interface IReasonToVoteStrings {
