@@ -6,8 +6,8 @@ import * as actions from './Actions';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
-// const TelemetryEndpoint = 'http://localhost:3001/';
-const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
+const TelemetryEndpoint = 'http://localhost:3001/';
+// const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
 
 // Courtesy of 'broofa's answer in https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 function uuidv4() {
@@ -78,6 +78,18 @@ export class TelemetrySession {
 		});
 	}
 
+	public recordContact() {
+		this.uploadData({
+			event: "Contact",
+		});
+	}
+
+	public recordDonate() {
+		this.uploadData({
+			event: "Donate",
+		});
+	}
+
 	private uploadData(data: any) {
 		// 'contact' is needs to be unique for every event.
 		data.contact = uuidv4();
@@ -120,6 +132,14 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		}
 		case TelemetryActionType.PRIVACY_POLICY: {
 			session.recordPrivacyPolicy();
+			break;
+		}
+		case TelemetryActionType.CONTACT: {
+			session.recordContact();
+			break;
+		}
+		case TelemetryActionType.DONATE: {
+			session.recordDonate();
 			break;
 		}
 		case QuestionnaireActionType.START_SURVEY: {

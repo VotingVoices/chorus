@@ -35,3 +35,9 @@ export const recordCallToAction = (link: string) =>
 
 export const recordPrivacyPolicy = () =>
 	action(TelemetryActionType.PRIVACY_POLICY);
+
+export const recordContact = () =>
+	action(TelemetryActionType.CONTACT);
+
+export const recordDonate = () =>
+	action(TelemetryActionType.DONATE);
