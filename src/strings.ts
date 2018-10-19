@@ -1345,10 +1345,6 @@ export function getAnswerLabel(answer: AnswerId): StringId {
 	throw new Error(`Unrecognized AnswerId: ${answer}`);
 }
 
-export function getPlanPageSubHeaderText(): StringId {
-	return StringId.PlanPageSubheader;
-}
-
 export interface IPlanStepStrings {
 	header: StringId,
 	text: StringId,

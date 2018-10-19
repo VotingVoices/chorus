@@ -6,7 +6,7 @@ import { default as PlanStep } from './PlanStep';
 import { default as ReasonToVote } from './ReasonToVote';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
 import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
-import { getPlanPageSubHeaderText, StringId }from '../strings';
+import { StringId }from '../strings';
 
 import './Plan.css';
 import ShareWidget from './ShareWidget';
@@ -32,7 +32,7 @@ export interface IIndexHolder {
 class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, any> {
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
-		const subHeaderText = this.props.getString(getPlanPageSubHeaderText());
+		const subHeaderText = this.props.getString(StringId.PlanPageSubheader);
 		const invitePeopleText = this.props.getString(StringId.PlanPageInvitePeople);
 
 		return (
