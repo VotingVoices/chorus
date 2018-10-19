@@ -96,7 +96,7 @@ export class TelemetrySession {
 			}
 		}).catch(err => {
 			// TODO: Do not throw for ship/production users.
-			throw new Error(`Unable to POST to elemetry endpoint.  err: ${err}`);
+			// throw new Error(`Unable to POST to elemetry endpoint.  err: ${err}`);
 		});
 	}
 }
