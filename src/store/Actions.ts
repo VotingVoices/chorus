@@ -1,6 +1,6 @@
 import { Action as HistoryAction } from 'history';
 import { action } from 'typesafe-actions';
-import { AnswerId, IAnswerQuestionPayload, IQuestionAndAnswer, ISetLanguagePayload, LanguageId, QuestionId, QuestionnaireActionType } from './Types';
+import { AnswerId, IAnswerQuestionPayload, IQuestionAndAnswer, ISetLanguagePayload, IZipCodeAnswer, LanguageId, QuestionId, QuestionnaireActionType } from './Types';
 import { IRecordCallToActionPayload, IRecordPlanPagePayload, IRouterLocationChangePayload, RouterActionType, TelemetryActionType } from './InternalTypes';
 
 export const startSurvey = () =>
@@ -9,8 +9,8 @@ export const startSurvey = () =>
 export const startOver = () =>
 	action(QuestionnaireActionType.START_OVER);
 
-export const answerQuestion = (questionId: QuestionId, answerId: AnswerId) =>
-	action(QuestionnaireActionType.ANSWER_QUESTION, { questionId, answerId } as IAnswerQuestionPayload);
+export const answerQuestion = (questionId: QuestionId, answer: AnswerId | IZipCodeAnswer) =>
+	action(QuestionnaireActionType.ANSWER_QUESTION, { questionId, answer } as IAnswerQuestionPayload);
 
 export const viewPrivacyPolicy = () =>
 	action(QuestionnaireActionType.PRIVACY_POLICY);

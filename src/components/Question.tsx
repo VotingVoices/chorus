@@ -4,9 +4,11 @@ import { connect} from 'react-redux';
 
 import { default as Answer } from './Answer';
 import { default as EmojiButton } from './EmojiButton';
-import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../store';
+import { default as ZipCodeControls } from './ZipCodeControls';
+import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, IZipCodeAnswer, QuestionId } from '../store';
 import { getQuestionFullLabel, StringId } from '../strings';
 
+import '../App.css';
 import './Question.css';
 
 interface IQuestionProps {
@@ -38,12 +40,28 @@ function isEmojiAnswer(answerId: AnswerId): boolean {
 
 class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromState & IPropsFromDispatch, any> {
 	public render(): JSX.Element {
-		const { questionId, answers } = this.props;
+		const { questionId } = this.props;
 		const label = this.props.getString(getQuestionFullLabel(questionId));
 
 		return (
 			<div>
-				<div className="question-label VotingVoices-serif">{label}</div>
+				<div className="question-label VotingVoices-serif" dangerouslySetInnerHTML={ { __html: label } } />
+
+				{ this.answerContent() }
+			</div>
+		);
+	}
+
+	private answerContent() {
+		const { questionId, answers } = this.props;
+		
+		if (questionId === QuestionId.ZipCode) {
+			return (
+				<ZipCodeControls {...this.props} />
+			);
+		}
+		else {
+			return (
 				<div className="answer-group">
 					{answers.map(
 						(answerId: AnswerId) => {
@@ -51,20 +69,20 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 						}
 					)}
 				</div>
-			</div>
-		);
+			);
+		}
 	}
 
 	private answerButton(questionId: QuestionId, answerId: AnswerId) {
 		if (isEmojiAnswer(answerId)) {
-			return (<EmojiButton onClick={this._onClick(answerId)} questionId={questionId} answerId={answerId} key={answerId} />);	
+			return (<EmojiButton onClick={this._onAnswerClick(answerId)} questionId={questionId} answerId={answerId} key={answerId} />);	
 		}
 		else {
-			return (<Answer onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);
+			return (<Answer onClick={this._onAnswerClick(answerId)} answerId={answerId} key={answerId} />);
 		}
 	}
 
-	private _onClick = (answerId: AnswerId) => {
+	private _onAnswerClick = (answerId: AnswerId) => {
 		return (ev: React.MouseEvent<HTMLElement | HTMLInputElement>) => {
 			const { questionId, answers } = this.props;
 
@@ -80,7 +98,7 @@ const mapStateToProps = (state: IQuestionnaireState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-	answerQuestion: (questionId: QuestionId, answerId: AnswerId) => dispatch(answerQuestion(questionId, answerId)),
+	answerQuestion: (questionId: QuestionId, answer: AnswerId | IZipCodeAnswer) => dispatch(answerQuestion(questionId, answer)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question);

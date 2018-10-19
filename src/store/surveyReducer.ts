@@ -1,7 +1,7 @@
 import { Reducer } from 'redux';
 import { ActionType } from 'typesafe-actions';
 
-import { AppView, AnswerId, getVotingStateId, IQuestionnaireState, LanguageId, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
+import { AppView, AnswerId, getVotingStateId, IQuestionnaireState, IZipCodeAnswer, LanguageId, MostRecentTransition, QuestionId, QuestionnaireActionType } from './Types';
 import { RouterActionType } from './InternalTypes';
 import { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';
 import * as actions from './Actions';
@@ -23,26 +23,26 @@ export const DEFAULT_STATE = {
 	currentLanguage: LanguageId.English,
 } as IQuestionnaireState;
 
-function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answerId: AnswerId): IQuestionnaireState {
+function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answer: AnswerId | IZipCodeAnswer): IQuestionnaireState {
 	const answers = prevState.answers;
 
 	const question = QUESTIONS.find(q => q.id === questionId);
 
 	const existingAnswer = answers.find(qa => qa.questionId === question!.id);
 	if (existingAnswer === undefined) {
-		answers.push({ questionId: question!.id, answerId });
+		answers.push({ questionId: question!.id, answer });
 	}
 	else {
-		existingAnswer!.answerId = answerId;
+		existingAnswer!.answer = answer;
 	}
 
 	let votingStateId = prevState.votingStateId;
 
 	if (questionId === QuestionId.VoteByMailState) {
-		votingStateId = getVotingStateId(answerId);
+		votingStateId = getVotingStateId(answer as AnswerId);
 	}
 
-	const nextQuestionId = question!.nextQuestionId(answerId);
+	const nextQuestionId = question!.nextQuestionId(answer);
 
 	if (nextQuestionId !== undefined) {
 		const dotNavStep = QUESTIONS.find(q => q.id === nextQuestionId)!.dotNavStep;
@@ -123,7 +123,7 @@ export const surveyReducer: Reducer<IQuestionnaireState> = (state: IQuestionnair
 			};
 		}
 		case QuestionnaireActionType.ANSWER_QUESTION: {
-			return answerQuestion(state, action.payload.questionId, action.payload.answerId);
+			return answerQuestion(state, action.payload.questionId, action.payload.answer);
 		}
 		case QuestionnaireActionType.PRIVACY_POLICY: {
 			return {

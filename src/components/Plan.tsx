@@ -48,7 +48,7 @@ class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDisp
 							if (answer !== undefined) {
 								const question = QUESTIONS.find(q => q.id === questionId);
 
-								const planStepId = question!.resultingPlanStep(answer!.answerId);
+								const planStepId = question!.resultingPlanStep(answer!.answer);
 
 								if (planStepId !== undefined) {
 									if (questionId === QuestionId.ReasonToVote) {

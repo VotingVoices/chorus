@@ -6,7 +6,6 @@ export enum StringId {
 	No,
 	NotSure,
 	AreYouRegisteredToVote,
-	AreYouPlanningtoVoteInVoteByMailState,
 	DoYouWantToVoteWithAbsenteeBallot,
 	DoYouKnowWhereYourPollingLocationIs,
 	WillYouNeedSpecialAccommodations,
@@ -155,6 +154,11 @@ export enum StringId {
 	ColoradoDeadlineDescription,
 	OregonDeadlineDescription,
 	WashingtonDeadlineDescription,
+	WhereAreYouVoting,
+	ZipCode,
+	Submit,
+	WeUseYourZipCodeToProvideMoreElevantInformation,
+	Skip,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -172,9 +176,6 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.AreYouRegisteredToVote,
 		"First things first. Are you registered to vote?"],
-
-	[StringId.AreYouPlanningtoVoteInVoteByMailState,
-		"Are you planning to vote in any of these states?"],
 
 	[StringId.DoYouWantToVoteWithAbsenteeBallot,
 		"Would you like to vote by absentee ballot?"],
@@ -616,6 +617,21 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.WashingtonDeadlineDescription,
 		"In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
+
+	[StringId.WhereAreYouVoting,
+		"<em>Where</em> will you be voting?"],
+
+	[StringId.ZipCode,
+		"ZIP code"],
+
+	[StringId.Submit,
+		"Submit"],
+
+	[StringId.WeUseYourZipCodeToProvideMoreElevantInformation,
+		"(We use your ZIP code to help us give you more relevant questions and actions.)"],
+
+	[StringId.Skip,
+		"Skip"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -637,10 +653,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.AreYouRegisteredToVote,
 		// "First things first. Are you registered to vote?"],
 		"Primero lo primero. ¿Está registrado para votar?"],
-
-	[StringId.AreYouPlanningtoVoteInVoteByMailState,
-		// "Are you planning to vote in any of these states?"],
-		"¿Está pensando en votar en alguno de estos Estados?"],
 
 	[StringId.DoYouWantToVoteWithAbsenteeBallot,
 		// "Would you like to vote by absentee ballot?"],
@@ -1204,6 +1216,26 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.WashingtonDeadlineDescription,
 		// "In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
 		"En Washington, su cartón de votación debe ser recogido en o antes del día de la elección (Martes, Noviembre 6, 2018)."], // TODO: Incomplete translation
+
+	[StringId.WhereAreYouVoting,
+		// TODO: Translate
+		"<em>Where</em> will you be voting?"],
+
+	[StringId.ZipCode,
+		// TODO: Translate
+		"ZIP code"],
+
+	[StringId.Submit,
+		// TODO: Translate
+		"Submit"],
+
+	[StringId.WeUseYourZipCodeToProvideMoreElevantInformation,
+		// TODO: Translate
+		"(We use your ZIP code to help us give you more relevant questions and actions.)"],
+
+	[StringId.Skip,
+		// TODO: Translate
+		"Skip"],
 ]);
 
 export function getEnglishString(id: StringId): string {
@@ -1219,7 +1251,7 @@ export function getSpanishString(id: StringId): string {
 export function getQuestionFullLabel(id: QuestionId): StringId {
 	switch (id) {
 		case QuestionId.AreYouRegistered: return StringId.AreYouRegisteredToVote;
-		case QuestionId.VoteByMailState: return StringId.AreYouPlanningtoVoteInVoteByMailState;
+		case QuestionId.ZipCode: return StringId.WhereAreYouVoting;
 		case QuestionId.AbsenteeBallot: return StringId.DoYouWantToVoteWithAbsenteeBallot;
 		case QuestionId.PollingLocation: return StringId.DoYouKnowWhereYourPollingLocationIs;
 		case QuestionId.SpecialAccommodations: return StringId.WillYouNeedSpecialAccommodations;

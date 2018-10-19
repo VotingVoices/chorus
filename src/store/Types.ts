@@ -13,7 +13,7 @@ import { StringId } from '../strings';
 */
 export enum QuestionId {
 	AreYouRegistered = 'Reg',
-	VoteByMailState = 'St',
+	ZipCode = 'Zip',
 	AbsenteeBallot = 'Abs',
 	PollingLocation = 'PllLoc',
 	SpecialAccommodations = 'Accm',
@@ -26,12 +26,15 @@ export enum QuestionId {
 	PeopleToInvite = 'Inv',
 	ReasonToVote = 'Rsn',
 	Emotion = 'Em',
+
+	// Deprecated:
+	VoteByMailState = 'St',
 }
 
 export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.AreYouRegistered,
 	QuestionId.AbsenteeBallot,
-	QuestionId.VoteByMailState,
+	QuestionId.ZipCode,
 	QuestionId.PollingLocation,
 	QuestionId.SpecialAccommodations,
 	QuestionId.TransportationMethod,
@@ -83,9 +86,13 @@ export enum AnswerId {
 	Meh = 'Mh',
 }
 
+export interface IZipCodeAnswer {
+	zipCode: string,
+}
+
 export interface IQuestionAndAnswer {
-	questionId: QuestionId;
-	answerId: AnswerId;
+	questionId: QuestionId,
+	answer: AnswerId | IZipCodeAnswer,
 }
 
 export const enum AppView {
@@ -157,8 +164,8 @@ export interface IConnectedReduxProps<A extends Action = AnyAction> {
 }
 
 export interface IAnswerQuestionPayload {
-	questionId: QuestionId;
-	answerId: AnswerId;
+	questionId: QuestionId,
+	answer: AnswerId | IZipCodeAnswer,
 }
 
 export interface ISetLanguagePayload {
@@ -203,6 +210,6 @@ export interface IQuestion {
     id: QuestionId;
     dotNavStep: number;
     answers: AnswerId[];
-    nextQuestionId: (answer: AnswerId) => QuestionId | undefined;
-    resultingPlanStep: (answer: AnswerId) => PlanStepId | undefined;
+    nextQuestionId: (answer: AnswerId | IZipCodeAnswer) => QuestionId | undefined;
+    resultingPlanStep: (answer: AnswerId | IZipCodeAnswer) => PlanStepId | undefined;
 }
