@@ -2,18 +2,23 @@ import * as React from 'react';
 import { Button } from 'react-bootstrap';
 import { connect} from 'react-redux';
 import { Dispatch } from 'redux';
-import { IConnectedReduxProps, recordLandingPage, startSurvey } from '../store';
+import { IConnectedReduxProps, IQuestionnaireState, recordLandingPage, startSurvey } from '../store';
+import { StringId } from '../strings';
 
 import '../App.css';
 import './LandingPage.css';
 import poweredbyVV from './poweredbyVV.png';
+
+interface IPropsFromState {
+	getString: (id: StringId) => string;
+}
 
 interface IPropsFromDispatch {
 	recordLandingPage: typeof recordLandingPage,
 	startSurvey: typeof startSurvey,
 }
 
-class LandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispatch, any> {
+class LandingPage extends React.Component<IConnectedReduxProps & IPropsFromState & IPropsFromDispatch, any> {
 	public componentDidMount() {
 		this.props.recordLandingPage();
 	}
@@ -23,7 +28,7 @@ class LandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispa
             <div className="landing-page-header Gradient-background">
                 <h1 className="voteplan-title landing-page-title">VotePlan</h1>
                 <img src={poweredbyVV} />
-                <div className="landing-page-slogan VotingVoices-serif">Plan your vote, invite others, and get ready!</div>
+                <div className="landing-page-slogan VotingVoices-serif">{this.props.getString(StringId.PlanYourVoteInviteOthersAndGetReady)}</div>
                 <Button type="button" className="vv-button vv-button-filled vv-button-large start-plan-button" onClick={this.onStartClick()}>Start Your Plan</Button>
             </div>
 		);
@@ -36,7 +41,8 @@ class LandingPage extends React.Component<IConnectedReduxProps & IPropsFromDispa
 	}
 }
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state: IQuestionnaireState) => ({
+	getString: state.getString,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

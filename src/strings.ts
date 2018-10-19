@@ -160,6 +160,7 @@ export enum StringId {
 	Submit,
 	WeUseYourZipCodeToProvideMoreElevantInformation,
 	Skip,
+	PlanYourVoteInviteOthersAndGetReady,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -636,6 +637,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.Skip,
 		"Skip"],
+
+	[StringId.PlanYourVoteInviteOthersAndGetReady,
+		"Plan your vote, invite others, and get ready!"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1244,6 +1248,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.Skip,
 		// TODO: Translate
 		"Skip"],
+
+	[StringId.PlanYourVoteInviteOthersAndGetReady,
+		// "Plan your vote, invite others, and get ready!"],
+		"Planee su voto, invitee a otros, y prepárese"],
 ]);
 
 export function getEnglishString(id: StringId): string {
