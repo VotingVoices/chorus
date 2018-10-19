@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { Button } from 'react-bootstrap';
 import { Dispatch } from 'redux';
 import { connect} from 'react-redux';
 
 import { default as Answer } from './Answer';
 import { default as EmojiButton } from './EmojiButton';
-import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../store';
+import { default as ZipCodeControls } from './ZipCodeControls';
+import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, IZipCodeAnswer, QuestionId } from '../store';
 import { getQuestionFullLabel, StringId } from '../strings';
 
 import '../App.css';
@@ -24,10 +24,6 @@ interface IPropsFromDispatch {
 	answerQuestion: typeof answerQuestion,
 }
 
-interface IZipCodeState {
-	zipCode: string,
-}
-
 function isEmojiAnswer(answerId: AnswerId): boolean {
 	switch (answerId) {
 		case AnswerId.Excited:
@@ -42,7 +38,7 @@ function isEmojiAnswer(answerId: AnswerId): boolean {
 	}
 }
 
-class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromState & IPropsFromDispatch, IZipCodeState> {
+class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromState & IPropsFromDispatch, any> {
 	public render(): JSX.Element {
 		const { questionId } = this.props;
 		const label = this.props.getString(getQuestionFullLabel(questionId));
@@ -60,7 +56,9 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 		const { questionId, answers } = this.props;
 		
 		if (questionId === QuestionId.ZipCode) {
-			return this.zipCodeAnswerContent();
+			return (
+				<ZipCodeControls {...this.props} />
+			);
 		}
 		else {
 			return (
@@ -93,24 +91,6 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 			this.props.answerQuestion(questionId, answer!); 
 		};
 	};
-
-	private zipCodeAnswerContent() {
-		return (
-			<div className="answer-group VotingVoices-sans-serif">
-				<input type="text" className="zip-code-text-box" placeholder={this.props.getString(StringId.ZipCode)} onChange={this._onZipCodeValueChange} /><Button type="button" className="vv-button vv-button-filled submit-zip-button" onClick={this._onSubmitZipClick}>Submit</Button>
-			</div>
-		);
-	}
-
-	private _onZipCodeValueChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({ zipCode: ev.target.value });
-	}
-
-	private _onSubmitZipClick = (ev: React.MouseEvent<Button>) => {
-		const { questionId } = this.props;
-
-		this.props.answerQuestion(questionId, { zipCode: this.state.zipCode }); 
-	};
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => ({
@@ -118,7 +98,7 @@ const mapStateToProps = (state: IQuestionnaireState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-	answerQuestion: (questionId: QuestionId, answerId: AnswerId) => dispatch(answerQuestion(questionId, answerId)),
+	answerQuestion: (questionId: QuestionId, answer: AnswerId | IZipCodeAnswer) => dispatch(answerQuestion(questionId, answer)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Question);
