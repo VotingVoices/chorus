@@ -20,7 +20,12 @@ export const QUESTIONS : IQuestion[] = [
         id: QuestionId.ZipCode,
         dotNavStep: 2,
         nextQuestionId: (answer) => {
-            const voteByMailState = votingStateFromZip((answer as IZipCodeAnswer).zipCode);
+            const zipCode = (answer as IZipCodeAnswer).zipCode;
+            if (zipCode === undefined) {
+                return undefined;
+            }
+
+            const voteByMailState = votingStateFromZip(zipCode);
             if (voteByMailState !== undefined) {
                 return QuestionId.ReceivedBallot;
             }
@@ -30,7 +35,12 @@ export const QUESTIONS : IQuestion[] = [
         },
         answers: [],
         resultingPlanStep: (answer) => {
-            const voteByMailState = votingStateFromZip((answer as IZipCodeAnswer).zipCode);
+            const zipCode = (answer as IZipCodeAnswer).zipCode;
+            if (zipCode === undefined) {
+                return undefined;
+            }
+
+            const voteByMailState = votingStateFromZip(zipCode);
             if (voteByMailState !== undefined) {
                 return PlanStepId.CheckBallotReturnDeadline;
             }
@@ -43,7 +53,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.AbsenteeBallot,
         dotNavStep: 3,
-        nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.ReceivedBallot : QuestionId.PollingLocation,
+        nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.FamiliarWithBallot : QuestionId.PollingLocation,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
