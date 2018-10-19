@@ -5,8 +5,9 @@ import { AppView, AnswerId, getVotingStateId, IQuestionnaireState, IZipCodeAnswe
 import { RouterActionType } from './InternalTypes';
 import { PLAN_DOT_NAV_STEP, QUESTIONS } from './Questions';
 import * as actions from './Actions';
-import { readStateFromLocation } from '../readStateFromLocation';
+import { votingStateFromZip } from './votingStateFromZip';
 import { getGetStringImplementation } from '../getGetStringImplementation';
+import { readStateFromLocation } from '../readStateFromLocation';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
@@ -38,6 +39,9 @@ function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, 
 
 	let votingStateId = prevState.votingStateId;
 
+	if (questionId === QuestionId.ZipCode) {
+		votingStateId = votingStateFromZip((answer as IZipCodeAnswer).zipCode);
+	}
 	if (questionId === QuestionId.VoteByMailState) {
 		votingStateId = getVotingStateId(answer as AnswerId);
 	}
