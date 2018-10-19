@@ -104,6 +104,12 @@
   border: none;
 }
 
+.vv-button-filled-in-header {
+  background: #1d2856;
+  color: white;
+  border: none;
+}
+
 .vv-button-outline {
   color: white;
 }

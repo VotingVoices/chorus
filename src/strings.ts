@@ -168,6 +168,7 @@ export enum StringId {
 	CopyrightPrePrivacyPolicy,
 	PrivacyPolicy,
 	CopyrightPostPrivacyPolicy,
+	Donate,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -668,6 +669,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.CopyrightPostPrivacyPolicy,
 		"."],
+
+	[StringId.Donate,
+		"Donate"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1291,7 +1295,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Inicie De Nuevo"],
 
 	[StringId.Contact,
-		"Contacto"],
+		// "Contact"],
+		// TODO: Confirm my correction of Diego's translation
+		"Contactar"],
 
 	[StringId.PlanStepHeader,
 		"Paso {NUMBER}: {HEADER}"],
@@ -1304,6 +1310,11 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.CopyrightPostPrivacyPolicy,
 		"."],
+
+	[StringId.Donate,
+		// TODO: Confirm translation
+		// "Donate"],
+		"Donar"],
 ]);
 
 export function getEnglishString(id: StringId): string {
