@@ -21,7 +21,8 @@ const initialState = readStateResult.state;
 const store = configureStore(history, initialState);
 
 function answerAsString(answer: AnswerId | IZipCodeAnswer): string {
-	if ((answer as IZipCodeAnswer).zipCode !== undefined) {
+	const zipCode = (answer as IZipCodeAnswer).zipCode;
+	if (zipCode !== undefined && zipCode !== "") {
 		return (answer as IZipCodeAnswer).zipCode;
 	}
 	else {
