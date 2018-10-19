@@ -15,3 +15,21 @@
 	justify-content: center;
 	flex-wrap: wrap;
 }
+
+.zip-code-text-box {
+	font-size: 22pt;
+	text-transform: uppercase;
+	color: black;
+	padding-left: 8px;
+	max-width: 120px;
+}
+
+.zip-code-text-box::placeholder {
+	color: #cdcdcd;
+}
+
+.submit-zip-button {
+	font-size: 22pt;
+	border-radius: 10px;
+	margin-left: 16px;
+}

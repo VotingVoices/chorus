@@ -8,6 +8,7 @@ import { default as EmojiButton } from './EmojiButton';
 import { AnswerId, answerQuestion, IConnectedReduxProps, IQuestionnaireState, QuestionId } from '../store';
 import { getQuestionFullLabel, StringId } from '../strings';
 
+import '../App.css';
 import './Question.css';
 
 interface IQuestionProps {
@@ -95,8 +96,8 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 
 	private zipCodeAnswerContent() {
 		return (
-			<div className="answer-group">
-				<input type="text" placeholder={this.props.getString(StringId.ZipCode)} onChange={this._onZipCodeValueChange} /><Button type="button" onClick={this._onSubmitZipClick}>Submit</Button>
+			<div className="answer-group VotingVoices-sans-serif">
+				<input type="text" className="zip-code-text-box" placeholder={this.props.getString(StringId.ZipCode)} onChange={this._onZipCodeValueChange} /><Button type="button" className="vv-button vv-button-filled submit-zip-button" onClick={this._onSubmitZipClick}>Submit</Button>
 			</div>
 		);
 	}
