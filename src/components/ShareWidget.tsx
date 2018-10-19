@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './ShareWidget.css';
+
 export class ShareWidget extends React.Component<any, any> {
 
 	public render(): JSX.Element {

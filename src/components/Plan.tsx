@@ -30,7 +30,6 @@ export interface IIndexHolder {
 }
 
 class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, any> {
-
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
 		const subHeaderText = this.props.getString(getPlanPageSubHeaderText());
@@ -44,7 +43,9 @@ class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDisp
 				</div>
 				<div className="Plan-invite-people">
 					<div className="Plan-invite-people-text">{invitePeopleText}</div>
-					<ShareWidget />
+					<div className="share-widget-container">
+						<ShareWidget />
+					</div>
 				</div>
 
 				<div className="App plan-page-body">
@@ -65,7 +66,7 @@ class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDisp
 										return <PlanEmotion {...this.props} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 									else if (questionId === QuestionId.PeopleToInvite) {
-										return <PlanStep { ...this.props } indexHolder={indexHolder} callToAction={(<ShareWidget { ...this.props } />)} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
+										return <PlanStep { ...this.props } indexHolder={indexHolder} callToAction={(<div className="plan-step-share-widget-container"><ShareWidget { ...this.props } /></div>)} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 									else {
 										return <PlanStep {...this.props} indexHolder={indexHolder} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
