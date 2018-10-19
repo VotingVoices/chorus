@@ -3,12 +3,6 @@
 	margin-bottom: 40px;
 }
 
-@media only screen and (max-width: 420px) {
-	.question-label {
-		font-size: 32px;
-	}
-}
-
 .answer-group {
 	display: flex;
 	flex-direction: row;
@@ -32,4 +26,20 @@
 	font-size: 22pt;
 	border-radius: 10px;
 	margin-left: 16px;
+}
+
+@media only screen and (max-width: 420px) {
+	.question-label {
+		font-size: 32px;
+	}
+
+	.zip-code-text-box {
+		font-size: 18pt;
+		max-width: 100px;
+	}
+
+	.submit-zip-button {
+		font-size: 18pt;
+		border-radius: 8px;
+	}
 }
