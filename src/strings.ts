@@ -46,6 +46,7 @@ export enum StringId {
 	Angry,
 	Meh,
 	PlanPageSubheader,
+	PlanPageInvitePeople,
 	IsYourRegistrationOk,
 	LetsGetRegistered,
 	CheckYourRegistration,
@@ -296,6 +297,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.PlanPageSubheader,
 		"You've done the prep. Your voice matters. Get out there and vote in the midterms!"],
+
+	[StringId.PlanPageInvitePeople,
+		"Invite people to make a plan:"],
 
 	[StringId.IsYourRegistrationOk,
 		"Is your registration A-OK?"],
@@ -810,6 +814,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.PlanPageSubheader,
 		// "You've done the prep. Your voice matters. Get out there and vote in the midterms!"],
 		"Lo ha hecho. Su voz importa. Salga y vote en las elecciones de término medio."],
+
+	[StringId.PlanPageInvitePeople,
+		// TODO: Maybe have a espanophone check this google translate.  Figured google translate is better than nada, though :)
+		'Invita a la gente a hacer un plan:'],
 
 	[StringId.IsYourRegistrationOk,
 		// "Is your registration A-OK?"],

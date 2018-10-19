@@ -9,6 +9,7 @@ import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionna
 import { getPlanPageSubHeaderText, StringId }from '../strings';
 
 import './Plan.css';
+import ShareWidget from './ShareWidget';
 
 interface IPlanProps {
 	answers: IQuestionAndAnswer[],
@@ -29,15 +30,21 @@ export interface IIndexHolder {
 }
 
 class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, any> {
+
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
 		const subHeaderText = this.props.getString(getPlanPageSubHeaderText());
+		const invitePeopleText = this.props.getString(StringId.PlanPageInvitePeople);
 
 		return (
 			<div>
 				<div className="Plan-header Gradient-background">
                 	<h1 className="voteplan-title">VotePlan</h1>
                 	<div className="plan-sub-header-text VotingVoices-serif">{subHeaderText}</div>
+				</div>
+				<div className="Plan-invite-people">
+					<div className="Plan-invite-people-text">{invitePeopleText}</div>
+					<ShareWidget />
 				</div>
 
 				<div className="App plan-page-body">
@@ -56,6 +63,9 @@ class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDisp
 									}
 									else if (questionId === QuestionId.Emotion) {
 										return <PlanEmotion {...this.props} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
+									}
+									else if (questionId === QuestionId.PeopleToInvite) {
+										return <PlanStep { ...this.props } indexHolder={indexHolder} callToAction={(<ShareWidget { ...this.props } />)} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 									else {
 										return <PlanStep {...this.props} indexHolder={indexHolder} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
@@ -79,6 +89,10 @@ class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDisp
 
 	public componentDidMount() {
 		this.props.recordPlanPage(this.props.answers, this.props.currentLanguage);
+		
+		// TODO: Ideally this would be more localized to ShareWidget, but it seems better to do this just once right now.
+		(window as any).twttr.widgets.load();
+		(window as any).FB.XFBML.parse();
 	}
 }
 

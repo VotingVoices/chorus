@@ -17,6 +17,20 @@
 	padding: 20px;
 }
 
+/* .Plan-invite-people {
+} */
+
+.Plan-invite-people-text {
+	text-transform: uppercase;	
+	font-family: "AlternateGothicNo3";
+	font-size: 16pt;
+	vertical-align: top;
+	color: #666666;
+	margin-top: 20px;
+	margin-right: 5px;
+	display: inline-block;
+}
+
 @media only screen and (max-width: 840px) {
 	.plan-sub-header-text {
 		font-size: 14px;
