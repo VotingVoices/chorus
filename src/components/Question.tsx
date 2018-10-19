@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button } from 'react-bootstrap';
 import { Dispatch } from 'redux';
 import { connect} from 'react-redux';
 
@@ -22,6 +23,10 @@ interface IPropsFromDispatch {
 	answerQuestion: typeof answerQuestion,
 }
 
+interface IZipCodeState {
+	zipCode: string,
+}
+
 function isEmojiAnswer(answerId: AnswerId): boolean {
 	switch (answerId) {
 		case AnswerId.Excited:
@@ -36,14 +41,28 @@ function isEmojiAnswer(answerId: AnswerId): boolean {
 	}
 }
 
-class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromState & IPropsFromDispatch, any> {
+class Question extends React.Component<IQuestionProps & IConnectedReduxProps & IPropsFromState & IPropsFromDispatch, IZipCodeState> {
 	public render(): JSX.Element {
-		const { questionId, answers } = this.props;
+		const { questionId } = this.props;
 		const label = this.props.getString(getQuestionFullLabel(questionId));
 
 		return (
 			<div>
 				<div className="question-label VotingVoices-serif">{label}</div>
+
+				{ this.answerContent() }
+			</div>
+		);
+	}
+
+	private answerContent() {
+		const { questionId, answers } = this.props;
+		
+		if (questionId === QuestionId.ZipCode) {
+			return this.zipCodeAnswerContent();
+		}
+		else {
+			return (
 				<div className="answer-group">
 					{answers.map(
 						(answerId: AnswerId) => {
@@ -51,20 +70,20 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 						}
 					)}
 				</div>
-			</div>
-		);
+			);
+		}
 	}
 
 	private answerButton(questionId: QuestionId, answerId: AnswerId) {
 		if (isEmojiAnswer(answerId)) {
-			return (<EmojiButton onClick={this._onClick(answerId)} questionId={questionId} answerId={answerId} key={answerId} />);	
+			return (<EmojiButton onClick={this._onAnswerClick(answerId)} questionId={questionId} answerId={answerId} key={answerId} />);	
 		}
 		else {
-			return (<Answer onClick={this._onClick(answerId)} answerId={answerId} key={answerId} />);
+			return (<Answer onClick={this._onAnswerClick(answerId)} answerId={answerId} key={answerId} />);
 		}
 	}
 
-	private _onClick = (answerId: AnswerId) => {
+	private _onAnswerClick = (answerId: AnswerId) => {
 		return (ev: React.MouseEvent<HTMLElement | HTMLInputElement>) => {
 			const { questionId, answers } = this.props;
 
@@ -72,6 +91,24 @@ class Question extends React.Component<IQuestionProps & IConnectedReduxProps & I
 
 			this.props.answerQuestion(questionId, answer!); 
 		};
+	};
+
+	private zipCodeAnswerContent() {
+		return (
+			<div className="answer-group">
+				<input type="text" placeholder={this.props.getString(StringId.ZipCode)} onChange={this._onZipCodeValueChange} /><Button type="button" onClick={this._onSubmitZipClick}>Submit</Button>
+			</div>
+		);
+	}
+
+	private _onZipCodeValueChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+		this.setState({ zipCode: ev.target.value });
+	}
+
+	private _onSubmitZipClick = (ev: React.MouseEvent<Button>) => {
+		const { questionId } = this.props;
+
+		this.props.answerQuestion(questionId, { zipCode: this.state.zipCode }); 
 	};
 }
 

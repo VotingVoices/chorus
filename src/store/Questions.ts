@@ -1,4 +1,5 @@
-import { AnswerId, IQuestion, PlanStepId, QuestionId } from './Types';
+import { AnswerId, IQuestion, IZipCodeAnswer, PlanStepId, QuestionId } from './Types';
+import { votingStateFromZip } from './votingStateFromZip';
 
 /**
  * Hard coded constant for the question graph 
@@ -7,7 +8,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.AreYouRegistered,
         dotNavStep: 1,
-        nextQuestionId: (answer) => QuestionId.VoteByMailState,
+        nextQuestionId: (answer) => QuestionId.ZipCode,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
@@ -16,16 +17,27 @@ export const QUESTIONS : IQuestion[] = [
         resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.CheckRegistration : (answer === AnswerId.No ? PlanStepId.Register : PlanStepId.MaybeRegister),
     },
     {
-        id: QuestionId.VoteByMailState,
+        id: QuestionId.ZipCode,
         dotNavStep: 2,
-        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.ReceivedBallot,
-        answers: [
-            AnswerId.Colorado,
-            AnswerId.Oregon,
-            AnswerId.Washington,
-            AnswerId.OtherState,
-        ],
-        resultingPlanStep: (answer) => answer !== AnswerId.OtherState ? PlanStepId.CheckBallotReturnDeadline : undefined,
+        nextQuestionId: (answer) => {
+            const voteByMailState = votingStateFromZip((answer as IZipCodeAnswer).zipCode);
+            if (voteByMailState !== undefined) {
+                return QuestionId.ReceivedBallot;
+            }
+            else {
+                return QuestionId.PollingLocation;
+            }
+        },
+        answers: [],
+        resultingPlanStep: (answer) => {
+            const voteByMailState = votingStateFromZip((answer as IZipCodeAnswer).zipCode);
+            if (voteByMailState !== undefined) {
+                return PlanStepId.CheckBallotReturnDeadline;
+            }
+            else {
+                return undefined;
+            }
+        },
     },
     /* VOTE-IN-PERSON PATH */
     {

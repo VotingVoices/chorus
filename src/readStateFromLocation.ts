@@ -1,6 +1,6 @@
 import * as queryString from 'query-string';
 
-import { ALL_QUESTION_IDS, AppView, getVotingStateId, IQuestionAndAnswer, IQuestionnaireState, LanguageId, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS } from './store';
+import { ALL_QUESTION_IDS, AppView, AnswerId, getVotingStateId, IQuestionAndAnswer, IQuestionnaireState, IZipCodeAnswer, LanguageId, PLAN_DOT_NAV_STEP, QuestionId, QUESTIONS, votingStateFromZip } from './store';
 import { getGetStringImplementation } from './getGetStringImplementation';
 
 function getViewFromPath(pathname: string): AppView | undefined {
@@ -48,6 +48,16 @@ export interface IReadStateResult {
 	questionSpecified: boolean,
 }
 
+function getAnswer(queryValues: any, questionId: QuestionId) : AnswerId | IZipCodeAnswer {
+	const rawAnswer = queryValues[questionId];
+
+	if (questionId === QuestionId.ZipCode) {
+		return { zipCode: rawAnswer } as IZipCodeAnswer;
+	}
+
+	return rawAnswer;
+}
+
 export function readStateFromLocation(existingState: IQuestionnaireState, pathname: string, search: string): IReadStateResult {
 	const appView = getViewFromPath(pathname);
 
@@ -70,19 +80,22 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 		let votingStateId = existingState.votingStateId;
 
 		ALL_QUESTION_IDS.forEach((questionId: QuestionId) => {
-			const answerId = queryValues[questionId];
+			const answer = getAnswer(queryValues, questionId);
 
-			if (answerId != null) {
+			if (answer != null) {
 				const existingAnswer = answers.find(qa => qa.questionId === questionId);
 				if (existingAnswer !== undefined) {
-					existingAnswer.answerId = answerId;
+					existingAnswer.answer = answer;
 				}
 				else {
-					answers.push({ questionId, answerId });
+					answers.push({ questionId, answer });
 				}
 
-				if (questionId === QuestionId.VoteByMailState) {
-					votingStateId = getVotingStateId(answerId);
+				if (questionId === QuestionId.ZipCode && (answer as IZipCodeAnswer).zipCode !== undefined) {
+					votingStateId = votingStateFromZip((answer as IZipCodeAnswer).zipCode);
+				}
+				if (questionId === QuestionId.VoteByMailState && (answer as AnswerId) !== undefined) {
+					votingStateId = getVotingStateId(answer as AnswerId);
 				}
 			}
 		});
