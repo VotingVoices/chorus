@@ -1,3 +1,9 @@
+.zip-code-entry {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
 .zip-code-text-box {
 	font-size: 22pt;
 	text-transform: uppercase;
@@ -14,6 +20,12 @@
 	font-size: 22pt;
 	border-radius: 10px;
 	margin-left: 16px;
+}
+
+.zip-code-explanation {
+	margin-top: 20px;
+	font-size: 14px;
+	opacity: 0.67;
 }
 
 /* USe the same max-width selector as in Question.css */

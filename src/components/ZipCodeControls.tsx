@@ -24,9 +24,15 @@ interface IZipCodeState {
 class ZipCodeControls extends React.Component<IPropsFromState & IPropsFromDispatch, IZipCodeState> {
 	public render() {
 		return (
-			<div className="answer-group VotingVoices-sans-serif">
-				<input type="text" className="zip-code-text-box" placeholder={this.props.getString(StringId.ZipCode)} onChange={this._onZipCodeValueChange} />
-				<Button type="button" className="vv-button vv-button-filled submit-zip-button" onClick={this._onSubmitZipClick}>{this.props.getString(StringId.Submit)}</Button>
+			<div>
+				<div className="zip-code-entry VotingVoices-sans-serif">
+					<input type="text" className="zip-code-text-box" placeholder={this.props.getString(StringId.ZipCode)} onChange={this._onZipCodeValueChange} />
+					<Button type="button" className="vv-button vv-button-filled submit-zip-button" onClick={this._onSubmitZipClick}>{this.props.getString(StringId.Submit)}</Button>
+				</div>
+
+				<div className="zip-code-explanation VotingVoices-serif">
+					{this.props.getString(StringId.WeUseYourZipCodeToProvideMoreElevantInformation)}
+				</div>
 			</div>
 		);
 	}
