@@ -10,10 +10,17 @@
 	color: black;
 	padding-left: 8px;
 	max-width: 120px;
+	-moz-appearance: textfield;
 }
 
 .zip-code-text-box::placeholder {
 	color: #cdcdcd;
+}
+
+.zip-code-text-box::-webkit-inner-spin-button,
+.zip-code-text-box::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 
 .submit-zip-button {
