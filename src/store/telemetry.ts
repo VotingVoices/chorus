@@ -6,8 +6,8 @@ import * as actions from './Actions';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
-const TelemetryEndpoint = 'http://localhost:3001/';
-// const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
+// const TelemetryEndpoint = 'http://localhost:3001/';
+const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
 
 // Courtesy of 'broofa's answer in https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 function uuidv4() {
@@ -95,8 +95,7 @@ export class TelemetrySession {
 				throw new Error(`Failed HTTP response: ${res.status}`);
 			}
 		}).catch(err => {
-			// TODO: Do not throw for ship/production users.
-			// throw new Error(`Unable to POST to elemetry endpoint.  err: ${err}`);
+			throw new Error(`Unable to POST to elemetry endpoint.  err: ${err}`);
 		});
 	}
 }
