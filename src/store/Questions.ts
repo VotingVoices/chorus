@@ -43,7 +43,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.AbsenteeBallot,
         dotNavStep: 3,
-        nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.ReceivedBallot : QuestionId.VoteByMailState,
+        nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.ReceivedBallot : QuestionId.PollingLocation,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
