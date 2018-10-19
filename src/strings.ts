@@ -156,6 +156,7 @@ export enum StringId {
 	WashingtonDeadlineDescription,
 	WhereAreYouVoting,
 	ZipCode,
+	Submit,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -620,6 +621,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.ZipCode,
 		"ZIP code"],
+
+	[StringId.Submit,
+		"Submit"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1212,6 +1216,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.ZipCode,
 		// TODO: Translate
 		"ZIP code"],
+
+	[StringId.Submit,
+		// TODO: Translate
+		"Submit"],
 ]);
 
 export function getEnglishString(id: StringId): string {
