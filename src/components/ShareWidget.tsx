@@ -1,9 +1,13 @@
 import * as React from 'react';
 
 export class ShareWidget extends React.Component<any, any> {
+
+	public componentDidMount() {
+		(window as any).twttr.widgets.load();
+		(window as any).FB.XFBML.parse();
+	}
+
 	public render(): JSX.Element {
-		// const { callToAction, link } = this.props;
-		
 		return (
 			<div className="share-widget-root">
 				<div className="fb-share-button" 
@@ -20,3 +24,4 @@ export class ShareWidget extends React.Component<any, any> {
 }
 
 export default ShareWidget;
+
