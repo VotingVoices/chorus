@@ -16,12 +16,13 @@
 	cursor: default;
 }
 
+.answer-button-hover {
+	background-color: CornflowerBlue;
+}
+
+/* Keep this in sync with EmojiButton.css */
 @media only screen and (max-width: 840px) {
 	.answer-button {
 		margin: 4px 6px 4px 6px;
 	}
-}
-
-.answer-button-hover {
-	background-color: CornflowerBlue;
 }

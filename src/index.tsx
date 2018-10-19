@@ -8,7 +8,7 @@ import App from './App';
 import configureStore from './configureStore';
 import registerServiceWorker from './registerServiceWorker';
 import { CurrentQuestionQueryParameterName, readStateFromLocation } from './readStateFromLocation';
-import { AppView, DEFAULT_STATE, IQuestionnaireState, push, recordStartSession } from './store';
+import { AppView, AnswerId, DEFAULT_STATE, IQuestionnaireState, IZipCodeAnswer, push, recordStartSession } from './store';
 
 import './index.css';
 
@@ -19,6 +19,16 @@ const readStateResult = readStateFromLocation(DEFAULT_STATE, history.location.pa
 const initialState = readStateResult.state;
 
 const store = configureStore(history, initialState);
+
+function answerAsString(answer: AnswerId | IZipCodeAnswer): string {
+	const zipCode = (answer as IZipCodeAnswer).zipCode;
+	if (zipCode !== undefined && zipCode !== "") {
+		return (answer as IZipCodeAnswer).zipCode;
+	}
+	else {
+		return (answer as AnswerId).toString();
+	}
+}
 
 function pathFromState(state: IQuestionnaireState): string {
 	const langParameter = `lang=${state.currentLanguage}`;
@@ -33,7 +43,9 @@ function pathFromState(state: IQuestionnaireState): string {
 		}
 
 		case AppView.Plan: {
-			const queryStringParameters = state.answers.map(qa => `${qa.questionId}=${qa.answerId}`).join('&');
+			const parameterList = state.answers.map(qa => `${qa.questionId}=${answerAsString(qa.answer)}`);
+
+			const queryStringParameters = parameterList.join('&');
 			return `/Plan?${queryStringParameters}&${langParameter}`;
 		}
 

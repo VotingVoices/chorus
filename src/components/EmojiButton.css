@@ -1,0 +1,33 @@
+.emoji-button {
+	cursor: default;
+	margin: 8px 20px 8px 20px;
+	text-transform: uppercase;
+	font-family: "AlternateGothicNo3";
+	font-size: 22px;
+}
+
+.emoji-button img {
+	width: 110px;
+	height: 110px;
+}
+
+.emoji-button-label {
+	margin-top: 16px;
+	margin-bottom: 0;
+}
+
+.emoji-button-hover img {
+	-webkit-filter: brightness(60%);
+}
+
+/* Keep this in sync with Answer.css */
+@media only screen and (max-width: 840px) {
+	.emoji-button {
+		margin: 4px 6px 4px 6px;
+	}
+
+	.emoji-button-label {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+}

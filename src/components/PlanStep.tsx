@@ -34,7 +34,7 @@ class PlanStep extends React.Component<IPlanStepProps & IPropsFromState & IConne
 		return (
 			<div key={planStepId}>
 				<div className="plan-step-header VotingVoices-sans-serif">{this.checkboxElement()}{fullHeaderString}</div>
-				<div className="plan-step-text VotingVoices-serif">{this.props.getString(text)}</div>
+				<div className="plan-step-text VotingVoices-serif" dangerouslySetInnerHTML={ { __html: this.props.getString(text)} } />
 
 				{ this.getCallToAction(callToActionLabel, link) }
 			</div>

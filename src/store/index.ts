@@ -6,3 +6,4 @@ export { push, replace, go, goBack, goForward } from './RouterInternalActions';
 export { routerMiddleware, startHistoryListener } from './router';
 export { scrollMiddleware } from './scrollMiddleware';
 export { createTelemetrySession, telemetryMiddleware } from './telemetry';
+export { votingStateFromZip } from './votingStateFromZip';

@@ -1,4 +1,5 @@
-import { AnswerId, IQuestion, PlanStepId, QuestionId } from './Types';
+import { AnswerId, IQuestion, IZipCodeAnswer, PlanStepId, QuestionId } from './Types';
+import { votingStateFromZip } from './votingStateFromZip';
 
 /**
  * Hard coded constant for the question graph 
@@ -7,7 +8,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.AreYouRegistered,
         dotNavStep: 1,
-        nextQuestionId: (answer) => QuestionId.VoteByMailState,
+        nextQuestionId: (answer) => QuestionId.ZipCode,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
@@ -16,18 +17,31 @@ export const QUESTIONS : IQuestion[] = [
         resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.CheckRegistration : (answer === AnswerId.No ? PlanStepId.Register : PlanStepId.MaybeRegister),
     },
     {
-        id: QuestionId.VoteByMailState,
+        id: QuestionId.ZipCode,
         dotNavStep: 2,
-        nextQuestionId: (key) => key === AnswerId.OtherState ? QuestionId.PollingLocation : QuestionId.ReceivedBallot,
-        answers: [
-            AnswerId.Colorado,
-            AnswerId.Oregon,
-            AnswerId.Washington,
-            AnswerId.OtherState,
-        ],
-        resultingPlanStep: (answer) => undefined,
+        nextQuestionId: (answer) => {
+            const voteByMailState = votingStateFromZip((answer as IZipCodeAnswer).zipCode);
+            if (voteByMailState !== undefined) {
+                return QuestionId.ReceivedBallot;
+            }
+            else {
+                return QuestionId.PollingLocation;
+            }
+        },
+        answers: [],
+        resultingPlanStep: (answer) => {
+            const voteByMailState = votingStateFromZip((answer as IZipCodeAnswer).zipCode);
+            if (voteByMailState !== undefined) {
+                return PlanStepId.CheckBallotReturnDeadline;
+            }
+            else {
+                return undefined;
+            }
+        },
     },
     /* VOTE-IN-PERSON PATH */
+    // TODO: Bring this question back?
+    /*
     {
         id: QuestionId.AbsenteeBallot,
         dotNavStep: 3,
@@ -38,9 +52,10 @@ export const QUESTIONS : IQuestion[] = [
         ],
         resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.RequestAbsenteeBallot : undefined,
     },
+    */
     {
         id: QuestionId.PollingLocation,
-        dotNavStep: 4,
+        dotNavStep: 3,
         nextQuestionId: (key) => QuestionId.SpecialAccommodations,
         answers: [
             AnswerId.Yes,
@@ -51,7 +66,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.SpecialAccommodations,
-        dotNavStep: 5,
+        dotNavStep: 4,
         nextQuestionId: (key) => QuestionId.TransportationMethod,
         answers: [
             AnswerId.Yes,
@@ -61,7 +76,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.TransportationMethod,
-        dotNavStep: 6,
+        dotNavStep: 5,
         nextQuestionId: (key) => QuestionId.MissWork,
         answers: [
             AnswerId.DriveMyself,
@@ -99,7 +114,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.MissWork,
-        dotNavStep: 7,
+        dotNavStep: 6,
         nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
         answers: [
             AnswerId.Yes,
@@ -111,7 +126,7 @@ export const QUESTIONS : IQuestion[] = [
     {
         id: QuestionId.ReceivedBallot,
         dotNavStep: 5,
-        nextQuestionId: (key) => QuestionId.Deadline,
+        nextQuestionId: (key) => QuestionId.ReturnMethod,
         answers: [
             AnswerId.Yes,
             AnswerId.No,
@@ -119,18 +134,8 @@ export const QUESTIONS : IQuestion[] = [
         resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.HaveBallot : PlanStepId.NoBallotYet,
     },
     {
-        id: QuestionId.Deadline,
-        dotNavStep: 6,
-        nextQuestionId: (key) => QuestionId.ReturnMethod,
-        answers: [
-            AnswerId.Yes,
-            AnswerId.No,
-        ],
-        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.KnowDeadline : PlanStepId.DontKnowDeadline,
-    },
-    {
         id: QuestionId.ReturnMethod,
-        dotNavStep: 7,
+        dotNavStep: 6,
         nextQuestionId: (key) => QuestionId.FamiliarWithBallot,
         answers: [
             AnswerId.Mail,
@@ -141,7 +146,7 @@ export const QUESTIONS : IQuestion[] = [
     /* REJOINED PATH */
     {
         id: QuestionId.FamiliarWithBallot,
-        dotNavStep: 8,
+        dotNavStep: 7,
         nextQuestionId: (key) => QuestionId.PeopleToInvite,
         answers: [
             AnswerId.Yes,
@@ -151,7 +156,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.PeopleToInvite,
-        dotNavStep: 9,
+        dotNavStep: 8,
         nextQuestionId: (key) => QuestionId.ReasonToVote,
         answers: [
             AnswerId.Friends,
@@ -163,7 +168,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.ReasonToVote,
-        dotNavStep: 10,
+        dotNavStep: 9,
         nextQuestionId: (key) => QuestionId.Emotion,
         answers: [
             AnswerId.Kids,
@@ -196,7 +201,7 @@ export const QUESTIONS : IQuestion[] = [
     },
     {
         id: QuestionId.Emotion,
-        dotNavStep: 11,
+        dotNavStep: 10,
         nextQuestionId: (key) => undefined,
         answers: [
             AnswerId.Excited,
@@ -228,4 +233,4 @@ export const QUESTIONS : IQuestion[] = [
         },
     }];
 
-export const PLAN_DOT_NAV_STEP = 12;
+export const PLAN_DOT_NAV_STEP = 11;

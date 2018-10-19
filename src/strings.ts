@@ -6,7 +6,6 @@ export enum StringId {
 	No,
 	NotSure,
 	AreYouRegisteredToVote,
-	AreYouPlanningtoVoteInVoteByMailState,
 	DoYouWantToVoteWithAbsenteeBallot,
 	DoYouKnowWhereYourPollingLocationIs,
 	WillYouNeedSpecialAccommodations,
@@ -71,9 +70,7 @@ export enum StringId {
 	OregonDeadlineLink,
 	WashingtonDeadlineLink,
 	WhenIsTheDeadlineExactly,
-	TheDeadlineYouveGotThis,
-	MidnightBallotDropOrPostmark,
-	CheckYourDeadline,
+	FindOutMore,
 	CheckYourDeadlineAndDontForgetPostage,
 	CheckYourDeadlineAndRestEasy,
 	FindColoradoMailingDetails,
@@ -87,7 +84,7 @@ export enum StringId {
 	OregonDropBoxLink,
 	WashingtonDropBoxLink,
 	DiscoverYourNeighborhoodDropBox,
-	CheckYourDeadlineForDropbox,
+	PlanAheadForDropBox,
 	FindDropboxNearYou,
 	CheckAbsenteePostageAndDeadline,
 	VoteDotOrgAbsenteeBallotLink,
@@ -121,7 +118,7 @@ export enum StringId {
 	MajorityOfStatesHaveTimeOffLaws,
 	LookForVoterLeaveStatus,
 	Vote411DotOrgLink,
-	YourBallotInANutshell,
+	ResearchYourBallot,
 	YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
 	PlanYourBallotChoices,
 	BallotReadyDotOrgLink,
@@ -154,6 +151,15 @@ export enum StringId {
 	ShockedEmoji,
 	AngryEmoji,
 	MehEmoji,
+	DeadlineBannerMarkup,
+	ColoradoDeadlineDescription,
+	OregonDeadlineDescription,
+	WashingtonDeadlineDescription,
+	WhereAreYouVoting,
+	ZipCode,
+	Submit,
+	WeUseYourZipCodeToProvideMoreElevantInformation,
+	Skip,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -171,9 +177,6 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.AreYouRegisteredToVote,
 		"First things first. Are you registered to vote?"],
-
-	[StringId.AreYouPlanningtoVoteInVoteByMailState,
-		"Are you planning to vote in any of these states?"],
 
 	[StringId.DoYouWantToVoteWithAbsenteeBallot,
 		"Would you like to vote by absentee ballot?"],
@@ -329,7 +332,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Have ballot, will vote!"],
 
 	[StringId.YouveGotItNowSubmitIt,
-		"You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)"],    // TODO: Spell out U.S. Postal Service
+		"You've got it, now submit it. (Don't forget to check the postage requirements if you're using the U.S. Postal Service.)"],    // TODO: Spell out U.S. Postal Service
 
 	[StringId.FindYourColoradoBallot,
 		"Find your Colorado ballot"],
@@ -356,10 +359,10 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Track your ballot online and find out when to expect it."],
 
 	[StringId.ColoradoDeadlineLink,
-		"https://www.sos.state.co.us/pubs/elections/"],
+		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
 
 	[StringId.OregonDeadlineLink,
-		"https://sos.oregon.gov/voting/Pages/current-election.aspx"],
+		"https://sos.oregon.gov/voting/Pages/voteinor.aspx"],
 
 	[StringId.WashingtonDeadlineLink,
 		"https://www.sos.wa.gov/elections/dates-and-deadlines.aspx"],
@@ -367,14 +370,8 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.WhenIsTheDeadlineExactly,
 		"When is the deadline, exactly?"],
 
-	[StringId.TheDeadlineYouveGotThis,
-		"The deadline: you've got this"],
-
-	[StringId.MidnightBallotDropOrPostmark,
-		"Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
-
-	[StringId.CheckYourDeadline,
-		"Check your deadline"],
+	[StringId.FindOutMore,
+		"Find out more"],
 
 	[StringId.CheckYourDeadlineAndDontForgetPostage,
 		"Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
@@ -413,10 +410,10 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
-		"Discover your neighborhood ballot drop box."],
+		"Find your ballot drop box."],
 
-	[StringId.CheckYourDeadlineForDropbox,
-		"Check your deadline and plan ahead for a convenient ballot box drop."],
+	[StringId.PlanAheadForDropBox,
+		"Plan ahead for a convenient ballot box drop in your neighborhood."],
 
 	[StringId.FindDropboxNearYou,
 		"Find a ballot drop box near you"],
@@ -514,8 +511,8 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.Vote411DotOrgLink,
 		"https://www.vote411.org/taxonomy/term/75#.W5RxBuhKjD4"],		// TODO: Is this really the URL?
 
-	[StringId.YourBallotInANutshell,
-		"Your ballot, in a nutshell"],
+	[StringId.ResearchYourBallot,
+		"Research your ballot"],
 
 	[StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
 		"You're familiar with the candidates and issues. The Ballot Ready app can help you make informed choices."],
@@ -612,6 +609,33 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.MehEmoji,
 		"Meh emoji"],
+
+	[StringId.DeadlineBannerMarkup,
+		"<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>."],
+
+	[StringId.ColoradoDeadlineDescription,
+		"In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). You can either mail it or drop it off in person."],
+
+	[StringId.OregonDeadlineDescription,
+		"In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
+
+	[StringId.WashingtonDeadlineDescription,
+		"In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
+
+	[StringId.WhereAreYouVoting,
+		"<em>Where</em> will you be voting?"],
+
+	[StringId.ZipCode,
+		"ZIP code"],
+
+	[StringId.Submit,
+		"Submit"],
+
+	[StringId.WeUseYourZipCodeToProvideMoreElevantInformation,
+		"(We use your ZIP code to help us give you more relevant questions and actions.)"],
+
+	[StringId.Skip,
+		"Skip"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -634,10 +658,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "First things first. Are you registered to vote?"],
 		"Primero lo primero. ¿Está registrado para votar?"],
 
-	[StringId.AreYouPlanningtoVoteInVoteByMailState,
-		// "Are you planning to vote in any of these states?"],
-		"¿Está pensando en votar dentro de los Estados Unidos?"],
-
 	[StringId.DoYouWantToVoteWithAbsenteeBallot,
 		// "Would you like to vote by absentee ballot?"],
 		"¿Le gustaría votar por correspondencia?"],
@@ -656,15 +676,15 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.HaveYouReceivedYourBallot,
 		// "Have you received your ballot?"],
-		"¿Ha recivido su cartón de votación?"],
+		"¿Ha recibido su cartón de votación?"],
 
 	[StringId.DoYouKnowTheDeadline,
 		// "Do you know when the deadline is?"],
-		"¿Sabe cuándo es la fecha límite para votar?"],		// TODO: para enviar su cartón de votación?
+		"¿Sabe cuándo es la fecha límite para votar?"],
 
 	[StringId.HowWillYouReturnYourBallot,
 		// "How will you return your ballot?"],
-		"¿Cómo va a enviar su cartón de votación?"],			// TODO: 'retornar' instead of 'enviar'?
+		"¿Cómo va a enviar su cartón de votación?"],
 
 	[StringId.WillYouMissWork,
 		// "Will you have to miss/leave work to vote?"],
@@ -672,7 +692,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.AreYouFamiliarWithYourBallot,
 		// "Do you know who/what you\'ll be voting for?"],
-		"¿Sabe por qué/por quién va a a votar?"],
+		"¿Sabe por qué o por quién va a votar?"],
 
 	[StringId.AreTherePeopleToInvite,
 		// "Spread the word! Are there people in your life you\'d like to vote with?"],
@@ -737,7 +757,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.Friends,
 		// "Friend(s)"],
-		"Amigo/s"],			// TODO: Amigos?
+		"Amigos"],
 
 	[StringId.FamilyMembers,
 		// "Family member(s)"],
@@ -753,7 +773,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.MyKidsFamily,
 		// "My kids / family"],
-		"Mis hijos / familia"],
+		"Mis hijos o familia"],
 
 	[StringId.ItsAPrivilege,
 		// "It\'s a privilege"],
@@ -792,8 +812,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Indiferente"],
 
 	[StringId.PlanPageSubheader,
-		// TODO: TRANSLATE
-		"You've done the prep. Your voice matters. Get out there and vote in the midterms!"],
+		// "You've done the prep. Your voice matters. Get out there and vote in the midterms!"],
+		"Lo ha hecho. Su voz importa. Salga y vote en las elecciones de término medio."],
 
 	[StringId.PlanPageInvitePeople,
 		// TODO: Maybe have a espanophone check this google translate.  Figured google translate is better than nada, though :)
@@ -820,7 +840,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.TakeAQuickLookAtYourRegistration,
 		// "Great \u2014 you're registered! Now take a quick look to make sure everything is up-to-date."],
-		"Fantástico \u2014 ahora está registrado! Ahora revisemos que todo esté al día"],
+		"Fantástico \u2014 usted dijo que está registrado! Revisemos que todo esté al día."],
 
 	[StringId.NotSureWhetherYoureRegistered,
 		// "Not sure whether you're registered? Take a minute to double-check and make sure you're vote ready."],
@@ -832,15 +852,15 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.MakeTheRequest,
 		// "Make the request"],
-		"Haga su solicitud"],		// TODO: Or, "Hacer una petición"
+		"Haga su solicitud"],
 
 	[StringId.HaveBallotWillVote,
 		// "Have ballot, will vote!"],
 		"Tengo un cartón de votación. Votaré!"],		// TODO: Tiene?
 
 	[StringId.YouveGotItNowSubmitIt,
-		// "You've got it, now submit it. (Don't forget to check the postage requirements if you're using USPS.)"],    // TODO: Spell out U.S. Postal Service
-		"Ya lo tiene, ahora envíalo. (No se le olvidé revisar los requerimientos postales si usa USPS)"],		// TODO: Spell out USPS in Spanish?
+		// "You've got it, now submit it. (Don't forget to check the postage requirements if you're using the U.S. Postal Service.)"],		// TODO: Clarify in English that you can only use USPS to mail the ballot?
+		"Ya lo tiene, ahora envíalo. (No se le olvidé revisar los requerimientos postales de U.S. Postal Service.)"],
 
 	[StringId.FindYourColoradoBallot,
 		// "Find your Colorado ballot"],
@@ -864,41 +884,33 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://weiapplets.sos.wa.gov/myvote/#/login"],
 
 	[StringId.BallotHasntShownUpYet,
-		// "Ballot hasn't shown up yet?"],
-		"El cartón de votación no ha aparecido aún?"],
+		// "Ballot hasn't shown up yet?"],		// TODO: We should clarify this English string
+		"No he recibido el carton de votación aún."],		// TODO: Use usted instead of yo?.  Diego's suggestion: Use the string beginning with "rastree su carton de votacion"
 
 	[StringId.TrackYourBallotOnline,
 		// "Track your ballot online and find out when to expect it."],
 		"Rastree su cartón de votación y sepá cuando va a llegar"],
 
 	[StringId.ColoradoDeadlineLink,
-		"https://www.sos.state.co.us/pubs/elections/"],
+		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
 
 	[StringId.OregonDeadlineLink,
-		"https://sos.oregon.gov/voting/Pages/current-election.aspx"],
+		"https://sos.oregon.gov/voting/Pages/voteinor.aspx"],
 
 	[StringId.WashingtonDeadlineLink,
 		"https://www.sos.wa.gov/elections/dates-and-deadlines.aspx"],
 
 	[StringId.WhenIsTheDeadlineExactly,
 		// "When is the deadline, exactly?"],
-		"Cuándo es exactamente la fecha límite?"],
+		"Cuándo es la fecha límite?"],
 
-	[StringId.TheDeadlineYouveGotThis,
-		// "The deadline: you've got this"],
-		"La fecha límite: "],		// TODO: Incomplete translation?
-
-	[StringId.MidnightBallotDropOrPostmark,
-		// "Midnight ballot box drop or postmark? Quickly double-check your deadline and rest easy."],
-		"Dejar en el casillero de envió por correo o matasellos. Rápidamente revisé su fecha límite y el resto va a ser sencillo."],		// TODO: Double-check translation
-
-	[StringId.CheckYourDeadline,
-		// "Check your deadline"],
-		"Revisé su fecha límite"],
+	[StringId.FindOutMore,
+		// "Find out more"],
+		"Conozca más"],
 
 	[StringId.CheckYourDeadlineAndDontForgetPostage,
 		// "Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
-		"Revise su fecha límite y el resto es fácil. No olvidé poner la estampilla si el sobre no es prepagado"],
+		"¡Revise su fecha límite, el resto es fácil! No olvidé poner la estampilla si el sobre no es prepagado"],
 
 	[StringId.CheckYourDeadlineAndRestEasy,
 		// "Check up on your deadline and rest easy."],
@@ -930,7 +942,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Envíe su cartón de votación, pronto!"],
 
 	[StringId.ColoradoDropBoxLink,
-		"https://www.sos.state.co.us/pubs/elections/"],
+		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
 
 	[StringId.OregonDropBoxLink,
 		"https://sos.oregon.gov/voting/pages/drop-box-locator.aspx"],
@@ -939,12 +951,12 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.sos.wa.gov/elections/auditors/"],	// TODO: Is this really the best URL?
 
 	[StringId.DiscoverYourNeighborhoodDropBox,
-		// "Discover your neighborhood ballot drop box."],
-		"Encuntré el casillero de envio dentro de su vecindario."],		// TODO: Typo?  Es 'encuntre' una palabra espanola?
+		// "Find your ballot drop box."],
+		"Encuentre el casillero de envio."],
 
-	[StringId.CheckYourDeadlineForDropbox,
-		// "Check your deadline and plan ahead for a convenient ballot box drop."],
-		"Verifique su fecha límite y planee con tiempo el envío de su cartón de votación en el casillero."],
+	[StringId.PlanAheadForDropBox,
+		// "Plan ahead for a convenient ballot box drop in your neighborhood."],
+		"Planee con tiempo el envío de su cartón de votación."],
 
 	[StringId.FindDropboxNearYou,
 		// "Find a ballot drop box near you"],
@@ -1024,7 +1036,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.TakeMassTransitToThePolls,
 		// "Take mass transit to the polls"],
-		"Tomando transporte público"],			// TODO: "Tome transporte publico"?
+		"Llegaré tomando transporte público"],
 
 	[StringId.PlanYourTransitRouteAheadOfTime,
 		// "Great plan. Even better: Plan your route ahead of time and enjoy the trip!"],
@@ -1054,7 +1066,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.AreYouEligibleForPaidTimeOff,
 		// "Paid time-off to vote: are you eligible?"],
-		"¿Es elegible para tiempo pago para ir a votar?"],
+		"¿Es elegible para que le paguen el tiempo de voto en el trabajo?"],
 
 	[StringId.MajorityOfStatesHaveTimeOffLaws,
 		// "The majority of states have time-off-to-vote laws (also called voter-leave laws). Check ahead of voting day and coordinate plans with your workplace."],
@@ -1067,13 +1079,13 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.Vote411DotOrgLink,
 		"https://www.vote411.org/taxonomy/term/75#.W5RxBuhKjD4"],		// TODO: Is this really the URL?
 
-	[StringId.YourBallotInANutshell,
-		// "Your ballot, in a nutshell"],
-		"Su votación en forma sencilla"],
+	[StringId.ResearchYourBallot,
+		// "Research your ballot."],
+		"Invéstigue la decisión para su voto"],
 
 	[StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
 		// "You're familiar with the candidates and issues. The Ballot Ready app can help you make informed choices."],
-		"Esta familiarizado con los candidatos y sus preocupaciones. La applicación de Ballot Ready le puede ayudar a hacer decisiones con más contexto"],
+		"Esta familiarizado con los candidatos y sus preocupaciones. La applicación de Ballot Ready le puede ayudar a hacer decisiones con más contexto."],
 
 	[StringId.PlanYourBallotChoices,
 		// "Plan your ballot choices"],
@@ -1084,7 +1096,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.IntroducingYourBallot,
 		// "Introducing...your ballot!"],
-		"Introducción a su carton de votación"],
+		"Introducción a su cartón de votación"],
 
 	[StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
 		// "Now's the perfect time to research the candidates and issues you'll be voting for. The Ballot Ready app can help you make informed choices."],
@@ -1096,7 +1108,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.LetsKeepEachOtherAccountable,
 		// "Let's keep each other accountable \u2014 voting's even better when we can do it together!"],
-		"Mantenga a las personas responsables entre ellas \u2014 votar es aún mejor cuando lo hacemos juntos!"],
+		"Anime a las personas \u2014 votar es aún mejor cuando lo hacemos juntos!"],
 
 	[StringId.PutThoseFeelingsTowardAction,
 		// "Put those feelings toward action"],
@@ -1119,7 +1131,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.YoureConcerned,
 		// "Put those feelings toward voting action"],
-		"Ponga esos sentimientos en una acción de voto"],
+		"Ponga esos sentimientos en una acción"],
 
 	[StringId.YoureConcernedDescription,
 		// "You're feeling concerned \u2014 we get it! These are complicated times. Watch this and get inspired."],
@@ -1138,8 +1150,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Se está sintiendo ahí? Sus planes de votación estan tomando forma \u2014 ahora salga a realizarlos."],
 
 	[StringId.RememberYourReasonForVoting,
-		// TODO: Translate
-		"Remember your reason for voting!"],
+		// "Remember your reason for voting!"],
+		"¡Recuerde la razon para votar!"],
 
 	[StringId.ForFamily,
 		// "For Family"],
@@ -1163,7 +1175,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.ForChangeDescription,
 		// "You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!"],
-		"Va a realizar la mejor acción para opinar en las propuestas y las personas que toman las decisones. Aprueba? Desaprueba? Su voto es un mensaje importante \u2014 hagalo saber."],  // TODO: Leading question marks?
+		"Va a realizar la mejor acción para opinar sobre las propuestas y las personas que toman las decisones. ¿Aprueba? ¿Desaprueba? Su voto es un mensaje importante \u2014 hagalo conocer."],
 
 	[StringId.CivicDuty,
 		// "Civic Duty"],
@@ -1171,11 +1183,11 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.CivicDutyDescription,
 		// "You've always voted \u2014 good on you! Spread the word and keep up the great (and extremely important) civic habit."],
-		"Usted siempre ha votado \u2014 Muy bien! Pasé la voz y mantenga el grandioso e importante hábito."],		// TODO: Lowercase "muy" and leading exclamation point?
+		"Usted siempre ha votado \u2014 ¡muy bien! Pasé la voz y mantenga el grandioso e importante hábito."],		// TODO: Lowercase "muy" and leading exclamation point?
 
 	[StringId.OtherCivicDutyDescription,
 		// "You're about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!"],
-		"Va a realizar la mejor acción para opinar en las propuestas y las personas que toman las decisones. Aprueba? desaprueba? Su voto es un mensaje importante \u2014 hagalo saber."],	// TODO: Leading question marks?
+		"Va a realizar la mejor acción para opinar sobre las propuestas y las personas que toman las decisones. ¿Aprueba? ¿Desaprueba? Su voto es un mensaje importante \u2014 hagalo conocer."],
 
 	[StringId.ExcitedEmoji,
 		// "Excited emoji"],
@@ -1196,6 +1208,42 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.MehEmoji,
 		// "Meh emoji"],
 		"Emoji indiferente"],
+
+	[StringId.DeadlineBannerMarkup,
+		// "<strong>Make a plan to vote.</strong> The midterm elections are on <strong>November 6th</strong>."],
+		"<strong>Haga un plan para votar.</strong> Las elecciones de término medio son el <strong>6 de Noviembre</strong>."],
+
+	[StringId.ColoradoDeadlineDescription,
+		// "In Colorado, your ballot must be received by your county clerk by <strong>7:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). You can either mail it or drop it off in person."],
+		"En Colorado, su cartón de votación debe ser recibido por el secretario del condado antes de <strong>8:00 p.m.</strong> el día de las elecciones (Martes, Noviembre 6, 2018). Usted puede enviarlo por correo postal o entregarlo personalmente."],
+
+	[StringId.OregonDeadlineDescription,
+		// "In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
+		"En Oregon, su cartón de votación debe ser recibido antes de <strong>8:00 p.m.</strong> el día de las elecciones (Martes, Noviembre 6, 2018). Si no ha enviado su cartón de votación antes de Octubrie 31, 2018, usted tiene que entregar el carton de votación en persona para asegurarse que sea contado."],
+
+	[StringId.WashingtonDeadlineDescription,
+		// "In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
+		"En Washington, su cartón de votación debe ser recogido en o antes del día de la elección (Martes, Noviembre 6, 2018)."], // TODO: Incomplete translation
+
+	[StringId.WhereAreYouVoting,
+		// TODO: Translate
+		"<em>Where</em> will you be voting?"],
+
+	[StringId.ZipCode,
+		// TODO: Translate
+		"ZIP code"],
+
+	[StringId.Submit,
+		// TODO: Translate
+		"Submit"],
+
+	[StringId.WeUseYourZipCodeToProvideMoreElevantInformation,
+		// TODO: Translate
+		"(We use your ZIP code to help us give you more relevant questions and actions.)"],
+
+	[StringId.Skip,
+		// TODO: Translate
+		"Skip"],
 ]);
 
 export function getEnglishString(id: StringId): string {
@@ -1211,7 +1259,7 @@ export function getSpanishString(id: StringId): string {
 export function getQuestionFullLabel(id: QuestionId): StringId {
 	switch (id) {
 		case QuestionId.AreYouRegistered: return StringId.AreYouRegisteredToVote;
-		case QuestionId.VoteByMailState: return StringId.AreYouPlanningtoVoteInVoteByMailState;
+		case QuestionId.ZipCode: return StringId.WhereAreYouVoting;
 		case QuestionId.AbsenteeBallot: return StringId.DoYouWantToVoteWithAbsenteeBallot;
 		case QuestionId.PollingLocation: return StringId.DoYouKnowWhereYourPollingLocationIs;
 		case QuestionId.SpecialAccommodations: return StringId.WillYouNeedSpecialAccommodations;
@@ -1347,32 +1395,37 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			}
 		}
 
-		case PlanStepId.DontKnowDeadline:
-		case PlanStepId.KnowDeadline: {
-			let link: StringId | undefined;
+		case PlanStepId.CheckBallotReturnDeadline: {
+			const header = StringId.WhenIsTheDeadlineExactly;
+			const callToAction = StringId.FindOutMore;
 
 			switch (state) {
 				case VotingStateId.Colorado: {
-					link = StringId.ColoradoDeadlineLink;
-					break;
+					return {
+						header,
+						text: StringId.ColoradoDeadlineDescription,
+						callToAction,
+						link: StringId.ColoradoDeadlineLink,
+					}
 				}
 				case VotingStateId.Oregon: {
-					link = StringId.OregonDeadlineLink;
-					break;
+					return {
+						header,
+						text: StringId.OregonDeadlineDescription,
+						callToAction,
+						link: StringId.OregonDeadlineLink,
+					}
 				}
 				case VotingStateId.Washington: {
-					link = StringId.WashingtonDeadlineLink;
-					break;
+					return {
+						header,
+						text: StringId.WashingtonDeadlineDescription,
+						callToAction,
+						link: StringId.WashingtonDeadlineLink,
+					}
 				}
 				default:
 					throw new Error("Unrecognized VotingStateId");
-			}
-
-			return {
-				header: step === PlanStepId.DontKnowDeadline ? StringId.WhenIsTheDeadlineExactly : StringId.TheDeadlineYouveGotThis,
-				text: StringId.MidnightBallotDropOrPostmark,
-				callToAction: StringId.CheckYourDeadline,
-				link
 			}
 		}
 
@@ -1433,7 +1486,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 
 			return {
 				header: StringId.DiscoverYourNeighborhoodDropBox,
-				text: StringId.CheckYourDeadlineForDropbox,
+				text: StringId.PlanAheadForDropBox,
 				callToAction: StringId.FindDropboxNearYou,
 				link,
 			}
@@ -1532,7 +1585,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 
 		case PlanStepId.ReviewBallotIssues: {
 			return {
-				header: StringId.YourBallotInANutshell,
+				header: StringId.ResearchYourBallot,
 				text: StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
 				callToAction: StringId.PlanYourBallotChoices,
 				link: StringId.BallotReadyDotOrgLink,

@@ -1,0 +1,53 @@
+.zip-code-entry {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.zip-code-text-box {
+	font-size: 22pt;
+	text-transform: uppercase;
+	color: black;
+	padding-left: 8px;
+	max-width: 120px;
+	-moz-appearance: textfield;
+}
+
+.zip-code-text-box::placeholder {
+	color: #cdcdcd;
+}
+
+.zip-code-text-box::-webkit-inner-spin-button,
+.zip-code-text-box::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.submit-zip-button {
+	font-size: 22pt;
+	border-radius: 10px;
+	margin-left: 16px;
+}
+
+.zip-code-explanation {
+	margin-top: 20px;
+	font-size: 14px;
+	opacity: 0.67;
+}
+
+.skip-button {
+	margin-top: 24px;
+}
+
+/* USe the same max-width selector as in Question.css */
+@media only screen and (max-width: 420px) {
+	.zip-code-text-box {
+		font-size: 18pt;
+		max-width: 100px;
+	}
+
+	.submit-zip-button {
+		font-size: 18pt;
+		border-radius: 8px;
+	}
+}

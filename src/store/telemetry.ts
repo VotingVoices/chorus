@@ -1,13 +1,13 @@
 import { ActionType } from 'typesafe-actions';
 import { TelemetryActionType } from './InternalTypes';
-import { AnswerId, IQuestionAndAnswer, LanguageId, QuestionnaireActionType, QuestionId } from './Types';
+import { AnswerId, IQuestionAndAnswer, IZipCodeAnswer, LanguageId, QuestionnaireActionType, QuestionId } from './Types';
 
 import * as actions from './Actions';
 
 type QuestionnaireAction = ActionType<typeof actions>;
 
-// const TelemetryEndpoint = 'http://localhost:3001/';
-const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
+const TelemetryEndpoint = 'http://localhost:3001/';
+// const TelemetryEndpoint = 'https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult';
 
 // Courtesy of 'broofa's answer in https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 function uuidv4() {
@@ -36,7 +36,7 @@ export class TelemetrySession {
 		});
 	}
 
-	public recordAnswer(questionId: QuestionId, answerId: AnswerId) {
+	public recordAnswer(questionId: QuestionId, answerId: AnswerId | IZipCodeAnswer) {
 		this.uploadData({
 			event: "Answer",
 			question: questionId,
@@ -47,7 +47,7 @@ export class TelemetrySession {
 	public recordPlanPage(answers: IQuestionAndAnswer[], language: LanguageId) {
 		this.uploadData({
 			event: "ViewPlan",
-			answers: answers.map(qa => ({ question: qa.questionId, answer: qa.answerId })),
+			answers: answers.map(qa => ({ question: qa.questionId, answer: qa.answer })),
 			language,
 		});
 	}
@@ -128,7 +128,7 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 			return next(action);
 		}
 		case QuestionnaireActionType.ANSWER_QUESTION: {
-			session.recordAnswer(action.payload.questionId, action.payload.answerId);
+			session.recordAnswer(action.payload.questionId, action.payload.answer);
 			return next(action);
 		}
 		case QuestionnaireActionType.START_OVER: {
