@@ -29,13 +29,12 @@ class Header extends React.Component<IPropsFromState & IConnectedReduxProps, any
 						<DonateButton {...this.props} />
 					</div>
 
-					<div className="vv-dropdown-menu">
-						<Button type="button">Stuff</Button>
-						<div className="vv-dropdown-content">
-							<ContactButton {...this.props} />
-							<DonateButton {...this.props} />
-						</div>
-					</div>
+					<Button type="button" className="header-expando">Stuff</Button>
+				</div>
+
+				<div className="expando-content">
+					<ContactButton {...this.props} />
+					<DonateButton {...this.props} />
 				</div>
 
 				<div className="deadline-banner VotingVoices-sans-serif" dangerouslySetInnerHTML={{__html: this.props.getString(StringId.DeadlineBannerMarkup)}} />
