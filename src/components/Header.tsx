@@ -15,8 +15,24 @@ interface IPropsFromState {
 	getString: (id: StringId) => string,
 }
 
-class Header extends React.Component<IPropsFromState & IConnectedReduxProps, any> {
+enum ExpandoState {
+	Collapsed,
+	Expanded,
+}
+
+interface IHeaderState {
+	expandoState: ExpandoState,
+}
+
+class Header extends React.Component<IPropsFromState & IConnectedReduxProps, IHeaderState> {
+	public componentWillMount() {
+		this.setState({ expandoState: ExpandoState.Collapsed });
+	}
+
 	public render() {
+		const { expandoState } = this.state;
+		const expandoContentStyle: React.CSSProperties = expandoState === ExpandoState.Expanded ? {} : {display: "none"};
+		
 		return (
 			<div>
 				<div className="vv-page-header">
@@ -30,11 +46,11 @@ class Header extends React.Component<IPropsFromState & IConnectedReduxProps, any
 					</div>
 
 					<div className="header-expando-container">
-						<Button type="button" className="header-expando">Stuff</Button>
+						<Button type="button" className="header-expando" onClick={this._onExpandoClick}>Stuff</Button>
 					</div>
 				</div>
 
-				<div className="expando-content">
+				<div className="expando-content" style={expandoContentStyle}>
 					<ContactButton {...this.props} />
 					<DonateButton {...this.props} />
 				</div>
@@ -44,6 +60,17 @@ class Header extends React.Component<IPropsFromState & IConnectedReduxProps, any
 				<div className="deadline-banner VotingVoices-sans-serif" dangerouslySetInnerHTML={{__html: this.props.getString(StringId.DeadlineBannerMarkup)}} />
 			</div>
 		);
+	}
+
+	private _onExpandoClick = (ev: React.MouseEvent<Button>) => {
+		const { expandoState } = this.state;
+
+		if (expandoState === ExpandoState.Collapsed) {
+			this.setState({ expandoState: ExpandoState.Expanded });
+		}
+		else {
+			this.setState({ expandoState: ExpandoState.Collapsed });
+		}
 	}
 }
 
