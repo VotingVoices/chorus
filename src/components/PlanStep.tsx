@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect} from 'react-redux';
-import { IIndexHolder } from './Plan';
+import { IIndexHolder } from './PlanBody';
 import { IConnectedReduxProps, IQuestionnaireState, PlanStepId, VotingStateId } from '../store';
 import { getPlanStepStrings, StringId } from '../strings';
 import { default as CallToAction } from './CallToAction';

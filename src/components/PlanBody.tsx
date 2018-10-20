@@ -11,7 +11,7 @@ import { StringId }from '../strings';
 import './Plan.css';
 import ShareWidget from './ShareWidget';
 
-interface IPlanProps {
+interface IPlanBodyProps {
 	answers: IQuestionAndAnswer[],
 	votingStateId: VotingStateId,
 }
@@ -29,18 +29,13 @@ export interface IIndexHolder {
 	index: number;
 }
 
-class Plan extends React.Component<IPlanProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, any> {
+class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, any> {
 	public render() {
 		const indexHolder = { index: 0 } as IIndexHolder;
-		const subHeaderText = this.props.getString(StringId.PlanPageSubheader);
 		const invitePeopleText = this.props.getString(StringId.PlanPageInvitePeople);
 
 		return (
 			<div>
-				<div className="Plan-header Gradient-background">
-                	<h1 className="voteplan-title">VotePlan</h1>
-                	<div className="plan-sub-header-text VotingVoices-serif">{subHeaderText}</div>
-				</div>
 				<div className="Plan-invite-people">
 					<div className="Plan-invite-people-text">{invitePeopleText}</div>
 					<div className="share-widget-container">
@@ -106,4 +101,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 	recordPlanPage: (answers: IQuestionAndAnswer[], language: LanguageId) => dispatch(recordPlanPage(answers, language)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Plan);
+export default connect(mapStateToProps, mapDispatchToProps)(PlanBody);

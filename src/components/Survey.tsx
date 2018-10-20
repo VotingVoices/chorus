@@ -20,7 +20,7 @@ interface IPropsFromState {
 class Survey extends React.Component<IConnectedReduxProps & IPropsFromState, any> {
 	public render(): JSX.Element {
 		return (
-			<div className="Survey-body Gradient-background">
+			<div className="Survey-body">
 				<div className="question-container">
 					<div className="question-container-2">
 						<ReactCSSTransitionReplace
