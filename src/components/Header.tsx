@@ -23,9 +23,15 @@ class Header extends React.Component<IPropsFromState & IConnectedReduxProps, any
 					<div className="header-logo">
 						<a href="#/LandingPage"><img className="vv-header-img" src={vvlogo} /></a>
 					</div>
+
+					<div className="right-buttons">
+						<ContactButton {...this.props} />
+						<DonateButton {...this.props} />
+					</div>
+
 					<div className="vv-dropdown-menu">
 						<Button type="button">Stuff</Button>
-						<div className="right-buttons vv-dropdown-content">
+						<div className="vv-dropdown-content">
 							<ContactButton {...this.props} />
 							<DonateButton {...this.props} />
 						</div>
