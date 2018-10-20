@@ -6,7 +6,7 @@
 	display: none;
 }
 
-.header-expando-container {
+.header-expando {
 	grid-column: 2;
 	text-align: right;
 }

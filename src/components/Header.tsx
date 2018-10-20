@@ -31,7 +31,9 @@ class Header extends React.Component<IPropsFromState & IConnectedReduxProps, IHe
 
 	public render() {
 		const { expandoState } = this.state;
+
 		const expandoContentStyle: React.CSSProperties = expandoState === ExpandoState.Expanded ? {} : {display: "none"};
+		const expandoGlyphIconName = expandoState === ExpandoState.Expanded ? "glyphicon-chevron-up" : "glyphicon-chevron-down";
 		
 		return (
 			<div>
@@ -45,8 +47,8 @@ class Header extends React.Component<IPropsFromState & IConnectedReduxProps, IHe
 						<DonateButton {...this.props} />
 					</div>
 
-					<div className="header-expando-container">
-						<Button type="button" className="header-expando" onClick={this._onExpandoClick}>Stuff</Button>
+					<div className="header-expando">
+						<Button type="button" className={`contact-about-button glyphicon ${expandoGlyphIconName}`} onClick={this._onExpandoClick} />
 					</div>
 				</div>
 
