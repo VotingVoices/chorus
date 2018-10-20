@@ -1,4 +1,5 @@
 /.idea
-/node_modules
+**/build
+**/node_modules
 LambdaLab.iml
 package-lock.json
