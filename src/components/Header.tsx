@@ -29,7 +29,9 @@ class Header extends React.Component<IPropsFromState & IConnectedReduxProps, any
 						<DonateButton {...this.props} />
 					</div>
 
-					<Button type="button" className="header-expando">Stuff</Button>
+					<div className="header-expando-container">
+						<Button type="button" className="header-expando">Stuff</Button>
+					</div>
 				</div>
 
 				<div className="expando-content">

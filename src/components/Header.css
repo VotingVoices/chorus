@@ -3,11 +3,12 @@
 	text-align: right;
 	padding-top: 5px;
 	padding-bottom: 5px;
+	display: none;
 }
 
-.header-expando {
+.header-expando-container {
 	grid-column: 2;
-	display: none;
+	text-align: right;
 }
 
 .vv-page-header {
@@ -18,6 +19,10 @@
 	padding-bottom: 12px;
 	padding-left: 12px;
 	padding-right: 12px;
+}
+
+.expando-content {
+	padding-bottom: 8px;
 }
 
 .header-gradient-separator {
