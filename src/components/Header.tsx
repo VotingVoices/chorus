@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Button } from 'react-bootstrap';
 import { connect} from 'react-redux';
-import { Dispatch } from 'redux';
 
-import { IQuestionnaireState, recordContact, recordDonate } from '../store';
+import { default as ContactButton } from './ContactButton';
+import { default as DonateButton } from './DonateButton';
+import { IConnectedReduxProps, IQuestionnaireState, } from '../store';
 import { StringId } from '../strings';
 
 import '../App.css';
@@ -14,12 +15,7 @@ interface IPropsFromState {
 	getString: (id: StringId) => string,
 }
 
-interface IPropsFromDispatch {
-	recordContact: typeof recordContact,
-	recordDonate: typeof recordDonate,
-}
-
-class Header extends React.Component<IPropsFromState & IPropsFromDispatch, any> {
+class Header extends React.Component<IPropsFromState & IConnectedReduxProps, any> {
 	public render() {
 		return (
 			<div>
@@ -30,8 +26,8 @@ class Header extends React.Component<IPropsFromState & IPropsFromDispatch, any> 
 					<div className="vv-dropdown-menu">
 						<Button type="button">Stuff</Button>
 						<div className="right-buttons vv-dropdown-content">
-							<Button type="button" className="vv-button contact-about-button" href="mailto:info@votingvoices.org" onClick={this._onContactClick}>{this.props.getString(StringId.Contact)}</Button>
-							<Button type="button" className="vv-button vv-button-filled-in-header" href="https://pages.donately.com/votingvoices/donate" target="_blank" onClick={this._onDonateClick}>{this.props.getString(StringId.Donate)}</Button>
+							<ContactButton {...this.props} />
+							<DonateButton {...this.props} />
 						</div>
 					</div>
 				</div>
@@ -40,23 +36,10 @@ class Header extends React.Component<IPropsFromState & IPropsFromDispatch, any> 
 			</div>
 		);
 	}
-
-	private _onContactClick = (ev: React.MouseEvent<Button>) => {
-		this.props.recordContact();
-	}
-
-	private _onDonateClick = (ev: React.MouseEvent<Button>) => {
-		this.props.recordDonate();
-	}
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => ({
 	getString: state.getString,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-	recordContact: () => dispatch(recordContact()),
-	recordDonate: () => dispatch(recordDonate()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);
