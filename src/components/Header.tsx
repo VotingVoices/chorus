@@ -25,7 +25,7 @@ class Header extends React.Component<IPropsFromState & IPropsFromDispatch, any> 
 			<div>
 				<div className="vv-page-header">
 					<div className="header-logo">
-						<a href="#/LandingPage"><img src={vvlogo} /></a>
+						<a href="#/LandingPage"><img className="vv-header-img" src={vvlogo} /></a>
 					</div>
 					<div className="right-buttons">
 						<Button type="button" className="vv-button contact-about-button" href="mailto:info@votingvoices.org" onClick={this._onContactClick}>{this.props.getString(StringId.Contact)}</Button>
