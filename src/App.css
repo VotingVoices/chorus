@@ -68,12 +68,6 @@
 	padding-bottom: 10px;
 }
 
-@media only screen and (max-width: 840px) {
-	.voteplan-title {
-		font-size: 68px;
-	}
-}
-
 .App-intro {
 	font-size: large;
 }
@@ -134,10 +128,18 @@
 	border: none;
 }
 
-/* TODO: Apply this responsive styling to the new grid-based layout */;
 @media only screen and (max-width: 840px) {
+	.voteplan-title {
+		font-size: 92px;
+	}
 	.vv-navbar img{
 		width: 200px;
+	}
+}
+
+@media only screen and (max-width: 420px) {
+	.voteplan-title {
+		font-size: 68px;
 	}
 }
 
