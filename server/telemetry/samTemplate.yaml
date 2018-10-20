@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Outputs the category
+Globals:
+  Function:
+    Runtime: nodejs8.10
+  Api:
+    Cors:
+      AllowMethods: "'GET,POST,OPTIONS'"
+      AllowHeaders: "'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range'"
+      AllowOrigin: "'*'"
+
+Resources:
+  SaveSurveyResult:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/api/SaveJsonResult.handler
+      Runtime: nodejs8.10
+      CodeUri: ./
+      Policies: AmazonDynamoDBFullAccess
+      Environment:
+        Variables:
+          SURVEY_TABLE: !Ref SurveyTable
+      Events:
+        MyCategoryApi:
+          Type: Api
+          Properties:
+            Path: /SaveSurveyResult
+            Method: POST
+
+  SurveyTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: contact
+          AttributeType: S
+      KeySchema:
+        - AttributeName: contact
+          KeyType: HASH
+      ProvisionedThroughput:
+        ReadCapacityUnits: 5
+        WriteCapacityUnits: 5

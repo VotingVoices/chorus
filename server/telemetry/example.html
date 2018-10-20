@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container" ng-app="voting" ng-controller="votingControl">
+    <form class="mt-4">
+        <div ng-repeat="question in questionList" ng-show="question.visible">
+            <div class="form-group" ng-show="question.type === 'text'">
+                <label>{{ question.question }}</label>
+                <input class="form-control" ng-model="question.textResult">
+            </div>
+            <div class="form-group" ng-show="question.type === 'single'">
+                <label>{{ question.question }}</label>
+                <select class="form-control" ng-model="question.singleResult" ng-change="updateVisibility();">
+                    <option ng-repeat="option in question.options">{{option}}</option>
+                </select>
+            </div>
+            <div class="form-group" ng-show="question.type === 'multiple'">
+                <label>{{ question.question }}</label>
+                <select multiple class="form-control" ng-model="question.multipleResult">
+                    <option ng-repeat="option in question.options">{{option}}</option>
+                </select>
+            </div>
+        </div>
+    </form>
+    <button class="btn btn-success" ng-click="submit()">Submit</button>
+</div>
+<script>
+    let app = angular.module('voting', []);
+
+    app.controller('votingControl', function ($scope, $http) {
+        $scope.submit = function () {
+            let result = {};
+            for (let i = 0; i < $scope.questionList.length; i++) {
+                let question = $scope.questionList[i];
+                if (question.visible === true) {
+                    if (question.type === 'multiple') {
+                        result[question.label] = question.multipleResult;
+                    } else if (question.type === 'single') {
+                        result[question.label] = question.singleResult;
+                    } else {
+                        result[question.label] = question.textResult;
+                    }
+                }
+            }
+            console.log(JSON.stringify(result) + " is going to be sent to the server");
+            $http({
+                method: "POST",
+                url: "https://gpvz3vnswb.execute-api.us-west-2.amazonaws.com/Stage/SaveSurveyResult",
+                data: result
+            }).then(function mySuccess(response) {
+                alert("success " + response.data);
+            }, function myError(response) {
+                alert(response);
+            });
+        };
+
+        $scope.updateVisibility = function () {
+            $scope.questionList[2].visible = $scope.questionList[1].singleResult === 'nope';
+
+            if ($scope.questionList[2].visible === true) {
+                if ($scope.questionList[2].singleResult === 'nope') {
+                    for (let i = 3; i <= 6; i++) {
+                        $scope.questionList[i].visible = true;
+                    }
+                    for (let i = 7; i <= 9; i++) {
+                        $scope.questionList[i].visible = false;
+                    }
+                } else if (['colorado', 'oregon', 'washington'].includes($scope.questionList[2].singleResult)) {
+                    for (let i = 3; i <= 6; i++) {
+                        $scope.questionList[i].visible = false;
+                    }
+                    for (let i = 7; i <= 9; i++) {
+                        $scope.questionList[i].visible = true;
+                    }
+                }
+            } else {
+                for (let i = 3; i <= 9; i++) {
+                    $scope.questionList[i].visible = false;
+                }
+            }
+        };
+
+        $scope.questionList = [
+            {
+                question: 'First things first. Are you registered to vote?',
+                options: ['yes', 'no', 'dunno'],
+                type: 'single',
+                label: 'registeredToVote',
+                requiredIfVisible: true,
+                visible: true
+            },
+            {
+                question: 'Do you need to send in an absentee ballot?',
+                options: ['yes', 'nope'],
+                type: 'single',
+                label: 'absenteeBallor',
+                requiredIfVisible: true,
+                visible: true
+            },
+            {
+                question: 'Are you planning to vote in any of these states that allow mail-in/ballot box voting?',
+                options: ['colorado', 'oregon', 'washington', 'nope'],
+                type: 'single',
+                label: 'voteInState',
+                requiredIfVisible: true,
+                visible: false
+            },
+            {
+                question: 'Do you know where your polling location is?',
+                options: ['yes', 'no', 'dunno'],
+                type: 'single',
+                label: 'pollingLocation',
+                requiredIfVisible: true,
+                visible: false
+            },
+            {
+                question: 'Will you need special accomodations to be able to vote?',
+                options: ['yeah', 'nah'],
+                type: 'single',
+                label: 'specialAccomodations',
+                requiredIfVisible: true,
+                visible: false
+            },
+            {
+                question: 'How are you gonna get there?',
+                options: ['drive', 'walk', 'uber/lyft', 'ask a friend', 'bike'],
+                type: 'single',
+                label: 'transportation',
+                requiredIfVisible: true,
+                visible: false
+            },
+            {
+                question: 'Will you have to miss/leave work to vote?',
+                options: ['yes', 'no', 'maybe'],
+                type: 'single',
+                label: 'leaveWork',
+                requiredIfVisible: true,
+                visible: false
+            },
+            {
+                question: 'Have you received your ballot in the mail?',
+                options: ['yep!', 'not yet'],
+                type: 'single',
+                label: 'receivedBallot',
+                requiredIfVisible: true,
+                visible: false
+            },
+            {
+                question: 'Do you know when the deadline is?',
+                options: ['yep!', 'naw'],
+                type: 'single',
+                label: 'knowDeadline',
+                requiredIfVisible: true,
+                visible: false
+            },
+            {
+                question: 'How are you gonna drop off your ballot?',
+                options: ['gonna mail it', 'gonna drop it of at a ballot box'],
+                type: 'single',
+                label: 'howToDropOffBallot',
+                requiredIfVisible: true,
+                visible: false
+            },
+            {
+                question: 'What are your reasons for voting?',
+                options: [],
+                type: 'text',
+                label: 'votingReason',
+                requiredIfVisible: true,
+                visible: true
+            },
+            {
+                question: 'Do you know what/who is on your ballot?',
+                options: ['yes', 'no'],
+                type: 'single',
+                label: 'knowBallot',
+                requiredIfVisible: true,
+                visible: true
+            },
+            {
+                question: 'Let\'s invite some people to vote with you! Who would you like to join you in voting?',
+                options: ['Mom(s)', 'Dad(s)', 'Sibling(s)', 'Coworker(s)', 'Friend(s)'],
+                type: 'multiple',
+                label: 'invitePeople',
+                requiredIfVisible: true,
+                visible: true
+            },
+            {
+                question: 'How are you feeling about these midterm elections?',
+                options: ['Excited', 'Happy', 'Sad', 'Meh', 'Angry', 'Concerned', 'Nervous', 'Shocked'],
+                type: 'single',
+                label: 'feeling',
+                requiredIfVisible: true,
+                visible: true
+            },
+            {
+                question: 'Enter your email or phone number so we can send you your plan!',
+                options: [],
+                type: 'text',
+                label: 'contact',
+                requiredIfVisible: true,
+                visible: true
+            }
+        ];
+    });
+</script>
+</body>
+</html>
