@@ -18,6 +18,9 @@
 	padding-bottom: 12px;
 	padding-left: 12px;
 	padding-right: 12px;
+}
+
+.header-gradient-separator {
 	border-width: 0px 0px 10px 0px;
 	border-style: solid;
 	border-image: linear-gradient(to right, #1c2856, #e81c38);

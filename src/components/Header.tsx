@@ -37,6 +37,8 @@ class Header extends React.Component<IPropsFromState & IConnectedReduxProps, any
 					<DonateButton {...this.props} />
 				</div>
 
+				<div className="header-gradient-separator" />
+
 				<div className="deadline-banner VotingVoices-sans-serif" dangerouslySetInnerHTML={{__html: this.props.getString(StringId.DeadlineBannerMarkup)}} />
 			</div>
 		);
