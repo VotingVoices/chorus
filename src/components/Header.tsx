@@ -27,9 +27,12 @@ class Header extends React.Component<IPropsFromState & IPropsFromDispatch, any> 
 					<div className="header-logo">
 						<a href="#/LandingPage"><img className="vv-header-img" src={vvlogo} /></a>
 					</div>
-					<div className="right-buttons">
-						<Button type="button" className="vv-button contact-about-button" href="mailto:info@votingvoices.org" onClick={this._onContactClick}>{this.props.getString(StringId.Contact)}</Button>
-						<Button type="button" className="vv-button vv-button-filled-in-header" href="https://pages.donately.com/votingvoices/donate" target="_blank" onClick={this._onDonateClick}>{this.props.getString(StringId.Donate)}</Button>
+					<div className="vv-dropdown-menu">
+						<Button type="button">Stuff</Button>
+						<div className="right-buttons vv-dropdown-content">
+							<Button type="button" className="vv-button contact-about-button" href="mailto:info@votingvoices.org" onClick={this._onContactClick}>{this.props.getString(StringId.Contact)}</Button>
+							<Button type="button" className="vv-button vv-button-filled-in-header" href="https://pages.donately.com/votingvoices/donate" target="_blank" onClick={this._onDonateClick}>{this.props.getString(StringId.Donate)}</Button>
+						</div>
 					</div>
 				</div>
 
