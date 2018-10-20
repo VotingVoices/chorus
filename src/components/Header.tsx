@@ -29,7 +29,7 @@ class Header extends React.Component<IPropsFromState & IPropsFromDispatch, any> 
 					</div>
 					<div className="right-buttons">
 						<Button type="button" className="vv-button contact-about-button" href="mailto:info@votingvoices.org" onClick={this._onContactClick}>{this.props.getString(StringId.Contact)}</Button>
-						<Button type="button" className="vv-button vv-button-filled-in-header" href="https://pages.donately.com/votingvoices/donate" target="_blank" onClick={this._onDonateClick}>{this.props.getString(StringId.Donate)}</Button>
+						{/*<Button type="button" className="vv-button vv-button-filled-in-header" href="https://pages.donately.com/votingvoices/donate" target="_blank" onClick={this._onDonateClick}>{this.props.getString(StringId.Donate)}</Button>*/}
 					</div>
 				</div>
 
@@ -42,9 +42,9 @@ class Header extends React.Component<IPropsFromState & IPropsFromDispatch, any> 
 		this.props.recordContact();
 	}
 
-	private _onDonateClick = (ev: React.MouseEvent<Button>) => {
+	/*private _onDonateClick = (ev: React.MouseEvent<Button>) => {
 		this.props.recordDonate();
-	}
+	}*/
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => ({
