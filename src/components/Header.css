@@ -3,10 +3,10 @@
 	text-align: right;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	display: none;
 }
 
 .header-expando {
+	display: none;
 	grid-column: 2;
 	text-align: right;
 }
@@ -47,5 +47,15 @@
 @media only screen and (max-width: 840px) {
 	.vv-header-img {
 		width: 200px;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.right-buttons {
+		display: none;
+	}
+
+	.header-expando {
+		display: block;
 	}
 }
