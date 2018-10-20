@@ -8,7 +8,7 @@ export class ShareWidget extends React.Component<any, any> {
 		return (
 			<div className="share-widget-root">
 				<div className="fb-share-button" 
-					data-href="https://votingvoices.org" 
+					data-href="http://votingvoices.org/voteplan"
 					data-layout="button_count"
 					data-size="large" />
 				<a className="twitter-share-button"
