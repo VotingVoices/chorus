@@ -1,3 +1,37 @@
+.right-buttons {
+	grid-column: 2;
+	text-align: right;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.header-expando {
+	display: none;
+	grid-column: 2;
+	text-align: right;
+}
+
+.vv-page-header {
+	flex: 0 1 auto;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+.expando-content {
+	padding-bottom: 8px;
+}
+
+.header-gradient-separator {
+	border-width: 0px 0px 10px 0px;
+	border-style: solid;
+	border-image: linear-gradient(to right, #1c2856, #e81c38);
+	border-image-slice: 1;
+}
+
 .deadline-banner {
 	background: #1d2856;
 	color: white;
@@ -6,8 +40,33 @@
 	text-transform: uppercase;
 }
 
+.expando-content {
+	display: block;
+}
+
+.expando-content .vv-button {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
 @media only screen and (max-width: 840px) {
-.vv-header-img {
+	.vv-header-img {
 		width: 200px;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.right-buttons {
+		display: none;
+	}
+
+	.header-expando {
+		display: block;
+	}
+}
+
+@media only screen and (min-width: 500px) {
+	.expando-content {
+		display: none;
 	}
 }

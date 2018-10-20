@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Button } from 'react-bootstrap';
 import { connect} from 'react-redux';
-import { Dispatch } from 'redux';
 
-import { IQuestionnaireState, recordContact, recordDonate } from '../store';
+import { default as ContactButton } from './ContactButton';
+import { default as DonateButton } from './DonateButton';
+import { IConnectedReduxProps, IQuestionnaireState, } from '../store';
 import { StringId } from '../strings';
 
 import '../App.css';
@@ -14,46 +15,69 @@ interface IPropsFromState {
 	getString: (id: StringId) => string,
 }
 
-interface IPropsFromDispatch {
-	recordContact: typeof recordContact,
-	recordDonate: typeof recordDonate,
+enum ExpandoState {
+	Collapsed,
+	Expanded,
 }
 
-class Header extends React.Component<IPropsFromState & IPropsFromDispatch, any> {
+interface IHeaderState {
+	expandoState: ExpandoState,
+}
+
+class Header extends React.Component<IPropsFromState & IConnectedReduxProps, IHeaderState> {
+	public componentWillMount() {
+		this.setState({ expandoState: ExpandoState.Collapsed });
+	}
+
 	public render() {
+		const { expandoState } = this.state;
+
+		const expandoContentStyle: React.CSSProperties = expandoState === ExpandoState.Expanded ? {} : {display: "none"};
+		const expandoGlyphIconName = expandoState === ExpandoState.Expanded ? "glyphicon-chevron-up" : "glyphicon-chevron-down";
+		
 		return (
 			<div>
 				<div className="vv-page-header">
 					<div className="header-logo">
 						<a href="#/LandingPage"><img className="vv-header-img" src={vvlogo} /></a>
 					</div>
+
 					<div className="right-buttons">
-						<Button type="button" className="vv-button contact-about-button" href="mailto:info@votingvoices.org" onClick={this._onContactClick}>{this.props.getString(StringId.Contact)}</Button>
-						{/*<Button type="button" className="vv-button vv-button-filled-in-header" href="https://pages.donately.com/votingvoices/donate" target="_blank" onClick={this._onDonateClick}>{this.props.getString(StringId.Donate)}</Button>*/}
+						<ContactButton {...this.props} />
+						<DonateButton {...this.props} />
+					</div>
+
+					<div className="header-expando">
+						<Button type="button" className={`contact-about-button glyphicon ${expandoGlyphIconName}`} onClick={this._onExpandoClick} />
 					</div>
 				</div>
+
+				<div className="expando-content" style={expandoContentStyle}>
+					<ContactButton {...this.props} />
+					<DonateButton {...this.props} />
+				</div>
+
+				<div className="header-gradient-separator" />
 
 				<div className="deadline-banner VotingVoices-sans-serif" dangerouslySetInnerHTML={{__html: this.props.getString(StringId.DeadlineBannerMarkup)}} />
 			</div>
 		);
 	}
 
-	private _onContactClick = (ev: React.MouseEvent<Button>) => {
-		this.props.recordContact();
-	}
+	private _onExpandoClick = (ev: React.MouseEvent<Button>) => {
+		const { expandoState } = this.state;
 
-	/*private _onDonateClick = (ev: React.MouseEvent<Button>) => {
-		this.props.recordDonate();
-	}*/
+		if (expandoState === ExpandoState.Collapsed) {
+			this.setState({ expandoState: ExpandoState.Expanded });
+		}
+		else {
+			this.setState({ expandoState: ExpandoState.Collapsed });
+		}
+	}
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => ({
 	getString: state.getString,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-	recordContact: () => dispatch(recordContact()),
-	recordDonate: () => dispatch(recordDonate()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);
