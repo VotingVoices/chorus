@@ -93,9 +93,14 @@
 }
 
 .vv-button-filled {
-	background: #b61631;
+	background: #e81c38;
 	color: white;
 	border: none;
+}
+
+.vv-button-filled:hover {
+	background: #b61631;
+	color: white;
 }
 
 .vv-button-filled-in-header {
@@ -104,7 +109,17 @@
 	border: none;
 }
 
+.vv-button-filled-in-header:hover {
+	background: #e81c38;
+	color: white;
+}
+
 .vv-button-outline {
+	color: white;
+}
+
+.vv-button-outline:hover {
+	background: #e81c38;
 	color: white;
 }
 
@@ -126,6 +141,11 @@
 
 .contact-about-button {
 	border: none;
+}
+
+.contact-about-button:hover {
+	background: #e81c38;
+	color: white;
 }
 
 @media only screen and (max-width: 840px) {
