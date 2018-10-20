@@ -5,3 +5,9 @@
 	padding: 2px;
 	text-transform: uppercase;
 }
+
+@media only screen and (max-width: 840px) {
+.vv-header-img {
+		width: 200px;
+	}
+}
