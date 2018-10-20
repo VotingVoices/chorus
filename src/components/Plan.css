@@ -46,6 +46,13 @@
 	margin-bottom: 60px;
 }
 
+
+@media only screen and (max-width: 500px) {
+	.Plan-invite-people {
+		flex-flow: column;
+	}
+}
+
 @media only screen and (max-width: 840px) {
 	.plan-sub-header-text {
 		font-size: 14px;
