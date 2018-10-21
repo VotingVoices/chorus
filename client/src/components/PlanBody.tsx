@@ -27,16 +27,30 @@ interface IPropsFromDispatch {
 	sendPlanEmail: typeof sendPlanEmail,
 }
 
-interface IEmailAddressState {
-	emailAddress: string;
+enum SavePaneExpandState {
+	Collapsed,
+	Expanded,
+}
+
+interface ISavePaneState {
+	expandState: SavePaneExpandState,
+	emailAddress: string,
 }
 
 export interface IIndexHolder {
 	index: number;
 }
 
-class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, IEmailAddressState> {
+class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, ISavePaneState> {
+	public componentWillMount() {
+		this.setState({ expandState: SavePaneExpandState.Collapsed });
+	}
+
 	public render() {
+		const { expandState: savePaneExpandState } = this.state;
+
+		const savePaneStyle: React.CSSProperties = savePaneExpandState === SavePaneExpandState.Expanded ? {} : {display: "none"};
+
 		const indexHolder = { index: 0 } as IIndexHolder;
 
 		return (
@@ -44,7 +58,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 				<div className="plan-save-and-invite">
 					<div className="plan-save-and-invite-2">
 						<div className="plan-save">
-							<Button type="button" className="vv-button save-button">{this.props.getString(StringId.Save)}</Button>
+							<Button type="button" className="vv-button save-button" onClick={this._onSaveClick}>{this.props.getString(StringId.Save)}</Button>
 						</div>
 						<div className="plan-invite-people">
 							<div className="plan-invite-people-text">{this.props.getString(StringId.PlanPageInvitePeople)}</div>
@@ -55,7 +69,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 					</div>
 				</div>
 
-				<div className="save-pane">
+				<div className="save-pane" style={savePaneStyle}>
 					<div className="email-address-label VotingVoices-serif">
 						{this.props.getString(StringId.SendYourselfALink)}
 					</div>
@@ -108,6 +122,17 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 
 	public componentDidMount() {
 		this.props.recordPlanPage(this.props.answers, this.props.currentLanguage);
+	}
+
+	private _onSaveClick = (ev: React.MouseEvent<Button>) => {
+		const { expandState } = this.state;
+
+		if (expandState === SavePaneExpandState.Collapsed) {
+			this.setState({ expandState: SavePaneExpandState.Expanded });
+		}
+		else {
+			this.setState({ expandState: SavePaneExpandState.Collapsed });
+		}
 	}
 
 	private _onEmailAddressValueChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
