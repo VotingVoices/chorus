@@ -39,6 +39,10 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 					<PlanBody {...this.props} answers={this.props.answers} votingStateId={this.props.votingStateId} />
 				)}
 
+				{this.props.currentView === AppView.PrivacyPolicy && (
+					<PrivacyPolicy key="privacy-policy" {...this.props} />
+				)}
+
 				<Footer {...this.props} />
 			</div>
 		);
@@ -60,7 +64,7 @@ class App extends React.Component<IConnectedReduxProps & IPropsFromState> {
 			}
 
 			case AppView.PrivacyPolicy: {
-				return (<PrivacyPolicy key="privacy-policy" {...this.props} />);
+				return (<React.Fragment />)
 			}
 
 			default: {
