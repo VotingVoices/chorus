@@ -9,7 +9,7 @@ const hello: Handler = (_event: any, _context: Context, callback: Callback) => {
 	const response: IHelloResponse = {
 		statusCode: 200,
 		body: JSON.stringify({
-			message: Math.floor(Math.random() * 10)
+			message: Math.floor(Math.random() * 100)
 		})
 	}
 
