@@ -21,7 +21,7 @@ const sendVotePlanEmail: Handler = (event: any, _context: Context, callback: Cal
 	const planPageUrl = `http://votingvoices.org/voteplan/#/Plan?${planPageQueryString}`;
 
 	const sendParams: AWS.SES.SendEmailRequest = {
-		Source: 'andy@andybrauninger.com',
+		Source: 'VotePlan by VotingVoices <andy@andybrauninger.com>',
 		Destination: {
 			ToAddresses: [
 				emailAddress,
