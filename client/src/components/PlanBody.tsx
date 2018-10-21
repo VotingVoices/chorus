@@ -5,11 +5,11 @@ import { default as PlanEmotion } from './PlanEmotion';
 import { default as PlanStep } from './PlanStep';
 import { default as ReasonToVote } from './ReasonToVote';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
+import { ShareWidgets, ShareWidgetSize } from './ShareWidgets';
 import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, QuestionId, QUESTIONS, recordPlanPage, VotingStateId } from '../store';
 import { StringId }from '../strings';
 
 import './Plan.css';
-import ShareWidget from './ShareWidget';
 
 interface IPlanBodyProps {
 	answers: IQuestionAndAnswer[],
@@ -39,7 +39,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 				<div className="Plan-invite-people">
 					<div className="Plan-invite-people-text">{invitePeopleText}</div>
 					<div className="share-widget-container">
-						<ShareWidget />
+						<ShareWidgets size={ShareWidgetSize.Small} />
 					</div>
 				</div>
 
@@ -61,7 +61,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 										return <PlanEmotion {...this.props} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 									else if (questionId === QuestionId.PeopleToInvite) {
-										return <PlanStep { ...this.props } indexHolder={indexHolder} callToAction={(<div className="plan-step-share-widget-container"><ShareWidget { ...this.props } /></div>)} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
+										return <PlanStep { ...this.props } indexHolder={indexHolder} callToAction={(<div className="plan-step-share-widget-container"><ShareWidgets {...this.props} size={ShareWidgetSize.Large} /></div>)} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
 									}
 									else {
 										return <PlanStep {...this.props} indexHolder={indexHolder} planStepId={planStepId!} votingStateId={this.props.votingStateId} />
@@ -85,17 +85,6 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 
 	public componentDidMount() {
 		this.props.recordPlanPage(this.props.answers, this.props.currentLanguage);
-		
-		// TODO: Ideally this would be more localized to ShareWidget, but it seems better to do this just once right now.
-		const twitterWidget = (window as any).twttr.widgets;
-		if (twitterWidget !== undefined) {
-			twitterWidget.load();
-		}
-
-		const facebookWidget = (window as any).FB;
-		if (facebookWidget !== undefined) {
-			facebookWidget.XFBML.parse();
-		}
 	}
 }
 
