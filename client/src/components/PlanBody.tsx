@@ -42,17 +42,22 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 		return (
 			<div>
 				<div className="plan-save-and-invite">
-					<div className="plan-save">
-						{this.props.getString(StringId.Save)}
-						<input type="text" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
-						<Button type="button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
-					</div>
-					<div className="plan-invite-people">
-						<div className="plan-invite-people-text">{this.props.getString(StringId.PlanPageInvitePeople)}</div>
-						<div className="share-widget-container">
-							<ShareWidgets size={ShareWidgetSize.Small} />
+					<div className="plan-save-and-invite-2">
+						<div className="plan-save">
+							{this.props.getString(StringId.Save)}
+						</div>
+						<div className="plan-invite-people">
+							<div className="plan-invite-people-text">{this.props.getString(StringId.PlanPageInvitePeople)}</div>
+							<div className="share-widget-container">
+								<ShareWidgets size={ShareWidgetSize.Small} />
+							</div>
 						</div>
 					</div>
+				</div>
+
+				<div className="save-pane">
+					<input type="text" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
+					<Button type="button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
 				</div>
 
 				<div className="App plan-page-body">

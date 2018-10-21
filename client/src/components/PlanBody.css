@@ -12,12 +12,27 @@
 	text-transform: uppercase;	
 	font-family: "AlternateGothicNo3";
 	font-size: 16pt;
+	display: flex;
+}
+
+.plan-save-and-invite-2 {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	display: flex;
+}
+
+.plan-save {
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .plan-invite-people {
-	margin-top: 10px;
 	display: flex;
-	justify-content: center;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 .plan-invite-people-text {
