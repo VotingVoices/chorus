@@ -4,23 +4,25 @@ import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } fr
 import './ShareWidget.css';
 
 export class ShareWidget extends React.Component<any, any> {
-
 	public render(): JSX.Element {
 		return (
 			<div className="share-widget-root">
 				<FacebookShareButton
 					url="http://votingvoices.org/voteplan">
-					<FacebookIcon size={32} round={true} />
+					<div className="share-icon">
+						<FacebookIcon size={32} round={true} />
+					</div>
 				</FacebookShareButton>
 
 				<TwitterShareButton
 					url="http://votingvoices.org/voteplan">
-					<TwitterIcon size={32} round={true} />
+					<div className="share-icon">
+						<TwitterIcon size={32} round={true} />
+					</div>
 				</TwitterShareButton>
 			</div>
 		);
 	}
-
 }
 
 export default ShareWidget;
