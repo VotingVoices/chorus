@@ -2,7 +2,8 @@ import * as React from 'react';
 import { StringId } from '../strings';
 import { connect } from 'react-redux';
 import { IQuestionnaireState, IConnectedReduxProps } from '../store';
-import './Plan.css';
+
+import './PlanBody.css';
 
 interface IPropsFromState {
 	getString: (id: StringId) => string;

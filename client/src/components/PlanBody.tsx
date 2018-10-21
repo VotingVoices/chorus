@@ -10,7 +10,7 @@ import { ShareWidgets, ShareWidgetSize } from './ShareWidgets';
 import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, QuestionId, QUESTIONS, recordPlanPage, sendPlanEmail, VotingStateId } from '../store';
 import { StringId }from '../strings';
 
-import './Plan.css';
+import './PlanBody.css';
 
 interface IPlanBodyProps {
 	answers: IQuestionAndAnswer[],
