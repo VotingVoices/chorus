@@ -8,18 +8,21 @@
 	padding-right: 20px;
 }
 
-.Plan-invite-people {
+.plan-save-and-invite {
+	text-transform: uppercase;	
+	font-family: "AlternateGothicNo3";
+	font-size: 16pt;
+}
+
+.plan-invite-people {
 	margin-top: 10px;
 	display: flex;
 	justify-content: center;
 }
 
-.Plan-invite-people-text {
-	text-transform: uppercase;	
-	font-family: "AlternateGothicNo3";
-	font-size: 16pt;
+.plan-invite-people-text {
 	vertical-align: top;
-	color: #666666;
+	color: #999999;
 	margin-right: 5px;
 	margin-top: auto;
 	margin-bottom: auto;
@@ -36,7 +39,7 @@
 
 
 @media only screen and (max-width: 500px) {
-	.Plan-invite-people {
+	.plan-invite-people {
 		flex-flow: column;
 	}
 }

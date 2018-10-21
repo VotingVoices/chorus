@@ -10,7 +10,6 @@ interface IPropsFromState {
 }
 
 export class PlanHeader extends React.Component<IPropsFromState & IConnectedReduxProps, any> {
-
 	public render(): JSX.Element {
 		const subHeaderText = this.props.getString(StringId.PlanPageSubheader);
 
@@ -21,7 +20,6 @@ export class PlanHeader extends React.Component<IPropsFromState & IConnectedRedu
 			</div>
 		);
 	}
-
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => ({
