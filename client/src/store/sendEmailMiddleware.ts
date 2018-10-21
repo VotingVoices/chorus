@@ -18,7 +18,10 @@ function invokeSendEmailEndpoint(emailAddress: string, planPageQueryString: stri
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify({ emailAddress, planPageQueryString })
 	}).then(res => {
-		if (!res.ok) {
+		if (res.ok) {
+			return res.json();
+		}
+		else {
 			throw new Error(`Failed HTTP response: ${res.status}`);
 		}
 	}).catch(err => {
