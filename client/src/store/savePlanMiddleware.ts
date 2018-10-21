@@ -41,6 +41,7 @@ export const savePlanMiddleware = () => (store: Store<IQuestionnaireState>) => (
 			const dummyInput = document.createElement("input");
 			document.body.appendChild(dummyInput);
 			dummyInput.setAttribute('value', url);
+			dummyInput.setAttribute('readonly', 'readonly');
 			dummyInput.select();
 			document.execCommand("copy");
 			document.body.removeChild(dummyInput);
