@@ -46,17 +46,20 @@ provider:
 #    variable1: value1
 
 # you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
+package:
+  include:
+    - handler.ts
+  exclude:
+    - node_modules/**/*
 
 functions:
   hello:
     handler: handler.hello
+
+    events:
+      - http:
+          path: hello
+          method: get
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
