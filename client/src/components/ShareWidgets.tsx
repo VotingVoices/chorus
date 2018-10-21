@@ -16,7 +16,7 @@ export class ShareWidgets extends React.Component<IShareWidgetsProps, any> {
 	public render(): JSX.Element {
 		const { size } = this.props;
 
-		const iconSize = size === ShareWidgetSize.Small ? 32 : 48;
+		const iconSize = size === ShareWidgetSize.Small ? 40 : 48;
 
 		return (
 			<div className="share-widget-root">
