@@ -852,8 +852,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Lo ha hecho. Su voz importa. Salga y vote en las elecciones de término medio."],
 
 	[StringId.PlanPageInvitePeople,
-		// TODO: Maybe have a espanophone check this google translate.  Figured google translate is better than nada, though :)
-		'Invita a la gente a hacer un plan:'],
+		// "Invite people to make a plan:"],
+		'Invita a otros a hacer un plan:'],
 
 	[StringId.IsYourRegistrationOk,
 		// "Is your registration A-OK?"],
@@ -1260,27 +1260,31 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.WashingtonDeadlineDescription,
 		// "In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
-		"En Washington, su cartón de votación debe ser recogido en o antes del día de la elección (Martes, Noviembre 6, 2018)."], // TODO: Incomplete translation
+		"En Washington, su cartón de votación debe ser enviado en o antes del día de la elección (Martes, Noviembre 6, 2018). Los casilleros de envío cierran a las <strong>8:00 p.m.</strong> en punto el día de las elecciones."],
 
 	[StringId.WhereAreYouVoting,
 		// TODO: Translate
-		"<em>Where</em> will you be voting?"],
+		// "<em>Where</em> will you be voting?"],
+		"¿<em>Dónde</em> va a votar?"],
 
 	[StringId.ZipCode,
-		// TODO: Translate
-		"ZIP code"],
+		// "ZIP code"],
+		"Código ZIP"],
 
 	[StringId.Submit,
 		// TODO: Translate
-		"Submit"],
+		// "Submit"],
+		"Enviar"],
 
 	[StringId.WeUseYourZipCodeToProvideMoreElevantInformation,
 		// TODO: Translate
-		"(We use your ZIP code to help us give you more relevant questions and actions.)"],
+		// "(We use your ZIP code to help us give you more relevant questions and actions.)"],
+		"(Nosotros usamos su código ZIP para hacer preguntas y recomendaciones más relevantes.)"],
 
 	[StringId.Skip,
 		// TODO: Translate
-		"Skip"],
+		// "Skip"],
+		"Saltar"],
 
 	[StringId.PlanYourVoteInviteOthersAndGetReady,
 		// "Plan your vote, invite others, and get ready!"],
