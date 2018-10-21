@@ -1,6 +1,6 @@
 import { Action as HistoryAction } from 'history';
 import { action } from 'typesafe-actions';
-import { AnswerId, IAnswerQuestionPayload, IQuestionAndAnswer, ISetLanguagePayload, IZipCodeAnswer, LanguageId, QuestionId, QuestionnaireActionType } from './Types';
+import { AnswerId, IAnswerQuestionPayload, IQuestionAndAnswer, ISendPlanEmailPayload, ISetLanguagePayload, IZipCodeAnswer, LanguageId, QuestionId, QuestionnaireActionType } from './Types';
 import { IRecordCallToActionPayload, IRecordPlanPagePayload, IRouterLocationChangePayload, RouterActionType, TelemetryActionType } from './InternalTypes';
 
 export const startSurvey = () =>
@@ -17,6 +17,9 @@ export const viewPrivacyPolicy = () =>
 
 export const setLanguage = (language: LanguageId) =>
 	action(QuestionnaireActionType.SET_LANGUAGE, { language } as ISetLanguagePayload);
+
+export const sendPlanEmail = (emailAddress: string) =>
+	action(QuestionnaireActionType.SEND_PLAN_EMAIL, { emailAddress } as ISendPlanEmailPayload);
 
 export const locationChange = (pathname: string, search: string, hash: string, historyAction: HistoryAction | undefined) =>
 	action(RouterActionType.LOCATION_CHANGE, { pathname, search, hash, historyAction } as IRouterLocationChangePayload);
