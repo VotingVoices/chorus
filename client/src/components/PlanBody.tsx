@@ -44,7 +44,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 				<div className="plan-save-and-invite">
 					<div className="plan-save-and-invite-2">
 						<div className="plan-save">
-							{this.props.getString(StringId.Save)}
+							<Button type="button" className="vv-button save-button">{this.props.getString(StringId.Save)}</Button>
 						</div>
 						<div className="plan-invite-people">
 							<div className="plan-invite-people-text">{this.props.getString(StringId.PlanPageInvitePeople)}</div>

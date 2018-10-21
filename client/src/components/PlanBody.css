@@ -25,8 +25,15 @@
 .plan-save {
 	margin-top: auto;
 	margin-bottom: auto;
-	margin-left: 10px;
-	margin-right: 10px;
+}
+
+.save-button {
+	border: none;
+}
+
+.save-button:hover {
+	background: #1d2856;
+	color: white;
 }
 
 .plan-invite-people {
