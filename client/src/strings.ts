@@ -861,7 +861,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.LetsGetRegistered,
 		// "Let's do this: get registered!"],       // TODO: Capitalize Get?
-		"Hagámolo: Registreme"],
+		"Hagámolo: Registreme."],
 
 	[StringId.CheckYourRegistration,
 		// "Check your registration"],
