@@ -36,6 +36,25 @@
 	color: white;
 }
 
+.save-pane {
+	background: #eeeeee;
+	padding: 10px;
+	display: flex;
+}
+
+.email-address-controls {
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+}
+
+.email-address-text-box {
+	font-size: 16pt;
+	width: 250px;
+	margin-left: 14px;
+	margin-right: 14px;
+}
+
 .plan-invite-people {
 	display: flex;
 	margin-left: 10px;

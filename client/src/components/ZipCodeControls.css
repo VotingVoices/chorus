@@ -7,14 +7,8 @@
 .zip-code-text-box {
 	font-size: 22pt;
 	text-transform: uppercase;
-	color: black;
-	padding-left: 8px;
 	max-width: 130px;
 	-moz-appearance: textfield;
-}
-
-.zip-code-text-box::placeholder {
-	color: #cdcdcd;
 }
 
 .zip-code-text-box::-webkit-inner-spin-button,

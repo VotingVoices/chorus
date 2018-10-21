@@ -56,8 +56,10 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 				</div>
 
 				<div className="save-pane">
-					<input type="text" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
-					<Button type="button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
+					<div className="email-address-controls">
+						<input type="text" className="vv-text-box email-address-text-box" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
+						<Button type="button" className="vv-button vv-button-filled" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
+					</div>
 				</div>
 
 				<div className="App plan-page-body">
