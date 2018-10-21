@@ -7,7 +7,7 @@ import { default as PlanStep } from './PlanStep';
 import { default as ReasonToVote } from './ReasonToVote';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
 import { ShareWidgets, ShareWidgetSize } from './ShareWidgets';
-import { ALL_QUESTION_IDS, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, QuestionId, QUESTIONS, recordPlanPage, sendPlanEmail, VotingStateId } from '../store';
+import { ALL_QUESTION_IDS, copyLinkToClipboard, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, QuestionId, QUESTIONS, recordPlanPage, recordSaveButton, sendPlanEmail, VotingStateId } from '../store';
 import { StringId }from '../strings';
 
 import './PlanBody.css';
@@ -24,7 +24,9 @@ interface IPropsFromState {
 
 interface IPropsFromDispatch {
 	recordPlanPage: typeof recordPlanPage,
+	recordSaveButton: typeof recordSaveButton,
 	sendPlanEmail: typeof sendPlanEmail,
+	copyLinkToClipboard: typeof copyLinkToClipboard,
 }
 
 enum SavePaneExpandState {
@@ -76,7 +78,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 					<div className="email-address-controls">
 						<input type="text" className="vv-text-box email-address-text-box" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
 						<Button type="button" className="vv-button vv-button-filled save-pane-button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
-						<Button type="button" className="vv-button vv-button-outline save-pane-button copy-link-button">{this.props.getString(StringId.CopyLink)}</Button>
+						<Button type="button" className="vv-button vv-button-outline save-pane-button copy-link-button" onClick={this._onCopyLinkClick}>{this.props.getString(StringId.CopyLink)}</Button>
 					</div>
 				</div>
 
@@ -125,6 +127,8 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 	}
 
 	private _onSaveClick = (ev: React.MouseEvent<Button>) => {
+		this.props.recordSaveButton();
+
 		const { expandState } = this.state;
 
 		if (expandState === SavePaneExpandState.Collapsed) {
@@ -143,6 +147,10 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 		// TODO: Disable the 'Send' button for a blank email (or at least do validation here)
 		this.props.sendPlanEmail(this.state.emailAddress);
 	}
+
+	private _onCopyLinkClick = (ev: React.MouseEvent<Button>) => {
+		this.props.copyLinkToClipboard();
+	}
 }
 
 const mapStateToProps = (state: IQuestionnaireState) => ({
@@ -152,7 +160,9 @@ const mapStateToProps = (state: IQuestionnaireState) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
 	recordPlanPage: (answers: IQuestionAndAnswer[], language: LanguageId) => dispatch(recordPlanPage(answers, language)),
+	recordSaveButton: () => dispatch(recordSaveButton()),
 	sendPlanEmail: (emailAddress: string) => dispatch(sendPlanEmail(emailAddress)),
+	copyLinkToClipboard: () => dispatch(copyLinkToClipboard()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlanBody);

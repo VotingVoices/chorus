@@ -21,6 +21,9 @@ export const setLanguage = (language: LanguageId) =>
 export const sendPlanEmail = (emailAddress: string) =>
 	action(QuestionnaireActionType.SEND_PLAN_EMAIL, { emailAddress } as ISendPlanEmailPayload);
 
+export const copyLinkToClipboard = () =>
+	action(QuestionnaireActionType.COPY_LINK);
+
 export const locationChange = (pathname: string, search: string, hash: string, historyAction: HistoryAction | undefined) =>
 	action(RouterActionType.LOCATION_CHANGE, { pathname, search, hash, historyAction } as IRouterLocationChangePayload);
 
@@ -44,3 +47,6 @@ export const recordContact = () =>
 
 export const recordDonate = () =>
 	action(TelemetryActionType.DONATE);
+
+export const recordSaveButton = () =>
+	action(TelemetryActionType.SAVE_BUTTON);

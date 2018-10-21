@@ -158,6 +158,7 @@ export const enum QuestionnaireActionType {
 	PRIVACY_POLICY = 'QUESTIONNAIRE/PRIVACY_POLICY',
 	SET_LANGUAGE = 'QUESTIONNAIRE/SET_LANGUAGE',
 	SEND_PLAN_EMAIL = 'QUESTIONNAIRE/SEND_PLAN_EMAIL',
+	COPY_LINK = 'QUESTIONNAIRE/COPY_LINK',
 }
 
 export interface IConnectedReduxProps<A extends Action = AnyAction> {

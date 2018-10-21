@@ -3,7 +3,7 @@
 import { Store, createStore, applyMiddleware } from 'redux';
 import { History } from 'history';
 
-import { createTelemetrySession, IQuestionnaireState, surveyReducer, routerMiddleware, scrollMiddleware, sendEmailMiddleware, startHistoryListener, telemetryMiddleware } from './store';
+import { createTelemetrySession, IQuestionnaireState, surveyReducer, routerMiddleware, scrollMiddleware, savePlanMiddleware, startHistoryListener, telemetryMiddleware } from './store';
 
 export default function configureStore(history: History, initialState: IQuestionnaireState): Store<IQuestionnaireState> {
 	const session = createTelemetrySession();
@@ -15,7 +15,7 @@ export default function configureStore(history: History, initialState: IQuestion
 			scrollMiddleware(),
 			routerMiddleware(history),
 			telemetryMiddleware(session),
-			sendEmailMiddleware()));
+			savePlanMiddleware()));
 
 	startHistoryListener(history, store);
 

@@ -29,10 +29,21 @@ function invokeSendEmailEndpoint(emailAddress: string, planPageQueryString: stri
 	});
 }
 
-export const sendEmailMiddleware = () => (store: Store<IQuestionnaireState>) => (next: any) => (action: QuestionnaireAction) => {
+export const savePlanMiddleware = () => (store: Store<IQuestionnaireState>) => (next: any) => (action: QuestionnaireAction) => {
 	switch (action.type) {
 		case QuestionnaireActionType.SEND_PLAN_EMAIL: {
 			invokeSendEmailEndpoint(action.payload.emailAddress, getPlanPageQueryString(store.getState()), store.getState().currentLanguage);
+			return next(action);
+		}
+		case QuestionnaireActionType.COPY_LINK: {
+			// https://stackoverflow.com/questions/33855641/copy-output-of-a-javascript-variable-to-the-clipboard
+			const url = window.location.href;
+			const dummyInput = document.createElement("input");
+			document.body.appendChild(dummyInput);
+			dummyInput.setAttribute('value', url);
+			dummyInput.select();
+			document.execCommand("copy");
+			document.body.removeChild(dummyInput);
 			return next(action);
 		}
 	}

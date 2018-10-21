@@ -97,6 +97,18 @@ export class TelemetrySession {
 		});
 	}
 
+	public recordSaveButton() {
+		this.uploadData({
+			event: "SaveButton",
+		});
+	}
+
+	public recordCopyLink() {
+		this.uploadData({
+			event: "CopyLink",
+		});
+	}
+
 	private uploadData(data: any) {
 		// 'contact' is needs to be unique for every event.
 		data.contact = uuidv4();
@@ -149,6 +161,10 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 			session.recordDonate();
 			break;
 		}
+		case TelemetryActionType.SAVE_BUTTON: {
+			session.recordSaveButton();
+			break;
+		}
 		case QuestionnaireActionType.START_SURVEY: {
 			session.recordStartSurvey();
 			return next(action);
@@ -167,6 +183,10 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		}
 		case QuestionnaireActionType.SEND_PLAN_EMAIL: {
 			session.recordSendPlanEmail(action.payload.emailAddress);
+			return next(action);
+		}
+		case QuestionnaireActionType.COPY_LINK: {
+			session.recordCopyLink();
 			return next(action);
 		}
 		default: {
