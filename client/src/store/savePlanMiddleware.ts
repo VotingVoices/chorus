@@ -29,6 +29,34 @@ function invokeSendEmailEndpoint(emailAddress: string, planPageQueryString: stri
 	});
 }
 
+function isIOS() {
+	return navigator.userAgent.match(/ipad|iphone/i);
+}
+
+function copyCurrentLocationToClipboard() {
+	// https://stackoverflow.com/questions/33855641/copy-output-of-a-javascript-variable-to-the-clipboard
+	const url = window.location.href;
+	const dummyInput = document.createElement("input");
+	document.body.appendChild(dummyInput);
+	dummyInput.setAttribute('value', url);
+	dummyInput.setAttribute('readonly', 'readonly');
+
+	if (isIOS()) {
+		const range = document.createRange();
+		range.selectNodeContents(dummyInput);
+		const selection = window.getSelection();
+		selection.removeAllRanges();
+		selection.addRange(range);
+		dummyInput.setSelectionRange(0, 999999);
+	}
+	else {
+		dummyInput.select();
+	}
+
+	document.execCommand("copy");
+	document.body.removeChild(dummyInput);
+}
+
 export const savePlanMiddleware = () => (store: Store<IQuestionnaireState>) => (next: any) => (action: QuestionnaireAction) => {
 	switch (action.type) {
 		case QuestionnaireActionType.SEND_PLAN_EMAIL: {
@@ -36,15 +64,7 @@ export const savePlanMiddleware = () => (store: Store<IQuestionnaireState>) => (
 			return next(action);
 		}
 		case QuestionnaireActionType.COPY_LINK: {
-			// https://stackoverflow.com/questions/33855641/copy-output-of-a-javascript-variable-to-the-clipboard
-			const url = window.location.href;
-			const dummyInput = document.createElement("input");
-			document.body.appendChild(dummyInput);
-			dummyInput.setAttribute('value', url);
-			dummyInput.setAttribute('readonly', 'readonly');
-			dummyInput.select();
-			document.execCommand("copy");
-			document.body.removeChild(dummyInput);
+			copyCurrentLocationToClipboard();
 			return next(action);
 		}
 	}
