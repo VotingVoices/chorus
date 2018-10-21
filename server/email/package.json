@@ -1,5 +1,5 @@
 {
-  "name": "email",
+  "name": "chorus-email-server",
   "version": "1.0.0",
   "description": "Lambda that is invoked by the client to email a vote plan to the user",
   "main": "handler.js",
