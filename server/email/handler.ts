@@ -4,7 +4,7 @@ import * as AWS from 'aws-sdk';
 AWS.config.update({region: 'us-east-1'});
 
 function getSenderName(): string {
-	return "VotePlan by Voting Voices <andy@andybrauninger.com>";
+	return "VotePlan by Voting Voices <plan@votingvoices.org>";
 }
 
 function getSubject(): string {
@@ -12,6 +12,7 @@ function getSubject(): string {
 }
 
 function getPlainTextBody(planPageUrl: string): string {
+	// TODO: Spanish version
 	return `Your voice matters. Get out there and vote in the midterms!\n\nYou can view your VotePlan here:\n${planPageUrl}`;
 }
 
