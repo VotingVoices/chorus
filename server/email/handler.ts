@@ -5,7 +5,7 @@ interface IHelloResponse {
 	body: string,
 }
 
-const hello: Handler = (event: any, context: Context, callback: Callback) => {
+const hello: Handler = (_event: any, _context: Context, callback: Callback) => {
 	const response: IHelloResponse = {
 		statusCode: 200,
 		body: JSON.stringify({
