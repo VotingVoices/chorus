@@ -3,21 +3,34 @@ import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } fr
 
 import './ShareWidgets.css';
 
-export class ShareWidgets extends React.Component<any, any> {
+export enum ShareWidgetSize {
+	Small,
+	Large,
+}
+
+interface IShareWidgetsProps {
+	size: ShareWidgetSize,
+}
+
+export class ShareWidgets extends React.Component<IShareWidgetsProps, any> {
 	public render(): JSX.Element {
+		const { size } = this.props;
+
+		const iconSize = size === ShareWidgetSize.Small ? 32 : 48;
+
 		return (
 			<div className="share-widget-root">
 				<FacebookShareButton
 					url="http://votingvoices.org/voteplan">
 					<div className="share-icon">
-						<FacebookIcon size={32} round={true} />
+						<FacebookIcon size={iconSize} round={true} />
 					</div>
 				</FacebookShareButton>
 
 				<TwitterShareButton
 					url="http://votingvoices.org/voteplan">
 					<div className="share-icon">
-						<TwitterIcon size={32} round={true} />
+						<TwitterIcon size={iconSize} round={true} />
 					</div>
 				</TwitterShareButton>
 			</div>
