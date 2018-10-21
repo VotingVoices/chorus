@@ -1256,7 +1256,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.OregonDeadlineDescription,
 		// "In Oregon, your ballot must be received by <strong>8:00 p.m.</strong> on Election Day (Tuesday, November 6, 2018). If you haven't sent your ballot by October 31, 2018, you should drop off the ballot in person to make sure it's counted."],
-		"En Oregon, su cartón de votación debe ser recibido antes de <strong>8:00 p.m.</strong> el día de las elecciones (Martes, Noviembre 6, 2018). Si no ha enviado su cartón de votación antes de Octubrie 31, 2018, usted tiene que entregar el carton de votación en persona para asegurarse que sea contado."],
+		"En Oregon, su cartón de votación debe ser recibido antes de <strong>8:00 p.m.</strong> el día de las elecciones (Martes, Noviembre 6, 2018). Si no ha enviado su cartón de votación antes de Octubre 31, 2018, usted tiene que entregar el carton de votación en persona para asegurarse que sea contado."],
 
 	[StringId.WashingtonDeadlineDescription,
 		// "In Washington, your ballot must be postmarked on or before Election Day (Tuesday, November 6, 2018). Ballot drop boxes close promptly at <strong>8:00 p.m.</strong> on Election Day."],
