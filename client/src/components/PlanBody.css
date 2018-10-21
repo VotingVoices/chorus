@@ -87,7 +87,7 @@
 }
 
 .share-widget-container {
-	margin-top: 4px;
+	display: flex;
 }
 
 .plan-step-share-widget-container {
