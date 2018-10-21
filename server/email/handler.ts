@@ -3,9 +3,13 @@ import * as AWS from 'aws-sdk';
 
 AWS.config.update({region: 'us-east-1'});
 
-interface IHelloResponse {
+interface ISendVotePlanResponse {
 	statusCode: number,
 	body: string,
+}
+
+function getSenderName(): string {
+	return "VotePlan by Voting Voices <andy@andybrauninger.com>";
 }
 
 function getSubject(): string {
@@ -21,7 +25,7 @@ const sendVotePlanEmail: Handler = (event: any, _context: Context, callback: Cal
 	const planPageUrl = `http://votingvoices.org/voteplan/#/Plan?${planPageQueryString}`;
 
 	const sendParams: AWS.SES.SendEmailRequest = {
-		Source: 'VotePlan by VotingVoices <andy@andybrauninger.com>',
+		Source: getSenderName(),
 		Destination: {
 			ToAddresses: [
 				emailAddress,
@@ -50,11 +54,9 @@ const sendVotePlanEmail: Handler = (event: any, _context: Context, callback: Cal
 
 	console.log("Just attempted to send an email.");
 
-	const response: IHelloResponse = {
+	const response: ISendVotePlanResponse = {
 		statusCode: 200,
-		body: JSON.stringify({
-			message: Math.floor(Math.random() * 100)
-		})
+		body: JSON.stringify({}),
 	}
 
 	callback(undefined, response);
