@@ -2,7 +2,7 @@ import { ActionType } from 'typesafe-actions';
 import { Store } from 'redux';
 
 import { getPlanPageQueryString } from './queryStringUtilities';
-import { IQuestionnaireState, QuestionnaireActionType } from './Types';
+import { IQuestionnaireState, LanguageId, QuestionnaireActionType } from './Types';
 
 import * as actions from './Actions';
 
@@ -12,11 +12,11 @@ type QuestionnaireAction = ActionType<typeof actions>;
 const SendEmailEndpoint = 'https://w2799uxd0h.execute-api.us-east-1.amazonaws.com/dev/sendplan';
 
 // TODO: Share code with telemetry.ts?
-function invokeSendEmailEndpoint(emailAddress: string, planPageQueryString: string) {
+function invokeSendEmailEndpoint(emailAddress: string, planPageQueryString: string, language: LanguageId) {
 	fetch(SendEmailEndpoint, {
 		method: "POST",
 		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify({ emailAddress, planPageQueryString })
+		body: JSON.stringify({ emailAddress, planPageQueryString, language })
 	}).then(res => {
 		if (res.ok) {
 			return res.json();
@@ -32,7 +32,7 @@ function invokeSendEmailEndpoint(emailAddress: string, planPageQueryString: stri
 export const sendEmailMiddleware = () => (store: Store<IQuestionnaireState>) => (next: any) => (action: QuestionnaireAction) => {
 	switch (action.type) {
 		case QuestionnaireActionType.SEND_PLAN_EMAIL: {
-			invokeSendEmailEndpoint(action.payload.emailAddress, getPlanPageQueryString(store.getState()));
+			invokeSendEmailEndpoint(action.payload.emailAddress, getPlanPageQueryString(store.getState()), store.getState().currentLanguage);
 			return next(action);
 		}
 	}
