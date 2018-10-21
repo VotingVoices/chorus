@@ -36,6 +36,7 @@ export const enum TelemetryActionType {
 	PRIVACY_POLICY = 'TELEMETRY/PRIVACY_POLICY',
 	CONTACT = 'TELEMETRY/CONTACT',
 	DONATE = 'TELEMETRY/DONATE',
+	SAVE_BUTTON = 'TELEMETRY/SAVE_BUTTON',
 }
 
 export interface IRecordPlanPagePayload {

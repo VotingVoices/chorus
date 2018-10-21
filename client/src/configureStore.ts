@@ -1,7 +1,9 @@
+// TODO: Should this file be in the 'store' directory?
+
 import { Store, createStore, applyMiddleware } from 'redux';
 import { History } from 'history';
 
-import { createTelemetrySession, IQuestionnaireState, surveyReducer, routerMiddleware, scrollMiddleware, startHistoryListener, telemetryMiddleware } from './store';
+import { createTelemetrySession, IQuestionnaireState, surveyReducer, routerMiddleware, scrollMiddleware, savePlanMiddleware, startHistoryListener, telemetryMiddleware } from './store';
 
 export default function configureStore(history: History, initialState: IQuestionnaireState): Store<IQuestionnaireState> {
 	const session = createTelemetrySession();
@@ -12,7 +14,8 @@ export default function configureStore(history: History, initialState: IQuestion
 		applyMiddleware(
 			scrollMiddleware(),
 			routerMiddleware(history),
-			telemetryMiddleware(session)));
+			telemetryMiddleware(session),
+			savePlanMiddleware()));
 
 	startHistoryListener(history, store);
 

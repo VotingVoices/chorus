@@ -169,6 +169,11 @@ export enum StringId {
 	PrivacyPolicy,
 	CopyrightPostPrivacyPolicy,
 	Donate,
+	Save,
+	EmailAddress,
+	Send,
+	SendYourselfALink,
+	CopyLink,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -308,7 +313,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"You've done the prep. Your voice matters. Get out there and vote in the midterms!"],
 
 	[StringId.PlanPageInvitePeople,
-		"Invite people to make a plan:"],
+		"Invite:"],
 
 	[StringId.IsYourRegistrationOk,
 		"Is your registration A-OK?"],
@@ -672,6 +677,21 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.Donate,
 		"Donate"],
+
+	[StringId.Save,
+		"Save"],
+
+	[StringId.EmailAddress,
+		"Your email address"],
+
+	[StringId.Send,
+		"Send"],
+
+	[StringId.SendYourselfALink,
+		"Send yourself a link to your VotePlan so you can refer to it later."],
+
+	[StringId.CopyLink,
+		"Copy Link"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -852,8 +872,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Lo ha hecho. Su voz importa. Salga y vote en las elecciones de término medio."],
 
 	[StringId.PlanPageInvitePeople,
-		// "Invite people to make a plan:"],
-		'Invita a otros a hacer un plan:'],
+		// "Invite:"],
+		'Invita:'],
 
 	[StringId.IsYourRegistrationOk,
 		// "Is your registration A-OK?"],
@@ -1319,6 +1339,27 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// TODO: Confirm translation
 		// "Donate"],
 		"Donar"],
+
+	[StringId.Save,
+		// TODO: Confirm translation
+		// "Save"],
+		"Guardar"],
+
+	[StringId.EmailAddress,
+		// TODO: Translate
+		"Your email address"],
+
+	[StringId.Send,
+		// "Send"],
+		"Enviar"],
+
+	[StringId.SendYourselfALink,
+		// TODO: Translate
+		"Send yourself a link to your VotePlan so you can refer to it later."],
+
+	[StringId.CopyLink,
+		// TODO: Translate
+		"Copy Link"],
 ]);
 
 export function getEnglishString(id: StringId): string {

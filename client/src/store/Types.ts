@@ -157,10 +157,12 @@ export const enum QuestionnaireActionType {
 	ANSWER_QUESTION = 'QUESTIONNAIRE/ANSWER_QUESTION',
 	PRIVACY_POLICY = 'QUESTIONNAIRE/PRIVACY_POLICY',
 	SET_LANGUAGE = 'QUESTIONNAIRE/SET_LANGUAGE',
+	SEND_PLAN_EMAIL = 'QUESTIONNAIRE/SEND_PLAN_EMAIL',
+	COPY_LINK = 'QUESTIONNAIRE/COPY_LINK',
 }
 
 export interface IConnectedReduxProps<A extends Action = AnyAction> {
-	dispatch: Dispatch<A>;
+	dispatch: Dispatch<A>,
 }
 
 export interface IAnswerQuestionPayload {
@@ -169,7 +171,11 @@ export interface IAnswerQuestionPayload {
 }
 
 export interface ISetLanguagePayload {
-	language: LanguageId;
+	language: LanguageId,
+}
+
+export interface ISendPlanEmailPayload {
+	emailAddress: string,
 }
 
 export enum PlanStepId {

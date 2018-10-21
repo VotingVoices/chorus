@@ -1,5 +1,9 @@
 .share-widget-root {
   display: inline-flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .share-icon {

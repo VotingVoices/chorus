@@ -90,6 +90,25 @@ export class TelemetrySession {
 		});
 	}
 
+	public recordSendPlanEmail(emailAddress: string) {
+		this.uploadData({
+			event: "SendPlanEmail",
+			emailAddress,
+		});
+	}
+
+	public recordSaveButton() {
+		this.uploadData({
+			event: "SaveButton",
+		});
+	}
+
+	public recordCopyLink() {
+		this.uploadData({
+			event: "CopyLink",
+		});
+	}
+
 	private uploadData(data: any) {
 		// 'contact' is needs to be unique for every event.
 		data.contact = uuidv4();
@@ -107,7 +126,7 @@ export class TelemetrySession {
 				throw new Error(`Failed HTTP response: ${res.status}`);
 			}
 		}).catch(err => {
-			throw new Error(`Unable to POST to elemetry endpoint.  err: ${err}`);
+			throw new Error(`Unable to POST to telemetry endpoint.  err: ${err}`);
 		});
 	}
 }
@@ -142,6 +161,10 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 			session.recordDonate();
 			break;
 		}
+		case TelemetryActionType.SAVE_BUTTON: {
+			session.recordSaveButton();
+			break;
+		}
 		case QuestionnaireActionType.START_SURVEY: {
 			session.recordStartSurvey();
 			return next(action);
@@ -156,6 +179,14 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		}
 		case QuestionnaireActionType.SET_LANGUAGE: {
 			session.recordSetLanguage(action.payload.language);
+			return next(action);
+		}
+		case QuestionnaireActionType.SEND_PLAN_EMAIL: {
+			session.recordSendPlanEmail(action.payload.emailAddress);
+			return next(action);
+		}
+		case QuestionnaireActionType.COPY_LINK: {
+			session.recordCopyLink();
 			return next(action);
 		}
 		default: {
