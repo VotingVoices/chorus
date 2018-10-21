@@ -3,7 +3,7 @@ import { StringId } from '../strings';
 import { connect } from 'react-redux';
 import { IQuestionnaireState, IConnectedReduxProps } from '../store';
 
-import './PlanBody.css';
+import './PlanHeader.css';
 
 interface IPropsFromState {
 	getString: (id: StringId) => string;
@@ -15,7 +15,7 @@ export class PlanHeader extends React.Component<IPropsFromState & IConnectedRedu
 		const subHeaderText = this.props.getString(StringId.PlanPageSubheader);
 
 		return (
-			<div className="Plan-header">
+			<div className="plan-header">
 				<h1 className="voteplan-title">VotePlan</h1>
 				<div className="plan-sub-header-text VotingVoices-serif">{subHeaderText}</div>
 			</div>
