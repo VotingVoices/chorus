@@ -8,7 +8,7 @@ interface IHelloResponse {
 	body: string,
 }
 
-const sendVotePlanEmail: Handler = (_event: any, _context: Context, callback: Callback) => {
+const sendVotePlanEmail: Handler = (event: any, _context: Context, callback: Callback) => {
 	const sendParams: AWS.SES.SendEmailRequest = {
 		Source: 'andy@andybrauninger.com',
 		Destination: {
@@ -24,7 +24,7 @@ const sendVotePlanEmail: Handler = (_event: any, _context: Context, callback: Ca
 			Body: {
 				Text: {
 					Charset: 'UTF-8',
-					Data: 'Four score and seven lambdas ago...",'
+					Data: `Behold, the value of 'event.body': ${event.body}`,
 				},
 			}
 		}
