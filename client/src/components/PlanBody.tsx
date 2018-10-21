@@ -85,17 +85,6 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 
 	public componentDidMount() {
 		this.props.recordPlanPage(this.props.answers, this.props.currentLanguage);
-		
-		// TODO: Ideally this would be more localized to ShareWidget, but it seems better to do this just once right now.
-		const twitterWidget = (window as any).twttr.widgets;
-		if (twitterWidget !== undefined) {
-			twitterWidget.load();
-		}
-
-		const facebookWidget = (window as any).FB;
-		if (facebookWidget !== undefined) {
-			facebookWidget.XFBML.parse();
-		}
 	}
 }
 
