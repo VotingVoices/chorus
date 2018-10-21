@@ -9,6 +9,8 @@ interface IHelloResponse {
 }
 
 const sendVotePlanEmail: Handler = (event: any, _context: Context, callback: Callback) => {
+	const { planPageQueryString } = JSON.parse(event.body);
+
 	const sendParams: AWS.SES.SendEmailRequest = {
 		Source: 'andy@andybrauninger.com',
 		Destination: {
@@ -24,7 +26,8 @@ const sendVotePlanEmail: Handler = (event: any, _context: Context, callback: Cal
 			Body: {
 				Text: {
 					Charset: 'UTF-8',
-					Data: `Behold, the value of 'event.body': ${event.body}`,
+					//Data: `Behold, the value of 'event.body': ${event.body}`,
+					Data: `You can view your VotePlan here: http://votingvoices.org/voteplan/#/Plan?${planPageQueryString}`,
 				},
 			}
 		}
