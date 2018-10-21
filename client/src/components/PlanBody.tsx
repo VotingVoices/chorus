@@ -45,7 +45,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 					<div className="plan-save">
 						{this.props.getString(StringId.Save)}
 						<input type="text" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
-						<Button type="button" onClick={this._onEmailSendClick}>Send</Button>
+						<Button type="button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
 					</div>
 					<div className="Plan-invite-people">
 						<div className="Plan-invite-people-text">{this.props.getString(StringId.PlanPageInvitePeople)}</div>

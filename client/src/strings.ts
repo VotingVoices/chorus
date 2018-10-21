@@ -171,6 +171,7 @@ export enum StringId {
 	Donate,
 	Save,
 	EmailAddress,
+	Send,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -680,6 +681,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.EmailAddress,
 		"Your email address"],
+
+	[StringId.Send,
+		"Send"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1336,6 +1340,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.EmailAddress,
 		// TODO: Translate
 		"Your email address"],
+
+	[StringId.Send,
+		// "Send"],
+		"Enviar"],
 ]);
 
 export function getEnglishString(id: StringId): string {
