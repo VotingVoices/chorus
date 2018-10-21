@@ -3,11 +3,6 @@ import * as AWS from 'aws-sdk';
 
 AWS.config.update({region: 'us-east-1'});
 
-interface ISendVotePlanResponse {
-	statusCode: number,
-	body: string,
-}
-
 function getSenderName(): string {
 	return "VotePlan by Voting Voices <andy@andybrauninger.com>";
 }
@@ -54,8 +49,12 @@ const sendVotePlanEmail: Handler = (event: any, _context: Context, callback: Cal
 
 	console.log("Just attempted to send an email.");
 
-	const response: ISendVotePlanResponse = {
+	const response = {
 		statusCode: 200,
+		headers: {	
+			'Access-Control-Allow-Origin': '*',
+			'Access-Control-Allow-Credentials': true,
+		},
 		body: JSON.stringify({}),
 	}
 
