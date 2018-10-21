@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
 
-import './ShareWidget.css';
+import './ShareWidgets.css';
 
-export class ShareWidget extends React.Component<any, any> {
+export class ShareWidgets extends React.Component<any, any> {
 	public render(): JSX.Element {
 		return (
 			<div className="share-widget-root">
@@ -24,5 +24,3 @@ export class ShareWidget extends React.Component<any, any> {
 		);
 	}
 }
-
-export default ShareWidget;
