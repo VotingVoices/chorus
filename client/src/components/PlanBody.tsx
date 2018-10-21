@@ -62,7 +62,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 					<div className="email-address-controls">
 						<input type="text" className="vv-text-box email-address-text-box" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
 						<Button type="button" className="vv-button vv-button-filled save-pane-button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
-						<Button type="button" className="vv-button vv-button-outline save-pane-button copy-link-button">Copy Link</Button>
+						<Button type="button" className="vv-button vv-button-outline save-pane-button copy-link-button">{this.props.getString(StringId.CopyLink)}</Button>
 					</div>
 				</div>
 
