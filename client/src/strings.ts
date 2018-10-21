@@ -172,6 +172,7 @@ export enum StringId {
 	Save,
 	EmailAddress,
 	Send,
+	SendYourselfALink,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -684,6 +685,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.Send,
 		"Send"],
+
+	[StringId.SendYourselfALink,
+		"Send yourself a link to your VotePlan so you can refer to it later."],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1344,6 +1348,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.Send,
 		// "Send"],
 		"Enviar"],
+
+	[StringId.SendYourselfALink,
+		// TODO: Translate
+		"Send yourself a link to your VotePlan so you can refer to it later."],
 ]);
 
 export function getEnglishString(id: StringId): string {
