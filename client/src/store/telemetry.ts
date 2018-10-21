@@ -114,7 +114,7 @@ export class TelemetrySession {
 				throw new Error(`Failed HTTP response: ${res.status}`);
 			}
 		}).catch(err => {
-			throw new Error(`Unable to POST to elemetry endpoint.  err: ${err}`);
+			throw new Error(`Unable to POST to telemetry endpoint.  err: ${err}`);
 		});
 	}
 }

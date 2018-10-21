@@ -8,7 +8,7 @@ import App from './App';
 import configureStore from './configureStore';
 import registerServiceWorker from './registerServiceWorker';
 import { CurrentQuestionQueryParameterName, readStateFromLocation } from './readStateFromLocation';
-import { AppView, AnswerId, DEFAULT_STATE, IQuestionnaireState, IZipCodeAnswer, push, recordStartSession } from './store';
+import { AppView, DEFAULT_STATE, getLangParameter, getPlanPageQueryString, IQuestionnaireState, push, recordStartSession } from './store';
 
 import './index.css';
 
@@ -20,35 +20,18 @@ const initialState = readStateResult.state;
 
 const store = configureStore(history, initialState);
 
-function answerAsString(answer: AnswerId | IZipCodeAnswer): string | undefined {
-	if (typeof answer === "object") {
-		const zipCode = (answer as IZipCodeAnswer).zipCode;
-		return zipCode !== "" ? zipCode : undefined;
-	}
-	else {
-		return (answer as AnswerId).toString();
-	}
-}
-
 function pathFromState(state: IQuestionnaireState): string {
-	const langParameter = `lang=${state.currentLanguage}`;
-
 	switch (state.currentView) {
 		case AppView.LandingPage: {
-			return `/LandingPage?${langParameter}`;
+			return `/LandingPage?${getLangParameter(state)}`;
 		}
 		
 		case AppView.Questionnaire: {
-			return `/Survey?${CurrentQuestionQueryParameterName}=${state.currentQuestionId}&${langParameter}`;
+			return `/Survey?${CurrentQuestionQueryParameterName}=${state.currentQuestionId}&${getLangParameter(state)}`;
 		}
 
 		case AppView.Plan: {
-			const parameterList = state.answers.map(qa => ({questionId: qa.questionId, answerString: answerAsString(qa.answer)}))
-				.filter(qas => qas.answerString !== undefined)
-				.map(qas => `${qas.questionId}=${qas.answerString!}`);
-
-			const queryStringParameters = parameterList.join('&');
-			return `/Plan?${queryStringParameters}&${langParameter}`;
+			return `/Plan?${getPlanPageQueryString(state)}`;
 		}
 
 		case AppView.PrivacyPolicy: {
