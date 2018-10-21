@@ -90,6 +90,13 @@ export class TelemetrySession {
 		});
 	}
 
+	public recordSendPlanEmail(emailAddress: string) {
+		this.uploadData({
+			event: "SendPlanEmail",
+			emailAddress,
+		});
+	}
+
 	private uploadData(data: any) {
 		// 'contact' is needs to be unique for every event.
 		data.contact = uuidv4();
@@ -156,6 +163,10 @@ export const telemetryMiddleware = (session: TelemetrySession) => () => (next: a
 		}
 		case QuestionnaireActionType.SET_LANGUAGE: {
 			session.recordSetLanguage(action.payload.language);
+			return next(action);
+		}
+		case QuestionnaireActionType.SEND_PLAN_EMAIL: {
+			session.recordSendPlanEmail(action.payload.emailAddress);
 			return next(action);
 		}
 		default: {
