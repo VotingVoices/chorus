@@ -30,10 +30,15 @@ const sendVotePlanEmail: Handler = (_event: any, _context: Context, callback: Ca
 		}
 	};
 
-	new AWS.SES({ apiVersion: '2010-12-01'}).sendEmail(sendParams);
+	new AWS.SES({ apiVersion: '2010-12-01'}).sendEmail(sendParams).promise()
+		.then((data) => {
+			console.log(data.MessageId);
+		}).catch((err) => {
+			console.error(err, err.stack);
+		});
 
 	console.log("Just attempted to send an email.");
-	
+
 	const response: IHelloResponse = {
 		statusCode: 200,
 		body: JSON.stringify({
