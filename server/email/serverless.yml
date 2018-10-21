@@ -53,12 +53,12 @@ package:
     - node_modules/**/*
 
 functions:
-  hello:
-    handler: handler.hello
+  sendVotePlanEmail:
+    handler: handler.sendVotePlanEmail
 
     events:
       - http:
-          path: hello
+          path: sendplan
           method: get
 
 #    The following are a few example events you can configure
