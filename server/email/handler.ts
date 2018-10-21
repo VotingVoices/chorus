@@ -8,26 +8,34 @@ interface IHelloResponse {
 	body: string,
 }
 
+function getSubject(): string {
+	return "Your VotePlan";
+}
+
+function getPlainTextBody(planPageUrl: string): string {
+	return `Your voice matters. Get out there and vote in the midterms!\n\nYou can view your VotePlan here:\n${planPageUrl}`;
+}
+
 const sendVotePlanEmail: Handler = (event: any, _context: Context, callback: Callback) => {
-	const { planPageQueryString } = JSON.parse(event.body);
+	const { emailAddress, planPageQueryString } = JSON.parse(event.body);
+	const planPageUrl = `http://votingvoices.org/voteplan/#/Plan?${planPageQueryString}`;
 
 	const sendParams: AWS.SES.SendEmailRequest = {
 		Source: 'andy@andybrauninger.com',
 		Destination: {
 			ToAddresses: [
-				'andy@andybrauninger.com',
+				emailAddress,
 			]
 		},
 		Message: {
 			Subject: {
 				Charset: 'UTF-8',
-				Data: 'Test email from the lambda',
+				Data: getSubject(),
 			},
 			Body: {
 				Text: {
 					Charset: 'UTF-8',
-					//Data: `Behold, the value of 'event.body': ${event.body}`,
-					Data: `You can view your VotePlan here: http://votingvoices.org/voteplan/#/Plan?${planPageQueryString}`,
+					Data: getPlainTextBody(planPageUrl),
 				},
 			}
 		}
