@@ -82,6 +82,10 @@
 	color: white;
 }
 
+.vv-button-filled.btn.btn-default[disabled] {
+	background: #333333;
+}
+
 .vv-button-filled-in-header {
 	background: #1d2856;
 	color: white;
