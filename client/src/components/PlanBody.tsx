@@ -37,19 +37,28 @@ enum SavePaneExpandState {
 interface ISavePaneState {
 	expandState: SavePaneExpandState,
 	emailAddress: string,
+	sendButtonEnabled: boolean,
 }
 
 export interface IIndexHolder {
 	index: number;
 }
 
+function isValidEmailAddress(emailAddress: string): boolean {
+	// https://stackoverflow.com/questions/46370725/how-to-do-email-validation-using-regular-expression-in-typescript
+	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailAddress);
+}
+
 class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, ISavePaneState> {
 	public componentWillMount() {
-		this.setState({ expandState: SavePaneExpandState.Collapsed });
+		this.setState({
+			expandState: SavePaneExpandState.Collapsed,
+			sendButtonEnabled: false
+		});
 	}
 
 	public render() {
-		const { expandState: savePaneExpandState } = this.state;
+		const { expandState: savePaneExpandState, sendButtonEnabled } = this.state;
 
 		const savePaneStyle: React.CSSProperties = savePaneExpandState === SavePaneExpandState.Expanded ? {} : {display: "none"};
 
@@ -80,7 +89,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 							<input type="text" className="vv-text-box email-address-text-box" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
 						</div>
 						<div className="save-pane-buttons">
-							<Button type="button" className="vv-button vv-button-filled save-pane-button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
+							<Button type="button" disabled={!sendButtonEnabled} className="vv-button vv-button-filled save-pane-button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
 							<Button type="button" className="vv-button vv-button-outline save-pane-button copy-link-button" onClick={this._onCopyLinkClick}>{this.props.getString(StringId.CopyLink)}</Button>
 						</div>
 					</div>
@@ -144,7 +153,12 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 	}
 
 	private _onEmailAddressValueChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({ emailAddress: ev.target.value });
+		const enabled = isValidEmailAddress(ev.target.value);
+
+		this.setState({
+			emailAddress: ev.target.value,
+			sendButtonEnabled: enabled,
+		});
 	}
 
 	private _onEmailSendClick = (ev: React.MouseEvent<Button>) => {
