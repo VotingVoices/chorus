@@ -162,7 +162,6 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 	}
 
 	private _onEmailSendClick = (ev: React.MouseEvent<Button>) => {
-		// TODO: Disable the 'Send' button for a blank email (or at least do validation here)
 		this.props.sendPlanEmail(this.state.emailAddress);
 	}
 
