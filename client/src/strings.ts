@@ -450,7 +450,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"https://www.vote.org/absentee-ballot/"],
 
 	[StringId.HasYourPollingLocationMoved,
-		"Your polling location: has it moved?"],
+		"Has your polling location moved?"],
 
 	[StringId.CheckYourPollingLocationBecauseThingsChange,
 		"Things change \u2014 make sure you're aware of your area's best polling locations and hours."],
@@ -489,7 +489,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Great plan. Even better, get the current address and directions before you go."],
 
 	[StringId.RoundUpFellowVotersForDriveMyselfOrRideShare,
-		"Great plan. Even better: Round up some fellow voters to share the ride!"],
+		"Great plan. Even better, round up some fellow voters to share the ride!"],
 
 	[StringId.PlanYourRouteToThePolls,
 		"Plan your route to the polls"],
@@ -600,7 +600,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"For Family"],
 
 	[StringId.ForFamilyDescription,
-		"Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!"],
+		"Whether you're looking out for the next generation or for your family members today, you're right \u2014 your vote has an impact!"],
 
 	[StringId.ItsMyPrivilege,
 		"It's My Privilege"],
@@ -1056,7 +1056,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.vote.org/absentee-ballot/"],
 
 	[StringId.HasYourPollingLocationMoved,
-		// "Your polling location: has it moved?"],
+		// "Has your polling location moved?"],
 		"Se ha movido su puesto de votación?"],
 
 	[StringId.CheckYourPollingLocationBecauseThingsChange,
@@ -1251,8 +1251,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Por la familia"],
 
 	[StringId.ForFamilyDescription,
-		// "Whether you're looking out for the next generation or for your family members today, you're right: your vote has an impact!"],
-		"Ya sea que este velando por la siguiente generación o por los miembros de su familia de hoy, está en lo correcto: su voto tiene un impacto."],
+		// "Whether you're looking out for the next generation or for your family members today, you're right \u2014 your vote has an impact!"],
+		"Ya sea que este velando por la siguiente generación o por los miembros de su familia de hoy, está en lo correcto \u2014 su voto tiene un impacto."],
 
 	[StringId.ItsMyPrivilege,
 		// "It's My Privilege"],
