@@ -66,8 +66,7 @@ export enum AnswerId {
 	RideShare = 'RiSh',
 	Taxi = 'Txi',
 	Transit = 'Trnst',
-	Walk = 'Wlk',
-	Bike = 'Bk',
+	WalkOrBike = 'WlkBk',
 	Mail = 'Ml',
 	BallotBox = 'BltBx',
 	Friends = 'Frnd',
@@ -84,6 +83,10 @@ export enum AnswerId {
 	Shocked = 'Shck',
 	Angry = 'Ang',
 	Meh = 'Mh',
+
+	// Deprecated:
+	Walk = 'Wlk',
+	Bike = 'Bk',
 }
 
 export interface IZipCodeAnswer {

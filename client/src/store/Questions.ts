@@ -91,8 +91,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.RideShare,
             AnswerId.Taxi,
             AnswerId.Transit,
-            AnswerId.Walk,
-            AnswerId.Bike,
+            AnswerId.WalkOrBike,
             AnswerId.Other,
         ],
         resultingPlanStep: (answer) => {
@@ -111,7 +110,8 @@ export const QUESTIONS : IQuestion[] = [
                     return PlanStepId.MassTransit;
                 }
                 case AnswerId.Walk:
-                case AnswerId.Bike: {
+                case AnswerId.Bike:
+                case AnswerId.WalkOrBike: {
                     return PlanStepId.WalkOrBike;
                 }
                 default:

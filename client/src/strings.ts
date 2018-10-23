@@ -29,6 +29,7 @@ export enum StringId {
 	MassTransit,
 	Walk,
 	Bike,
+	WalkOrBike,
 	Mail,
 	BallotBox,
 	Friends,
@@ -260,6 +261,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.Bike,
 		"Bike"],
+
+	[StringId.WalkOrBike,
+		"Walk or Bike"],
 
 	[StringId.Mail,
 		"Mail"],
@@ -802,6 +806,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.Bike,
 		// "Bike"],
 		"Bicicleta"],
+
+	[StringId.WalkOrBike,
+		"Caminar o Bicicleta"],
 
 	[StringId.Mail,
 		// "Mail"],
@@ -1409,6 +1416,7 @@ export function getAnswerLabel(answer: AnswerId): StringId {
 		case AnswerId.Transit: return StringId.MassTransit;
 		case AnswerId.Walk: return StringId.Walk;
 		case AnswerId.Bike: return StringId.Bike;
+		case AnswerId.WalkOrBike: return StringId.WalkOrBike;
 		case AnswerId.Mail: return StringId.Mail;
 		case AnswerId.BallotBox: return StringId.BallotBox;
 		case AnswerId.Friends: return StringId.Friends;
