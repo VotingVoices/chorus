@@ -96,9 +96,11 @@ export const QUESTIONS : IQuestion[] = [
         ],
         resultingPlanStep: (answer) => {
             switch (answer) {
-                case AnswerId.DriveMyself:
+                case AnswerId.DriveMyself: {
+                    return PlanStepId.DriveMyself;
+                }
                 case AnswerId.Carpool: {
-                    return PlanStepId.DriveMyselfOrCarpool;
+                    return PlanStepId.Carpool;
                 }
                 case AnswerId.RideShare: {
                     return PlanStepId.RideShare;

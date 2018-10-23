@@ -55,6 +55,7 @@ export enum StringId {
 	RockTheVoteDotOrgLink,
 	TakeAQuickLookAtYourRegistration,
 	NotSureWhetherYoureRegistered,
+	TakeAMinuteToSubmitYourRegistration,
 	RequestYourAbsenteeBallot,
 	MakeTheRequest,
 	HaveBallotWillVote,
@@ -72,7 +73,7 @@ export enum StringId {
 	WashingtonDeadlineLink,
 	WhenIsTheDeadlineExactly,
 	FindOutMore,
-	CheckYourDeadlineAndDontForgetPostage,
+	DontForgetPostage,
 	CheckYourDeadlineAndRestEasy,
 	FindColoradoMailingDetails,
 	FindOregonMailingDetails,
@@ -100,9 +101,10 @@ export enum StringId {
 	AccessAssistance,
 	EacDotGovLink,
 	GetThereByCar,
+	GetCurrentAddressForCarpool,
 	RoundUpFellowVotersForCarpool,
-	RoundUpFellowVotersForRideShare,
-	RoundUpFellowVotersForCarpoolOrTaxi,
+	RoundUpFellowVotersForDriveMyselfOrRideShare,
+	RoundUpFellowVotersForTaxi,
 	PlanYourRouteToThePolls,
 	CheckLyft,
 	LyftLink,
@@ -129,7 +131,7 @@ export enum StringId {
 	LetsKeepEachOtherAccountable,
 	PutThoseFeelingsTowardAction,
 	SeeWhatHappensWhenWeAllVote,
-	WhenWeAllVoteDotOrgLink,
+	SentimentYouTubeLink,
 	YoureExcited,
 	YoureExcitedDescription,
 	YoureConcerned,
@@ -175,6 +177,8 @@ export enum StringId {
 	Send,
 	SendYourselfALink,
 	CopyLink,
+	RegisterNow,
+	CarpoolToThePolls,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -323,7 +327,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Is your registration A-OK?"],
 
 	[StringId.LetsGetRegistered,
-		"Let's do this: get registered!"],       // TODO: Capitalize Get?
+		"Let's do this \u2014 get registered!"],
 
 	[StringId.CheckYourRegistration,
 		"Check your registration"],
@@ -335,10 +339,13 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"https://www.rockthevote.org/voting-information/am-i-registered-to-vote/"],        // TODO: Spanish-specific links
 
 	[StringId.TakeAQuickLookAtYourRegistration,
-		"Great \u2014 you're registered! Now take a quick look to make sure everything is up-to-date."],
+		"Great \u2014 you're registered! Now take a quick look to make sure everything is up to date."],
 
 	[StringId.NotSureWhetherYoureRegistered,
-		"Not sure whether you're registered? Take a minute to double-check and make sure you're vote ready."],
+		"Not sure whether you're registered? Take a minute now to find out."],
+
+	[StringId.TakeAMinuteToSubmitYourRegistration,
+		"Take a minute to submit your registration and make sure you're vote ready."],
 
 	[StringId.RequestYourAbsenteeBallot,
 		"Request your absentee ballot"],
@@ -391,8 +398,8 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.FindOutMore,
 		"Find out more"],
 
-	[StringId.CheckYourDeadlineAndDontForgetPostage,
-		"Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
+	[StringId.DontForgetPostage,
+		"Don't forget postage if your ballot envelope is not prepaid."],
 
 	[StringId.CheckYourDeadlineAndRestEasy,
 		"Check up on your deadline and rest easy."],
@@ -431,7 +438,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Find your ballot drop box."],
 
 	[StringId.PlanAheadForDropBox,
-		"Plan ahead for a convenient ballot box drop in your neighborhood."],
+		"Drop off your ballot at a spot that's close by and convenient."],
 
 	[StringId.FindDropboxNearYou,
 		"Find a ballot drop box near you"],
@@ -464,7 +471,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Plan your trip, with the assistance you need"],
 
 	[StringId.SpecialAcommodationsAreAvailable,
-		"Special accommodations to help you get to your polling place are available. It's easy to plan ahead!"],
+		"Special accommodations to help you get to your polling place are available."],
 
 	[StringId.AccessAssistance,
 		"Access assistance"],
@@ -475,10 +482,13 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.GetThereByCar,
 		"Get there by car"],
 
-	[StringId.RoundUpFellowVotersForCarpoolOrTaxi,
-		"Great plan. Even better: Round up some fellow voters to share the ride, and have the address in hand!"],
+	[StringId.GetCurrentAddressForCarpool,
+		"Even better, get the current address and directions before you go."],
 
-	[StringId.RoundUpFellowVotersForRideShare,
+	[StringId.RoundUpFellowVotersForTaxi,
+		"Great plan. Even better, get the current address and directions before you go."],
+
+	[StringId.RoundUpFellowVotersForDriveMyselfOrRideShare,
 		"Great plan. Even better: Round up some fellow voters to share the ride!"],
 
 	[StringId.PlanYourRouteToThePolls,
@@ -518,7 +528,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"weather.com"],    // TODO: No http?
 
 	[StringId.AreYouEligibleForPaidTimeOff,
-		"Paid time-off to vote: are you eligible?"],
+		"Are you eligible for paid time off to vote?"],
 
 	[StringId.MajorityOfStatesHaveTimeOffLaws,
 		"The majority of states have time-off-to-vote laws (also called voter-leave laws). Check ahead of voting day and coordinate plans with your workplace."],
@@ -559,8 +569,8 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.SeeWhatHappensWhenWeAllVote,
 		"See what happens When We All Vote"],
 
-	[StringId.WhenWeAllVoteDotOrgLink,
-		"https://www.whenweallvote.org/"],
+	[StringId.SentimentYouTubeLink,
+		"https://www.youtube.com/watch?v=WnOi4wapmNA&t=1s"],
 
 	[StringId.YoureExcited,
 		"You're excited about voting!"],
@@ -581,7 +591,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"You're feeling angry \u2014 we get it! These are complicated times. Watch this and get inspired."],
 
 	[StringId.YoureMeh,
-		"Feeling ambivalent? Your voting plans are taking shape \u2014 now get out there!"],
+		"Feeling ambivalent? Now that your voting plans are taking shape, watch this and get inspired."],
 
 	[StringId.RememberYourReasonForVoting,
 		"Remember your reason for voting!"],
@@ -696,6 +706,12 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.CopyLink,
 		"Copy Link"],
+
+	[StringId.RegisterNow,
+		"Register Now"],
+
+	[StringId.CarpoolToThePolls,
+		"Carpool to the polls"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -887,8 +903,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"¿Está todo listo en la inscripción?"],
 
 	[StringId.LetsGetRegistered,
-		// "Let's do this: get registered!"],       // TODO: Capitalize Get?
-		"Hagámolo: Registreme."],
+		// "Let's do this: get registered!"],
+		"Hagámolo \u2014 registreme."],
 
 	[StringId.CheckYourRegistration,
 		// "Check your registration"],
@@ -902,12 +918,18 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.rockthevote.org/voting-information/am-i-registered-to-vote/"],        // TODO: Spanish-specific links
 
 	[StringId.TakeAQuickLookAtYourRegistration,
-		// "Great \u2014 you're registered! Now take a quick look to make sure everything is up-to-date."],
+		// "Great \u2014 you're registered! Now take a quick look to make sure everything is up to date."],
 		"Fantástico \u2014 usted dijo que está registrado! Revisemos que todo esté al día."],
 
 	[StringId.NotSureWhetherYoureRegistered,
-		// "Not sure whether you're registered? Take a minute to double-check and make sure you're vote ready."],
-		"No está seguro de haberse registrado? Tome un minuto para revisar y veríficar que está listo para votar"],
+		// TODO: Confirm translation
+		// "Not sure whether you're registered? Take a minute now to find out."],
+		"No está seguro de haberse registrado? Tome un minuto para saber."],
+
+	[StringId.TakeAMinuteToSubmitYourRegistration,
+		// TODO: Confirm translation
+		// "Take a minute to submit your registration and make sure you're vote ready."],
+		"Tome un minuto para enviar su registro y veríficar que está listo para votar."],
 
 	[StringId.RequestYourAbsenteeBallot,
 		// "Request your absentee ballot"],
@@ -952,7 +974,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.TrackYourBallotOnline,
 		// "Track your ballot online and find out when to expect it."],
-		"Rastree su cartón de votación y sepá cuando va a llegar"],
+		"Rastree su cartón de votación y sepá cuando va a llegar."],
 
 	[StringId.ColoradoDeadlineLink,
 		"https://www.sos.state.co.us/pubs/elections/FAQs/ElectionDay.html"],
@@ -971,9 +993,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "Find out more"],
 		"Conozca más"],
 
-	[StringId.CheckYourDeadlineAndDontForgetPostage,
-		// "Check up on your deadline and rest easy. (And don't forget postage if your ballot envelope is not prepaid.)"],
-		"¡Revise su fecha límite, el resto es fácil! No olvidé poner la estampilla si el sobre no es prepagado"],
+	[StringId.DontForgetPostage,
+		// "Don't forget postage if your ballot envelope is not prepaid."],
+		"No olvidé poner la estampilla si el sobre no es prepagado."],
 
 	[StringId.CheckYourDeadlineAndRestEasy,
 		// "Check up on your deadline and rest easy."],
@@ -1018,9 +1040,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Encuentre el casillero de envío."],
 
 	[StringId.PlanAheadForDropBox,
-		// "Plan ahead for a convenient ballot box drop in your neighborhood."],
-		// TODO: Do we need an accent
-		"Planee con tiempo el envío de su cartón de votación."],
+		// TODO: Confirm translation
+		// "Drop off your ballot at a spot that's close by and convenient."],
+		"Envié su cartón en un lugar que está cerca y conveniente."],
 
 	[StringId.FindDropboxNearYou,
 		// "Find a ballot drop box near you"],
@@ -1061,8 +1083,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Planee su viaje con la asistencia que necesita"],
 
 	[StringId.SpecialAcommodationsAreAvailable,
-		// "Special accommodations to help you get to your polling place are available. It's easy to plan ahead!"],
-		"Hay asistencia especiales para llevarlo al lugar de votación. Es simple de planear."],
+		// "Special accommodations to help you get to your polling place are available."],
+		"Hay asistencia especiales para llevarlo al lugar de votación."],
 
 	[StringId.AccessAssistance,
 		// "Access assistance"],
@@ -1075,13 +1097,19 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "Get there by car"],
 		"Vaya por carro"],
 
-	[StringId.RoundUpFellowVotersForCarpoolOrTaxi,
-		// "Great plan. Even better: Round up some fellow voters to share the ride, and have the address in hand!"],
-		"Gran plan. Aún mejor: Encontremos más personas que van a votar para compartir el viaje."],
+	[StringId.GetCurrentAddressForCarpool,
+		// TODO: Confirm translation
+		// "Even better, get the current address and directions before you go."],
+		"Aún mejor, consiga la dirección reciente y indicaciones antes de ir."],
 
-	[StringId.RoundUpFellowVotersForRideShare,
-		// "Great plan. Even better: Round up some fellow voters to share the ride!"],
-		"Gran plan. Aún mejor: Encontremos más personas que van a votar para compartir el viaje."],
+	[StringId.RoundUpFellowVotersForTaxi,
+		// TODO: Confirm translation
+		// "Great plan. Even better, get the current address and directions before you go"],
+		"Gran plan. Aún mejor, consiga la dirección reciente y indicaciones antes de ir."],
+
+	[StringId.RoundUpFellowVotersForDriveMyselfOrRideShare,
+		// "Great plan. Even better, round up some fellow voters to share the ride!"],
+		"Gran plan. Aún mejor, encontremos más personas que van a votar para compartir el viaje."],
 
 	[StringId.PlanYourRouteToThePolls,
 		// "Plan your route to the polls"],
@@ -1129,7 +1157,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"weather.com"],    // TODO: No http?
 
 	[StringId.AreYouEligibleForPaidTimeOff,
-		// "Paid time-off to vote: are you eligible?"],
+		// "Are you eligible for paid time off to vote?"],
 		"¿Es elegible para que le paguen el tiempo de voto en el trabajo?"],
 
 	[StringId.MajorityOfStatesHaveTimeOffLaws,
@@ -1182,8 +1210,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "See what happens When We All Vote"],
 		"Revise que pasa cuando todos votamos"],
 
-	[StringId.WhenWeAllVoteDotOrgLink,
-		"https://www.whenweallvote.org/"],
+	[StringId.SentimentYouTubeLink,
+		"https://www.youtube.com/watch?v=WnOi4wapmNA&t=1s"],
 
 	[StringId.YoureExcited,
 		// "You're excited about voting!"],
@@ -1210,8 +1238,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Se está sintiendo con rabia \u2014 lo entendemos! Estos son tiempos complicados. Vea esto para sentirse inspirado."],
 
 	[StringId.YoureMeh,
-		// "Feeling ambivalent? Your voting plans are taking shape \u2014 now get out there!"],
-		"Se está sintiendo ahí? Sus planes de votación estan tomando forma \u2014 ahora salga a realizarlos."],
+		// TODO: Confirm translation
+		// "Feeling ambivalent? Now that your voting plans are taking shape, watch this and get inspired."],
+		"Se está sintiendo ahí? Ahora que sus planes de votación estan tomando, vea esto para sentirse inspirado."],
 
 	[StringId.RememberYourReasonForVoting,
 		// "Remember your reason for voting!"],
@@ -1367,6 +1396,16 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.CopyLink,
 		// TODO: Translate
 		"Copy Link"],
+
+	[StringId.RegisterNow,
+		// TODO: Check translation
+		// "Register Now"],
+		"Registrarse Ahora"],
+
+	[StringId.CarpoolToThePolls,
+		// TODO: Check translation
+		// "Carpool to the polls"],
+		"Compartir automovil a los puestos de votación"],
 ]);
 
 export function getEnglishString(id: StringId): string {
@@ -1449,16 +1488,16 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 	switch (step) {
 		case PlanStepId.Register: {
 			return {
-				header: StringId.IsYourRegistrationOk,
-				text: StringId.LetsGetRegistered,
-				callToAction: StringId.DoubleCheckYourRegistration,
+				header: StringId.LetsGetRegistered,
+				text: StringId.TakeAMinuteToSubmitYourRegistration,
+				callToAction: StringId.RegisterNow,
 				link: StringId.RockTheVoteDotOrgLink,
 			};
 		}
 
 		case PlanStepId.CheckRegistration: {
 			return {
-				header: StringId.CheckYourRegistration,
+				header: StringId.IsYourRegistrationOk,
 				text: StringId.TakeAQuickLookAtYourRegistration,
 				callToAction: StringId.DoubleCheckYourRegistration,
 				link: StringId.RockTheVoteDotOrgLink,
@@ -1550,7 +1589,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		}
 
 		case PlanStepId.MailBallot: {
-			let text: StringId = StringId.CheckYourDeadlineAndDontForgetPostage;
+			let text: StringId = StringId.DontForgetPostage;
 			let callToAction: StringId | undefined;
 			let link: StringId | undefined;
 
@@ -1648,10 +1687,19 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			}
 		}
 
-		case PlanStepId.DriveMyselfOrCarpool: {
+		case PlanStepId.DriveMyself: {
 			return {
 				header: StringId.GetThereByCar,
-				text: StringId.RoundUpFellowVotersForCarpool,
+				text: StringId.RoundUpFellowVotersForDriveMyselfOrRideShare,
+				callToAction: StringId.PlanYourRouteToThePolls,
+				link: StringId.VoteDotOrgPollingPlaceLocatorLink,
+			}
+		}
+
+		case PlanStepId.Carpool: {
+			return {
+				header: StringId.CarpoolToThePolls,
+				text: StringId.GetCurrentAddressForCarpool,
 				callToAction: StringId.PlanYourRouteToThePolls,
 				link: StringId.VoteDotOrgPollingPlaceLocatorLink,
 			}
@@ -1661,7 +1709,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			return {
 				// TODO: Update these strings to use "Ride to Vote".  Also, the link may need to be updated.
 				header: StringId.GetThereByCar,
-				text: StringId.RoundUpFellowVotersForRideShare,
+				text: StringId.RoundUpFellowVotersForDriveMyselfOrRideShare,
 				callToAction: StringId.CheckLyft,
 				link: StringId.LyftLink,
 			}
@@ -1670,7 +1718,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.Taxi: {
 			return {
 				header: StringId.GetThereByTaxi,
-				text: StringId.RoundUpFellowVotersForCarpoolOrTaxi,
+				text: StringId.RoundUpFellowVotersForTaxi,
 				callToAction: StringId.PlanYourRouteToThePolls,
 				link: StringId.VoteDotOrgPollingPlaceLocatorLink,
 			}
@@ -1738,7 +1786,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			let header = StringId.PutThoseFeelingsTowardAction;
 			let text: StringId | undefined;
 			const callToAction: StringId | undefined = StringId.SeeWhatHappensWhenWeAllVote;
-			const link: StringId | undefined = StringId.WhenWeAllVoteDotOrgLink;
+			const link: StringId | undefined = StringId.SentimentYouTubeLink;
 
 			switch (step) {
 				case PlanStepId.Excited: {
