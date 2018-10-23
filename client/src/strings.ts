@@ -1320,7 +1320,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"En Washington, su cartón de votación debe ser enviado en o antes del día de la elección (Martes, Noviembre 6, 2018). Los casilleros de envío cierran a las <strong>8:00 p.m.</strong> en punto el día de las elecciones."],
 
 	[StringId.WhereAreYouVoting,
-		// TODO: Translate
 		// "<em>Where</em> will you be voting?"],
 		"¿<em>Dónde</em> va a votar?"],
 
@@ -1329,17 +1328,14 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Código Postal"],
 
 	[StringId.Submit,
-		// TODO: Translate
 		// "Submit"],
 		"Enviar"],
 
 	[StringId.WeUseYourZipCodeToProvideMoreElevantInformation,
-		// TODO: Translate
 		// "(We use your ZIP code to help us give you more relevant questions and actions.)"],
 		"(Nosotros usamos su código postal para hacer preguntas y recomendaciones más relevantes.)"],
 
 	[StringId.Skip,
-		// TODO: Translate
 		// "Skip"],
 		"Saltar"],
 
@@ -1372,7 +1368,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"."],
 
 	[StringId.Donate,
-		// TODO: Confirm translation
 		// "Donate"],
 		"Donar"],
 
@@ -1382,23 +1377,26 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Guardar"],
 
 	[StringId.EmailAddress,
-		// TODO: Translate
-		"Your email address"],
+		// TODO: Confirm translation
+		// "Your email address"],
+		"Su dirección de email"],
 
 	[StringId.Send,
 		// "Send"],
 		"Enviar"],
 
 	[StringId.SendYourselfALink,
-		// TODO: Translate
-		"Send yourself a link to your VotePlan so you can refer to it later."],
+		// TODO: Confirm translation
+		// "Send yourself a link to your VotePlan so you can refer to it later."],
+		"Enviese un enlace a su VotePlan para consultarlo más adelante."],
 
 	[StringId.CopyLink,
-		// TODO: Translate
-		"Copy Link"],
+		// TODO: Confirm translation
+		// "Copy Link"],
+		"Copiar Enlace"],
 
 	[StringId.RegisterNow,
-		// TODO: Check translation
+		// TODO: Confirm translation
 		// "Register Now"],
 		"Registrarse Ahora"],
 
