@@ -1289,7 +1289,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.ZipCode,
 		// "ZIP code"],
-		"Código ZIP"],
+		"Código Postal"],
 
 	[StringId.Submit,
 		// TODO: Translate
@@ -1299,7 +1299,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.WeUseYourZipCodeToProvideMoreElevantInformation,
 		// TODO: Translate
 		// "(We use your ZIP code to help us give you more relevant questions and actions.)"],
-		"(Nosotros usamos su código ZIP para hacer preguntas y recomendaciones más relevantes.)"],
+		"(Nosotros usamos su código postal para hacer preguntas y recomendaciones más relevantes.)"],
 
 	[StringId.Skip,
 		// TODO: Translate
