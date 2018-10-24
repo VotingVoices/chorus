@@ -185,7 +185,6 @@ export enum PlanStepId {
 	Register,
 	CheckRegistration,
 	MaybeRegister,
-	HaveBallot,
 	NoBallotYet,
 	CheckBallotReturnDeadline,
 	MailBallot,

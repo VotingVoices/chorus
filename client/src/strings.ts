@@ -58,8 +58,6 @@ export enum StringId {
 	TakeAMinuteToSubmitYourRegistration,
 	RequestYourAbsenteeBallot,
 	MakeTheRequest,
-	HaveBallotWillVote,
-	YouveGotItNowSubmitIt,
 	FindYourColoradoBallot,
 	FindYourOregonBallot,
 	FindYourWashingtonBallot,
@@ -352,12 +350,6 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.MakeTheRequest,
 		"Make the request"],
-
-	[StringId.HaveBallotWillVote,
-		"Have ballot, will vote!"],
-
-	[StringId.YouveGotItNowSubmitIt,
-		"You\u2019ve got it, now submit it. (Don\u2019t forget to check the postage requirements if you\u2019re using the U.S. Postal Service.)"],
 
 	[StringId.FindYourColoradoBallot,
 		"Find your Colorado ballot"],
@@ -939,14 +931,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "Make the request"],
 		"Haga su solicitud"],
 
-	[StringId.HaveBallotWillVote,
-		// "Have ballot, will vote!"],
-		"Tengo un cartón de votación. Votaré!"],		// TODO: Tiene?
-
-	[StringId.YouveGotItNowSubmitIt,
-		// "You\u2019ve got it, now submit it. (Don\u2019t forget to check the postage requirements if you\u2019re using the U.S. Postal Service.)"],		// TODO: Clarify in English that you can only use USPS to mail the ballot?
-		"Ya lo tiene, ahora envíalo. (No se le olvidé revisar los requerimientos postales de U.S. Postal Service.)"],
-
 	[StringId.FindYourColoradoBallot,
 		// "Find your Colorado ballot"],
 		"Encuentre su cartón de votación de Colorado"],
@@ -1508,15 +1492,6 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 				text: StringId.NotSureWhetherYoureRegistered,
 				callToAction: StringId.DoubleCheckYourRegistration,
 				link: StringId.RockTheVoteDotOrgLink,
-			};
-		}
-
-		case PlanStepId.HaveBallot: {
-			return {
-				header: StringId.HaveBallotWillVote,
-				text: StringId.YouveGotItNowSubmitIt,
-				callToAction: undefined,
-				link: undefined,
 			};
 		}
 

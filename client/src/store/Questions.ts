@@ -140,7 +140,7 @@ export const QUESTIONS : IQuestion[] = [
             AnswerId.Yes,
             AnswerId.No,
         ],
-        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.HaveBallot : PlanStepId.NoBallotYet,
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? undefined : PlanStepId.NoBallotYet,
     },
     {
         id: QuestionId.ReturnMethod,
