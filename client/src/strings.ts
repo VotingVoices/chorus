@@ -177,6 +177,7 @@ export enum StringId {
 	CopyLink,
 	RegisterNow,
 	CarpoolToThePolls,
+	SaveYourPlan,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -704,6 +705,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.CarpoolToThePolls,
 		"Carpool to the polls"],
+
+	[StringId.SaveYourPlan,
+		"Save Your Plan"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1388,6 +1392,11 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// TODO: Check translation
 		// "Carpool to the polls"],
 		"Compartir automovil a los puestos de votación"],
+
+	[StringId.SaveYourPlan,
+		// TODO: Confirm translation
+		// "Save Your Plan"],
+		"Guardar Su Plan"],
 ]);
 
 export function getEnglishString(id: StringId): string {
