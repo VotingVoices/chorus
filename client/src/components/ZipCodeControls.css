@@ -23,6 +23,12 @@
 	margin-left: 16px;
 }
 
+.submit-zip-button.btn.btn-default[disabled] {
+	/* Use same background as (enabled) .vv-button-filled */
+	background: #e81c38;
+	opacity: 0.5;
+}
+
 .zip-code-explanation {
 	margin-top: 20px;
 	font-size: 14px;

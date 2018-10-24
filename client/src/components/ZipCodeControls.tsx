@@ -19,15 +19,25 @@ interface IPropsFromDispatch {
 
 interface IZipCodeState {
 	zipCode: string,
+	submitButtonEnabled: boolean,
 }
 
 class ZipCodeControls extends React.Component<IPropsFromState & IPropsFromDispatch, IZipCodeState> {
+	public componentWillMount() {
+		this.setState({
+			zipCode: "",
+			submitButtonEnabled: false,
+		});
+	}
+
 	public render() {
+		const { submitButtonEnabled } = this.state;
+
 		return (
 			<div>
 				<div className="zip-code-entry VotingVoices-sans-serif">
 					<input type="text" pattern="[0-9]*" maxLength={5} className="vv-text-box zip-code-text-box" placeholder={this.props.getString(StringId.ZipCode)} onKeyPress={this._onZipCodeKeyPress} onChange={this._onZipCodeValueChange} />
-					<Button type="button" className="vv-button vv-button-filled submit-zip-button" onClick={this._onSubmitZipClick}>{this.props.getString(StringId.Submit)}</Button>
+					<Button type="button" className="vv-button vv-button-filled submit-zip-button" onClick={this._onSubmitZipClick} disabled={!submitButtonEnabled}>{this.props.getString(StringId.Submit)}</Button>
 				</div>
 
 				<div className="zip-code-explanation VotingVoices-serif">
@@ -46,7 +56,12 @@ class ZipCodeControls extends React.Component<IPropsFromState & IPropsFromDispat
 	}
 
 	private _onZipCodeValueChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-		this.setState({ zipCode: ev.target.value });
+		const submitButtonEnabled = ev.target.value.length === 5;
+
+		this.setState({
+			zipCode: ev.target.value,
+			submitButtonEnabled,
+		});
 	}
 
 	private _onSubmitZipClick = (ev: React.MouseEvent<Button>) => {
