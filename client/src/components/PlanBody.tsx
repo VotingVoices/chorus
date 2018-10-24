@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
-import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { default as PlanEmotion } from './PlanEmotion';
 import { default as PlanStep } from './PlanStep';
 import { default as ReasonToVote } from './ReasonToVote';
+import { default as SaveAndInviteControls } from './SaveAndInviteControls';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
 import { ShareWidgets, ShareWidgetSize } from './ShareWidgets';
 import { ALL_QUESTION_IDS, copyLinkToClipboard, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, QuestionId, QUESTIONS, recordPlanPage, recordSaveButton, sendPlanEmail, VotingStateId } from '../store';
@@ -24,76 +24,19 @@ interface IPropsFromState {
 
 interface IPropsFromDispatch {
 	recordPlanPage: typeof recordPlanPage,
-	recordSaveButton: typeof recordSaveButton,
-	sendPlanEmail: typeof sendPlanEmail,
-	copyLinkToClipboard: typeof copyLinkToClipboard,
-}
-
-enum SavePaneExpandState {
-	Collapsed,
-	Expanded,
-}
-
-interface ISavePaneState {
-	expandState: SavePaneExpandState,
-	emailAddress: string,
-	sendButtonEnabled: boolean,
 }
 
 export interface IIndexHolder {
 	index: number;
 }
 
-function isValidEmailAddress(emailAddress: string): boolean {
-	// https://stackoverflow.com/questions/46370725/how-to-do-email-validation-using-regular-expression-in-typescript
-	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailAddress);
-}
-
-class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, ISavePaneState> {
-	public componentWillMount() {
-		this.setState({
-			expandState: SavePaneExpandState.Collapsed,
-			sendButtonEnabled: false
-		});
-	}
-
+class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, any> {
 	public render() {
-		const { expandState: savePaneExpandState, sendButtonEnabled } = this.state;
-
-		const savePaneStyle: React.CSSProperties = savePaneExpandState === SavePaneExpandState.Expanded ? {} : {display: "none"};
-
 		const indexHolder = { index: 0 } as IIndexHolder;
 
 		return (
 			<div>
-				<div className="plan-save-and-invite">
-					<div className="plan-save-and-invite-2">
-						<div className="plan-save">
-							<Button type="button" className="vv-button save-button" onClick={this._onSaveClick}>{this.props.getString(StringId.Save)}</Button>
-						</div>
-						<div className="plan-invite-people">
-							<div className="plan-invite-people-text">{this.props.getString(StringId.PlanPageInvitePeople)}</div>
-							<div className="share-widget-container">
-								<ShareWidgets size={ShareWidgetSize.Small} />
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div className="save-pane" style={savePaneStyle}>
-					<div className="email-address-label VotingVoices-serif">
-						{this.props.getString(StringId.SendYourselfALink)}
-					</div>
-					<div className="email-address-controls">
-						<div className="email-address-text-box-container">
-							<input type="text" className="vv-text-box email-address-text-box" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
-						</div>
-						<div className="save-pane-buttons">
-							<Button type="button" disabled={!sendButtonEnabled} className="vv-button vv-button-filled save-pane-button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
-							<Button type="button" className="vv-button vv-button-outline save-pane-button copy-link-button" onClick={this._onCopyLinkClick}>{this.props.getString(StringId.CopyLink)}</Button>
-						</div>
-					</div>
-				</div>
+				<SaveAndInviteControls {...this.props} />
 
 				<div className="App plan-page-body">
 					{ALL_QUESTION_IDS.map(
@@ -137,36 +80,6 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 
 	public componentDidMount() {
 		this.props.recordPlanPage(this.props.answers, this.props.currentLanguage);
-	}
-
-	private _onSaveClick = (ev: React.MouseEvent<Button>) => {
-		this.props.recordSaveButton();
-
-		const { expandState } = this.state;
-
-		if (expandState === SavePaneExpandState.Collapsed) {
-			this.setState({ expandState: SavePaneExpandState.Expanded });
-		}
-		else {
-			this.setState({ expandState: SavePaneExpandState.Collapsed });
-		}
-	}
-
-	private _onEmailAddressValueChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-		const enabled = isValidEmailAddress(ev.target.value);
-
-		this.setState({
-			emailAddress: ev.target.value,
-			sendButtonEnabled: enabled,
-		});
-	}
-
-	private _onEmailSendClick = (ev: React.MouseEvent<Button>) => {
-		this.props.sendPlanEmail(this.state.emailAddress);
-	}
-
-	private _onCopyLinkClick = (ev: React.MouseEvent<Button>) => {
-		this.props.copyLinkToClipboard();
 	}
 }
 
