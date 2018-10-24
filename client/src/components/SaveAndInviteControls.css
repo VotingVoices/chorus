@@ -54,6 +54,8 @@
 
 .save-pane-buttons {
 	display: flex;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .save-pane-button {
