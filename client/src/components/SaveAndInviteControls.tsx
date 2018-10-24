@@ -89,6 +89,7 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 					<div className="email-address-label VotingVoices-serif">
 						{this.props.getString(StringId.SendYourselfALink)}
 					</div>
+
 					<div className="email-address-controls">
 						<div className="email-address-text-box-container">
 							<input type="text" className="vv-text-box email-address-text-box" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
@@ -97,6 +98,10 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 							<Button type="button" disabled={!sendButtonEnabled} className="vv-button vv-button-filled save-pane-button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
 							<Button type="button" className="vv-button vv-button-outline save-pane-button copy-link-button" onClick={this._onCopyLinkClick}>{this.props.getString(StringId.CopyLink)}</Button>
 						</div>
+					</div>
+
+					<div className="email-confirmation VotingVoices-serif">
+						We've sent your VotePlan to <strong>foo@bar.com</strong>.
 					</div>
 				</div>
 			</React.Fragment>
