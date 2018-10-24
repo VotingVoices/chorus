@@ -38,6 +38,7 @@ interface ISavePaneState {
 	expandState: SavePaneExpandState,
 	emailAddress: string,
 	sendButtonEnabled: boolean,
+	confirmationEmailAddress: string | undefined,
 }
 
 function isValidEmailAddress(emailAddress: string): boolean {
@@ -49,19 +50,21 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 	public componentWillMount() {
 		this.setState({
 			expandState: SavePaneExpandState.Collapsed,
-			sendButtonEnabled: false
+			sendButtonEnabled: false,
+			confirmationEmailAddress: undefined,
 		});
 	}
 
 	public render() {
 		const { flavor } = this.props;
-		const { expandState: savePaneExpandState, sendButtonEnabled } = this.state;
+		const { expandState: savePaneExpandState, sendButtonEnabled, confirmationEmailAddress } = this.state;
 
 		const saveButtonClassName = flavor === SaveAndInviteControlsFlavor.JustSave ? "vv-button vv-button-filled vv-button-large save-button-large" : "vv-button save-button";
 		const saveButtonLabelStringId = flavor === SaveAndInviteControlsFlavor.JustSave ? StringId.SaveYourPlan : StringId.Save;
 
 		const savePaneStyle: React.CSSProperties = savePaneExpandState === SavePaneExpandState.Expanded ? {} : {display: "none"};
-
+		const emailConfirmationStyle: React.CSSProperties = confirmationEmailAddress !== undefined ? {} : {display: "none"};
+		
 		return (
 			<React.Fragment>
 				<div className="plan-save-and-invite">
@@ -100,7 +103,7 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 						</div>
 					</div>
 
-					<div className="email-confirmation VotingVoices-serif">
+					<div className="email-confirmation VotingVoices-serif" style={emailConfirmationStyle}>
 						We've sent your VotePlan to <strong>foo@bar.com</strong>.
 					</div>
 				</div>
@@ -132,6 +135,10 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 
 	private _onEmailSendClick = (ev: React.MouseEvent<Button>) => {
 		this.props.sendPlanEmail(this.state.emailAddress);
+
+		this.setState({
+			confirmationEmailAddress: this.state.emailAddress,
+		});
 	}
 
 	private _onCopyLinkClick = (ev: React.MouseEvent<Button>) => {
