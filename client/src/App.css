@@ -43,7 +43,7 @@
 .voteplan-title {
 	font-size: 150px;
 	font-family: "Pacifico";
-	text-shadow: 5px 5px #1b2757;
+	text-shadow: 10px 10px #1b2757;
 	padding-bottom: 10px;
 }
 
@@ -150,6 +150,7 @@
 @media only screen and (max-width: 840px) {
 	.voteplan-title {
 		font-size: 92px;
+		text-shadow: 7px 7px #1b2757;
 	}
 	.vv-navbar img{
 		width: 200px;
@@ -159,6 +160,7 @@
 @media only screen and (max-width: 420px) {
 	.voteplan-title {
 		font-size: 68px;
+		text-shadow: 5px 5px #1b2757;
 	}
 }
 
