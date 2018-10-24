@@ -35,7 +35,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 		const indexHolder = { index: 0 } as IIndexHolder;
 
 		return (
-			<div>
+			<div className="plan-page-root">
 				<SaveAndInviteControls flavor={SaveAndInviteControlsFlavor.SaveAndInvite} {...this.props} />
 
 				<div className="App plan-page-body">
