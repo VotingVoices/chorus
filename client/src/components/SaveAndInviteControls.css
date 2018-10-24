@@ -22,9 +22,8 @@
 	vertical-align: baseline;		/* Line up the "Save" button with the "Invite:" label */
 }
 
-.save-button:hover {
-	background: #e81c38;
-	color: white;
+.save-button-large {
+	margin-bottom: 10px;
 }
 
 .save-pane {
@@ -79,4 +78,18 @@
 
 .share-widget-container {
 	display: flex;
+}
+
+@media only screen and (max-width: 540px) {
+	.email-address-controls {
+		flex-flow: column;
+	}
+
+	.email-address-text-box {
+		width: 300px;
+	}
+
+	.save-pane-button {
+		margin-top: 8px;
+	}
 }

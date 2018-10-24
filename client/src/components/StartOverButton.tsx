@@ -28,7 +28,7 @@ class StartOverButton extends React.Component<IStartOverButtonProps & IConnected
 	public render(): JSX.Element {
 		const { type } = this.props;
 
-		const startOverClassName = type === StartOverButtonType.Outline ? "vv-button-outline" : "vv-button-filled vv-button-large";
+		const startOverClassName = type === StartOverButtonType.Outline ? "vv-button-outline" : "";
 		const className = `vv-button ${startOverClassName} start-over-button`;
 
 		return (

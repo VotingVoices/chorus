@@ -9,6 +9,15 @@ import { StringId }from '../strings';
 
 import './SaveAndInviteControls.css';
 
+export enum SaveAndInviteControlsFlavor {
+	SaveAndInvite,
+	JustSave,
+}
+
+interface ISaveAndInviteControlsProps {
+	flavor: SaveAndInviteControlsFlavor,
+}
+
 interface IPropsFromState {
 	currentLanguage: LanguageId,
     getString: (id: StringId) => string,
@@ -36,7 +45,7 @@ function isValidEmailAddress(emailAddress: string): boolean {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(emailAddress);
 }
 
-class SaveAndInviteControls extends React.Component<IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, ISavePaneState> {
+class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, ISavePaneState> {
 	public componentWillMount() {
 		this.setState({
 			expandState: SavePaneExpandState.Collapsed,
@@ -45,7 +54,11 @@ class SaveAndInviteControls extends React.Component<IPropsFromState & IPropsFrom
 	}
 
 	public render() {
+		const { flavor } = this.props;
 		const { expandState: savePaneExpandState, sendButtonEnabled } = this.state;
+
+		const saveButtonClassName = flavor === SaveAndInviteControlsFlavor.JustSave ? "vv-button vv-button-filled vv-button-large save-button-large" : "vv-button save-button";
+		const saveButtonLabelStringId = flavor === SaveAndInviteControlsFlavor.JustSave ? StringId.SaveYourPlan : StringId.Save;
 
 		const savePaneStyle: React.CSSProperties = savePaneExpandState === SavePaneExpandState.Expanded ? {} : {display: "none"};
 
@@ -54,14 +67,21 @@ class SaveAndInviteControls extends React.Component<IPropsFromState & IPropsFrom
 				<div className="plan-save-and-invite">
 					<div className="plan-save-and-invite-2">
 						<div className="plan-save">
-							<Button type="button" className="vv-button save-button" onClick={this._onSaveClick}>{this.props.getString(StringId.Save)}</Button>
+							<Button type="button" className={saveButtonClassName} onClick={this._onSaveClick}>{this.props.getString(saveButtonLabelStringId)}</Button>
 						</div>
-						<div className="plan-invite-people">
-							<div className="plan-invite-people-text">{this.props.getString(StringId.PlanPageInvitePeople)}</div>
-							<div className="share-widget-container">
-								<ShareWidgets size={ShareWidgetSize.Small} />
-							</div>
-						</div>
+
+						{
+							flavor === SaveAndInviteControlsFlavor.SaveAndInvite ? (
+								<div className="plan-invite-people">
+									<div className="plan-invite-people-text">{this.props.getString(StringId.PlanPageInvitePeople)}</div>
+									<div className="share-widget-container">
+										<ShareWidgets size={ShareWidgetSize.Small} />
+									</div>
+								</div>
+							) : (
+								<React.Fragment />
+							)
+						}
 					</div>
 				</div>
 

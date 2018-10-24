@@ -1,3 +1,7 @@
+.plan-page-root {
+	padding-bottom: 20px;
+}
+
 .plan-page-body {
 	max-width: 800px;
 	margin-left: auto;
@@ -21,19 +25,5 @@
 	.plan-step-share-widget-container {
 		margin-top: 20px;
 		margin-bottom: 40px;
-	}
-}
-
-@media only screen and (max-width: 540px) {
-	.email-address-controls {
-		flex-flow: column;
-	}
-
-	.email-address-text-box {
-		width: 300px;
-	}
-
-	.save-pane-button {
-		margin-top: 8px;
 	}
 }
