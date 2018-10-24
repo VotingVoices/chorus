@@ -104,7 +104,7 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 					</div>
 
 					<div className="email-confirmation VotingVoices-serif" style={emailConfirmationStyle}>
-						We've sent your VotePlan to <strong>foo@bar.com</strong>.
+						{this.props.getString(StringId.EmailConfirmationPreEmailAddress)}<strong>{confirmationEmailAddress!}</strong>{this.props.getString(StringId.EmailConfirmationPostEmailAddress)}
 					</div>
 				</div>
 			</React.Fragment>

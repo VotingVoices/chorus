@@ -178,6 +178,8 @@ export enum StringId {
 	RegisterNow,
 	CarpoolToThePolls,
 	SaveYourPlan,
+	EmailConfirmationPreEmailAddress,
+	EmailConfirmationPostEmailAddress,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -708,6 +710,12 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.SaveYourPlan,
 		"Save Your Plan"],
+
+	[StringId.EmailConfirmationPreEmailAddress,
+		"We've sent your VotePlan to "],
+
+	[StringId.EmailConfirmationPostEmailAddress,
+		"."],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1397,6 +1405,14 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// TODO: Confirm translation
 		// "Save Your Plan"],
 		"Guardar Su Plan"],
+
+	[StringId.EmailConfirmationPreEmailAddress,
+		// TODO: Confirm translation
+		// "We've sent your VotePlan to "],
+		"Nosotros hemos enviado su VotePlan a "],
+
+	[StringId.EmailConfirmationPostEmailAddress,
+		"."],
 ]);
 
 export function getEnglishString(id: StringId): string {
