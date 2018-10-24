@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { default as PlanEmotion } from './PlanEmotion';
 import { default as PlanStep } from './PlanStep';
 import { default as ReasonToVote } from './ReasonToVote';
-import { default as SaveAndInviteControls } from './SaveAndInviteControls';
+import { default as SaveAndInviteControls, SaveAndInviteControlsFlavor } from './SaveAndInviteControls';
 import { default as StartOverButton, StartOverButtonType } from './StartOverButton';
 import { ShareWidgets, ShareWidgetSize } from './ShareWidgets';
 import { ALL_QUESTION_IDS, copyLinkToClipboard, IConnectedReduxProps, IQuestionAndAnswer, IQuestionnaireState, LanguageId, QuestionId, QUESTIONS, recordPlanPage, recordSaveButton, sendPlanEmail, VotingStateId } from '../store';
@@ -36,7 +36,7 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 
 		return (
 			<div>
-				<SaveAndInviteControls {...this.props} />
+				<SaveAndInviteControls flavor={SaveAndInviteControlsFlavor.SaveAndInvite} {...this.props} />
 
 				<div className="App plan-page-body">
 					{ALL_QUESTION_IDS.map(
@@ -71,9 +71,11 @@ class PlanBody extends React.Component<IPlanBodyProps & IPropsFromState & IProps
 							}
 						}
 					)}
-
-					<StartOverButton type={StartOverButtonType.Filled} {...this.props} />
 				</div>
+
+				<SaveAndInviteControls flavor={SaveAndInviteControlsFlavor.JustSave} {...this.props} />
+
+				<StartOverButton type={StartOverButtonType.Filled} {...this.props} />
 			</div>
 		);
 	}
