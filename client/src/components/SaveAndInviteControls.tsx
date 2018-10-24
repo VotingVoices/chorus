@@ -47,6 +47,8 @@ function isValidEmailAddress(emailAddress: string): boolean {
 }
 
 class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, ISavePaneState> {
+	private emailAddressInput: HTMLInputElement | null;
+
 	public componentWillMount() {
 		this.setState({
 			expandState: SavePaneExpandState.Collapsed,
@@ -95,7 +97,12 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 
 					<div className="email-address-controls">
 						<div className="email-address-text-box-container">
-							<input type="text" className="vv-text-box email-address-text-box" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
+							<input
+								type="text"
+								className="vv-text-box email-address-text-box"
+								placeholder={this.props.getString(StringId.EmailAddress)}
+								onChange={this._onEmailAddressValueChange}
+								ref={input => { this.emailAddressInput = input; }}/>
 						</div>
 						<div className="save-pane-buttons">
 							<Button type="button" disabled={!sendButtonEnabled} className="vv-button vv-button-filled save-pane-button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
@@ -139,6 +146,10 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 		this.setState({
 			confirmationEmailAddress: this.state.emailAddress,
 		});
+
+		if (this.emailAddressInput !== null) {
+			this.emailAddressInput.value = "";
+		}
 	}
 
 	private _onCopyLinkClick = (ev: React.MouseEvent<Button>) => {
