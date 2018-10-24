@@ -93,7 +93,7 @@ function getStateTransition(oldState: IQuestionnaireState, newState: IQuestionna
 }
 
 function respondToBackOrForwardButton(prevState: IQuestionnaireState, pathname: string, search: string) : IQuestionnaireState {
-	const { state } = readStateFromLocation(prevState, pathname, search);
+	const { state } = readStateFromLocation(prevState, pathname, search, true /*allowMiddleOfSurveyState*/);
 
 	return {
 		...state,

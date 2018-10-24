@@ -14,7 +14,7 @@ import './index.css';
 
 const history = createHashHistory();
 
-const readStateResult = readStateFromLocation(DEFAULT_STATE, history.location.pathname, history.location.search);
+const readStateResult = readStateFromLocation(DEFAULT_STATE, history.location.pathname, history.location.search, false /*allowMiddleOfSurveyState*/);
 
 const initialState = readStateResult.state;
 

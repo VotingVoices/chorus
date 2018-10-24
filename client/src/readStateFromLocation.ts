@@ -58,10 +58,18 @@ function getAnswer(queryValues: any, questionId: QuestionId) : AnswerId | IZipCo
 	return rawAnswer;
 }
 
-export function readStateFromLocation(existingState: IQuestionnaireState, pathname: string, search: string): IReadStateResult {
+export function readStateFromLocation(existingState: IQuestionnaireState, pathname: string, search: string, allowMiddleOfSurveyState: boolean): IReadStateResult {
 	const appView = getViewFromPath(pathname);
 
 	if (appView !== undefined) {
+		if (appView === AppView.Questionnaire && !allowMiddleOfSurveyState) {
+			return {
+				state: existingState,
+				appViewSpecified: false,
+				questionSpecified: false,
+			};
+		}
+		
 		const queryValues = queryString.parse(search);
 
 		let currentQuestionId = queryValues[CurrentQuestionQueryParameterName];
