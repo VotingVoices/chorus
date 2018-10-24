@@ -22,6 +22,10 @@
 	vertical-align: baseline;		/* Line up the "Save" button with the "Invite:" label */
 }
 
+.save-button-large {
+	margin-bottom: 10px;
+}
+
 .save-pane {
 	background: #eeeeee;
 	padding: 10px;

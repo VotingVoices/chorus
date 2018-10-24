@@ -57,7 +57,7 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 		const { flavor } = this.props;
 		const { expandState: savePaneExpandState, sendButtonEnabled } = this.state;
 
-		const saveButtonClassName = flavor === SaveAndInviteControlsFlavor.JustSave ? "vv-button vv-button-filled vv-button-large" : "vv-button save-button";
+		const saveButtonClassName = flavor === SaveAndInviteControlsFlavor.JustSave ? "vv-button vv-button-filled vv-button-large save-button-large" : "vv-button save-button";
 		const saveButtonLabelStringId = flavor === SaveAndInviteControlsFlavor.JustSave ? StringId.SaveYourPlan : StringId.Save;
 
 		const savePaneStyle: React.CSSProperties = savePaneExpandState === SavePaneExpandState.Expanded ? {} : {display: "none"};
