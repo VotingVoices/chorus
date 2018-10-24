@@ -52,6 +52,10 @@
 	margin-right: 8px;
 }
 
+.save-pane-buttons {
+	display: flex;
+}
+
 .save-pane-button {
 	margin-left: 8px;
 	margin-right: 8px;
