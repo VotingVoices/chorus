@@ -38,6 +38,7 @@ interface ISavePaneState {
 	expandState: SavePaneExpandState,
 	emailAddress: string,
 	sendButtonEnabled: boolean,
+	confirmationEmailAddress: string | undefined,
 }
 
 function isValidEmailAddress(emailAddress: string): boolean {
@@ -46,22 +47,26 @@ function isValidEmailAddress(emailAddress: string): boolean {
 }
 
 class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps & IPropsFromState & IPropsFromDispatch & IConnectedReduxProps, ISavePaneState> {
+	private emailAddressInput: HTMLInputElement | null;
+
 	public componentWillMount() {
 		this.setState({
 			expandState: SavePaneExpandState.Collapsed,
-			sendButtonEnabled: false
+			sendButtonEnabled: false,
+			confirmationEmailAddress: undefined,
 		});
 	}
 
 	public render() {
 		const { flavor } = this.props;
-		const { expandState: savePaneExpandState, sendButtonEnabled } = this.state;
+		const { expandState: savePaneExpandState, sendButtonEnabled, confirmationEmailAddress } = this.state;
 
 		const saveButtonClassName = flavor === SaveAndInviteControlsFlavor.JustSave ? "vv-button vv-button-filled vv-button-large save-button-large" : "vv-button save-button";
 		const saveButtonLabelStringId = flavor === SaveAndInviteControlsFlavor.JustSave ? StringId.SaveYourPlan : StringId.Save;
 
 		const savePaneStyle: React.CSSProperties = savePaneExpandState === SavePaneExpandState.Expanded ? {} : {display: "none"};
-
+		const emailConfirmationStyle: React.CSSProperties = confirmationEmailAddress !== undefined ? {} : {display: "none"};
+		
 		return (
 			<React.Fragment>
 				<div className="plan-save-and-invite">
@@ -89,14 +94,24 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 					<div className="email-address-label VotingVoices-serif">
 						{this.props.getString(StringId.SendYourselfALink)}
 					</div>
+
 					<div className="email-address-controls">
 						<div className="email-address-text-box-container">
-							<input type="text" className="vv-text-box email-address-text-box" placeholder={this.props.getString(StringId.EmailAddress)} onChange={this._onEmailAddressValueChange} />
+							<input
+								type="text"
+								className="vv-text-box email-address-text-box"
+								placeholder={this.props.getString(StringId.EmailAddress)}
+								onChange={this._onEmailAddressValueChange}
+								ref={input => { this.emailAddressInput = input; }}/>
 						</div>
 						<div className="save-pane-buttons">
 							<Button type="button" disabled={!sendButtonEnabled} className="vv-button vv-button-filled save-pane-button" onClick={this._onEmailSendClick}>{this.props.getString(StringId.Send)}</Button>
 							<Button type="button" className="vv-button vv-button-outline save-pane-button copy-link-button" onClick={this._onCopyLinkClick}>{this.props.getString(StringId.CopyLink)}</Button>
 						</div>
+					</div>
+
+					<div className="email-confirmation VotingVoices-serif" style={emailConfirmationStyle}>
+						{this.props.getString(StringId.EmailConfirmationPreEmailAddress)}<strong>{confirmationEmailAddress!}</strong>{this.props.getString(StringId.EmailConfirmationPostEmailAddress)}
 					</div>
 				</div>
 			</React.Fragment>
@@ -127,6 +142,14 @@ class SaveAndInviteControls extends React.Component<ISaveAndInviteControlsProps 
 
 	private _onEmailSendClick = (ev: React.MouseEvent<Button>) => {
 		this.props.sendPlanEmail(this.state.emailAddress);
+
+		this.setState({
+			confirmationEmailAddress: this.state.emailAddress,
+		});
+
+		if (this.emailAddressInput !== null) {
+			this.emailAddressInput.value = "";
+		}
 	}
 
 	private _onCopyLinkClick = (ev: React.MouseEvent<Button>) => {

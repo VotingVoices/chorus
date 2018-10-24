@@ -52,6 +52,10 @@
 	margin-right: 8px;
 }
 
+.save-pane-buttons {
+	display: flex;
+}
+
 .save-pane-button {
 	margin-left: 8px;
 	margin-right: 8px;
@@ -60,6 +64,11 @@
 .copy-link-button {
 	color: black;
 	border-color: black;
+}
+
+.email-confirmation {
+	font-size: 16px;
+	margin-top: 12px;
 }
 
 .plan-invite-people {
