@@ -926,12 +926,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Fantástico \u2014 usted dijo que está registrado! Revisemos que todo esté al día."],
 
 	[StringId.NotSureWhetherYoureRegistered,
-		// TODO: Confirm translation
 		// "Not sure whether you\u2019re registered? Take a minute now to find out."],
 		"No está seguro de haberse registrado? Tome un minuto para saber."],
 
 	[StringId.TakeAMinuteToSubmitYourRegistration,
-		// TODO: Confirm translation
 		// "Take a minute to submit your registration and make sure you\u2019re vote ready."],
 		"Tome un minuto para enviar su registro y veríficar que está listo para votar."],
 
@@ -1037,9 +1035,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Encuentre el casillero de envío."],
 
 	[StringId.PlanAheadForDropBox,
-		// TODO: Confirm translation
 		// "Drop off your ballot at a spot that\u2019s close by and convenient."],
-		"Envié su cartón en un lugar que está cerca y conveniente."],
+		"Envíe su cartón de votación en un lugar que sea cerca y conveniente."],
 
 	[StringId.FindDropboxNearYou,
 		// "Find a ballot drop box near you"],
@@ -1095,14 +1092,12 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Vaya por carro"],
 
 	[StringId.GetCurrentAddressForCarpool,
-		// TODO: Confirm translation
 		// "Even better, get the current address and directions before you go."],
-		"Aún mejor, consiga la dirección reciente y indicaciones antes de ir."],
+		"Aún mejor, conozca la dirección más reciente e indicaciones para llegar."],
 
 	[StringId.RoundUpFellowVotersForTaxi,
-		// TODO: Confirm translation
 		// "Great plan. Even better, get the current address and directions before you go"],
-		"Gran plan. Aún mejor, consiga la dirección reciente y indicaciones antes de ir."],
+		"Gran plan. Aún mejor, conozca la dirección más reciente e indicaciones para llegar."],
 
 	[StringId.RoundUpFellowVotersForDriveMyselfOrRideShare,
 		// "Great plan. Even better, round up some fellow voters to share the ride!"],
@@ -1192,7 +1187,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Ahora es el perfecto momento para investigar los candidatos y las propuestas por las que va a votar. La aplicación Ballot Ready lo puede ayudar decisiones informadas."],
 
 	[StringId.InviteYourFriendsToVoteWithYou,
-		// "Invite your crowd to vote with you"],    // TODO: Review: "your crowd?
+		// "Invite your crowd to vote with you"],
 		"Invite a las personas a votar con usted"],
 
 	[StringId.LetsKeepEachOtherAccountable,
@@ -1235,9 +1230,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Se está sintiendo con rabia \u2014 lo entendemos! Estos son tiempos complicados. Vea esto para sentirse inspirado."],
 
 	[StringId.YoureMeh,
-		// TODO: Confirm translation
 		// "Feeling ambivalent? Now that your voting plans are taking shape, watch this and get inspired."],
-		"Se está sintiendo ahí? Ahora que sus planes de votación estan tomando, vea esto para sentirse inspirado."],
+		"Se está sintiendo indiferente? Ahora que sus planes de votación están tomando, vea esto para inspirarse."],
 
 	[StringId.RememberYourReasonForVoting,
 		// "Remember your reason for voting!"],
@@ -1273,7 +1267,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.CivicDutyDescription,
 		// "You\u2019ve always voted \u2014 good on you! Spread the word and keep up the great (and extremely important) civic habit."],
-		"Usted siempre ha votado \u2014 ¡muy bien! Pasé la voz y mantenga el grandioso e importante hábito."],		// TODO: Lowercase "muy" and leading exclamation point?
+		"Usted siempre ha votado \u2014 ¡muy bien! Pasé la voz y mantenga el grandioso e importante hábito."],
 
 	[StringId.OtherCivicDutyDescription,
 		// "You\u2019re about to do the single best thing you can to weigh in on issues and decision-makers. Do you approve? Disapprove? Your vote is a meaningful message \u2014 pass it on!"],
@@ -1368,12 +1362,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Donar"],
 
 	[StringId.Save,
-		// TODO: Confirm translation
 		// "Save"],
 		"Guardar"],
 
 	[StringId.EmailAddress,
-		// TODO: Confirm translation
 		// "Your email address"],
 		"Su dirección de email"],
 
@@ -1382,32 +1374,26 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Enviar"],
 
 	[StringId.SendYourselfALink,
-		// TODO: Confirm translation
 		// "Send yourself a link to your VotePlan so you can refer to it later."],
-		"Enviese un enlace a su VotePlan para consultarlo más adelante."],
+		"Envíe un enlace a su VotePlan para consultarlo más adelante."],
 
 	[StringId.CopyLink,
-		// TODO: Confirm translation
 		// "Copy Link"],
 		"Copiar Enlace"],
 
 	[StringId.RegisterNow,
-		// TODO: Confirm translation
 		// "Register Now"],
-		"Registrarse Ahora"],
+		"Registrese"],
 
 	[StringId.CarpoolToThePolls,
-		// TODO: Check translation
 		// "Carpool to the polls"],
-		"Compartir automovil a los puestos de votación"],
+		"Comparta un automóvil a los puestos de votación"],
 
 	[StringId.SaveYourPlan,
-		// TODO: Confirm translation
 		// "Save Your Plan"],
 		"Guardar Su Plan"],
 
 	[StringId.EmailConfirmationPreEmailAddress,
-		// TODO: Confirm translation
 		// "We've sent your VotePlan to "],
 		"Nosotros hemos enviado su VotePlan a "],
 
