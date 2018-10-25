@@ -29,7 +29,7 @@ class PlanEmotion extends React.Component<IPlanEmotionProps & IPropsFromState & 
 				<div>{ this.imgElement(planStepId) }</div>
 
 				<div className="plan-step-header VotingVoices-sans-serif">{this.props.getString(header)}</div>
-				<div className="plan-step-text VotingVoices-serif">{this.props.getString(text)}</div>
+				<div className="plan-step-text VotingVoices-serif">{this.props.getString(text!)}</div>
 
 				<CallToAction {...this.props} callToAction={callToAction} link={link} />
 			</div>

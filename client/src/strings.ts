@@ -124,15 +124,10 @@ export enum StringId {
 	PlanYourBallotChoices,
 	BallotReadyDotOrgLink,
 	ExploreYourBallot,
-	BallotReadyAppCanHelpYouMakeInformedChoices,
 	InviteYourFriendsToVoteWithYou,
 	LetsKeepEachOtherAccountable,
 	PutThoseFeelingsTowardAction,
-	SeeWhatHappensWhenWeAllVote,
-	SentimentYouTubeLink,
-	YoureExcited,
 	YoureExcitedDescription,
-	YoureConcerned,
 	YoureConcernedDescription,
 	YoureShocked,
 	YoureAngry,
@@ -550,9 +545,6 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.ExploreYourBallot,
 		"Explore your ballot"],
 
-	[StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
-		"Now\u2019s the perfect time to research the candidates and issues you\u2019ll be voting for. The <strong>BallotReady</strong> app can help you make informed choices."],
-
 	[StringId.InviteYourFriendsToVoteWithYou,
 		"Invite your crowd to vote with you"],    // TODO: Review: "your crowd?
 
@@ -562,32 +554,23 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.PutThoseFeelingsTowardAction,
 		"Put those feelings toward action"],
 
-	[StringId.SeeWhatHappensWhenWeAllVote,
-		"See what happens When We All Vote"],
-
-	[StringId.SentimentYouTubeLink,
-		"https://www.youtube.com/watch?v=WnOi4wapmNA&t=1s"],
-
-	[StringId.YoureExcited,
-		"You\u2019re excited about voting!"],
-
 	[StringId.YoureExcitedDescription,
-		"Well, great \u2014 you\u2019re not the only one! Watch this and keep participating!"],
+		"You\u2019re excited and that's great! Take your enthusiasm all the way to the polls or ballot box."],
 
-	[StringId.YoureConcerned,
+	[StringId.PutThoseFeelingsTowardAction,
 		"Put those feelings toward voting action"],
 
 	[StringId.YoureConcernedDescription,
-		"You\u2019re feeling concerned \u2014 we get it! These are complicated times. Watch this and get inspired."],
+		"You\u2019re feeling concerned \u2014 we get it! These are complicated times. You\u2019ll feel better after you get out there and vote."],
 
 	[StringId.YoureShocked,
-		"You\u2019re feeling shocked \u2014 we get it! These are complicated times. Watch this and get inspired."],
+		"You\u2019re feeling shocked \u2014 we get it! These are complicated times. You\u2019ll feel better after you get out there and vote."],
 
 	[StringId.YoureAngry,
-		"You\u2019re feeling angry \u2014 we get it! These are complicated times. Watch this and get inspired."],
+		"You\u2019re feeling angry \u2014 we get it! These are complicated times. You\u2019ll feel better after you get out there and vote."],
 
 	[StringId.YoureMeh,
-		"Feeling ambivalent? Now that your voting plans are taking shape, watch this and get inspired."],
+		"Feeling ambivalent? Now that your voting plans are taking shape \u2014 now get out there and vote!"],
 
 	[StringId.RememberYourReasonForVoting,
 		"Remember your reason for voting!"],
@@ -1187,10 +1170,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "Explore your ballot"],
 		"Estudie su cartón de votación"],
 
-	[StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
-		// "Now\u2019s the perfect time to research the candidates and issues you\u2019ll be voting for. The <strong>BallotReady</strong> app can help you make informed choices."],
-		"Ahora es el perfecto momento para investigar los candidatos y las propuestas por las que va a votar. La aplicación <strong>BallotReady</strong> lo puede ayudar decisiones informadas."],
-
 	[StringId.InviteYourFriendsToVoteWithYou,
 		// "Invite your crowd to vote with you"],
 		"Invite a las personas a votar con usted"],
@@ -1203,40 +1182,34 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "Put those feelings toward action"],
 		"Ponga esos sentimientos en acciones"],
 
-	[StringId.SeeWhatHappensWhenWeAllVote,
-		// "See what happens When We All Vote"],
-		"Revise que pasa cuando todos votamos"],
-
-	[StringId.SentimentYouTubeLink,
-		"https://www.youtube.com/watch?v=WnOi4wapmNA&t=1s"],
-
-	[StringId.YoureExcited,
-		// "You\u2019re excited about voting!"],
-		"Usted está emocionado por votar"],
-
 	[StringId.YoureExcitedDescription,
-		// "Well, great \u2014 you\u2019re not the only one! Watch this and keep participating!"],
-		"Grandioso, \u2014 no eres el único! Mire esto y mantengase particiando."],
+		// TODO: Confirm translation
+		// "You\u2019re excited and that's great! Take your enthusiasm all the way to the polls or ballot box."],
+		"Usted está emocionado por votar, y ¡es grandioso! Tome su entusiasmo y úselo para votar."],
 
-	[StringId.YoureConcerned,
+	[StringId.PutThoseFeelingsTowardAction,
 		// "Put those feelings toward voting action"],
 		"Ponga esos sentimientos en una acción"],
 
 	[StringId.YoureConcernedDescription,
-		// "You\u2019re feeling concerned \u2014 we get it! These are complicated times. Watch this and get inspired."],
-		"Se está sintiendo preocupado \u2014 lo entendemos! Estos son tiempos complicados. Vea esto para sentirse inspirado."],
+		// TODO: Confirm translation
+		// "You\u2019re feeling concerned \u2014 we get it! These are complicated times. You\u2019ll feel better after you get out there and vote."],
+		"Se está sintiendo preocupado \u2014 ¡lo entendemos! Estos son tiempos complicados. Se sentirá mejor despues de salir y votar."],
 
 	[StringId.YoureShocked,
-		// "You\u2019re feeling shocked \u2014 we get it! These are complicated times. Watch this and get inspired."],
-		"Se está sintiendo consternado \u2014 lo entendemos! Estos son tiempos complicados. Vea esto para sentirse inspirado."],
+		// TODO: Confirm translation
+		// "You\u2019re feeling shocked \u2014 we get it! These are complicated times. You\u2019ll feel better after you get out there and vote."],
+		"Se está sintiendo consternado \u2014 ¡lo entendemos! Estos son tiempos complicados. Se sentirá mejor despues de salir y votar."],
 
 	[StringId.YoureAngry,
-		// "You\u2019re feeling angry \u2014 we get it! These are complicated times. Watch this and get inspired."],
-		"Se está sintiendo con rabia \u2014 lo entendemos! Estos son tiempos complicados. Vea esto para sentirse inspirado."],
+		// TODO: Confirm translation
+		// "You\u2019re feeling angry \u2014 we get it! These are complicated times. You\u2019ll feel better after you get out there and vote."],
+		"Se está sintiendo con rabia \u2014 ¡lo entendemos! Estos son tiempos complicados. Se sentirá mejor despues de salir y votar."],
 
 	[StringId.YoureMeh,
-		// "Feeling ambivalent? Now that your voting plans are taking shape, watch this and get inspired."],
-		"Se está sintiendo indiferente? Ahora que sus planes de votación están tomando, vea esto para inspirarse."],
+		// TODO: Confirm translation
+		// "Feeling ambivalent? Now that your voting plans are taking shape \u2014 now get out there and vote!"],
+		"¿Se está sintiendo indiferente? Ahora que sus planes de votación están tomando \u2014 ¡ahora salga y vote!"],
 
 	[StringId.RememberYourReasonForVoting,
 		// "Remember your reason for voting!"],
@@ -1482,7 +1455,7 @@ export function getAnswerLabel(answer: AnswerId): StringId {
 
 export interface IPlanStepStrings {
 	header: StringId,
-	text: StringId,
+	text: StringId | undefined,
 	callToAction: StringId | undefined,
 	link: StringId | undefined,
 }
@@ -1757,7 +1730,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.ResearchBallotIssues: {
 			return {
 				header: StringId.ExploreYourBallot,
-				text: StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
+				text: undefined,
 				callToAction: StringId.PlanYourBallotChoices,
 				link: StringId.BallotReadyDotOrgLink,
 			}
@@ -1777,19 +1750,14 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 		case PlanStepId.Shocked:
 		case PlanStepId.Angry:
 		case PlanStepId.Meh: {
-			let header = StringId.PutThoseFeelingsTowardAction;
 			let text: StringId | undefined;
-			const callToAction: StringId | undefined = StringId.SeeWhatHappensWhenWeAllVote;
-			const link: StringId | undefined = StringId.SentimentYouTubeLink;
 
 			switch (step) {
 				case PlanStepId.Excited: {
-					header = StringId.YoureExcited;
 					text = StringId.YoureExcitedDescription;
 					break;
 				}
 				case PlanStepId.Concerned: {
-					header = StringId.YoureConcerned;
 					text = StringId.YoureConcernedDescription;
 					break;
 				}
@@ -1810,10 +1778,10 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			}
 
 			return {
-				header,
-				text: text!,
-				callToAction,
-				link,
+				header: StringId.PutThoseFeelingsTowardAction,
+				text,
+				callToAction: undefined,
+				link: undefined,
 			}
 		}
 		default:
