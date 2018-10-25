@@ -14,7 +14,7 @@ import { StringId } from '../strings';
 export enum QuestionId {
 	AreYouRegistered = 'Reg',
 	ZipCode = 'Zip',
-	AbsenteeBallot = 'Abs',
+	VotingMethod = 'VtMth',
 	PollingLocation = 'PllLoc',
 	SpecialAccommodations = 'Accm',
 	TransportationMethod = 'Trns',
@@ -29,11 +29,11 @@ export enum QuestionId {
 
 	// Deprecated:
 	VoteByMailState = 'St',
+	AbsenteeBallot = 'Abs',
 }
 
 export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.AreYouRegistered,
-	QuestionId.AbsenteeBallot,
 	QuestionId.ZipCode,
 	QuestionId.PollingLocation,
 	QuestionId.SpecialAccommodations,
@@ -46,6 +46,10 @@ export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.PeopleToInvite,
 	QuestionId.ReasonToVote,
 	QuestionId.Emotion,
+
+	// Deprecated:
+	QuestionId.VoteByMailState,
+	QuestionId.AbsenteeBallot,
 ];
 
 /*
@@ -83,6 +87,9 @@ export enum AnswerId {
 	Shocked = 'Shck',
 	Angry = 'Ang',
 	Meh = 'Mh',
+	AtPolls = 'Plls',
+	VoteEarly = 'Ely',
+	Absentee = 'Abs',
 
 	// Deprecated:
 	Walk = 'Wlk',
@@ -213,6 +220,7 @@ export enum PlanStepId {
 	Shocked,
 	Angry,
 	Meh,
+	FindOutWhereToVoteEarly,
 }
 
 export interface IQuestion {

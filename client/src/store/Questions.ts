@@ -30,7 +30,7 @@ export const QUESTIONS : IQuestion[] = [
                 return QuestionId.ReceivedBallot;
             }
             else {
-                return QuestionId.AbsenteeBallot;
+                return QuestionId.VotingMethod;
             }
         },
         answers: [],
@@ -51,14 +51,15 @@ export const QUESTIONS : IQuestion[] = [
     },
     /* VOTE-IN-PERSON PATH */
     {
-        id: QuestionId.AbsenteeBallot,
+        id: QuestionId.VotingMethod,
         dotNavStep: 3,
-        nextQuestionId: (key) => key === AnswerId.Yes ? QuestionId.FamiliarWithBallot : QuestionId.PollingLocation,
+        nextQuestionId: (key) => key === AnswerId.Absentee ? QuestionId.FamiliarWithBallot : QuestionId.PollingLocation,
         answers: [
-            AnswerId.Yes,
-            AnswerId.No,
+            AnswerId.AtPolls,
+            AnswerId.VoteEarly,
+            AnswerId.Absentee,
         ],
-        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.RequestAbsenteeBallot : undefined,
+        resultingPlanStep: (answer) => answer === AnswerId.VoteEarly ? PlanStepId.FindOutWhereToVoteEarly : (answer === AnswerId.Absentee ? PlanStepId.RequestAbsenteeBallot : undefined),
     },
     {
         id: QuestionId.PollingLocation,
@@ -240,6 +241,19 @@ export const QUESTIONS : IQuestion[] = [
                     return undefined;
             }
         },
+    },
+
+    // DEPRECATED QUESTIONS
+    // These are here so that we can still generate plan steps for old plan URLs that refer to deprecated questions.
+
+    // QuestionId.VoteByMailState is not included here, because it was only used to choose which path to follow; it didn't
+    // generate any plan steps on its own.
+    {
+        id: QuestionId.AbsenteeBallot,
+        dotNavStep: 0,
+        nextQuestionId: (answer) => undefined,
+        answers: [],
+        resultingPlanStep: (answer) => answer === AnswerId.Yes ? PlanStepId.RequestAbsenteeBallot : undefined
     }];
 
 export const PLAN_DOT_NAV_STEP = 12;

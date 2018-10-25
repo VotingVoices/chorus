@@ -6,7 +6,6 @@ export enum StringId {
 	No,
 	NotSure,
 	AreYouRegisteredToVote,
-	DoYouWantToVoteWithAbsenteeBallot,
 	DoYouKnowWhereYourPollingLocationIs,
 	WillYouNeedSpecialAccommodations,
 	WhatTransportationMethodWillYouUse,
@@ -176,6 +175,10 @@ export enum StringId {
 	EmailConfirmationPreEmailAddress,
 	EmailConfirmationPostEmailAddress,
 	BallotReadySecondaryDescription,
+	HowDoYouPlanOnVoting,
+	AtThePolls,
+	VoteEarly,
+	Absentee,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -193,9 +196,6 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.AreYouRegisteredToVote,
 		"First things first. Are you registered to vote?"],
-
-	[StringId.DoYouWantToVoteWithAbsenteeBallot,
-		"Would you like to vote by absentee ballot?"],
 
 	[StringId.DoYouKnowWhereYourPollingLocationIs,
 		"Do you know where your polling location is?"],
@@ -703,6 +703,18 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.BallotReadySecondaryDescription,
 		"Get familiar with all the candidates and ballot measures. <strong>BallotReady</strong>\u2019s nonpartisan voter guides can help you make informed choices on your entire ballot."],
+
+	[StringId.HowDoYouPlanOnVoting,
+		"How do you plan on voting?"],
+
+	[StringId.AtThePolls,
+		"At the polls"],
+
+	[StringId.VoteEarly,
+		"Vote early"],
+
+	[StringId.Absentee,
+		"Absentee"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -724,10 +736,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.AreYouRegisteredToVote,
 		// "First things first. Are you registered to vote?"],
 		"Primero lo primero. ¿Está registrado para votar?"],
-
-	[StringId.DoYouWantToVoteWithAbsenteeBallot,
-		// "Would you like to vote by absentee ballot?"],
-		"¿Le gustaría votar por correspondencia?"],
 
 	[StringId.DoYouKnowWhereYourPollingLocationIs,
 		// "Do you know where your polling location is?"],
@@ -1382,6 +1390,26 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// TODO: Confirm translation
 		// "Get familiar with all the candidates and ballot measures. <strong>BallotReady</strong>\u2019s nonpartisan voter guides can help you make informed choices on your entire ballot."],
 		"Familiarícese con todos los candidatos y propuestas sujetas a votación. Las guías del votante no partidistas de <strong>BallotReady</strong> pueden ayudarlo a tomar decisiones informadas sobre toda su cartón de votación."],
+
+	[StringId.HowDoYouPlanOnVoting,
+		// TODO: Confirm translation
+		// "How do you plan on voting?"]
+		"¿Cómo piensa votar?"],
+
+	[StringId.AtThePolls,
+		// TODO: Confirm translation
+		// "At the polls"],
+		"Puesto de votación"],
+
+	[StringId.VoteEarly,
+		// TODO: Confirm translation
+		// "Vote early"],
+		"Votación anticipada"],
+
+	[StringId.Absentee,
+		// TODO: Confirm translation
+		// "Absentee"],
+		"Por correspondencia"],
 ]);
 
 export function getEnglishString(id: StringId): string {
@@ -1398,7 +1426,7 @@ export function getQuestionFullLabel(id: QuestionId): StringId {
 	switch (id) {
 		case QuestionId.AreYouRegistered: return StringId.AreYouRegisteredToVote;
 		case QuestionId.ZipCode: return StringId.WhereAreYouVoting;
-		case QuestionId.AbsenteeBallot: return StringId.DoYouWantToVoteWithAbsenteeBallot;
+		case QuestionId.VotingMethod: return StringId.HowDoYouPlanOnVoting;
 		case QuestionId.PollingLocation: return StringId.DoYouKnowWhereYourPollingLocationIs;
 		case QuestionId.SpecialAccommodations: return StringId.WillYouNeedSpecialAccommodations;
 		case QuestionId.TransportationMethod: return StringId.WhatTransportationMethodWillYouUse;
@@ -1448,6 +1476,9 @@ export function getAnswerLabel(answer: AnswerId): StringId {
 		case AnswerId.Shocked: return StringId.Shocked;
 		case AnswerId.Angry: return StringId.Angry;
 		case AnswerId.Meh: return StringId.Meh;
+		case AnswerId.AtPolls: return StringId.AtThePolls;
+		case AnswerId.VoteEarly: return StringId.VoteEarly;
+		case AnswerId.Absentee: return StringId.Absentee;
 	}
 
 	throw new Error(`Unrecognized AnswerId: ${answer}`);
