@@ -180,6 +180,7 @@ export enum StringId {
 	SaveYourPlan,
 	EmailConfirmationPreEmailAddress,
 	EmailConfirmationPostEmailAddress,
+	BallotReadySecondaryDescription,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -716,6 +717,9 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.EmailConfirmationPostEmailAddress,
 		"."],
+
+	[StringId.BallotReadySecondaryDescription,
+		"Get familiar with all the candidates and ballot measures. <em>BallotReady<em>\u2019s nonpartisan voter guides can help you make informed choiceson your entire ballot."],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -1400,6 +1404,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.EmailConfirmationPostEmailAddress,
 		"."],
+
+	[StringId.BallotReadySecondaryDescription,
+		// TODO: Translate
+		"Get familiar with all the candidates and ballot measures. <em>BallotReady<em>\u2019s nonpartisan voter guides can help you make informed choiceson your entire ballot."],
 ]);
 
 export function getEnglishString(id: StringId): string {

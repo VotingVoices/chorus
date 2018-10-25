@@ -8,6 +8,7 @@ import { default as CallToAction } from './CallToAction';
 import plan_circle_on from './plan_circle_on.png';
 
 import './PlanStep.css';
+import BallotReady from './ballotready.jpg';
 
 interface IPlanStepProps {
 	indexHolder: IIndexHolder,
@@ -64,9 +65,15 @@ class PlanStep extends React.Component<IPlanStepProps & IPropsFromState & IConne
 
 	private ballotReadyWidget(callToAction: StringId | undefined, link: StringId | undefined): JSX.Element {
 		return (
-			<iframe className="ballotReady-widget" style={ { backgroundColor: "transparent", border: "none", overflow: "hidden" } } scrolling="no" src="https://www2.ballotready.org/widget/address_search" width="100%">
-				<CallToAction {...this.props} callToAction={callToAction} link={link} />
-			</iframe>
+			<React.Fragment>
+				<div>
+					<img src={BallotReady} />
+				</div>
+
+				<iframe className="ballotReady-widget" style={ { backgroundColor: "transparent", border: "none", overflow: "hidden" } } scrolling="no" src="https://www2.ballotready.org/widget/address_search" width="100%">
+					<CallToAction {...this.props} callToAction={callToAction} link={link} />
+				</iframe>
+			</React.Fragment>
 		);
 	}
 }
