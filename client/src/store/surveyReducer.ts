@@ -25,7 +25,7 @@ export const DEFAULT_STATE = {
 } as IQuestionnaireState;
 
 function answerQuestion(prevState: IQuestionnaireState, questionId: QuestionId, answer: AnswerId | IZipCodeAnswer): IQuestionnaireState {
-	const answers = prevState.answers;
+	const answers = prevState.answers.slice();
 
 	const question = QUESTIONS.find(q => q.id === questionId);
 
