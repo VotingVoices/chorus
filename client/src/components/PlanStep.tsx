@@ -70,6 +70,8 @@ class PlanStep extends React.Component<IPlanStepProps & IPropsFromState & IConne
 					<img src={BallotReady} />
 				</div>
 
+				<div className="plan-step-text VotingVoices-serif" dangerouslySetInnerHTML={ { __html: this.props.getString(StringId.BallotReadySecondaryDescription)} } />
+
 				<iframe className="ballotReady-widget" style={ { backgroundColor: "transparent", border: "none", overflow: "hidden" } } scrolling="no" src="https://www2.ballotready.org/widget/address_search" width="100%">
 					<CallToAction {...this.props} callToAction={callToAction} link={link} />
 				</iframe>
