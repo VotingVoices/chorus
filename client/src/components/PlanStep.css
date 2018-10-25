@@ -34,6 +34,11 @@
 	height: 120px;
 }
 
+.ballotReady-img {
+	max-width: 300px;
+	margin-top: 20px;
+}
+
 @media only screen and (max-width: 840px) {
 	.plan-step-header {
 		margin-top: 26px;
@@ -51,5 +56,11 @@
 		margin-top: 2px;
 		margin-right: 4px;
 		width: 22px;
+	}
+}
+
+@media only screen and (max-width: 420px) {
+	.ballotReady-img {
+		max-width: 250px;
 	}
 }

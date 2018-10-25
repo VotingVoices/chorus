@@ -67,7 +67,7 @@ class PlanStep extends React.Component<IPlanStepProps & IPropsFromState & IConne
 		return (
 			<React.Fragment>
 				<div>
-					<img src={BallotReady} />
+					<img className="ballotReady-img" src={BallotReady} />
 				</div>
 
 				<div className="plan-step-text VotingVoices-serif" dangerouslySetInnerHTML={ { __html: this.props.getString(StringId.BallotReadySecondaryDescription)} } />
