@@ -538,7 +538,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Research your ballot"],
 
 	[StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
-		"You\u2019re familiar with the candidates and issues. The Ballot Ready app can help you make informed choices."],
+		"You\u2019re familiar with the candidates and issues. The <strong>Ballot Ready</strong> app can help you make informed choices."],
 
 	[StringId.PlanYourBallotChoices,
 		"Plan your ballot choices"],
@@ -550,7 +550,7 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 		"Explore your ballot"],
 
 	[StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
-		"Now\u2019s the perfect time to research the candidates and issues you\u2019ll be voting for. The Ballot Ready app can help you make informed choices."],
+		"Now\u2019s the perfect time to research the candidates and issues you\u2019ll be voting for. The <strong>Ballot Ready</strong> app can help you make informed choices."],
 
 	[StringId.InviteYourFriendsToVoteWithYou,
 		"Invite your crowd to vote with you"],    // TODO: Review: "your crowd?
@@ -1168,8 +1168,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Invéstigue la decisión para su voto"],
 
 	[StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
-		// "You\u2019re familiar with the candidates and issues. The Ballot Ready app can help you make informed choices."],
-		"Esta familiarizado con los candidatos y sus preocupaciones. La applicación de Ballot Ready le puede ayudar a hacer decisiones con más contexto."],
+		// "You\u2019re familiar with the candidates and issues. The <strong>Ballot Ready</strong> app can help you make informed choices."],
+		"Esta familiarizado con los candidatos y sus preocupaciones. La applicación de <strong>Ballot Ready</strong> le puede ayudar a hacer decisiones con más contexto."],
 
 	[StringId.PlanYourBallotChoices,
 		// "Plan your ballot choices"],
@@ -1184,8 +1184,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Estudie su cartón de votación"],
 
 	[StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
-		// "Now\u2019s the perfect time to research the candidates and issues you\u2019ll be voting for. The Ballot Ready app can help you make informed choices."],
-		"Ahora es el perfecto momento para investigar los candidatos y las propuestas por las que va a votar. La aplicación Ballot Ready lo puede ayudar decisiones informadas."],
+		// "Now\u2019s the perfect time to research the candidates and issues you\u2019ll be voting for. The <strong>Ballot Ready</strong> app can help you make informed choices."],
+		"Ahora es el perfecto momento para investigar los candidatos y las propuestas por las que va a votar. La aplicación <strong>Ballot Ready</strong> lo puede ayudar decisiones informadas."],
 
 	[StringId.InviteYourFriendsToVoteWithYou,
 		// "Invite your crowd to vote with you"],
