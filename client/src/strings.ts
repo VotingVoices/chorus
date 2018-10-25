@@ -1406,8 +1406,9 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"."],
 
 	[StringId.BallotReadySecondaryDescription,
-		// TODO: Translate
-		"Get familiar with all the candidates and ballot measures. <strong>BallotReady</strong>\u2019s nonpartisan voter guides can help you make informed choices on your entire ballot."],
+		// TODO: Confirm translation
+		// "Get familiar with all the candidates and ballot measures. <strong>BallotReady</strong>\u2019s nonpartisan voter guides can help you make informed choices on your entire ballot."],
+		"Familiarícese con todos los candidatos y propuestas sujetas a votación. Las guías del votante no partidistas de <strong>BallotReady</strong> pueden ayudarlo a tomar decisiones informadas sobre toda su cartón de votación."],
 ]);
 
 export function getEnglishString(id: StringId): string {
