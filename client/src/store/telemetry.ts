@@ -19,9 +19,11 @@ function uuidv4() {
 
 export class TelemetrySession {
 	private sessionId: string;
+	private sequenceNumber: number;
 
 	constructor() {
 		this.sessionId = uuidv4();
+		this.sequenceNumber = 0;
 	}
 
 	public recordLandingPage() {
@@ -113,6 +115,7 @@ export class TelemetrySession {
 		// 'contact' is needs to be unique for every event.
 		data.contact = uuidv4();
 		data.sessionId = this.sessionId;
+		data.sequenceNumber = this.sequenceNumber;
 		
 		fetch(TelemetryEndpoint, {
 			method: "POST",
@@ -128,6 +131,8 @@ export class TelemetrySession {
 		}).catch(err => {
 			throw new Error(`Unable to POST to telemetry endpoint.  err: ${err}`);
 		});
+
+		this.sequenceNumber++;
 	}
 }
 
