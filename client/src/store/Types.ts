@@ -35,6 +35,7 @@ export enum QuestionId {
 export const ALL_QUESTION_IDS: QuestionId[] = [
 	QuestionId.AreYouRegistered,
 	QuestionId.ZipCode,
+	QuestionId.VotingMethod,
 	QuestionId.PollingLocation,
 	QuestionId.SpecialAccommodations,
 	QuestionId.TransportationMethod,

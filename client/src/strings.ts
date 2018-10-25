@@ -56,7 +56,6 @@ export enum StringId {
 	NotSureWhetherYoureRegistered,
 	TakeAMinuteToSubmitYourRegistration,
 	RequestYourAbsenteeBallot,
-	MakeTheRequest,
 	FindYourColoradoBallot,
 	FindYourOregonBallot,
 	FindYourWashingtonBallot,
@@ -86,6 +85,8 @@ export enum StringId {
 	PlanAheadForDropBox,
 	FindDropboxNearYou,
 	CheckAbsenteePostageAndDeadline,
+	LearnAboutEarlyVoting,
+	VoteDotOrgEarlyVotingLink,
 	VoteDotOrgAbsenteeBallotLink,
 	HasYourPollingLocationMoved,
 	CheckYourPollingLocationBecauseThingsChange,
@@ -179,6 +180,8 @@ export enum StringId {
 	AtThePolls,
 	VoteEarly,
 	Absentee,
+	SkipTheElectionDayLines,
+	FindOutWhereToVoteEarly,
 }
 
 const STRINGS_ENGLISH = new Map<StringId, string>([
@@ -347,9 +350,6 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.RequestYourAbsenteeBallot,
 		"Request your absentee ballot"],
 
-	[StringId.MakeTheRequest,
-		"Make the request"],
-
 	[StringId.FindYourColoradoBallot,
 		"Find your Colorado ballot"],
 
@@ -436,6 +436,12 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.CheckAbsenteePostageAndDeadline,
 		"A convenient way to go! Just remember to check on postage and your mailing deadline."],
+
+	[StringId.LearnAboutEarlyVoting,
+		"A convenient way to go! Learn about early voting and find the rules for your state."],
+
+	[StringId.VoteDotOrgEarlyVotingLink,
+		"https://www.vote.org/early-voting-calendar/"],
 
 	[StringId.VoteDotOrgAbsenteeBallotLink,
 		"https://www.vote.org/absentee-ballot/"],
@@ -715,6 +721,12 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 
 	[StringId.Absentee,
 		"Absentee"],
+
+	[StringId.SkipTheElectionDayLines,
+		"Skip the Election Day lines"],
+
+	[StringId.FindOutWhereToVoteEarly,
+		"Find out where to vote early"],
 ]);
 
 const STRINGS_SPANISH = new Map<StringId, string>([
@@ -932,10 +944,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// "Request your absentee ballot"],
 		"Pida su voto por correspondencia"],
 
-	[StringId.MakeTheRequest,
-		// "Make the request"],
-		"Haga su solicitud"],
-
 	[StringId.FindYourColoradoBallot,
 		// "Find your Colorado ballot"],
 		"Encuentre su cartón de votación de Colorado"],
@@ -1040,6 +1048,14 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.CheckAbsenteePostageAndDeadline,
 		// "A convenient way to go! Just remember to check on postage and your mailing deadline."],
 		"Una forma sencilla de realizarlo! Recuerde revisar la estampilla y la fecha límite de envío."],
+
+	[StringId.LearnAboutEarlyVoting,
+		// TODO: Confirm translation
+		// "A convenient way to go! Learn about early voting and find the rules for your state."],
+		"Una forma sencilla de realizarlo! Aprenda más sobre la votación anticipada, y encontre el reglamento de su estado."],
+
+	[StringId.VoteDotOrgEarlyVotingLink,
+		"https://www.vote.org/early-voting-calendar/"],
 
 	[StringId.VoteDotOrgAbsenteeBallotLink,
 		"https://www.vote.org/absentee-ballot/"],
@@ -1410,6 +1426,16 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		// TODO: Confirm translation
 		// "Absentee"],
 		"Por correspondencia"],
+
+	[StringId.SkipTheElectionDayLines,
+		// TODO: Confirm translation
+		// "Skip the Election Day lines"],
+		"Evite las filas el día de votación"],
+
+	[StringId.FindOutWhereToVoteEarly,
+		// TODO: Confirm translation
+		// "Find out where to vote early"],
+		"Averigüe dónde se puede votar anticpadamente"],
 ]);
 
 export function getEnglishString(id: StringId): string {
@@ -1649,11 +1675,20 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 			}
 		}
 
+		case PlanStepId.FindOutWhereToVoteEarly: {
+			return {
+				header: StringId.SkipTheElectionDayLines,
+				text: StringId.LearnAboutEarlyVoting,
+				callToAction: StringId.FindOutWhereToVoteEarly,
+				link: StringId.VoteDotOrgEarlyVotingLink,
+			}
+		}
+
 		case PlanStepId.RequestAbsenteeBallot: {
 			return {
-				header: StringId.RequestYourAbsenteeBallot,
+				header: StringId.SkipTheElectionDayLines,
 				text: StringId.CheckAbsenteePostageAndDeadline,
-				callToAction: StringId.MakeTheRequest,
+				callToAction: StringId.RequestYourAbsenteeBallot,
 				link: StringId.VoteDotOrgAbsenteeBallotLink,
 			}
 		}
