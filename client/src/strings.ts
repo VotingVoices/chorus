@@ -123,7 +123,7 @@ export enum StringId {
 	YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
 	PlanYourBallotChoices,
 	BallotReadyDotOrgLink,
-	IntroducingYourBallot,
+	ExploreYourBallot,
 	BallotReadyAppCanHelpYouMakeInformedChoices,
 	InviteYourFriendsToVoteWithYou,
 	LetsKeepEachOtherAccountable,
@@ -546,8 +546,8 @@ const STRINGS_ENGLISH = new Map<StringId, string>([
 	[StringId.BallotReadyDotOrgLink,
 		"https://www.ballotready.org/"],
 
-	[StringId.IntroducingYourBallot,
-		"Introducing...your ballot!"],
+	[StringId.ExploreYourBallot,
+		"Explore your ballot"],
 
 	[StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
 		"Now\u2019s the perfect time to research the candidates and issues you\u2019ll be voting for. The Ballot Ready app can help you make informed choices."],
@@ -1178,9 +1178,10 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 	[StringId.BallotReadyDotOrgLink,
 		"https://www.ballotready.org/"],
 
-	[StringId.IntroducingYourBallot,
-		// "Introducing...your ballot!"],
-		"Introducción a su cartón de votación"],
+	[StringId.ExploreYourBallot,
+		// TODO: Confirm translation
+		// "Explore your ballot"],
+		"Estudie su cartón de votación"],
 
 	[StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
 		// "Now\u2019s the perfect time to research the candidates and issues you\u2019ll be voting for. The Ballot Ready app can help you make informed choices."],
@@ -1746,7 +1747,7 @@ export function getPlanStepStrings(step: PlanStepId, state: VotingStateId): IPla
 
 		case PlanStepId.ResearchBallotIssues: {
 			return {
-				header: StringId.IntroducingYourBallot,
+				header: StringId.ExploreYourBallot,
 				text: StringId.BallotReadyAppCanHelpYouMakeInformedChoices,
 				callToAction: StringId.PlanYourBallotChoices,
 				link: StringId.BallotReadyDotOrgLink,
