@@ -69,7 +69,7 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 				questionSpecified: false,
 			};
 		}
-		
+
 		const queryValues = queryString.parse(search);
 
 		let currentQuestionId = queryValues[CurrentQuestionQueryParameterName];
@@ -84,7 +84,7 @@ export function readStateFromLocation(existingState: IQuestionnaireState, pathna
 			dotNavStep = QUESTIONS.find(q => q.id === currentQuestionId)!.dotNavStep;
 		}
 
-		const answers: IQuestionAndAnswer[] = existingState.answers;
+		const answers: IQuestionAndAnswer[] = existingState.answers.slice();
 		let votingStateId = existingState.votingStateId;
 
 		ALL_QUESTION_IDS.forEach((questionId: QuestionId) => {
