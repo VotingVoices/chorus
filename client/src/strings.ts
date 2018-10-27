@@ -1050,9 +1050,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Una forma sencilla de realizarlo! Recuerde revisar la estampilla y la fecha límite de envío."],
 
 	[StringId.LearnAboutEarlyVoting,
-		// TODO: Confirm translation
 		// "A convenient way to go! Learn about early voting and find the rules for your state."],
-		"Una forma sencilla de realizarlo! Aprenda más sobre la votación anticipada, y encontre el reglamento de su estado."],
+		"Una forma sencilla de realizarlo! Aprenda más sobre la votación temprana, y encuentre el reglamento de su estado."],
 
 	[StringId.VoteDotOrgEarlyVotingLink,
 		"https://www.vote.org/early-voting-calendar/"],
@@ -1180,7 +1179,7 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 
 	[StringId.YoureFamiliarButBallotReadyAppCanHelpYouMakeInformedChoices,
 		// "You\u2019re familiar with the candidates and issues. The <strong>BallotReady</strong> app can help you make informed choices."],
-		"Esta familiarizado con los candidatos y sus preocupaciones. La applicación de <strong>BallotReady</strong> le puede ayudar a hacer decisiones con más contexto."],
+		"Está familiarizado con los candidatos y sus preocupaciones. La applicación de <strong>BallotReady</strong> le puede ayudar a hacer decisiones con más contexto."],
 
 	[StringId.PlanYourBallotChoices,
 		// "Plan your ballot choices"],
@@ -1190,9 +1189,8 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"https://www.ballotready.org/"],
 
 	[StringId.ExploreYourBallot,
-		// TODO: Confirm translation
 		// "Explore your ballot"],
-		"Estudie su cartón de votación"],
+		"Explore su cartón de votación"],
 
 	[StringId.InviteYourFriendsToVoteWithYou,
 		// "Invite your crowd to vote with you"],
@@ -1207,7 +1205,6 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Ponga esos sentimientos en acciones"],
 
 	[StringId.YoureExcitedDescription,
-		// TODO: Confirm translation
 		// "You\u2019re excited and that's great! Take your enthusiasm all the way to the polls or ballot box."],
 		"Usted está emocionado por votar, y ¡es grandioso! Tome su entusiasmo y úselo para votar."],
 
@@ -1216,24 +1213,20 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"Ponga esos sentimientos en una acción"],
 
 	[StringId.YoureConcernedDescription,
-		// TODO: Confirm translation
 		// "You\u2019re feeling concerned \u2014 we get it! These are complicated times. You\u2019ll feel better after you get out there and vote."],
 		"Se está sintiendo preocupado \u2014 ¡lo entendemos! Estos son tiempos complicados. Se sentirá mejor despues de salir y votar."],
 
 	[StringId.YoureShocked,
-		// TODO: Confirm translation
 		// "You\u2019re feeling shocked \u2014 we get it! These are complicated times. You\u2019ll feel better after you get out there and vote."],
 		"Se está sintiendo consternado \u2014 ¡lo entendemos! Estos son tiempos complicados. Se sentirá mejor despues de salir y votar."],
 
 	[StringId.YoureAngry,
-		// TODO: Confirm translation
 		// "You\u2019re feeling angry \u2014 we get it! These are complicated times. You\u2019ll feel better after you get out there and vote."],
 		"Se está sintiendo con rabia \u2014 ¡lo entendemos! Estos son tiempos complicados. Se sentirá mejor despues de salir y votar."],
 
 	[StringId.YoureMeh,
-		// TODO: Confirm translation
 		// "Feeling ambivalent? Now that your voting plans are taking shape \u2014 now get out there and vote!"],
-		"¿Se está sintiendo indiferente? Ahora que sus planes de votación están tomando \u2014 ¡ahora salga y vote!"],
+		"¿Se está sintiendo indiferente? Sus planes de votación están tomando forma \u2014 ¡ahora salga y vote!"],
 
 	[StringId.RememberYourReasonForVoting,
 		// "Remember your reason for voting!"],
@@ -1403,37 +1396,30 @@ const STRINGS_SPANISH = new Map<StringId, string>([
 		"."],
 
 	[StringId.BallotReadySecondaryDescription,
-		// TODO: Confirm translation
 		// "Get familiar with all the candidates and ballot measures. <strong>BallotReady</strong>\u2019s nonpartisan voter guides can help you make informed choices on your entire ballot."],
-		"Familiarícese con todos los candidatos y propuestas sujetas a votación. Las guías del votante no partidistas de <strong>BallotReady</strong> pueden ayudarlo a tomar decisiones informadas sobre toda su cartón de votación."],
+		"Familiarícese con todos los candidatos y propuestas de votación. Las guías del votante no partidistas de <strong>BallotReady</strong> pueden ayudarlo a tomar decisiones informadas sobre como votar."],
 
 	[StringId.HowDoYouPlanOnVoting,
-		// TODO: Confirm translation
 		// "How do you plan on voting?"]
 		"¿Cómo piensa votar?"],
 
 	[StringId.AtThePolls,
-		// TODO: Confirm translation
 		// "At the polls"],
 		"Puesto de votación"],
 
 	[StringId.VoteEarly,
-		// TODO: Confirm translation
 		// "Vote early"],
-		"Votación anticipada"],
+		"Votación temprana"],
 
 	[StringId.Absentee,
-		// TODO: Confirm translation
 		// "Absentee"],
-		"Por correspondencia"],
+		"Por correo postal"],
 
 	[StringId.SkipTheElectionDayLines,
-		// TODO: Confirm translation
 		// "Skip the Election Day lines"],
 		"Evite las filas el día de votación"],
 
 	[StringId.FindOutWhereToVoteEarly,
-		// TODO: Confirm translation
 		// "Find out where to vote early"],
 		"Averigüe dónde se puede votar anticpadamente"],
 ]);
